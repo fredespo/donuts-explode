@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PieceShooter : MonoBehaviour
 {
+    public GameObject pieceParent;
     public GameObject piece;
     public float speed = 1.0f;
     public float shootDelaySec = 1.0f;
@@ -41,7 +42,7 @@ public class PieceShooter : MonoBehaviour
     void SpawnPiece()
     {
         spawnedPiece = Instantiate(piece);
-        spawnedPiece.transform.SetParent(gameObject.transform.parent);
+        spawnedPiece.transform.SetParent(pieceParent.transform);
         spawnedPiece.transform.position = gameObject.transform.position;
         spawnedPiece.transform.localScale = new Vector3(81, 81, 1);
         showingSpawnedPiece = true;

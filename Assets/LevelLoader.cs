@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameState : MonoBehaviour
+public class LevelLoader : MonoBehaviour
 {
-    public void RetryLevel()
+    public void RestartCurrentLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
