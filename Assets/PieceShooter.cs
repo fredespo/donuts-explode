@@ -11,6 +11,7 @@ public class PieceShooter : MonoBehaviour
     private float lastShootTime = 0.0f;
     private GameObject spawnedPiece;
     private bool showingSpawnedPiece = false;
+    private int piecesShotCount = 0;
 
     void Start()
     {
@@ -37,6 +38,7 @@ public class PieceShooter : MonoBehaviour
     {
         spawnedPiece.GetComponent<Rigidbody2D>().velocity = transform.up * speed;
         showingSpawnedPiece = false;
+        ++piecesShotCount;
     }
 
     void SpawnPiece()
@@ -46,5 +48,10 @@ public class PieceShooter : MonoBehaviour
         spawnedPiece.transform.position = gameObject.transform.position;
         spawnedPiece.transform.localScale = new Vector3(81, 81, 1);
         showingSpawnedPiece = true;
+    }
+
+    public int GetPiecesShotCount()
+    {
+        return piecesShotCount;
     }
 }
