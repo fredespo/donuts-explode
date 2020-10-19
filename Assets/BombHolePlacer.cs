@@ -6,16 +6,17 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class BombHolePlacer : MonoBehaviour
 {
-    public Vector2 center;
-    public float radius;
+    public GameObject center;
+    public GameObject edge;
     public float degrees;
 
     void Update()
     {
+        float radius = Vector2.Distance(center.transform.position, edge.transform.position);
         float radians = degrees * Mathf.Deg2Rad;
         float x = Mathf.Cos(radians) * radius;
         float y = Mathf.Sin(radians) * radius;
-        gameObject.transform.position = new Vector3(center.x + x, center.y + y, 0);
+        gameObject.transform.position = new Vector3(center.transform.position.x + x, center.transform.position.y + y, 0);
         gameObject.transform.eulerAngles = new Vector3
         (
             0,
