@@ -12,7 +12,7 @@ public class BombHole : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if(col.gameObject.CompareTag(gameObject.name))
+        if(col.gameObject.CompareTag(gameObject.tag))
         {
             Destroy(col.gameObject);
             Destroy(gameObject);
