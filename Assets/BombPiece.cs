@@ -20,7 +20,6 @@ public class BombPiece : MonoBehaviour
         if(!fading && col.gameObject.CompareTag("bomb"))
         {
             fading = true;
-            GetComponent<Collider2D>().enabled = false;
         }
     }
 
@@ -34,6 +33,10 @@ public class BombPiece : MonoBehaviour
             if(color.a <= 0f)
             {
                 Destroy(gameObject);
+            }
+            else if(color.a <= 0.6f)
+            {
+                GetComponent<Collider2D>().enabled = false;
             }
         }
     }
