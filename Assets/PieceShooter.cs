@@ -20,25 +20,21 @@ public class PieceShooter : MonoBehaviour
 
     void Update()
     {
-        if(Time.time - lastShootTime >= shootDelaySec)
+        if (Time.time - lastShootTime >= shootDelaySec && !showingSpawnedPiece)
         {
-            if (!showingSpawnedPiece)
-            {
-                SpawnPiece();
-            }
-            else if (Input.GetMouseButtonDown(0))
-            {
-                Shoot();
-                lastShootTime = Time.time;
-            }
+            SpawnPiece();
         }
     }
 
-    void Shoot()
+    public void Shoot()
     {
-        spawnedPiece.GetComponent<Rigidbody2D>().velocity = transform.up * speed;
-        showingSpawnedPiece = false;
-        ++piecesShotCount;
+        if (Time.time - lastShootTime >= shootDelaySec)
+        {
+            spawnedPiece.GetComponent<Rigidbody2D>().velocity = transform.up * speed;
+            showingSpawnedPiece = false;
+            ++piecesShotCount;
+            lastShootTime = Time.time;
+        }
     }
 
     void SpawnPiece()
