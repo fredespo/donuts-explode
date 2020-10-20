@@ -9,6 +9,8 @@ public class textTimer : MonoBehaviour
     public GameObject gameOverUI;
     public float gameOverDelaySec;
     public float seconds = 10;
+    public GameObject pauseButton;
+    public GameObject shootTapZone;
     private Text text;
 
     void Start()
@@ -22,6 +24,8 @@ public class textTimer : MonoBehaviour
         if (seconds < 0)
         {
             seconds = 0;
+            pauseButton.SetActive(false);
+            shootTapZone.SetActive(false);
             detonator.activate();
             Destroy(gameObject);
             gameOverUI.SetActive(true);
