@@ -32,4 +32,9 @@ public class textTimer : MonoBehaviour
         }
         text.text = seconds.ToString("00.00").Replace(".", ":");
     }
+
+    public float GetSecondsLeft()
+    {
+        return seconds;
+    }
 }

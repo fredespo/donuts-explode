@@ -1525,6 +1525,8 @@ GameObject:
   m_Component:
   - component: {fileID: 793804261}
   - component: {fileID: 793804262}
+  - component: {fileID: 793804264}
+  - component: {fileID: 793804263}
   m_Layer: 0
   m_Name: Fuse
   m_TagString: Untagged
@@ -1601,6 +1603,38 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &793804263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 793804260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ec8557a585a8ab4d8f33dac5345f983, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bombTimer: {fileID: 1226216463}
+--- !u!95 &793804264
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 793804260}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 48487591626e9bc409af8ba2634d390d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &813042355
 GameObject:
   m_ObjectHideFlags: 0
