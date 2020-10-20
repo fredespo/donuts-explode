@@ -11,6 +11,8 @@ public class BombDefuzer : MonoBehaviour
     public GameObject pieceShooter;
     public GameObject pauseButton;
     public GameObject shootTapZone;
+    public Animator fuseAnim;
+    public GameObject fuseFlare;
 
     void Update()
     {
@@ -25,6 +27,8 @@ public class BombDefuzer : MonoBehaviour
         pauseButton.SetActive(false);
         shootTapZone.SetActive(false);
         timer.enabled = false;
+        fuseAnim.enabled = false;
+        fuseFlare.SetActive(false);
         bombRotator.enabled = false;
         defuzedUI.SetActive(true);
         pieces.SetActive(false);
