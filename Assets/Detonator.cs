@@ -5,8 +5,14 @@ using UnityEngine;
 public class Detonator : MonoBehaviour
 {
     public GameObject explosion;
-    public GameObject pieces;
-    public GameObject pieceShooter;
+    private GameObject pieces;
+    private GameObject pieceShooter;
+
+    public void Start()
+    {
+        pieces = GameObject.FindGameObjectsWithTag("PieceKeeper")[0];
+        pieceShooter = GameObject.FindGameObjectsWithTag("PieceShooter")[0];
+    }
 
     public void activate()
     {

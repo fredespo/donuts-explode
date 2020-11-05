@@ -5,11 +5,12 @@ using UnityEngine;
 
 public class Fuse : MonoBehaviour
 {
-    public textTimer bombTimer;
+    private textTimer bombTimer;
     private Animator anim;
 
     void Start()
     {
+        bombTimer = GameObject.FindGameObjectsWithTag("BombTimer")[0].GetComponent<textTimer>();
         anim = GetComponent<Animator>();
         anim.speed = 1 / bombTimer.GetSecondsLeft();
     }

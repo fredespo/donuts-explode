@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class textTimer : MonoBehaviour
 {
-    public Detonator detonator;
+    private Detonator detonator;
     public GameObject gameOverUI;
     public float gameOverDelaySec;
     public float seconds = 10;
@@ -26,6 +26,7 @@ public class textTimer : MonoBehaviour
             seconds = 0;
             pauseButton.SetActive(false);
             shootTapZone.SetActive(false);
+            detonator = GameObject.FindGameObjectsWithTag("bomb")[0].GetComponent<Detonator>();
             detonator.activate();
             Destroy(gameObject);
             gameOverUI.SetActive(true);
@@ -36,5 +37,10 @@ public class textTimer : MonoBehaviour
     public float GetSecondsLeft()
     {
         return seconds;
+    }
+
+    public void setTime(float seconds)
+    {
+        this.seconds = seconds;
     }
 }
