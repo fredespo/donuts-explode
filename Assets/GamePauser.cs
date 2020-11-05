@@ -11,30 +11,26 @@ public class GamePauser : MonoBehaviour
     public GameObject pausedButtons;
     public GameObject quitConfirmUI;
     public GameObject shootTapZone;
-    public Rotator bombRotator;
-    public textTimer bombTimer;
     private bool tutTextWasActive;
 
     public void PauseGame()
     {
+        Time.timeScale = 0;
         pauseUI.SetActive(true);
         tutTextWasActive = tutorialText.activeSelf;
         tutorialText.SetActive(false);
         shootTapZone.SetActive(false);
-        bombRotator.enabled = false;
-        bombTimer.enabled = false;
     }
 
     public void ResumeGame()
     {
+        Time.timeScale = 1;
         pauseUI.SetActive(false);
         if(tutTextWasActive)
         {
             tutorialText.SetActive(true);
         }
         shootTapZone.SetActive(true);
-        bombRotator.enabled = true;
-        bombTimer.enabled = true;
     }
 
     public void ShowConfirmQuitUI()
