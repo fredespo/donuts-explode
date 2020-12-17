@@ -13,6 +13,7 @@ public class BombDefuzer : MonoBehaviour
     private GameObject shootTapZone;
     public Animator fuseAnim;
     public GameObject fuseFlare;
+    public AudioSource music;
 
     void Start()
     {
@@ -22,6 +23,7 @@ public class BombDefuzer : MonoBehaviour
         pieceShooter = GameObject.FindGameObjectsWithTag("PieceShooter")[0];
         pauseButton = GameObject.FindGameObjectsWithTag("PauseButton")[0];
         shootTapZone = GameObject.FindGameObjectsWithTag("ShootTapZone")[0];
+        music = GameObject.FindGameObjectsWithTag("GameMusic")[0].GetComponent<AudioSource>();
     }
 
     void Update()
@@ -46,5 +48,6 @@ public class BombDefuzer : MonoBehaviour
         }
         pieces.SetActive(false);
         pieceShooter.SetActive(false);
+        music.Pause();
     }
 }

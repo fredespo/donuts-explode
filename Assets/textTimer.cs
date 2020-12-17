@@ -11,6 +11,7 @@ public class textTimer : MonoBehaviour
     public float seconds = 10;
     public GameObject pauseButton;
     public GameObject shootTapZone;
+    public AudioSource music;
     private Text text;
 
     void Start()
@@ -27,7 +28,8 @@ public class textTimer : MonoBehaviour
             pauseButton.SetActive(false);
             shootTapZone.SetActive(false);
             detonator = GameObject.FindGameObjectsWithTag("bomb")[0].GetComponent<Detonator>();
-            detonator.activate();            
+            detonator.activate();
+            music.Pause();
             gameOverUI.SetActive(true);
             gameObject.SetActive(false);
         }

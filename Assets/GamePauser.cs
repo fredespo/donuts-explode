@@ -12,6 +12,7 @@ public class GamePauser : MonoBehaviour
     public GameObject quitConfirmUI;
     public GameObject shootTapZone;
     private bool tutTextWasActive;
+    public AudioSource music;
 
     public void PauseGame()
     {
@@ -20,6 +21,7 @@ public class GamePauser : MonoBehaviour
         tutTextWasActive = tutorialText.activeSelf;
         tutorialText.SetActive(false);
         shootTapZone.SetActive(false);
+        music.Pause();
     }
 
     public void ResumeGame()
@@ -31,6 +33,10 @@ public class GamePauser : MonoBehaviour
             tutorialText.SetActive(true);
         }
         shootTapZone.SetActive(true);
+        if(!music.isPlaying)
+        {
+            music.Play(0);
+        }
     }
 
     public void ShowConfirmQuitUI()

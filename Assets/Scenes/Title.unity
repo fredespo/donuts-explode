@@ -224,6 +224,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 974466847}
+  music: {fileID: 1779454661}
   timer: {fileID: 1173611987}
   bombPieces: {fileID: 1010132026}
   pieceShooter: {fileID: 863292596}
@@ -721,6 +722,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   titleScreen: {fileID: 1748620201}
   gameScreen: {fileID: 974466847}
+  music: {fileID: 1779454661}
 --- !u!4 &616734854
 Transform:
   m_ObjectHideFlags: 0
@@ -1601,6 +1603,7 @@ MonoBehaviour:
   seconds: 10
   pauseButton: {fileID: 1978927167}
   shootTapZone: {fileID: 1481179520}
+  music: {fileID: 1779454661}
 --- !u!114 &1173611988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2361,8 +2364,8 @@ GameObject:
   - component: {fileID: 1779454662}
   - component: {fileID: 1779454661}
   m_Layer: 0
-  m_Name: AudioSource
-  m_TagString: Untagged
+  m_Name: Music
+  m_TagString: GameMusic
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2379,7 +2382,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: f5e578b4b4d36964d928c6d0913fdeab, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.1
+  m_Volume: 0.175
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -3011,6 +3014,7 @@ MonoBehaviour:
   pausedButtons: {fileID: 1945463014}
   quitConfirmUI: {fileID: 1770568999}
   shootTapZone: {fileID: 1481179520}
+  music: {fileID: 1779454661}
 --- !u!4 &2083448103
 Transform:
   m_ObjectHideFlags: 0
