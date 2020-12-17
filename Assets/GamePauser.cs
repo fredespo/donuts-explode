@@ -35,6 +35,7 @@ public class GamePauser : MonoBehaviour
         shootTapZone.SetActive(true);
         if(!music.isPlaying)
         {
+            music.pitch = 1.0f;
             music.Play(0);
         }
     }

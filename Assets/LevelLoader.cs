@@ -62,6 +62,7 @@ public class LevelLoader : MonoBehaviour
         gamePauser.ResumeGame();
         if (!music.isPlaying)
         {
+            music.pitch = 1.0f;
             music.Play(0);
         }
     }

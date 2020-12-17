@@ -9,19 +9,26 @@ public class textTimer : MonoBehaviour
     public GameObject gameOverUI;
     public float gameOverDelaySec;
     public float seconds = 10;
+    private float startSeconds;
     public GameObject pauseButton;
     public GameObject shootTapZone;
     public AudioSource music;
     private Text text;
+    public float minMusicPitch = 1.0f;
+    public float maxMusicPitch = 2.0f;
+    [SerializeField] public AnimationCurve musicPitchCurve;
+    public float currCurveVal;
 
     void Start()
     {
         text = GetComponent<Text>();
+        startSeconds = seconds;
     }
 
     void Update()
     {
         seconds -= Time.deltaTime;
+        AdjustMusic();
         if (seconds < 0)
         {
             seconds = 0;
@@ -34,6 +41,14 @@ public class textTimer : MonoBehaviour
             gameObject.SetActive(false);
         }
         text.text = seconds.ToString("00.00").Replace(".", ":");
+    }
+
+
+    private void AdjustMusic()
+    {
+        float timeElapsed = startSeconds - seconds;
+        currCurveVal = musicPitchCurve.Evaluate(timeElapsed / startSeconds);
+        music.pitch = minMusicPitch + ((maxMusicPitch - minMusicPitch) * currCurveVal);
     }
 
     public float GetSecondsLeft()

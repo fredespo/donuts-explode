@@ -14,6 +14,7 @@ public class ScreenManager : MonoBehaviour
         titleScreen.SetActive(true);
         if(!music.isPlaying)
         {
+            music.pitch = 1.0f;
             music.Play(0);
         }
     }
@@ -24,6 +25,7 @@ public class ScreenManager : MonoBehaviour
         gameScreen.SetActive(true);
         if (!music.isPlaying)
         {
+            music.pitch = 1.0f;
             music.Play(0);
         }
     }
