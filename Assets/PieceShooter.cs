@@ -13,7 +13,7 @@ public class PieceShooter : MonoBehaviour
     private bool showingSpawnedPiece = false;
     private int piecesShotCount = 0;
 
-    void Start()
+    public void Init()
     {
         SpawnPiece();
     }

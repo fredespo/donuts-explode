@@ -27,9 +27,9 @@ public class textTimer : MonoBehaviour
             pauseButton.SetActive(false);
             shootTapZone.SetActive(false);
             detonator = GameObject.FindGameObjectsWithTag("bomb")[0].GetComponent<Detonator>();
-            detonator.activate();
-            Destroy(gameObject);
+            detonator.activate();            
             gameOverUI.SetActive(true);
+            gameObject.SetActive(false);
         }
         text.text = seconds.ToString("00.00").Replace(".", ":");
     }

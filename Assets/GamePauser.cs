@@ -39,11 +39,6 @@ public class GamePauser : MonoBehaviour
         quitConfirmUI.SetActive(true);
     }
 
-    public void Quit()
-    {
-        SceneManager.LoadScene(0);
-    }
-
     public void CancelQuit()
     {
         pausedButtons.SetActive(true);

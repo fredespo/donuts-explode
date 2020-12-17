@@ -5,13 +5,12 @@ using UnityEngine;
 public class ShootTutorialText : MonoBehaviour
 {
     public PieceShooter pieceShooter;
-    public GameObject bomb;
 
     void Update()
     {
-        if(pieceShooter.GetPiecesShotCount() > 0 || bomb == null)
+        if(pieceShooter.GetPiecesShotCount() > 0)
         {
-            Destroy(gameObject);
+            this.transform.parent.gameObject.SetActive(false);
         }
     }
 }
