@@ -7,7 +7,7 @@ public class LevelLoader : MonoBehaviour
 {
     public GameObject canvas;
     private ScreenManager screenManager;
-    public AudioSource music;
+    public GameMusic music;
     public textTimer timer;
     public GameObject bombPieces;
     public GameObject pieceShooter;
@@ -58,13 +58,9 @@ public class LevelLoader : MonoBehaviour
         pausedUI.SetActive(false);
         gamePauser.CancelQuit();
         gamePauser.ResumeGame();
-        if (!music.isPlaying)
-        {
-            music.pitch = 1.0f;
-            music.Play(0);
-        }
+        music.Reset();
 
-        if(tutorialText != null)
+        if (tutorialText != null)
         {
             Destroy(tutorialText);
         }

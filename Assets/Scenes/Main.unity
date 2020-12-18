@@ -224,7 +224,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 974466847}
-  music: {fileID: 1779454661}
+  music: {fileID: 1779454663}
   timer: {fileID: 1173611987}
   bombPieces: {fileID: 1010132026}
   pieceShooter: {fileID: 863292596}
@@ -1610,7 +1610,7 @@ MonoBehaviour:
   music: {fileID: 1779454661}
   explosionSound: {fileID: 2147402491}
   minMusicPitch: 1
-  maxMusicPitch: 1.5
+  maxMusicPitch: 1.3
   musicPitchCurve:
     serializedVersion: 2
     m_Curve:
@@ -1626,8 +1626,8 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 2
-      outSlope: 2
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
@@ -2303,6 +2303,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1779454662}
   - component: {fileID: 1779454661}
+  - component: {fileID: 1779454663}
   m_Layer: 0
   m_Name: Music
   m_TagString: GameMusic
@@ -2420,6 +2421,46 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1779454663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1779454660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4d42831a0c32684abbe68df5966c364, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minMusicPitch: 1
+  maxMusicPitch: 1.3
+  windDownCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -0.0017127991
+      value: 0.9953003
+      inSlope: -3.3529553
+      outSlope: -3.3529553
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.042811137
+    - serializedVersion: 3
+      time: 0.99823
+      value: 0.0023498535
+      inSlope: -0.05389142
+      outSlope: -0.05389142
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.091699585
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  timeToWindDown: 1
+  curveVal: 0
 --- !u!1 &1945463014
 GameObject:
   m_ObjectHideFlags: 0
