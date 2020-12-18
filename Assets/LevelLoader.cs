@@ -42,6 +42,7 @@ public class LevelLoader : MonoBehaviour
         }
         GameObject bomb = Instantiate(level.bomb);
         bomb.transform.SetParent(canvas.transform, false);
+        timer.Init(bomb.GetComponent<Detonator>());
         timer.gameObject.SetActive(true);
         timer.gameObject.GetComponent<textTimer>().enabled = true;
         timer.setTime(level.secondsOnTimer);

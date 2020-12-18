@@ -27,6 +27,11 @@ public class textTimer : MonoBehaviour
         startSeconds = seconds;
     }
 
+    public void Init(Detonator detonator)
+    {
+        this.detonator = detonator;
+    }
+
     void Update()
     {
         seconds -= Time.deltaTime;
@@ -36,7 +41,6 @@ public class textTimer : MonoBehaviour
             seconds = 0;
             pauseButton.SetActive(false);
             shootTapZone.SetActive(false);
-            detonator = GameObject.FindGameObjectsWithTag("bomb")[0].GetComponent<Detonator>();
             detonator.activate();
             explosionSound.Play(0);
             tutorialText.SetActive(false);
