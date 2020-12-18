@@ -29,7 +29,7 @@ public class PieceShooter : MonoBehaviour
 
     public void Shoot()
     {
-        if (Time.time - lastShootTime >= shootDelaySec)
+        if (Time.time - lastShootTime >= shootDelaySec && showingSpawnedPiece)
         {
             spawnedPiece.GetComponent<Rigidbody2D>().velocity = transform.up * speed;
             showingSpawnedPiece = false;
