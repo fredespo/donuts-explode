@@ -16,6 +16,7 @@ public class PieceShooter : MonoBehaviour
     public void Init()
     {
         SpawnPiece();
+        ResetPieceShotCount();
     }
 
     void Update()
@@ -44,6 +45,11 @@ public class PieceShooter : MonoBehaviour
         spawnedPiece.transform.position = gameObject.transform.position;
         spawnedPiece.transform.localScale = new Vector3(81, 81, 1);
         showingSpawnedPiece = true;
+    }
+
+    private void ResetPieceShotCount()
+    {
+        piecesShotCount = 0;
     }
 
     public int GetPiecesShotCount()

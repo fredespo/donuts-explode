@@ -17,6 +17,8 @@ public class LevelLoader : MonoBehaviour
     public GameObject pausedUI;
     public GamePauser gamePauser;
     public GameObject gameWonUI;
+    public GameObject tutorialTextContainer;
+    private GameObject tutorialText;
     public List<Level> levels;
     private int currLevel;
 
@@ -53,7 +55,7 @@ public class LevelLoader : MonoBehaviour
         pauseButton.SetActive(true);
         shootTapZone.SetActive(true);
         gameOverUI.SetActive(false);
-        foreach(Transform child in gameWonUI.transform)
+        foreach (Transform child in gameWonUI.transform)
         {
             child.gameObject.SetActive(false);
         }
@@ -65,6 +67,17 @@ public class LevelLoader : MonoBehaviour
             music.pitch = 1.0f;
             music.Play(0);
         }
+
+        if(tutorialText != null)
+        {
+            Destroy(tutorialText);
+        }
+        if(level.tutorialText != null)
+        {
+            tutorialText = Instantiate(level.tutorialText);
+            tutorialText.gameObject.transform.SetParent(tutorialTextContainer.gameObject.transform, false);
+        }
+        tutorialTextContainer.SetActive(true);
     }
 
     public void LoadNextLevel()
@@ -85,6 +98,7 @@ public class LevelLoader : MonoBehaviour
     {
         public GameObject bomb;
         public float secondsOnTimer;
+        public GameObject tutorialText;
     }
 
     [System.Serializable]

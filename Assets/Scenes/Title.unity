@@ -234,11 +234,15 @@ MonoBehaviour:
   pausedUI: {fileID: 696346795}
   gamePauser: {fileID: 2083448102}
   gameWonUI: {fileID: 1957492625}
+  tutorialTextContainer: {fileID: 2109926047}
   levels:
   - bomb: {fileID: 6706467554741298094, guid: 9da7f09acafc12e4dbfb556331587afb, type: 3}
     secondsOnTimer: 10
+    tutorialText: {fileID: 8440258800622958766, guid: 54a6928ecf1cc2b4e9fb3f5741f40629,
+      type: 3}
   - bomb: {fileID: 6706467554741298094, guid: 93ddda6d8597c7449bbac08e3ac8d5e5, type: 3}
     secondsOnTimer: 12
+    tutorialText: {fileID: 0}
 --- !u!4 &46862306
 Transform:
   m_ObjectHideFlags: 0
@@ -1604,6 +1608,7 @@ MonoBehaviour:
   seconds: 10
   pauseButton: {fileID: 1978927167}
   shootTapZone: {fileID: 1481179520}
+  tutorialText: {fileID: 2109926047}
   music: {fileID: 1779454661}
   explosionSound: {fileID: 2147402491}
   minMusicPitch: 1
@@ -2509,97 +2514,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1787256351
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1787256352}
-  - component: {fileID: 1787256355}
-  - component: {fileID: 1787256354}
-  - component: {fileID: 1787256353}
-  m_Layer: 5
-  m_Name: ShootTutorialText
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1787256352
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1787256351}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -3.352417}
-  m_LocalScale: {x: 0.00703, y: 0.00703, z: 0.00703}
-  m_Children: []
-  m_Father: {fileID: 2109926048}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 3.1716979, y: -1.9660645}
-  m_SizeDelta: {x: 1000, y: 154}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1787256353
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1787256351}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01b9f46fac0a85249be69a9cdf6a6ff3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pieceShooter: {fileID: 863292597}
---- !u!114 &1787256354
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1787256351}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.20000002, g: 0.20000002, b: 0.20000002, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_FontData:
-    m_Font: {fileID: 12800000, guid: 2fa627429f5219a498cbdba2c488ab11, type: 3}
-    m_FontSize: 70
-    m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 0
-    m_MaxSize: 300
-    m_Alignment: 1
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: Tap to shoot
---- !u!222 &1787256355
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1787256351}
-  m_CullTransparentMesh: 0
 --- !u!1001 &1823921640
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3084,8 +2998,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -451.08594, y: -634.07367, z: 476.7882}
   m_LocalScale: {x: 142.22223, y: 142.22223, z: 142.22223}
-  m_Children:
-  - {fileID: 1787256352}
+  m_Children: []
   m_Father: {fileID: 974466848}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
