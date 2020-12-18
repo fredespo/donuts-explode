@@ -6,7 +6,7 @@ public class BombDefuzer : MonoBehaviour
 {
     private textTimer timer;
     public Rotator bombRotator;
-    private GameObject defuzedUI;
+    public GameObject defuzedUI;
     private GameObject pieces;
     private GameObject pieceShooter;
     private GameObject pauseButton;
@@ -14,11 +14,11 @@ public class BombDefuzer : MonoBehaviour
     public Animator fuseAnim;
     public GameObject fuseFlare;
     public AudioSource music;
+    private bool defuzed = false;
 
     void Start()
     {
         timer = GameObject.FindGameObjectsWithTag("BombTimer")[0].GetComponent<textTimer>();
-        defuzedUI = GameObject.FindGameObjectsWithTag("WinUI")[0];
         pieces = GameObject.FindGameObjectsWithTag("PieceKeeper")[0];
         pieceShooter = GameObject.FindGameObjectsWithTag("PieceShooter")[0];
         pauseButton = GameObject.FindGameObjectsWithTag("PauseButton")[0];
@@ -36,18 +36,27 @@ public class BombDefuzer : MonoBehaviour
 
     void Defuze()
     {
+        if(defuzed)
+        {
+            return;
+        }
+
         pauseButton.SetActive(false);
         shootTapZone.SetActive(false);
         timer.enabled = false;
         fuseAnim.enabled = false;
         fuseFlare.SetActive(false);
         bombRotator.enabled = false;
-        foreach(Transform child in defuzedUI.transform)
+        GameObject spawnedDefuzedUI = GameObject.Instantiate(defuzedUI);
+        spawnedDefuzedUI.gameObject.transform.SetParent(gameObject.transform.parent.transform, false);
+        spawnedDefuzedUI.gameObject.transform.rotation = Quaternion.identity;
+        foreach (Transform child in spawnedDefuzedUI.transform)
         {
             child.gameObject.SetActive(true);
         }
         pieces.SetActive(false);
         pieceShooter.SetActive(false);
         music.Pause();
+        defuzed = true;
     }
 }

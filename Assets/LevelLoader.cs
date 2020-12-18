@@ -16,7 +16,6 @@ public class LevelLoader : MonoBehaviour
     public GameObject gameOverUI;
     public GameObject pausedUI;
     public GamePauser gamePauser;
-    public GameObject gameWonUI;
     public GameObject tutorialTextContainer;
     private GameObject tutorialText;
     public List<Level> levels;
@@ -56,10 +55,6 @@ public class LevelLoader : MonoBehaviour
         pauseButton.SetActive(true);
         shootTapZone.SetActive(true);
         gameOverUI.SetActive(false);
-        foreach (Transform child in gameWonUI.transform)
-        {
-            child.gameObject.SetActive(false);
-        }
         pausedUI.SetActive(false);
         gamePauser.CancelQuit();
         gamePauser.ResumeGame();
