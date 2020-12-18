@@ -12,6 +12,10 @@ public class BombHolePlacer : MonoBehaviour
 
     void Update()
     {
+        if(center == null)
+        {
+            return;
+        }
         float radius = Vector2.Distance(center.transform.position, edge.transform.position);
         float radians = degrees * Mathf.Deg2Rad;
         float x = Mathf.Cos(radians) * radius;
