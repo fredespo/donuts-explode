@@ -726,6 +726,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   titleScreen: {fileID: 1748620201}
   gameScreen: {fileID: 974466847}
+  pauseBtn: {fileID: 1978927167}
   music: {fileID: 1779454661}
 --- !u!4 &616734854
 Transform:
@@ -1119,7 +1120,7 @@ RectTransform:
   - {fileID: 1770569000}
   - {fileID: 1945463015}
   m_Father: {fileID: 974466848}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1389,7 +1390,6 @@ RectTransform:
   - {fileID: 1010132027}
   - {fileID: 2109926048}
   - {fileID: 1481179525}
-  - {fileID: 1978927172}
   - {fileID: 1327249376}
   - {fileID: 696346796}
   - {fileID: 2147402492}
@@ -1490,7 +1490,7 @@ MonoBehaviour:
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
-  m_ScreenMatchMode: 0
+  m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
@@ -1530,6 +1530,7 @@ RectTransform:
   m_Children:
   - {fileID: 1748620202}
   - {fileID: 974466848}
+  - {fileID: 1978927172}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2067,7 +2068,7 @@ Transform:
   m_Children:
   - {fileID: 672552394}
   m_Father: {fileID: 974466848}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1481179520
 GameObject:
@@ -2752,7 +2753,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1978927168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2871,14 +2872,14 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.6001778, y: 0.6001778, z: 0.99982226}
   m_Children: []
-  m_Father: {fileID: 974466848}
-  m_RootOrder: 6
+  m_Father: {fileID: 1086236006}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -283.19998, y: -1307.0823}
+  m_AnchoredPosition: {x: 5, y: 5}
   m_SizeDelta: {x: 200, y: 200}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 0}
 --- !u!1 &1999449857
 GameObject:
   m_ObjectHideFlags: 0
@@ -3127,7 +3128,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 974466848}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &6660765553540183198
 PrefabInstance:
