@@ -13,7 +13,7 @@ public class BombDefuzer : MonoBehaviour
     private GameObject shootTapZone;
     public Animator fuseAnim;
     public GameObject fuseFlare;
-    public AudioSource music;
+    private GameMusic music;
     private bool defuzed = false;
 
     void Start()
@@ -23,7 +23,7 @@ public class BombDefuzer : MonoBehaviour
         pieceShooter = GameObject.FindGameObjectsWithTag("PieceShooter")[0];
         pauseButton = GameObject.FindGameObjectsWithTag("PauseButton")[0];
         shootTapZone = GameObject.FindGameObjectsWithTag("ShootTapZone")[0];
-        music = GameObject.FindGameObjectsWithTag("GameMusic")[0].GetComponent<AudioSource>();
+        music = GameObject.FindGameObjectsWithTag("GameMusic")[0].GetComponent<GameMusic>();
     }
 
     void Update()
@@ -36,27 +36,25 @@ public class BombDefuzer : MonoBehaviour
 
     void Defuze()
     {
-        if(defuzed)
+        if (!defuzed)
         {
-            return;
+            music.WindDown();
+            pauseButton.SetActive(false);
+            shootTapZone.SetActive(false);
+            timer.enabled = false;
+            fuseAnim.enabled = false;
+            fuseFlare.SetActive(false);
+            bombRotator.enabled = false;
+            GameObject spawnedDefuzedUI = GameObject.Instantiate(defuzedUI);
+            spawnedDefuzedUI.gameObject.transform.SetParent(gameObject.transform.parent.transform, false);
+            spawnedDefuzedUI.gameObject.transform.rotation = Quaternion.identity;
+            foreach (Transform child in spawnedDefuzedUI.transform)
+            {
+                child.gameObject.SetActive(true);
+            }
+            pieces.SetActive(false);
+            pieceShooter.SetActive(false);
+            defuzed = true;
         }
-
-        pauseButton.SetActive(false);
-        shootTapZone.SetActive(false);
-        timer.enabled = false;
-        fuseAnim.enabled = false;
-        fuseFlare.SetActive(false);
-        bombRotator.enabled = false;
-        GameObject spawnedDefuzedUI = GameObject.Instantiate(defuzedUI);
-        spawnedDefuzedUI.gameObject.transform.SetParent(gameObject.transform.parent.transform, false);
-        spawnedDefuzedUI.gameObject.transform.rotation = Quaternion.identity;
-        foreach (Transform child in spawnedDefuzedUI.transform)
-        {
-            child.gameObject.SetActive(true);
-        }
-        pieces.SetActive(false);
-        pieceShooter.SetActive(false);
-        music.Pause();
-        defuzed = true;
     }
 }
