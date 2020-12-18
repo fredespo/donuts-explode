@@ -14,6 +14,7 @@ public class textTimer : MonoBehaviour
     public GameObject shootTapZone;
     public AudioSource music;
     private Text text;
+    public AudioSource explosionSound;
     public float minMusicPitch = 1.0f;
     public float maxMusicPitch = 2.0f;
     [SerializeField] public AnimationCurve musicPitchCurve;
@@ -36,6 +37,7 @@ public class textTimer : MonoBehaviour
             shootTapZone.SetActive(false);
             detonator = GameObject.FindGameObjectsWithTag("bomb")[0].GetComponent<Detonator>();
             detonator.activate();
+            explosionSound.Play(0);
             music.Pause();
             gameOverUI.SetActive(true);
             gameObject.SetActive(false);
