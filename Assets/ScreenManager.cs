@@ -25,7 +25,7 @@ public class ScreenManager : MonoBehaviour
         title.SetActive(true);
         if (!music.isPlaying)
         {
-            music.pitch = 0.8f;
+            music.pitch = 1.0f;
             music.Play(0);
         }
     }
@@ -36,7 +36,7 @@ public class ScreenManager : MonoBehaviour
         gameScreen.SetActive(true);
         if (!music.isPlaying)
         {
-            music.pitch = 0.8f;
+            music.pitch = 1.0f;
             music.Play(0);
         }
     }
