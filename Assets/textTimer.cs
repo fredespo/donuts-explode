@@ -15,7 +15,6 @@ public class textTimer : MonoBehaviour
     public GameObject tutorialText;
     public AudioSource music;
     private Text text;
-    public AudioSource explosionSound;
     public float minMusicPitch = 1.0f;
     public float maxMusicPitch = 2.0f;
     [SerializeField] public AnimationCurve musicPitchCurve;
@@ -42,7 +41,6 @@ public class textTimer : MonoBehaviour
             pauseButton.SetActive(false);
             shootTapZone.SetActive(false);
             detonator.activate();
-            explosionSound.Play(0);
             tutorialText.SetActive(false);
             music.Pause();
             gameOverUI.SetActive(true);
