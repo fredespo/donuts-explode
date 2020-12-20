@@ -6,6 +6,8 @@ public class BombDefuzer : MonoBehaviour
 {
     private textTimer timer;
     public Rotator bombRotator;
+    public Animator bombHighlightAnim;
+    public AudioSource soundEffect;
     public GameObject defuzedUI;
     private GameObject pieces;
     private GameObject pieceShooter;
@@ -54,6 +56,9 @@ public class BombDefuzer : MonoBehaviour
             }
             pieces.SetActive(false);
             pieceShooter.SetActive(false);
+            bombHighlightAnim.enabled = false;
+            bombHighlightAnim.enabled = true;
+            soundEffect.Play(0);
             defuzed = true;
         }
     }
