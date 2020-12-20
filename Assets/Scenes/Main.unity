@@ -2944,6 +2944,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2147402492}
   - component: {fileID: 2147402491}
+  - component: {fileID: 2147402493}
   m_Layer: 0
   m_Name: ExplosionSound
   m_TagString: ExplosionSound
@@ -2963,8 +2964,8 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 8b3f676fe7b41044495a2964396b8ba3, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.9
-  m_Pitch: 1
+  m_Volume: 0.5
+  m_Pitch: 0.7
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -3061,6 +3062,15 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!170 &2147402493
+AudioDistortionFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2147402490}
+  m_Enabled: 1
+  m_DistortionLevel: 0.2
 --- !u!60 &2897100888672210666
 PolygonCollider2D:
   m_ObjectHideFlags: 0
