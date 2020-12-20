@@ -7,16 +7,20 @@ public class GameStarter : MonoBehaviour
     public ScreenManager screenManager;
     public LevelLoader levelLoader;
 
-
-    public void StartGameAfterDelay(float delaySec)
+    public void StartGameAfterDelay(float loadDelaySec)
     {
-        StartCoroutine(StartGameAfterDelayImpl(delaySec));
+        StartGameAfterDelay(loadDelaySec, 0.75f);
     }
 
-    IEnumerator StartGameAfterDelayImpl(float delaySec)
+    public void StartGameAfterDelay(float loadDelaySec, float startDelaySec)
     {
-        yield return new WaitForSeconds(delaySec);
+        StartCoroutine(StartGameAfterDelayImpl(loadDelaySec, startDelaySec));
+    }
+
+    IEnumerator StartGameAfterDelayImpl(float loadDelaySec, float startDelaySec)
+    {
+        yield return new WaitForSeconds(loadDelaySec);
         screenManager.ShowGameScreen();
-        levelLoader.LoadLevel(0);
+        levelLoader.LoadLevel(0, startDelaySec);
     }
 }

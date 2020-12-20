@@ -5,6 +5,7 @@ using UnityEngine;
 public class Detonator : MonoBehaviour
 {
     public GameObject explosion;
+    public GameObject explosionParent;
     public bool destroyOnDetonation = true;
     private AudioSource explosionSound;
     private GameObject pieces;
@@ -24,6 +25,10 @@ public class Detonator : MonoBehaviour
     public void activate()
     {
         GameObject spawnedExplosion = Instantiate(explosion, gameObject.transform.parent, false);
+        if(explosionParent != null)
+        {
+            spawnedExplosion.gameObject.transform.SetParent(explosionParent.gameObject.transform);
+        }
         explosionSound.Play(0);
         if(pieces != null) pieces.SetActive(false);
         if(pieceShooter != null) pieceShooter.SetActive(false);

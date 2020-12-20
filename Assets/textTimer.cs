@@ -23,6 +23,7 @@ public class textTimer : MonoBehaviour
     void Start()
     {
         text = GetComponent<Text>();
+        RefreshText();
         startSeconds = seconds;
     }
 
@@ -46,7 +47,15 @@ public class textTimer : MonoBehaviour
             gameOverUI.SetActive(true);
             gameObject.SetActive(false);
         }
-        text.text = seconds.ToString("00.00").Replace(".", ":");
+        RefreshText();
+    }
+
+    private void RefreshText()
+    {
+        if(text != null)
+        {
+            text.text = seconds.ToString("00.00").Replace(".", ":");
+        }
     }
 
 
@@ -65,5 +74,6 @@ public class textTimer : MonoBehaviour
     public void setTime(float seconds)
     {
         this.seconds = seconds;
+        RefreshText();
     }
 }

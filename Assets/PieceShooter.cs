@@ -5,6 +5,7 @@ using UnityEngine;
 public class PieceShooter : MonoBehaviour
 {
     public GameObject pieceParent;
+    public bool shootingEnabled = false;
     public GameObject piece;
     public float speed = 1.0f;
     public float shootDelaySec = 1.0f;
@@ -25,11 +26,16 @@ public class PieceShooter : MonoBehaviour
         {
             SpawnPiece();
         }
+
+        if(showingSpawnedPiece)
+        {
+            spawnedPiece.SetActive(shootingEnabled);
+        }
     }
 
     public void Shoot()
     {
-        if (Time.time - lastShootTime >= shootDelaySec && showingSpawnedPiece)
+        if (shootingEnabled && Time.time - lastShootTime >= shootDelaySec && showingSpawnedPiece)
         {
             spawnedPiece.GetComponent<Rigidbody2D>().velocity = transform.up * speed;
             showingSpawnedPiece = false;
@@ -55,5 +61,10 @@ public class PieceShooter : MonoBehaviour
     public int GetPiecesShotCount()
     {
         return piecesShotCount;
+    }
+
+    public void SetShootingEnabled(bool shootingEnabled)
+    {
+        this.shootingEnabled = shootingEnabled;
     }
 }

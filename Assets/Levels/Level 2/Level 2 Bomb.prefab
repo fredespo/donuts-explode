@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6706467552967287496}
   m_Layer: 0
   m_Name: Flare
-  m_TagString: Untagged
+  m_TagString: BombFlare
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43,7 +43,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6706467552967287498}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d59a7eab6a06b24eb8a82ea38b9eb57, type: 3}
   m_Name: 
@@ -383,7 +383,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6706467554741298094}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cca1e6cf2e0ee2841a5447975c3e686a, type: 3}
   m_Name: 
@@ -404,6 +404,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosion: {fileID: 7163814724372912085, guid: b246b3e55cc4d974ab92432fba4de6b5,
     type: 3}
+  explosionParent: {fileID: 0}
+  destroyOnDetonation: 1
 --- !u!1 &6706467554973336127
 GameObject:
   m_ObjectHideFlags: 0
@@ -418,7 +420,7 @@ GameObject:
   - component: {fileID: 6706467554973336124}
   m_Layer: 0
   m_Name: Fuse
-  m_TagString: Untagged
+  m_TagString: BombFuse
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -501,7 +503,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6706467554973336127}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 48487591626e9bc409af8ba2634d390d, type: 2}
   m_CullingMode: 0
@@ -531,11 +533,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6706467554422640018}
     m_Modifications:
-    - target: {fileID: 7363224565615695285, guid: 3426be1627270d74191b21a9c9ca5244,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7363224565615695286, guid: 3426be1627270d74191b21a9c9ca5244,
         type: 3}
       propertyPath: center
@@ -564,7 +561,7 @@ PrefabInstance:
     - target: {fileID: 7363224565615695287, guid: 3426be1627270d74191b21a9c9ca5244,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -55.894764
+      value: -7949.4775
       objectReference: {fileID: 0}
     - target: {fileID: 7363224565615695287, guid: 3426be1627270d74191b21a9c9ca5244,
         type: 3}
@@ -676,11 +673,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6706467554422640018}
     m_Modifications:
-    - target: {fileID: 7363224565615695285, guid: 3426be1627270d74191b21a9c9ca5244,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7363224565615695286, guid: 3426be1627270d74191b21a9c9ca5244,
         type: 3}
       propertyPath: center
@@ -709,7 +701,7 @@ PrefabInstance:
     - target: {fileID: 7363224565615695287, guid: 3426be1627270d74191b21a9c9ca5244,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -55.894764
+      value: -7949.4775
       objectReference: {fileID: 0}
     - target: {fileID: 7363224565615695287, guid: 3426be1627270d74191b21a9c9ca5244,
         type: 3}

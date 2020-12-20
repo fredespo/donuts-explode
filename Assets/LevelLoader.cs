@@ -20,19 +20,42 @@ public class LevelLoader : MonoBehaviour
     private GameObject tutorialText;
     public List<Level> levels;
     private int currLevel;
+    private float startDelaySec;
 
     public void Start()
     {
         screenManager = GameObject.FindGameObjectsWithTag("ScreenManager")[0].GetComponent<ScreenManager>();
     }
 
-    public void LoadLevel(int levelIndex)
+    public void LoadLevel(int levelIndex, float startDelaySec)
     {
         currLevel = levelIndex;
-        RestartCurrentLevel();
+        ResetCurrentLevel();
+        StartCoroutine(StartCurrentLevelAfterDelay(startDelaySec));
     }
 
-    public void RestartCurrentLevel()
+    public void StartCurrentLevelAfterDelaySec(float delaySec)
+    {
+        this.startDelaySec = delaySec;
+        StartCoroutine(StartCurrentLevelAfterDelay(delaySec));
+    }
+
+    public IEnumerator StartCurrentLevelAfterDelay(float delaySec)
+    {
+        yield return new WaitForSeconds(delaySec);
+        StartCurrentLevel();
+    }
+
+    public void StartCurrentLevel()
+    {
+        timer.enabled = true;
+        pieceShooter.GetComponent<PieceShooter>().SetShootingEnabled(true);
+        GameObject.FindGameObjectsWithTag("bomb")[0].GetComponent<Rotator>().enabled = true;
+        GameObject.FindGameObjectsWithTag("BombFlare")[0].GetComponent<FuseFlareSpawner>().enabled = true;
+        GameObject.FindGameObjectsWithTag("BombFuse")[0].GetComponent<Animator>().enabled = true;
+    }
+
+    public void ResetCurrentLevel()
     {
         Level level = levels[currLevel];
         foreach(GameObject prevBomb in GameObject.FindGameObjectsWithTag("bomb"))
@@ -43,15 +66,19 @@ public class LevelLoader : MonoBehaviour
         bomb.transform.SetParent(canvas.transform, false);
         timer.Init(bomb.GetComponent<Detonator>());
         timer.gameObject.SetActive(true);
-        timer.gameObject.GetComponent<textTimer>().enabled = true;
         timer.setTime(level.secondsOnTimer);
-        foreach(Transform child in bombPieces.transform)
+        timer.enabled = false;
+        foreach (Transform child in bombPieces.transform)
         {
             Destroy(child.gameObject);
         }
         bombPieces.SetActive(true);
         pieceShooter.SetActive(true);
         pieceShooter.GetComponent<PieceShooter>().Init();
+        if(this.startDelaySec > 0)
+        {
+            pieceShooter.GetComponent<PieceShooter>().SetShootingEnabled(false);
+        }
         pauseButton.SetActive(true);
         shootTapZone.SetActive(true);
         gameOverUI.SetActive(false);
@@ -77,7 +104,8 @@ public class LevelLoader : MonoBehaviour
         if(currLevel < levels.Count - 1)
         {
             ++currLevel;
-            RestartCurrentLevel();
+            ResetCurrentLevel();
+            StartCurrentLevelAfterDelaySec(0.0f);
         }
         else
         {
