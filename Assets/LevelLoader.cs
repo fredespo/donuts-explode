@@ -21,6 +21,7 @@ public class LevelLoader : MonoBehaviour
     public List<Level> levels;
     private int currLevel;
     private float startDelaySec;
+    private GameObject bomb;
 
     public void Start()
     {
@@ -50,9 +51,7 @@ public class LevelLoader : MonoBehaviour
     {
         timer.enabled = true;
         pieceShooter.GetComponent<PieceShooter>().SetShootingEnabled(true);
-        GameObject.FindGameObjectsWithTag("bomb")[0].GetComponent<Rotator>().enabled = true;
-        GameObject.FindGameObjectsWithTag("BombFlare")[0].GetComponent<FuseFlareSpawner>().enabled = true;
-        GameObject.FindGameObjectsWithTag("BombFuse")[0].GetComponent<Animator>().enabled = true;
+        bomb.SendMessage("StartBomb");
     }
 
     public void ResetCurrentLevel()
@@ -62,7 +61,7 @@ public class LevelLoader : MonoBehaviour
         {
             Destroy(prevBomb);
         }
-        GameObject bomb = Instantiate(level.bomb);
+        bomb = Instantiate(level.bomb);
         bomb.transform.SetParent(canvas.transform, false);
         timer.Init(bomb.GetComponent<Detonator>());
         timer.gameObject.SetActive(true);

@@ -348,6 +348,7 @@ GameObject:
   - component: {fileID: 6706467554741298093}
   - component: {fileID: 6706467554741298092}
   - component: {fileID: 6706467554741298083}
+  - component: {fileID: 3111510162694833362}
   m_Layer: 0
   m_Name: Level 2 Bomb
   m_TagString: bomb
@@ -409,6 +410,21 @@ MonoBehaviour:
     type: 3}
   explosionParent: {fileID: 0}
   destroyOnDetonation: 1
+--- !u!114 &3111510162694833362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6706467554741298094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5136da665608be4ebed1f06c5262888, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotator: {fileID: 6706467554741298092}
+  fuseFlareSpawner: {fileID: 6706467552967287496}
+  fuseAnimator: {fileID: 6706467554973336115}
 --- !u!1 &6706467554973336127
 GameObject:
   m_ObjectHideFlags: 0
