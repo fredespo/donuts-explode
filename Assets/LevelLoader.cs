@@ -17,6 +17,7 @@ public class LevelLoader : MonoBehaviour
     public GameObject pausedUI;
     public GamePauser gamePauser;
     public GameObject tutorialTextContainer;
+    public Score score;
     private GameObject tutorialText;
     public List<Level> levels;
     private int currLevel;
@@ -30,6 +31,10 @@ public class LevelLoader : MonoBehaviour
 
     public void LoadLevel(int levelIndex, float startDelaySec)
     {
+        if(levelIndex == 0)
+        {
+            score.Reset();
+        }
         currLevel = levelIndex;
         ResetCurrentLevel();
         StartCoroutine(StartCurrentLevelAfterDelay(startDelaySec));

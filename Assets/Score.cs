@@ -64,6 +64,13 @@ public class Score : MonoBehaviour
         }
     }
 
+    public void Reset()
+    {
+        score = 0;
+        dispScore = 0;
+        RefreshText();
+    }
+
     public int GetScore()
     {
         return score;
