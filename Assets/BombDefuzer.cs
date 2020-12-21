@@ -65,7 +65,7 @@ public class BombDefuzer : MonoBehaviour
     private IEnumerator AddTimeToScoreAfterDelay(float delaySec)
     {
         yield return new WaitForSeconds(delaySec);
-        score.Add((int)Mathf.Ceil(timer.GetSecondsLeft() * 100));
+        score.Add((int)Mathf.Round(timer.GetSecondsLeft() * 100));
         timer.CountDownFast();
     }
 }
