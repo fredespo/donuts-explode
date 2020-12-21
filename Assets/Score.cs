@@ -32,12 +32,14 @@ public class Score : MonoBehaviour
             {
                 dispScore += scoreChange;
                 soundEffect.pitch = 1.0f;
+                soundEffect.volume = 0.5f;
                 delayBetweenSoundEffects = 0.1f;
             }
             else if(dispScore > score)
             {
                 dispScore -= scoreChange;
                 soundEffect.pitch = 0.8f;
+                soundEffect.volume = 0.6f;
                 delayBetweenSoundEffects = 0.1f;
             }
             RefreshText();
