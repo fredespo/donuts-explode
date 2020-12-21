@@ -17,6 +17,7 @@ public class BombDefuzer : MonoBehaviour
     private GameMusic music;
     private bool defuzed = false;
     private Score score;
+    private DataStorage dataStorage;
 
     void Start()
     {
@@ -26,6 +27,7 @@ public class BombDefuzer : MonoBehaviour
         shootTapZone = GameObject.FindGameObjectWithTag("ShootTapZone");
         music = GameObject.FindGameObjectWithTag("GameMusic").GetComponent<GameMusic>();
         score = GameObject.FindGameObjectWithTag("Score").GetComponent<Score>();
+        dataStorage = GameObject.FindGameObjectWithTag("DataStorage").GetComponent<DataStorage>();
     }
 
     void Update()
@@ -41,7 +43,7 @@ public class BombDefuzer : MonoBehaviour
         if (!defuzed)
         {
             StartCoroutine(AddTimeToScoreAfterDelay(1.0f));
-            PlayerPrefs.SetInt("Score", score.GetScore() + GetPointsEarned());
+            dataStorage.SaveScore(score.GetScore() + GetPointsEarned());
             music.WindDown();
             shootTapZone.SetActive(false);
             timer.Pause();
@@ -56,7 +58,7 @@ public class BombDefuzer : MonoBehaviour
             bombHighlightAnim.enabled = false;
             bombHighlightAnim.enabled = true;
             soundEffect.Play(0);
-            PlayerPrefs.SetInt("Level", GameObject.FindGameObjectWithTag("LevelLoader").GetComponent<LevelLoader>().GetCurrentLevel() + 1);
+            dataStorage.SaveLevel(GameObject.FindGameObjectWithTag("LevelLoader").GetComponent<LevelLoader>().GetCurrentLevel() + 1);
             defuzed = true;
         }
     }

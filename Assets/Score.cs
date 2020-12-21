@@ -8,21 +8,19 @@ public class Score : MonoBehaviour
     private Text text;
     public int score;
     public int scoreChangePerSec = 500;
+    public DataStorage dataStorage;
     private float dispScore;
     private AudioSource soundEffect;
     private float lastSoundEffectTime;
-    private float delayBetweenSoundEffects = 0.1f;
+    private float delayBetweenSoundEffects = 0.1f;    
 
     void Start()
     {
         text = GetComponent<Text>();
         soundEffect = GetComponent<AudioSource>();
-        if(PlayerPrefs.HasKey("Score"))
-        {
-            score = PlayerPrefs.GetInt("Score");
-            dispScore = score;
-            RefreshText();
-        }
+        score = dataStorage.GetScore();
+        dispScore = score;
+        RefreshText();
     }
 
     void Update()
@@ -88,7 +86,7 @@ public class Score : MonoBehaviour
 
     private void SaveScore()
     {
-        PlayerPrefs.SetInt("Score", score);
+        dataStorage.SaveScore(score);
     }
 
     public void Reset()

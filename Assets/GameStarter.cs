@@ -10,16 +10,18 @@ public class GameStarter : MonoBehaviour
     public bool forceStartLevel = false;
     public int startLevelIndex;
     public Text startButtonText;
+    private DataStorage dataStorage;
 
     public void Start()
     {
-        if(forceStartLevel) PlayerPrefs.SetInt("Level", startLevelIndex);
+        if (forceStartLevel) dataStorage.SaveLevel(startLevelIndex);
+        dataStorage = GameObject.FindGameObjectWithTag("DataStorage").GetComponent<DataStorage>();
         Init();
     }
 
     public void Init()
     {
-        if (HasValidSavedLevel())
+        if (dataStorage.GetLevel() > 0 && dataStorage.GetLevel() < levelLoader.LevelCount())
         {
             startButtonText.text = "Continue";
         }
@@ -43,18 +45,14 @@ public class GameStarter : MonoBehaviour
     {
         yield return new WaitForSeconds(loadDelaySec);
         screenManager.ShowGameScreen();
-        if(HasValidSavedLevel())
+        int savedLevel = dataStorage.GetLevel();
+        if (savedLevel >= 0 && savedLevel < levelLoader.LevelCount())
         {
-            levelLoader.LoadLevel(PlayerPrefs.GetInt("Level"), startDelaySec);
+            levelLoader.LoadLevel(savedLevel, startDelaySec);
         }
         else
         {
             levelLoader.LoadLevel(0, startDelaySec);
         }
-    }
-
-    private bool HasValidSavedLevel()
-    {
-        return PlayerPrefs.HasKey("Level") && PlayerPrefs.GetInt("Level") > 0 && PlayerPrefs.GetInt("Level") < levelLoader.LevelCount();
     }
 }

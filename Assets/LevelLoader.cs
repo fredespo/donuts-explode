@@ -18,10 +18,12 @@ public class LevelLoader : MonoBehaviour
     private int currLevel = -1;
     private float startDelaySec;
     private GameObject bomb;
+    private DataStorage dataStorage;
 
     public void Start()
     {
         screenManager = GameObject.FindGameObjectWithTag("ScreenManager").GetComponent<ScreenManager>();
+        dataStorage = GameObject.FindGameObjectWithTag("DataStorage").GetComponent<DataStorage>();
     }
 
     public void LoadLevel(int levelIndex, float startDelaySec)
@@ -93,7 +95,7 @@ public class LevelLoader : MonoBehaviour
         else
         {
             currLevel = 0;
-            PlayerPrefs.SetInt("Level", 0);
+            dataStorage.SaveLevel(0);
             screenManager.ShowTitleScreen();
         }
     }
