@@ -13,9 +13,7 @@ public class LevelLoader : MonoBehaviour
     public GameObject pieceShooter;
     public GameObject shootTapZone;
     public GameOverUI gameOverUI;
-    public GameObject tutorialTextContainer;
     public Score score;
-    private GameObject tutorialText;
     public List<Level> levels;
     private int currLevel = -1;
     private float startDelaySec;
@@ -84,17 +82,6 @@ public class LevelLoader : MonoBehaviour
         shootTapZone.SetActive(true);
         gameOverUI.Hide();
         music.Reset();
-
-        if (tutorialText != null)
-        {
-            Destroy(tutorialText);
-        }
-        if(level.tutorialText != null)
-        {
-            tutorialText = Instantiate(level.tutorialText);
-            tutorialText.gameObject.transform.SetParent(tutorialTextContainer.gameObject.transform, false);
-        }
-        tutorialTextContainer.SetActive(true);
     }
 
     public void LoadNextLevelAndStartAfterDelay(float delaySec)
@@ -126,7 +113,6 @@ public class LevelLoader : MonoBehaviour
     {
         public GameObject bomb;
         public float secondsOnTimer;
-        public GameObject tutorialText;
     }
 
     [System.Serializable]

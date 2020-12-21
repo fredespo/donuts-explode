@@ -157,16 +157,12 @@ MonoBehaviour:
   pieceShooter: {fileID: 863292596}
   shootTapZone: {fileID: 1481179520}
   gameOverUI: {fileID: 1327249377}
-  tutorialTextContainer: {fileID: 2109926047}
   score: {fileID: 945567741}
   levels:
   - bomb: {fileID: 6706467554741298094, guid: 9da7f09acafc12e4dbfb556331587afb, type: 3}
     secondsOnTimer: 10
-    tutorialText: {fileID: 8440258800622958766, guid: 54a6928ecf1cc2b4e9fb3f5741f40629,
-      type: 3}
   - bomb: {fileID: 6706467554741298094, guid: 93ddda6d8597c7449bbac08e3ac8d5e5, type: 3}
     secondsOnTimer: 12
-    tutorialText: {fileID: 0}
 --- !u!4 &46862306
 Transform:
   m_ObjectHideFlags: 0
@@ -808,7 +804,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 974466848}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -995,7 +991,6 @@ RectTransform:
   - {fileID: 1173611990}
   - {fileID: 863292598}
   - {fileID: 1010132027}
-  - {fileID: 2109926048}
   - {fileID: 1481179525}
   - {fileID: 1327249376}
   - {fileID: 945567737}
@@ -1214,7 +1209,7 @@ MonoBehaviour:
   seconds: 10
   countDownFastPerSecond: 4
   shootTapZone: {fileID: 1481179520}
-  tutorialText: {fileID: 2109926047}
+  tutorialText: {fileID: 0}
   music: {fileID: 1779454661}
   minMusicPitch: 1
   maxMusicPitch: 1.3
@@ -1378,7 +1373,7 @@ RectTransform:
   m_Children:
   - {fileID: 672552394}
   m_Father: {fileID: 974466848}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1573,7 +1568,7 @@ RectTransform:
   m_LocalScale: {x: 82.59982, y: 161.99965, z: 0.99982226}
   m_Children: []
   m_Father: {fileID: 974466848}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1874,36 +1869,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2109926047
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2109926048}
-  m_Layer: 0
-  m_Name: TutorialText
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2109926048
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2109926047}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -451.08594, y: -634.07367, z: 476.7882}
-  m_LocalScale: {x: 142.22223, y: 142.22223, z: 142.22223}
-  m_Children: []
-  m_Father: {fileID: 974466848}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2147402490

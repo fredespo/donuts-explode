@@ -12,7 +12,6 @@ public class textTimer : MonoBehaviour
     public float countDownFastPerSecond = 4.0f;
     private float startSeconds;
     public GameObject shootTapZone;
-    public GameObject tutorialText;
     public AudioSource music;
     private Text text;
     public float minMusicPitch = 1.0f;
@@ -68,7 +67,6 @@ public class textTimer : MonoBehaviour
                 seconds = 0;
                 shootTapZone.SetActive(false);
                 detonator.activate();
-                tutorialText.SetActive(false);
                 music.Pause();
                 gameOverUI.SetActive(true);
                 gameObject.SetActive(false);
