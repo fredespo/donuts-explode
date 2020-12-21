@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameStarter : MonoBehaviour
+public class TitleMenu : MonoBehaviour
 {
     public ScreenManager screenManager;
     public LevelLoader levelLoader;
+    public GameObject newGameBtn;
+    public GameObject mainMenu;
+    public GameObject newGameMenu;
     public bool forceStartLevel = false;
     public int startLevelIndex;
     public Text startButtonText;
@@ -21,14 +24,24 @@ public class GameStarter : MonoBehaviour
 
     public void Init()
     {
+        mainMenu.SetActive(true);
+        newGameMenu.SetActive(false);
         if (dataStorage.GetLevel() > 0 && dataStorage.GetLevel() < levelLoader.LevelCount())
         {
+            newGameBtn.SetActive(true);
             startButtonText.text = "Continue";
         }
         else
         {
+            newGameBtn.SetActive(false);
             startButtonText.text = "Start";
         }
+    }
+
+    public void ResetGame()
+    {
+        dataStorage.SaveLevel(0);
+        dataStorage.SaveScore(0);
     }
 
     public void StartGameAfterDelay(float loadDelaySec)
