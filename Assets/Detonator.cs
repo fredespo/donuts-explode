@@ -15,22 +15,18 @@ public class Detonator : MonoBehaviour
 
     public void Start()
     {
-        explosionSound = GameObject.FindGameObjectsWithTag("ExplosionSound")[0].GetComponent<AudioSource>();
-        GameObject[] pieceKeepers = GameObject.FindGameObjectsWithTag("PieceKeeper");
-        if(pieceKeepers.Length > 0)
-        {
-            pieces = GameObject.FindGameObjectsWithTag("PieceKeeper")[0];
-            pieceShooter = GameObject.FindGameObjectsWithTag("PieceShooter")[0];
-        }
+        explosionSound = GameObject.FindGameObjectWithTag("ExplosionSound").GetComponent<AudioSource>();
+        pieces = GameObject.FindGameObjectWithTag("PieceKeeper");
+        pieceShooter = GameObject.FindGameObjectWithTag("PieceShooter");
         GameObject scoreObj = GameObject.FindGameObjectWithTag("Score");
         if(scoreObj != null)
         {
-            score = GameObject.FindGameObjectWithTag("Score").GetComponent<Score>();
+            score = scoreObj.GetComponent<Score>();
         }
         GameObject gameOverUiObj = GameObject.FindGameObjectWithTag("GameOverUI");
         if(gameOverUiObj != null)
         {
-            gameOverUI = GameObject.FindGameObjectWithTag("GameOverUI").GetComponent<GameOverUI>();
+            gameOverUI = gameOverUiObj.GetComponent<GameOverUI>();
         }
     }
 

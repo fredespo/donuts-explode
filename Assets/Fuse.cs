@@ -11,10 +11,10 @@ public class Fuse : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
-        GameObject[] bombTimers = GameObject.FindGameObjectsWithTag("BombTimer");
-        if(bombTimers.Length > 0)
+        GameObject bombTimerObj = GameObject.FindGameObjectWithTag("BombTimer");
+        if(bombTimerObj != null)
         {
-            bombTimer = GameObject.FindGameObjectsWithTag("BombTimer")[0].GetComponent<textTimer>();
+            bombTimer = bombTimerObj.GetComponent<textTimer>();
             anim.speed = 1 / bombTimer.GetSecondsLeft();
         }
         else

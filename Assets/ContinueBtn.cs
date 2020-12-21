@@ -8,7 +8,7 @@ public class ContinueBtn : MonoBehaviour
 
     public void Start()
     {
-        levelLoader = GameObject.FindGameObjectsWithTag("LevelLoader")[0].GetComponent<LevelLoader>();
+        levelLoader = GameObject.FindGameObjectWithTag("LevelLoader").GetComponent<LevelLoader>();
     }
 
     public void Continue()

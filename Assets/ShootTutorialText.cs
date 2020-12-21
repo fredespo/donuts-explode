@@ -12,7 +12,7 @@ public class ShootTutorialText : MonoBehaviour
 
     void Start()
     {
-        pieceShooter = GameObject.FindGameObjectsWithTag("PieceShooter")[0].GetComponent<PieceShooter>();
+        pieceShooter = GameObject.FindGameObjectWithTag("PieceShooter").GetComponent<PieceShooter>();
         text = gameObject.GetComponent<Text>();
         textColorVisible = text.color;
         textColorInvisible = new Color(textColorVisible.r, textColorVisible.g, textColorVisible.b, 0f);

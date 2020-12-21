@@ -21,7 +21,7 @@ public class LevelLoader : MonoBehaviour
 
     public void Start()
     {
-        screenManager = GameObject.FindGameObjectsWithTag("ScreenManager")[0].GetComponent<ScreenManager>();
+        screenManager = GameObject.FindGameObjectWithTag("ScreenManager").GetComponent<ScreenManager>();
     }
 
     public void LoadLevel(int levelIndex, float startDelaySec)
