@@ -11,7 +11,6 @@ public class BombDefuzer : MonoBehaviour
     public GameObject defuzedUI;
     private GameObject pieces;
     private GameObject pieceShooter;
-    private GameObject pauseButton;
     private GameObject shootTapZone;
     public Animator fuseAnim;
     public GameObject fuseFlare;
@@ -24,7 +23,6 @@ public class BombDefuzer : MonoBehaviour
         timer = GameObject.FindGameObjectsWithTag("BombTimer")[0].GetComponent<textTimer>();
         pieces = GameObject.FindGameObjectsWithTag("PieceKeeper")[0];
         pieceShooter = GameObject.FindGameObjectsWithTag("PieceShooter")[0];
-        pauseButton = GameObject.FindGameObjectsWithTag("PauseButton")[0];
         shootTapZone = GameObject.FindGameObjectsWithTag("ShootTapZone")[0];
         music = GameObject.FindGameObjectsWithTag("GameMusic")[0].GetComponent<GameMusic>();
         score = GameObject.FindGameObjectWithTag("Score").GetComponent<Score>();
@@ -43,7 +41,6 @@ public class BombDefuzer : MonoBehaviour
         if (!defuzed)
         {
             music.WindDown();
-            pauseButton.SetActive(false);
             shootTapZone.SetActive(false);
             timer.Pause();
             StartCoroutine(AddTimeToScoreAfterDelay(1.0f));

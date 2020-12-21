@@ -11,7 +11,6 @@ public class textTimer : MonoBehaviour
     public float seconds = 10;
     public float countDownFastPerSecond = 4.0f;
     private float startSeconds;
-    public GameObject pauseButton;
     public GameObject shootTapZone;
     public GameObject tutorialText;
     public AudioSource music;
@@ -67,7 +66,6 @@ public class textTimer : MonoBehaviour
             if (seconds < 0)
             {
                 seconds = 0;
-                pauseButton.SetActive(false);
                 shootTapZone.SetActive(false);
                 detonator.activate();
                 tutorialText.SetActive(false);

@@ -11,11 +11,8 @@ public class LevelLoader : MonoBehaviour
     public textTimer timer;
     public GameObject bombPieces;
     public GameObject pieceShooter;
-    public GameObject pauseButton;
     public GameObject shootTapZone;
     public GameOverUI gameOverUI;
-    public GameObject pausedUI;
-    public GamePauser gamePauser;
     public GameObject tutorialTextContainer;
     public Score score;
     private GameObject tutorialText;
@@ -83,12 +80,8 @@ public class LevelLoader : MonoBehaviour
         {
             pieceShooter.GetComponent<PieceShooter>().SetShootingEnabled(false);
         }
-        pauseButton.SetActive(true);
         shootTapZone.SetActive(true);
         gameOverUI.Hide();
-        pausedUI.SetActive(false);
-        gamePauser.CancelQuit();
-        gamePauser.ResumeGame();
         music.Reset();
 
         if (tutorialText != null)
