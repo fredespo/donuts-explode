@@ -9,6 +9,7 @@ public class textTimer : MonoBehaviour
     public GameObject gameOverUI;
     public float gameOverDelaySec;
     public float seconds = 10;
+    public float countDownFastPerSecond = 4.0f;
     private float startSeconds;
     public GameObject pauseButton;
     public GameObject shootTapZone;
@@ -19,6 +20,8 @@ public class textTimer : MonoBehaviour
     public float maxMusicPitch = 2.0f;
     [SerializeField] public AnimationCurve musicPitchCurve;
     public float currCurveVal;
+    private bool countingDownFast = false;
+    private bool paused = false;
 
     void Start()
     {
@@ -30,24 +33,60 @@ public class textTimer : MonoBehaviour
     public void Init(Detonator detonator)
     {
         this.detonator = detonator;
+        paused = false;
     }
 
     void Update()
     {
-        seconds -= Time.deltaTime;
-        AdjustMusic();
-        if (seconds < 0)
+        if(seconds <= 0)
         {
-            seconds = 0;
-            pauseButton.SetActive(false);
-            shootTapZone.SetActive(false);
-            detonator.activate();
-            tutorialText.SetActive(false);
-            music.Pause();
-            gameOverUI.SetActive(true);
-            gameObject.SetActive(false);
+            return;
+        }
+
+        if(countingDownFast)
+        {
+            float timeChange = countDownFastPerSecond * Time.deltaTime;
+            if (seconds < timeChange)
+            {
+                seconds = 0.0f;
+                countingDownFast = false;
+                foreach (Transform child in GameObject.FindGameObjectWithTag("WinUI").transform)
+                {
+                    child.gameObject.SetActive(true);
+                }
+            }
+            else
+            {
+                seconds -= timeChange;
+            }
+        }
+        else if(!paused)
+        {
+            seconds -= Time.deltaTime;
+            AdjustMusic();
+            if (seconds < 0)
+            {
+                seconds = 0;
+                pauseButton.SetActive(false);
+                shootTapZone.SetActive(false);
+                detonator.activate();
+                tutorialText.SetActive(false);
+                music.Pause();
+                gameOverUI.SetActive(true);
+                gameObject.SetActive(false);
+            }
         }
         RefreshText();
+    }
+
+    public void Pause()
+    {
+        paused = true;
+    }
+
+    public void CountDownFast()
+    {
+        countingDownFast = true;
     }
 
     private void RefreshText()

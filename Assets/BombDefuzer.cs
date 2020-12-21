@@ -17,6 +17,7 @@ public class BombDefuzer : MonoBehaviour
     public GameObject fuseFlare;
     private GameMusic music;
     private bool defuzed = false;
+    private Score score;
 
     void Start()
     {
@@ -26,6 +27,7 @@ public class BombDefuzer : MonoBehaviour
         pauseButton = GameObject.FindGameObjectsWithTag("PauseButton")[0];
         shootTapZone = GameObject.FindGameObjectsWithTag("ShootTapZone")[0];
         music = GameObject.FindGameObjectsWithTag("GameMusic")[0].GetComponent<GameMusic>();
+        score = GameObject.FindGameObjectWithTag("Score").GetComponent<Score>();
     }
 
     void Update()
@@ -43,17 +45,14 @@ public class BombDefuzer : MonoBehaviour
             music.WindDown();
             pauseButton.SetActive(false);
             shootTapZone.SetActive(false);
-            timer.enabled = false;
+            timer.Pause();
+            StartCoroutine(AddTimeToScoreAfterDelay(1.0f));
             fuseAnim.enabled = false;
             fuseFlare.SetActive(false);
             bombRotator.enabled = false;
             GameObject spawnedDefuzedUI = GameObject.Instantiate(defuzedUI);
             spawnedDefuzedUI.gameObject.transform.SetParent(gameObject.transform.parent.transform, false);
             spawnedDefuzedUI.gameObject.transform.rotation = Quaternion.identity;
-            foreach (Transform child in spawnedDefuzedUI.transform)
-            {
-                child.gameObject.SetActive(true);
-            }
             pieces.SetActive(false);
             pieceShooter.SetActive(false);
             bombHighlightAnim.enabled = false;
@@ -61,5 +60,12 @@ public class BombDefuzer : MonoBehaviour
             soundEffect.Play(0);
             defuzed = true;
         }
+    }
+
+    private IEnumerator AddTimeToScoreAfterDelay(float delaySec)
+    {
+        yield return new WaitForSeconds(delaySec);
+        score.Add((int)Mathf.Ceil(timer.GetSecondsLeft() * 100));
+        timer.CountDownFast();
     }
 }
