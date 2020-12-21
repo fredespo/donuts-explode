@@ -14,11 +14,13 @@ public class TitleMenu : MonoBehaviour
     public int startLevelIndex;
     public Text startButtonText;
     private DataStorage dataStorage;
+    private RectTransform mainMenuTransform;
 
     public void Start()
     {
         if (forceStartLevel) dataStorage.SaveLevel(startLevelIndex);
         dataStorage = GameObject.FindGameObjectWithTag("DataStorage").GetComponent<DataStorage>();
+        mainMenuTransform = mainMenu.GetComponent<RectTransform>();
         Init();
     }
 
@@ -30,11 +32,13 @@ public class TitleMenu : MonoBehaviour
         {
             newGameBtn.SetActive(true);
             startButtonText.text = "Continue";
+            mainMenuTransform.localPosition = new Vector3(0, -66, 0);
         }
         else
         {
             newGameBtn.SetActive(false);
             startButtonText.text = "Start";
+            mainMenuTransform.localPosition = new Vector3(0, 0, 0);
         }
     }
 
