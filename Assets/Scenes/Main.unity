@@ -230,7 +230,7 @@ MonoBehaviour:
   pieceShooter: {fileID: 863292596}
   pauseButton: {fileID: 1978927167}
   shootTapZone: {fileID: 1481179520}
-  gameOverUI: {fileID: 1327249375}
+  gameOverUI: {fileID: 1327249377}
   pausedUI: {fileID: 696346795}
   gamePauser: {fileID: 2083448102}
   tutorialTextContainer: {fileID: 2109926047}
@@ -1112,6 +1112,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Retry Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 6660765553727437347, guid: d4c3e40bacb488549aa56fcdd38a982d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6660765553727437404, guid: d4c3e40bacb488549aa56fcdd38a982d,
         type: 3}
@@ -2225,13 +2230,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1327249376}
+  - component: {fileID: 1327249377}
   m_Layer: 0
   m_Name: Game Over UI
-  m_TagString: Untagged
+  m_TagString: GameOverUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1327249376
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2252,6 +2258,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1327249377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1327249375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4df506766b7a8c64d9eb20c51458994c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1333197892
 GameObject:
   m_ObjectHideFlags: 0

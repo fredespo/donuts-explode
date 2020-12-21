@@ -44,8 +44,28 @@ public class Score : MonoBehaviour
         }
     }
 
+    public void AddAfterDelay(int amt, float delaySec)
+    {
+        StartCoroutine(AddAfterDelayCoroutine(amt, delaySec));
+    }
+
+    private IEnumerator AddAfterDelayCoroutine(int amt, float delaySec)
+    {
+        yield return new WaitForSeconds(delaySec);
+        Add(amt);
+    }
+
     public void Add(int amt)
     {
         score += amt;
+        if(score < 0)
+        {
+            score = 0;
+        }
+    }
+
+    public int GetScore()
+    {
+        return score;
     }
 }

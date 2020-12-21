@@ -10,6 +10,8 @@ public class Detonator : MonoBehaviour
     private AudioSource explosionSound;
     private GameObject pieces;
     private GameObject pieceShooter;
+    private Score score;
+    private GameOverUI gameOverUI;
 
     public void Start()
     {
@@ -20,10 +22,27 @@ public class Detonator : MonoBehaviour
             pieces = GameObject.FindGameObjectsWithTag("PieceKeeper")[0];
             pieceShooter = GameObject.FindGameObjectsWithTag("PieceShooter")[0];
         }
+        GameObject scoreObj = GameObject.FindGameObjectWithTag("Score");
+        if(scoreObj != null)
+        {
+            score = GameObject.FindGameObjectWithTag("Score").GetComponent<Score>();
+        }
+        GameObject gameOverUiObj = GameObject.FindGameObjectWithTag("GameOverUI");
+        if(gameOverUiObj != null)
+        {
+            gameOverUI = GameObject.FindGameObjectWithTag("GameOverUI").GetComponent<GameOverUI>();
+        }
     }
 
     public void activate()
     {
+        if (score != null && score.GetScore() > 0)
+        {
+            score.AddAfterDelay(-100, 1.5f);
+            if (gameOverUI != null) gameOverUI.ShowAfterDelay(2.5f);
+        }
+        else if (gameOverUI != null) gameOverUI.ShowAfterDelay(1.0f);
+
         GameObject spawnedExplosion = Instantiate(explosion, gameObject.transform.parent, false);
         if(explosionParent != null)
         {

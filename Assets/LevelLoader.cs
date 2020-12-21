@@ -13,7 +13,7 @@ public class LevelLoader : MonoBehaviour
     public GameObject pieceShooter;
     public GameObject pauseButton;
     public GameObject shootTapZone;
-    public GameObject gameOverUI;
+    public GameOverUI gameOverUI;
     public GameObject pausedUI;
     public GamePauser gamePauser;
     public GameObject tutorialTextContainer;
@@ -80,7 +80,7 @@ public class LevelLoader : MonoBehaviour
         }
         pauseButton.SetActive(true);
         shootTapZone.SetActive(true);
-        gameOverUI.SetActive(false);
+        gameOverUI.Hide();
         pausedUI.SetActive(false);
         gamePauser.CancelQuit();
         gamePauser.ResumeGame();
