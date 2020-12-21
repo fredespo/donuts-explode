@@ -48,4 +48,9 @@ public class GameMusic : MonoBehaviour
         windingDown = false;
         music.pitch = minMusicPitch;
     }
+
+    public void Play()
+    {
+        music.Play(0);
+    }
 }
