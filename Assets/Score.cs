@@ -17,6 +17,12 @@ public class Score : MonoBehaviour
     {
         text = GetComponent<Text>();
         soundEffect = GetComponent<AudioSource>();
+        if(PlayerPrefs.HasKey("Score"))
+        {
+            score = PlayerPrefs.GetInt("Score");
+            dispScore = score;
+            RefreshText();
+        }
     }
 
     void Update()
@@ -77,6 +83,12 @@ public class Score : MonoBehaviour
         {
             score = 0;
         }
+        SaveScore();
+    }
+
+    private void SaveScore()
+    {
+        PlayerPrefs.SetInt("Score", score);
     }
 
     public void Reset()
@@ -84,6 +96,7 @@ public class Score : MonoBehaviour
         score = 0;
         dispScore = 0;
         RefreshText();
+        SaveScore();
     }
 
     public int GetScore()

@@ -12,6 +12,7 @@ public class ScreenManager : MonoBehaviour
     public GameObject startBtnText;
     public GameObject title;
     public GameObject gameScreen;
+    public GameStarter gameStarter;
     public AudioSource music;
 
     public void ShowTitleScreen()
@@ -23,6 +24,7 @@ public class ScreenManager : MonoBehaviour
         startBtn.GetComponent<EventTrigger>().enabled = true;
         startBtnText.GetComponent<Text>().enabled = true;
         title.SetActive(true);
+        gameStarter.Init();
         if (!music.isPlaying)
         {
             music.pitch = 1.0f;

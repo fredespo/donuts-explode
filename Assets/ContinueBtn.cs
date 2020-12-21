@@ -13,6 +13,6 @@ public class ContinueBtn : MonoBehaviour
 
     public void Continue()
     {
-        levelLoader.LoadNextLevel();
+        levelLoader.LoadNextLevelAndStartAfterDelay(0.1f);
     }
 }

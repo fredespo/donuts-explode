@@ -40,10 +40,11 @@ public class BombDefuzer : MonoBehaviour
     {
         if (!defuzed)
         {
+            StartCoroutine(AddTimeToScoreAfterDelay(1.0f));
+            PlayerPrefs.SetInt("Score", score.GetScore() + GetPointsEarned());
             music.WindDown();
             shootTapZone.SetActive(false);
             timer.Pause();
-            StartCoroutine(AddTimeToScoreAfterDelay(1.0f));
             fuseAnim.enabled = false;
             fuseFlare.SetActive(false);
             bombRotator.enabled = false;
@@ -55,6 +56,7 @@ public class BombDefuzer : MonoBehaviour
             bombHighlightAnim.enabled = false;
             bombHighlightAnim.enabled = true;
             soundEffect.Play(0);
+            PlayerPrefs.SetInt("Level", GameObject.FindGameObjectWithTag("LevelLoader").GetComponent<LevelLoader>().GetCurrentLevel() + 1);
             defuzed = true;
         }
     }
@@ -62,7 +64,12 @@ public class BombDefuzer : MonoBehaviour
     private IEnumerator AddTimeToScoreAfterDelay(float delaySec)
     {
         yield return new WaitForSeconds(delaySec);
-        score.Add((int)Mathf.Round(timer.GetSecondsLeft() * 100));
+        score.Add(GetPointsEarned());
         timer.CountDownFast();
+    }
+
+    private int GetPointsEarned()
+    {
+        return (int)Mathf.Round(timer.GetSecondsLeft() * 100);
     }
 }

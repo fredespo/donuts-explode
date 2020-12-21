@@ -17,7 +17,7 @@ public class LevelLoader : MonoBehaviour
     public Score score;
     private GameObject tutorialText;
     public List<Level> levels;
-    private int currLevel;
+    private int currLevel = -1;
     private float startDelaySec;
     private GameObject bomb;
 
@@ -51,7 +51,7 @@ public class LevelLoader : MonoBehaviour
 
     public void StartCurrentLevel()
     {
-        timer.enabled = true;
+        timer.UnPause();
         pieceShooter.GetComponent<PieceShooter>().SetShootingEnabled(true);
         bomb.SendMessage("StartBomb");
     }
@@ -68,7 +68,7 @@ public class LevelLoader : MonoBehaviour
         timer.Init(bomb.GetComponent<Detonator>());
         timer.gameObject.SetActive(true);
         timer.setTime(level.secondsOnTimer);
-        timer.enabled = false;
+        timer.Pause();
         foreach (Transform child in bombPieces.transform)
         {
             Destroy(child.gameObject);
@@ -96,18 +96,28 @@ public class LevelLoader : MonoBehaviour
         tutorialTextContainer.SetActive(true);
     }
 
-    public void LoadNextLevel()
+    public void LoadNextLevelAndStartAfterDelay(float delaySec)
     {
-        if(currLevel < levels.Count - 1)
+        if (currLevel < LevelCount() - 1)
         {
-            ++currLevel;
-            ResetCurrentLevel();
-            StartCurrentLevelAfterDelaySec(0.0f);
+            LoadLevel(++currLevel, delaySec);
         }
         else
         {
+            currLevel = 0;
+            PlayerPrefs.SetInt("Level", 0);
             screenManager.ShowTitleScreen();
         }
+    }
+
+    public int GetCurrentLevel()
+    {
+        return currLevel;
+    }
+
+    public int LevelCount()
+    {
+        return levels.Count;
     }
 
     [System.Serializable]

@@ -82,6 +82,11 @@ public class textTimer : MonoBehaviour
         paused = true;
     }
 
+    public void UnPause()
+    {
+        paused = false;
+    }
+
     public void CountDownFast()
     {
         countingDownFast = true;
