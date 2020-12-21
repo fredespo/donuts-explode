@@ -38,7 +38,7 @@ public class Detonator : MonoBehaviour
     {
         if (score != null && score.GetScore() > 0)
         {
-            score.AddAfterDelay(-100, 1.5f);
+            score.AddAfterDelay(-200, 1.5f);
             if (gameOverUI != null) gameOverUI.ShowAfterDelay(2.5f);
         }
         else if (gameOverUI != null) gameOverUI.ShowAfterDelay(1.0f);
