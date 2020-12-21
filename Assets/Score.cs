@@ -37,8 +37,8 @@ public class Score : MonoBehaviour
             else if(dispScore > score)
             {
                 dispScore -= scoreChange;
-                soundEffect.pitch = 0.5f;
-                delayBetweenSoundEffects = 0.05f;
+                soundEffect.pitch = 0.8f;
+                delayBetweenSoundEffects = 0.1f;
             }
             RefreshText();
             if(Time.time - lastSoundEffectTime >= delayBetweenSoundEffects)
