@@ -32,13 +32,13 @@ public class TitleMenu : MonoBehaviour
         {
             newGameBtn.SetActive(true);
             startButtonText.text = "Continue";
-            mainMenuTransform.localPosition = new Vector3(0, -66, 0);
+            mainMenuTransform.localPosition = new Vector3(0, -3, 0);
         }
         else
         {
             newGameBtn.SetActive(false);
             startButtonText.text = "Start";
-            mainMenuTransform.localPosition = new Vector3(0, 0, 0);
+            mainMenuTransform.localPosition = new Vector3(0, 66, 0);
         }
     }
 
