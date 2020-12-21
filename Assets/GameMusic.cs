@@ -51,6 +51,9 @@ public class GameMusic : MonoBehaviour
 
     public void Play()
     {
-        music.Play(0);
+        if (!music.isPlaying)
+        {
+            music.Play(0);
+        }
     }
 }
