@@ -9,10 +9,14 @@ public class Score : MonoBehaviour
     public int score;
     public int scoreChangePerSec = 500;
     private float dispScore;
+    private AudioSource soundEffect;
+    private float lastSoundEffectTime;
+    private float delayBetweenSoundEffects = 0.1f;
 
     void Start()
     {
         text = GetComponent<Text>();
+        soundEffect = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -27,12 +31,21 @@ public class Score : MonoBehaviour
             else if(dispScore < score)
             {
                 dispScore += scoreChange;
+                soundEffect.pitch = 1.0f;
+                delayBetweenSoundEffects = 0.1f;
             }
             else if(dispScore > score)
             {
                 dispScore -= scoreChange;
+                soundEffect.pitch = 0.5f;
+                delayBetweenSoundEffects = 0.05f;
             }
             RefreshText();
+            if(Time.time - lastSoundEffectTime >= delayBetweenSoundEffects)
+            {
+                soundEffect.Play(0);
+                lastSoundEffectTime = Time.time;
+            }
         }
     }
 
