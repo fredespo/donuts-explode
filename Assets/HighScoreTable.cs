@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class HighScoreTable : MonoBehaviour
 {
+    public DataStorage dataStorage;
     public GameObject entryPrefab;
     public float spaceBetweenEntries = 66;
     public List<Color> colors;
 
-    public void Start()
+    public void Refresh()
     {
-        List<Entry> testEntries = new List<Entry>();
-        testEntries.Add(new Entry("Fred", 1000));
-        testEntries.Add(new Entry("Daisy", 1250));
-        testEntries.Add(new Entry("Chelsea", 1250));
-        testEntries.Add(new Entry("Kitty", 450));
-        Add(testEntries);
+        foreach(Transform child in transform)
+        {
+            Destroy(child.gameObject);
+        }
+        Add(dataStorage.GetHighScoreEntries());
     }
 
     public void Add(List<Entry> entries)
