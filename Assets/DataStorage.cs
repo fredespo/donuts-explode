@@ -4,9 +4,18 @@ using UnityEngine;
 
 public class DataStorage : MonoBehaviour
 {
+    public bool deleteHighScores = false;
     private static string KEY_SCORE = "Score";
     private static string KEY_LEVEL = "Level";
     private static string KEY_HIGH_SCORES = "HighScores";
+
+    public void Start()
+    {
+        if(deleteHighScores)
+        {
+            PlayerPrefs.DeleteKey(KEY_HIGH_SCORES);
+        }
+    }
 
     public int GetScore()
     {
