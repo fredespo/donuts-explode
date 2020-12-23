@@ -56,5 +56,6 @@ public class ScreenManager : MonoBehaviour
         gameWonScreen.SetActive(true);
         titleScreen.SetActive(false);
         gameScreen.SetActive(false);
+        gameWonScreen.GetComponent<GameWonScreen>().Refresh();
     }
 }

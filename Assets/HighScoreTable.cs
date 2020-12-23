@@ -8,6 +8,8 @@ public class HighScoreTable : MonoBehaviour
     public GameObject noScoresMsg;
     public GameObject entryPrefab;
     public float spaceBetweenEntries = 66;
+    public int capacity = 10;
+    private int size = 0;
     public List<Color> colors;
 
     public void Refresh()
@@ -17,7 +19,8 @@ public class HighScoreTable : MonoBehaviour
             Destroy(child.gameObject);
         }
         List<Entry> entries = dataStorage.GetHighScoreEntries();
-        if(entries.Count > 0)
+        size = entries.Count;
+        if (entries.Count > 0)
         {
             Add(entries);
             noScoresMsg.SetActive(false);
@@ -30,17 +33,6 @@ public class HighScoreTable : MonoBehaviour
 
     public void Add(List<Entry> entries)
     {
-        entries.Sort(delegate (Entry entry1, Entry entry2)
-        {
-            if(entry2.GetScore() != entry1.GetScore())
-            {
-                return entry2.GetScore().CompareTo(entry1.GetScore());
-            }
-            else
-            {
-                return entry1.GetName().CompareTo(entry2.GetName());
-            }
-        });
         float yPos = 0;
         int colorIndex = 0;
         foreach(Entry entry in entries)
@@ -59,6 +51,16 @@ public class HighScoreTable : MonoBehaviour
         entryInfo.SetScore(entry.GetScore());
         entryInfo.SetColor(color);
         entryInfo.SetY(yPos);
+    }
+
+    public int GetCapacity()
+    {
+        return this.capacity;
+    }
+
+    public int GetSize()
+    {
+        return this.size;
     }
 
     public class Entry

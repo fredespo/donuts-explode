@@ -701,6 +701,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 111133907}
+  - component: {fileID: 111133908}
   m_Layer: 5
   m_Name: GameWonScreen
   m_TagString: Untagged
@@ -734,6 +735,26 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &111133908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 111133906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0171f9429f76d82419570bf251b6d2df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highScoreMsg: {fileID: 1038628371}
+  nameField: {fileID: 1556432197}
+  saveScoreBtn: {fileID: 487074905}
+  finishBtn: {fileID: 5546961145502285110}
+  highScoreTable: {fileID: 1613030759}
+  dataStorage: {fileID: 1175133700}
+  score: {fileID: 945567741}
+  scoreText: {fileID: 1613292274}
 --- !u!1 &130668878
 GameObject:
   m_ObjectHideFlags: 0
@@ -1339,7 +1360,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameField: {fileID: 1556432199}
   buttonImage: {fileID: 487074910}
-  score: {fileID: 1613292273}
+  score: {fileID: 945567741}
   dataStorage: {fileID: 1175133700}
 --- !u!114 &487074908
 MonoBehaviour:
@@ -3776,6 +3797,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deleteHighScores: 0
+  highScoreTable: {fileID: 1613030759}
 --- !u!4 &1175133701
 Transform:
   m_ObjectHideFlags: 0
@@ -5000,6 +5022,7 @@ MonoBehaviour:
   entryPrefab: {fileID: 1646628629654592346, guid: 9310f57066edaab479f7efaf0de88eff,
     type: 3}
   spaceBetweenEntries: 66
+  capacity: 10
   colors:
   - {r: 0.9882353, g: 0.2509804, b: 0.003921569, a: 1}
   - {r: 1, g: 0.50980395, b: 0.003921569, a: 1}
@@ -5015,7 +5038,6 @@ GameObject:
   - component: {fileID: 1613292271}
   - component: {fileID: 1613292275}
   - component: {fileID: 1613292274}
-  - component: {fileID: 1613292273}
   m_Layer: 5
   m_Name: Score
   m_TagString: Score
@@ -5042,21 +5064,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -374.90002}
   m_SizeDelta: {x: 770, y: 120}
   m_Pivot: {x: 0.5, y: 1}
---- !u!114 &1613292273
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1613292270}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c1236faec412a74581950daefa6ff3b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  score: 0
-  scoreChangePerSec: 400
-  dataStorage: {fileID: 1175133700}
 --- !u!114 &1613292274
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6688,30 +6695,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 111133906}
-          m_MethodName: SetActive
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 1087189119}
-          m_MethodName: SetActive
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
-        - m_Target: {fileID: 1613030759}
-          m_MethodName: Refresh
+        - m_Target: {fileID: 616734853}
+          m_MethodName: ShowTitleScreen
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -6719,7 +6704,7 @@ MonoBehaviour:
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
-            m_BoolArgument: 1
+            m_BoolArgument: 0
           m_CallState: 2
 --- !u!222 &5546961145502285130
 CanvasRenderer:

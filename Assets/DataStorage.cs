@@ -5,6 +5,7 @@ using UnityEngine;
 public class DataStorage : MonoBehaviour
 {
     public bool deleteHighScores = false;
+    public HighScoreTable highScoreTable;
     private static string KEY_SCORE = "Score";
     private static string KEY_LEVEL = "Level";
     private static string KEY_HIGH_SCORES = "HighScores";
@@ -56,36 +57,79 @@ public class DataStorage : MonoBehaviour
         List<HighScoreTable.Entry> highScores = new List<HighScoreTable.Entry>();
         if(PlayerPrefs.HasKey(KEY_HIGH_SCORES))
         {
-            string[] entries = PlayerPrefs.GetString(KEY_HIGH_SCORES).Split(',');
-            foreach(string entry in entries)
-            {
-                string[] entryInfo = entry.Split('|');
-                if(entryInfo.Length == 2)
-                {
-                    string name = entryInfo[0];
-                    int score;
-                    if (int.TryParse(entryInfo[1], out score))
-                    {
-                        highScores.Add(new HighScoreTable.Entry(name, score));
-                    }
-                }
-            }
+            highScores = DeserializeHighScores(PlayerPrefs.GetString(KEY_HIGH_SCORES));
         }
+        highScores.Sort(delegate (HighScoreTable.Entry entry1, HighScoreTable.Entry entry2)
+        {
+            if (entry2.GetScore() != entry1.GetScore())
+            {
+                return entry2.GetScore().CompareTo(entry1.GetScore());
+            }
+            else
+            {
+                return entry1.GetName().CompareTo(entry2.GetName());
+            }
+        });
         return highScores;
     }
 
     public void SaveHighScore(string name, int score)
     {
-        string highScores = "";
-        if(PlayerPrefs.HasKey(KEY_HIGH_SCORES))
+        List<HighScoreTable.Entry> entries = GetHighScoreEntries();
+        if(score <= entries[entries.Count - 1].GetScore())
         {
-            highScores = PlayerPrefs.GetString(KEY_HIGH_SCORES);
+            return;
         }
-        if(highScores.Length > 0)
+
+        if(entries.Count >= highScoreTable.GetCapacity())
         {
-            highScores += ",";
+            entries.RemoveAt(entries.Count - 1);
         }
-        highScores += name + "|" + score;
-        PlayerPrefs.SetString(KEY_HIGH_SCORES, highScores);
+        entries.Add(new HighScoreTable.Entry(name, score));
+        PlayerPrefs.SetString(KEY_HIGH_SCORES, SerializeHighScores(entries));
+    }
+
+    public int GetLowestScore()
+    {
+        List<HighScoreTable.Entry> entries = GetHighScoreEntries();
+        if(entries.Count == 0)
+        {
+            return 0;
+        }
+        return entries[entries.Count - 1].GetScore();
+    }
+
+    private string SerializeHighScores(List<HighScoreTable.Entry> entries)
+    {
+        string serialized = "";
+        for(int i = 0; i < entries.Count; ++i)
+        {
+            serialized += entries[i].GetName() + "|" + entries[i].GetScore();
+            if(i < entries.Count - 1)
+            {
+                serialized += ",";
+            }
+        }
+        return serialized;
+    }
+
+    private List<HighScoreTable.Entry> DeserializeHighScores(string serialized)
+    {
+        List<HighScoreTable.Entry> highScores = new List<HighScoreTable.Entry>();
+        string[] entries = serialized.Split(',');
+        foreach (string entry in entries)
+        {
+            string[] entryInfo = entry.Split('|');
+            if (entryInfo.Length == 2)
+            {
+                string name = entryInfo[0];
+                int score;
+                if (int.TryParse(entryInfo[1], out score))
+                {
+                    highScores.Add(new HighScoreTable.Entry(name, score));
+                }
+            }
+        }
+        return highScores;
     }
 }
