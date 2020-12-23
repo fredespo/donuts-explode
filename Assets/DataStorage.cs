@@ -76,7 +76,7 @@ public class DataStorage : MonoBehaviour
     public void SaveHighScore(string name, int score)
     {
         List<HighScoreTable.Entry> entries = GetHighScoreEntries();
-        if(score <= entries[entries.Count - 1].GetScore())
+        if(entries.Count == highScoreTable.GetCapacity() && score <= entries[entries.Count - 1].GetScore())
         {
             return;
         }
