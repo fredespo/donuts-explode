@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class GameWonScreen : MonoBehaviour
 {
     public GameObject highScoreMsg;
-    public GameObject nameField;
+    public InputField nameField;
     public GameObject saveScoreBtn;
     public GameObject finishBtn;
     public HighScoreTable highScoreTable;
@@ -21,14 +21,15 @@ public class GameWonScreen : MonoBehaviour
         {
             highScoreMsg.SetActive(true);
             saveScoreBtn.SetActive(true);
-            nameField.SetActive(true);
+            nameField.gameObject.SetActive(true);
+            nameField.text = "";
             finishBtn.SetActive(false);
         }
         else
         {
             highScoreMsg.SetActive(false);
             saveScoreBtn.SetActive(false);
-            nameField.SetActive(false);
+            nameField.gameObject.SetActive(false);
             finishBtn.SetActive(true);
         }
     }
