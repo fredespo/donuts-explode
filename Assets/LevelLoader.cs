@@ -96,7 +96,7 @@ public class LevelLoader : MonoBehaviour
         {
             currLevel = 0;
             dataStorage.SaveLevel(0);
-            screenManager.ShowTitleScreen();
+            screenManager.ShowGameWonScreen();
         }
     }
 

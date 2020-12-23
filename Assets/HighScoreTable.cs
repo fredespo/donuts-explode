@@ -5,6 +5,7 @@ using UnityEngine;
 public class HighScoreTable : MonoBehaviour
 {
     public DataStorage dataStorage;
+    public GameObject noScoresMsg;
     public GameObject entryPrefab;
     public float spaceBetweenEntries = 66;
     public List<Color> colors;
@@ -15,7 +16,16 @@ public class HighScoreTable : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
-        Add(dataStorage.GetHighScoreEntries());
+        List<Entry> entries = dataStorage.GetHighScoreEntries();
+        if(entries.Count > 0)
+        {
+            Add(entries);
+            noScoresMsg.SetActive(false);
+        }
+        else
+        {
+            noScoresMsg.SetActive(true);
+        }
     }
 
     public void Add(List<Entry> entries)
