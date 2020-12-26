@@ -77,7 +77,8 @@ public class LevelLoader : MonoBehaviour
         bombPieces.SetActive(true);
         pieceShooter.SetActive(true);
         pieceShooter.GetComponent<PieceShooter>().Init();
-        if(this.startDelaySec > 0)
+        pieceShooter.GetComponent<PieceShooter>().SetPieces(level.pieces);
+        if (this.startDelaySec > 0)
         {
             pieceShooter.GetComponent<PieceShooter>().SetShootingEnabled(false);
         }
@@ -115,6 +116,7 @@ public class LevelLoader : MonoBehaviour
     {
         public GameObject bomb;
         public float secondsOnTimer;
+        public List<GameObject> pieces;
     }
 
     [System.Serializable]

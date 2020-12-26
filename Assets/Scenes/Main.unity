@@ -251,8 +251,17 @@ MonoBehaviour:
   levels:
   - bomb: {fileID: 6706467554741298094, guid: 9da7f09acafc12e4dbfb556331587afb, type: 3}
     secondsOnTimer: 10
+    pieces:
+    - {fileID: 8890159741025738863, guid: 3466731f6a5d0b34ebce327f995a9e2a, type: 3}
   - bomb: {fileID: 6706467554741298094, guid: 93ddda6d8597c7449bbac08e3ac8d5e5, type: 3}
     secondsOnTimer: 12
+    pieces:
+    - {fileID: 8890159741025738863, guid: 3466731f6a5d0b34ebce327f995a9e2a, type: 3}
+  - bomb: {fileID: 6706467554741298094, guid: 8ae11ce7112481a46af44a2fcf50d2ba, type: 3}
+    secondsOnTimer: 12
+    pieces:
+    - {fileID: 8890159741025738863, guid: 3466731f6a5d0b34ebce327f995a9e2a, type: 3}
+    - {fileID: 8890159741025738863, guid: 0db2006d6d34eea41aa20f2a706d3135, type: 3}
 --- !u!4 &46862306
 Transform:
   m_ObjectHideFlags: 0
@@ -3182,6 +3191,7 @@ GameObject:
   m_Component:
   - component: {fileID: 863292598}
   - component: {fileID: 863292597}
+  - component: {fileID: 863292599}
   m_Layer: 0
   m_Name: PieceShooter
   m_TagString: PieceShooter
@@ -3203,7 +3213,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pieceParent: {fileID: 1010132026}
   shootingEnabled: 0
-  piece: {fileID: 8890159741025738863, guid: 3466731f6a5d0b34ebce327f995a9e2a, type: 3}
   speed: 14
   shootDelaySec: 0.7
 --- !u!224 &863292598
@@ -3225,6 +3234,54 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 100}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &863292599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 863292596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35cf701e94eaf2d4a8a49cf3011d914e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectSwipeOnlyAfterRelease: 1
+  SWIPE_THRESHOLD: 20
+  onSwipeUp:
+    m_PersistentCalls:
+      m_Calls: []
+  onSwipeDown:
+    m_PersistentCalls:
+      m_Calls: []
+  onSwipeLeft:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 863292597}
+        m_MethodName: DecrementPieceIndex
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onSwipeRight:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 863292597}
+        m_MethodName: IncrementPieceIndex
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &945567736
 GameObject:
   m_ObjectHideFlags: 0
