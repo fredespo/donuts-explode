@@ -6,8 +6,7 @@ public class PieceShooter : MonoBehaviour
 {
     public GameObject pieceParent;
     public bool shootingEnabled = false;
-    private List<GameObject> pieces;
-    private int pieceIndex = 0;
+    public GameObject piece;
     public float speed = 1.0f;
     public float shootDelaySec = 1.0f;
     private float lastShootTime = 0.0f;
@@ -47,24 +46,11 @@ public class PieceShooter : MonoBehaviour
 
     void SpawnPiece()
     {
-        if(pieces != null && pieceIndex < pieces.Count && pieceIndex >= 0 && pieces[pieceIndex] != null)
-        {
-            spawnedPiece = Instantiate(pieces[pieceIndex]);
-            spawnedPiece.transform.SetParent(pieceParent.transform);
-            spawnedPiece.transform.position = gameObject.transform.position;
-            spawnedPiece.transform.localScale = new Vector3(81, 81, 1);
-            showingSpawnedPiece = true;
-        }
-    }
-
-    void RespawnPiece()
-    {
-        showingSpawnedPiece = false;
-        if (spawnedPiece != null)
-        {
-            Destroy(spawnedPiece);
-        }
-        SpawnPiece();
+        spawnedPiece = Instantiate(piece);
+        spawnedPiece.transform.SetParent(pieceParent.transform);
+        spawnedPiece.transform.position = gameObject.transform.position;
+        spawnedPiece.transform.localScale = new Vector3(81, 81, 1);
+        showingSpawnedPiece = true;
     }
 
     private void ResetPieceShotCount()
@@ -80,27 +66,5 @@ public class PieceShooter : MonoBehaviour
     public void SetShootingEnabled(bool shootingEnabled)
     {
         this.shootingEnabled = shootingEnabled;
-    }
-
-    public void SetPieces(List<GameObject> pieces)
-    {
-        this.pieces = pieces;
-        this.pieceIndex = 0;
-    }
-
-    public void IncrementPieceIndex()
-    {
-        pieceIndex = (pieceIndex + 1) % pieces.Count;
-        RespawnPiece();
-    }
-
-    public void DecrementPieceIndex()
-    {
-        --pieceIndex;
-        if(pieceIndex < 0)
-        {
-            pieceIndex = pieces.Count - 1;
-        }
-        RespawnPiece();
     }
 }
