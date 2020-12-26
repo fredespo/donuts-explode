@@ -116,10 +116,4 @@ public class LevelLoader : MonoBehaviour
         public GameObject bomb;
         public float secondsOnTimer;
     }
-
-    [System.Serializable]
-    public class GameObj
-    {
-        public GameObject gameObj;
-    }
 }
