@@ -38,17 +38,24 @@ public class PieceShooter : MonoBehaviour
             spawnedPiece.transform.eulerAngles = new Vector3(pieceRotation.x, pieceRotation.y, transform.eulerAngles.z);
         }
 
-        float angle = transform.eulerAngles.z;
-        if(angle > 90)
+        if (shootingEnabled)
         {
-            angle = angle - 360;
+            float angle = transform.eulerAngles.z;
+            if (angle > 90)
+            {
+                angle = angle - 360;
+            }
+            if (angle < minAngle || angle > maxAngle)
+            {
+                float newAngle = GetRotator().GetDir() == Rotator.RotationDir.Clockwise ? maxAngle : minAngle;
+                Vector3 rotation = transform.eulerAngles;
+                transform.eulerAngles = new Vector3(rotation.x, rotation.y, angle < minAngle ? minAngle : maxAngle);
+                GetRotator().Reverse();
+            }
         }
-        if(angle < minAngle || angle > maxAngle)
+        else
         {
-            float newAngle = GetRotator().GetDir() == Rotator.RotationDir.Clockwise ? maxAngle : minAngle;
-            Vector3 rotation = transform.eulerAngles;
-            transform.eulerAngles = new Vector3(rotation.x, rotation.y, angle < minAngle? minAngle : maxAngle);
-            GetRotator().Reverse();
+            transform.eulerAngles = new Vector3(0, 0, 0);
         }
     }
 
