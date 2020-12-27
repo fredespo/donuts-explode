@@ -11,6 +11,7 @@ public class LevelLoader : MonoBehaviour
     public textTimer timer;
     public GameObject bombPieces;
     public GameObject pieceShooter;
+    public PieceShooter pieceShooterComp;
     public GameObject shootTapZone;
     public GameOverUI gameOverUI;
     public Score score;
@@ -25,6 +26,7 @@ public class LevelLoader : MonoBehaviour
     {
         screenManager = GameObject.FindGameObjectWithTag("ScreenManager").GetComponent<ScreenManager>();
         dataStorage = GameObject.FindGameObjectWithTag("DataStorage").GetComponent<DataStorage>();
+        pieceShooterComp = pieceShooter.GetComponent<PieceShooter>();
     }
 
     public void LoadLevel(int levelIndex, float startDelaySec)
@@ -81,8 +83,9 @@ public class LevelLoader : MonoBehaviour
         }
         bombPieces.SetActive(true);
         pieceShooter.SetActive(true);
-        pieceShooter.GetComponent<PieceShooter>().SetAngleRange(level.pieceShooterAngleRange);
-        pieceShooter.GetComponent<PieceShooter>().Init();
+        pieceShooterComp.SetAngleRange(level.pieceShooterAngleRange);
+        pieceShooterComp.SetPiece(level.piece);
+        pieceShooterComp.Init();
         if (this.startDelaySec > 0)
         {
             pieceShooter.GetComponent<PieceShooter>().SetShootingEnabled(false);
@@ -122,5 +125,6 @@ public class LevelLoader : MonoBehaviour
         public GameObject bomb;
         public float secondsOnTimer;
         public Vector2 pieceShooterAngleRange;
+        public GameObject piece;
     }
 }

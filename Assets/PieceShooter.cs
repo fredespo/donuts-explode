@@ -109,4 +109,9 @@ public class PieceShooter : MonoBehaviour
     {
         this.shootingEnabled = shootingEnabled;
     }
+
+    public void SetPiece(GameObject piece)
+    {
+        this.piece = piece;
+    }
 }
