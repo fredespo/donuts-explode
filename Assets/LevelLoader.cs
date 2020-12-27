@@ -81,7 +81,7 @@ public class LevelLoader : MonoBehaviour
         }
         bombPieces.SetActive(true);
         pieceShooter.SetActive(true);
-        pieceShooter.transform.eulerAngles = level.pieceShooterRotation;
+        pieceShooter.GetComponent<PieceShooter>().SetAngleRange(level.pieceShooterAngleRange);
         pieceShooter.GetComponent<PieceShooter>().Init();
         if (this.startDelaySec > 0)
         {
@@ -121,6 +121,6 @@ public class LevelLoader : MonoBehaviour
     {
         public GameObject bomb;
         public float secondsOnTimer;
-        public Vector3 pieceShooterRotation;
+        public Vector2 pieceShooterAngleRange;
     }
 }

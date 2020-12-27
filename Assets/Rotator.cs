@@ -17,4 +17,21 @@ public class Rotator : MonoBehaviour
     {
         transform.Rotate(0, 0, degPerSec * Time.deltaTime * (direction == RotationDir.Clockwise ? -1 : 1));
     }
+
+    public void Reverse()
+    {
+        if(direction == RotationDir.Clockwise)
+        {
+            direction = RotationDir.Counterclockwise;
+        }
+        else
+        {
+            direction = RotationDir.Clockwise;
+        }
+    }
+
+    public RotationDir GetDir()
+    {
+        return direction;
+    }
 }

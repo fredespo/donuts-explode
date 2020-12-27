@@ -13,6 +13,9 @@ public class PieceShooter : MonoBehaviour
     private GameObject spawnedPiece;
     private bool showingSpawnedPiece = false;
     private int piecesShotCount = 0;
+    private float minAngle;
+    private float maxAngle;
+    private Rotator rotator;
 
     public void Init()
     {
@@ -30,6 +33,21 @@ public class PieceShooter : MonoBehaviour
         if(showingSpawnedPiece)
         {
             spawnedPiece.SetActive(shootingEnabled);
+            Vector3 pieceRotation = spawnedPiece.transform.eulerAngles;
+            spawnedPiece.transform.eulerAngles = new Vector3(pieceRotation.x, pieceRotation.y, transform.eulerAngles.z);
+        }
+
+        float angle = transform.eulerAngles.z;
+        if(angle > 90)
+        {
+            angle = angle - 360;
+        }
+        if(angle < minAngle || angle > maxAngle)
+        {
+            float newAngle = GetRotator().GetDir() == Rotator.RotationDir.Clockwise ? maxAngle : minAngle;
+            Vector3 rotation = transform.eulerAngles;
+            transform.eulerAngles = new Vector3(rotation.x, rotation.y, angle < minAngle? minAngle : maxAngle);
+            GetRotator().Reverse();
         }
     }
 
@@ -42,6 +60,22 @@ public class PieceShooter : MonoBehaviour
             ++piecesShotCount;
             lastShootTime = Time.time;
         }
+    }
+
+    public void SetAngleRange(Vector2 angleRange)
+    {
+        minAngle = angleRange.x;
+        maxAngle = angleRange.y;
+        GetRotator().enabled = minAngle != maxAngle;
+    }
+
+    private Rotator GetRotator()
+    {
+        if(rotator == null)
+        {
+            rotator = GetComponent<Rotator>();
+        }
+        return rotator;
     }
 
     void SpawnPiece()

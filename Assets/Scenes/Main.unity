@@ -322,13 +322,16 @@ MonoBehaviour:
   levels:
   - bomb: {fileID: 6706467554741298094, guid: 9da7f09acafc12e4dbfb556331587afb, type: 3}
     secondsOnTimer: 10
-    pieceShooterRotation: {x: 0, y: 0, z: 0}
+    pieceShooterAngleRange: {x: 0, y: 0}
   - bomb: {fileID: 6706467554741298094, guid: 93ddda6d8597c7449bbac08e3ac8d5e5, type: 3}
     secondsOnTimer: 12
-    pieceShooterRotation: {x: 0, y: 0, z: 0}
+    pieceShooterAngleRange: {x: 0, y: 0}
   - bomb: {fileID: 6706467554741298094, guid: 9da7f09acafc12e4dbfb556331587afb, type: 3}
     secondsOnTimer: 15
-    pieceShooterRotation: {x: 0, y: 0, z: -45}
+    pieceShooterAngleRange: {x: -45, y: -45}
+  - bomb: {fileID: 6706467554741298094, guid: 9da7f09acafc12e4dbfb556331587afb, type: 3}
+    secondsOnTimer: 15
+    pieceShooterAngleRange: {x: -45, y: 45}
 --- !u!4 &46862306
 Transform:
   m_ObjectHideFlags: 0
@@ -3258,6 +3261,7 @@ GameObject:
   m_Component:
   - component: {fileID: 863292598}
   - component: {fileID: 863292597}
+  - component: {fileID: 863292599}
   m_Layer: 0
   m_Name: PieceShooter
   m_TagString: PieceShooter
@@ -3301,6 +3305,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 100}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &863292599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 863292596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cca1e6cf2e0ee2841a5447975c3e686a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  degPerSec: 80
+  direction: 0
 --- !u!1 &880484482
 GameObject:
   m_ObjectHideFlags: 0
