@@ -14,6 +14,7 @@ public class LevelLoader : MonoBehaviour
     public GameObject shootTapZone;
     public GameOverUI gameOverUI;
     public Score score;
+    public List<Reflector> reflectors;
     public List<Level> levels;
     private int currLevel = -1;
     private float startDelaySec;
@@ -66,6 +67,10 @@ public class LevelLoader : MonoBehaviour
         }
         bomb = Instantiate(level.bomb);
         bomb.transform.SetParent(canvas.transform, false);
+        foreach(Reflector r in reflectors)
+        {
+            r.SetTarget(bomb);
+        }
         timer.Init(bomb.GetComponent<Detonator>());
         timer.gameObject.SetActive(true);
         timer.setTime(level.secondsOnTimer);
@@ -76,8 +81,9 @@ public class LevelLoader : MonoBehaviour
         }
         bombPieces.SetActive(true);
         pieceShooter.SetActive(true);
+        pieceShooter.transform.eulerAngles = level.pieceShooterRotation;
         pieceShooter.GetComponent<PieceShooter>().Init();
-        if(this.startDelaySec > 0)
+        if (this.startDelaySec > 0)
         {
             pieceShooter.GetComponent<PieceShooter>().SetShootingEnabled(false);
         }
@@ -115,5 +121,6 @@ public class LevelLoader : MonoBehaviour
     {
         public GameObject bomb;
         public float secondsOnTimer;
+        public Vector3 pieceShooterRotation;
     }
 }
