@@ -21,6 +21,7 @@ public class PieceShooter : MonoBehaviour
     {
         SpawnPiece();
         ResetPieceShotCount();
+        transform.eulerAngles = new Vector3(0, 0, 0);
     }
 
     void Update()
