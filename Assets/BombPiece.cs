@@ -34,7 +34,7 @@ public class BombPiece : MonoBehaviour
             {
                 Destroy(gameObject);
             }
-            else if(color.a <= 0.6f)
+            else if(color.a <= 0.8f)
             {
                 GetComponent<Collider2D>().enabled = false;
             }
