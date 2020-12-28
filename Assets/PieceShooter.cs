@@ -9,6 +9,7 @@ public class PieceShooter : MonoBehaviour
     public GameObject piece;
     public float speed = 1.0f;
     private GameObject spawnedPiece;
+    private bool spawnedPieceReadyToShoot = false;
     private float minAngle;
     private float maxAngle;
     private Rotator rotator;
@@ -23,6 +24,7 @@ public class PieceShooter : MonoBehaviour
         if (spawnedPiece == null)
         {
             SpawnPiece();
+            spawnedPieceReadyToShoot = true;
         }
         else
         {
@@ -54,9 +56,10 @@ public class PieceShooter : MonoBehaviour
 
     public void Shoot()
     {
-        if (shootingEnabled && spawnedPiece != null && spawnedPiece.GetComponent<Rigidbody2D>().velocity.magnitude == 0)
+        if (shootingEnabled && spawnedPiece != null && spawnedPieceReadyToShoot)
         {
             spawnedPiece.GetComponent<Rigidbody2D>().velocity = transform.up * speed;
+            spawnedPieceReadyToShoot = false;
         }
     }
 
