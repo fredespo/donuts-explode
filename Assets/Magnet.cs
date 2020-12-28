@@ -20,7 +20,7 @@ public class Magnet : MonoBehaviour
     {
         foreach(GameObject obj in caughtObjects)
         {
-            if(obj.GetComponent<Collider2D>().enabled)
+            if(obj != null && obj.GetComponent<Collider2D>() != null && obj.GetComponent<Collider2D>().enabled)
             {
                 obj.transform.position = Vector2.MoveTowards(obj.transform.position, transform.position, speed * Time.deltaTime);
                 Vector2 p1 = mCamera.WorldToScreenPoint(GetTarget().transform.position);
