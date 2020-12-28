@@ -20,12 +20,15 @@ public class Magnet : MonoBehaviour
     {
         foreach(GameObject obj in caughtObjects)
         {
-            obj.transform.position = Vector2.MoveTowards(obj.transform.position, transform.position, speed * Time.deltaTime);
-            Vector2 p1 = mCamera.WorldToScreenPoint(GetTarget().transform.position);
-            Vector2 p2 = mCamera.WorldToScreenPoint(obj.transform.position);
-            Vector3 r = obj.transform.eulerAngles;
-            Vector3 targetRotation = new Vector3(r.x, r.y, 90 + Mathf.Atan2(p2.y - p1.y, p2.x - p1.x) * 180 / Mathf.PI);
-            obj.transform.eulerAngles = targetRotation;
+            if(obj.GetComponent<Collider2D>().enabled)
+            {
+                obj.transform.position = Vector2.MoveTowards(obj.transform.position, transform.position, speed * Time.deltaTime);
+                Vector2 p1 = mCamera.WorldToScreenPoint(GetTarget().transform.position);
+                Vector2 p2 = mCamera.WorldToScreenPoint(obj.transform.position);
+                Vector3 r = obj.transform.eulerAngles;
+                Vector3 targetRotation = new Vector3(r.x, r.y, 90 + Mathf.Atan2(p2.y - p1.y, p2.x - p1.x) * 180 / Mathf.PI);
+                obj.transform.eulerAngles = targetRotation;
+            }
         }
     }
 
