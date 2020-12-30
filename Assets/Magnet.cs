@@ -5,7 +5,6 @@ using UnityEngine;
 public class Magnet : MonoBehaviour
 {
     public float speed = 1.0f;
-    public GameObject target;
     private List<GameObject> caughtObjects = new List<GameObject>();
     private string tagToLookFor;
     private Camera mCamera;
@@ -20,25 +19,44 @@ public class Magnet : MonoBehaviour
     {
         foreach(GameObject obj in caughtObjects)
         {
-            if(obj != null && obj.GetComponent<Collider2D>() != null && obj.GetComponent<Collider2D>().enabled)
+            if(obj != null)
             {
-                obj.transform.position = Vector2.MoveTowards(obj.transform.position, transform.position, speed * Time.deltaTime);
-                Vector2 p1 = mCamera.WorldToScreenPoint(GetTarget().transform.position);
-                Vector2 p2 = mCamera.WorldToScreenPoint(obj.transform.position);
-                Vector3 r = obj.transform.eulerAngles;
-                Vector3 targetRotation = new Vector3(r.x, r.y, 90 + Mathf.Atan2(p2.y - p1.y, p2.x - p1.x) * 180 / Mathf.PI);
-                obj.transform.eulerAngles = targetRotation;
+                obj.SendMessage("CaughtInMagnet");
+                MoveTowardsMagnet(obj);
             }
         }
     }
 
-    private GameObject GetTarget()
+    private void MoveTowardsMagnet(GameObject obj)
     {
-        if(target == null)
+        Vector3 objPos = obj.transform.position;
+        float xOffset = GetOffsetX(objPos);
+        float yOffSet = GetOffsetY(objPos);
+        obj.transform.position = new Vector3(objPos.x + xOffset, objPos.y + yOffSet, objPos.z);
+    }
+
+    private float GetOffsetX(Vector3 otherPos)
+    {
+        float otherX = otherPos.x;
+        float thisX = transform.position.x;
+        float offset = speed * Time.deltaTime;
+        if(Mathf.Abs(otherX - thisX) < offset)
         {
-            target = GameObject.FindGameObjectWithTag("bomb");
+            offset = Mathf.Abs(otherX - thisX);
         }
-        return target;
+        return otherX > thisX ? -offset : offset;
+    }
+
+    private float GetOffsetY(Vector3 otherPos)
+    {
+        float otherY = otherPos.y;
+        float thisY = transform.position.y;
+        float offset = speed * Time.deltaTime;
+        if (Mathf.Abs(otherY - thisY) < offset)
+        {
+            offset = Mathf.Abs(otherY - thisY);
+        }
+        return otherY > thisY ? -offset : offset;
     }
 
     void OnTriggerEnter2D(Collider2D col)
@@ -46,7 +64,7 @@ public class Magnet : MonoBehaviour
         if (col.gameObject.CompareTag(tagToLookFor))
         {
             Rigidbody2D rb = col.gameObject.GetComponent<Rigidbody2D>();
-            if(!rb.isKinematic)
+            if (!rb.isKinematic)
             {
                 rb.isKinematic = true;
                 rb.velocity = new Vector3(0, 0, 0);
