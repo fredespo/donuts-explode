@@ -30,7 +30,7 @@ public class BombPiece : MonoBehaviour
     {
         if (caughtInMagnet)
         {
-            LookAtBomb();
+            LookAt(bomb);
         }
 
         if (fading)
@@ -45,13 +45,12 @@ public class BombPiece : MonoBehaviour
         }
     }
 
-    private void LookAtBomb()
+    private void LookAt(GameObject target)
     {
-        GameObject target = bomb;
-        transform.LookAt(target.transform);
-        Vector3 rotation = transform.eulerAngles;
-        float rotationSign = target.transform.position.x > transform.position.x ? -1 : 1;
-        transform.eulerAngles = new Vector3(0, 0, rotationSign * (rotation.x + 90));
+        Vector3 diff = target.transform.position - transform.position;
+        diff.Normalize();
+        float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
     }
 
     void CaughtInMagnet()

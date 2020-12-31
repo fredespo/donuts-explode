@@ -30,33 +30,31 @@ public class Magnet : MonoBehaviour
     private void MoveTowardsMagnet(GameObject obj)
     {
         Vector3 objPos = obj.transform.position;
-        float xOffset = GetOffsetX(objPos);
-        float yOffSet = GetOffsetY(objPos);
-        obj.transform.position = new Vector3(objPos.x + xOffset, objPos.y + yOffSet, objPos.z);
+        float offsetX = GetOffsetX(objPos);
+        float offsetY = GetOffsetY(objPos);
+        obj.transform.position = new Vector3(objPos.x + offsetX, objPos.y + offsetY, objPos.z);
     }
 
     private float GetOffsetX(Vector3 otherPos)
     {
-        float otherX = otherPos.x;
-        float thisX = transform.position.x;
         float offset = speed * Time.deltaTime;
-        if(Mathf.Abs(otherX - thisX) < offset)
+        float diff = Mathf.Abs(otherPos.x - transform.position.x);
+        if (diff < offset)
         {
-            offset = Mathf.Abs(otherX - thisX);
+            offset = diff;
         }
-        return otherX > thisX ? -offset : offset;
+        return otherPos.x > transform.position.x ? -offset : offset;
     }
 
     private float GetOffsetY(Vector3 otherPos)
     {
-        float otherY = otherPos.y;
-        float thisY = transform.position.y;
         float offset = speed * Time.deltaTime;
-        if (Mathf.Abs(otherY - thisY) < offset)
+        float diff = Mathf.Abs(otherPos.y - transform.position.y);
+        if (diff < offset)
         {
-            offset = Mathf.Abs(otherY - thisY);
+            offset = diff;
         }
-        return otherY > thisY ? -offset : offset;
+        return otherPos.y > transform.position.y ? -offset : offset;
     }
 
     void OnTriggerEnter2D(Collider2D col)

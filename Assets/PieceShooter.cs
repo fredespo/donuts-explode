@@ -26,11 +26,9 @@ public class PieceShooter : MonoBehaviour
             SpawnPiece();
             spawnedPieceReadyToShoot = true;
         }
-        else
+        else if(spawnedPieceReadyToShoot)
         {
             spawnedPiece.SetActive(shootingEnabled);
-            Vector3 pieceRotation = spawnedPiece.transform.eulerAngles;
-            spawnedPiece.transform.eulerAngles = new Vector3(pieceRotation.x, pieceRotation.y, transform.eulerAngles.z);
         }
 
         if (shootingEnabled)
@@ -46,6 +44,11 @@ public class PieceShooter : MonoBehaviour
                 Vector3 rotation = transform.eulerAngles;
                 transform.eulerAngles = new Vector3(rotation.x, rotation.y, angle < minAngle ? minAngle : maxAngle);
                 GetRotator().Reverse();
+            }
+            if(spawnedPieceReadyToShoot)
+            {
+                Vector3 pieceRotation = spawnedPiece.transform.eulerAngles;
+                spawnedPiece.transform.eulerAngles = new Vector3(pieceRotation.x, pieceRotation.y, transform.eulerAngles.z);
             }
         }
         else
