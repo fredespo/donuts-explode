@@ -84,7 +84,6 @@ public class LevelLoader : MonoBehaviour
         bombPieces.SetActive(true);
         pieceShooter.SetActive(true);
         pieceShooterComp.SetAngleRange(level.pieceShooterAngleRange);
-        pieceShooterComp.SetPiece(level.piece);
         pieceShooterComp.Init();
         if (this.startDelaySec > 0)
         {
@@ -125,6 +124,5 @@ public class LevelLoader : MonoBehaviour
         public GameObject bomb;
         public float secondsOnTimer;
         public Vector2 pieceShooterAngleRange;
-        public GameObject piece;
     }
 }

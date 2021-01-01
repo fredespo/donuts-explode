@@ -6,7 +6,8 @@ public class PieceShooter : MonoBehaviour
 {
     public GameObject pieceParent;
     public bool shootingEnabled = false;
-    public GameObject piece;
+    public GameObject[] pieces;
+    public int pieceIndex = 0;
     public float speed = 1.0f;
     private GameObject spawnedPiece;
     private bool spawnedPieceReadyToShoot = false;
@@ -17,6 +18,7 @@ public class PieceShooter : MonoBehaviour
     public void Init()
     {
         transform.eulerAngles = new Vector3(0, 0, 0);
+        pieceIndex = 0;
     }
 
     void Update()
@@ -84,19 +86,27 @@ public class PieceShooter : MonoBehaviour
 
     void SpawnPiece()
     {
-        spawnedPiece = Instantiate(piece, gameObject.transform.position, gameObject.transform.rotation);
-        spawnedPiece.transform.SetParent(pieceParent.transform);
-        spawnedPiece.transform.position = gameObject.transform.position;
-        spawnedPiece.transform.localScale = new Vector3(81, 81, 1);
+        if(pieceIndex < 0 || pieceIndex >= pieces.Length)
+        {
+            return;
+        }
+
+        if(GameObject.FindGameObjectsWithTag(pieces[pieceIndex].transform.tag).Length == 0)
+        {
+            ++pieceIndex;
+        }
+
+        if(pieceIndex < pieces.Length)
+        {
+            spawnedPiece = Instantiate(pieces[pieceIndex], gameObject.transform.position, gameObject.transform.rotation);
+            spawnedPiece.transform.SetParent(pieceParent.transform);
+            spawnedPiece.transform.position = gameObject.transform.position;
+            spawnedPiece.transform.localScale = new Vector3(81, 81, 1);
+        }
     }
 
     public void SetShootingEnabled(bool shootingEnabled)
     {
         this.shootingEnabled = shootingEnabled;
-    }
-
-    public void SetPiece(GameObject piece)
-    {
-        this.piece = piece;
     }
 }
