@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Analytics;
 
 public class BombDefuzer : MonoBehaviour
 {
@@ -43,7 +44,14 @@ public class BombDefuzer : MonoBehaviour
         if (!defuzed)
         {
             StartCoroutine(AddTimeToScoreAfterDelay(1.0f));
-            dataStorage.SaveScore(score.GetScore() + GetPointsEarned());
+            int newScore = score.GetScore() + GetPointsEarned();
+            dataStorage.SaveScore(newScore);
+            int currLevel = GameObject.FindGameObjectWithTag("LevelLoader").GetComponent<LevelLoader>().GetCurrentLevel();
+            Analytics.CustomEvent("completedLevel", new Dictionary<string, object>
+            {
+                { "level", currLevel + 1 },
+                { "score", newScore }
+            });
             music.WindDown();
             shootTapZone.SetActive(false);
             timer.Pause();
@@ -58,7 +66,7 @@ public class BombDefuzer : MonoBehaviour
             bombHighlightAnim.enabled = false;
             bombHighlightAnim.enabled = true;
             soundEffect.Play(0);
-            dataStorage.SaveLevel(GameObject.FindGameObjectWithTag("LevelLoader").GetComponent<LevelLoader>().GetCurrentLevel() + 1);
+            dataStorage.SaveLevel(currLevel + 1);
             defuzed = true;
         }
     }
