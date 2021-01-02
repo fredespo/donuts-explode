@@ -9,13 +9,11 @@ public class BombPiece : MonoBehaviour
     public float fadeSpeed = 1;
     SpriteRenderer spriteRenderer;
     private bool fading = false;
-    private bool caughtInMagnet = false;
-    private GameObject bomb;
+    private bool caughtInMagnet = false;   
 
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        bomb = GameObject.FindGameObjectWithTag("bomb");
     }
 
     void OnCollisionEnter2D(Collision2D col)
@@ -30,7 +28,7 @@ public class BombPiece : MonoBehaviour
     {
         if (caughtInMagnet)
         {
-            LookAt(bomb);
+            LookAt(GameObject.FindGameObjectWithTag("bomb"));
         }
 
         if (fading)
