@@ -9,6 +9,8 @@ public class PieceShooter : MonoBehaviour
     public GameObject[] pieces;
     public int pieceIndex = 0;
     public float speed = 1.0f;
+    public AngleChangeMode angleChangeMode = AngleChangeMode.ALTERNATE;
+    private bool alternateAngleMin = true;
     private GameObject spawnedPiece;
     private bool spawnedPieceReadyToShoot = false;
     private float minAngle;
@@ -17,16 +19,29 @@ public class PieceShooter : MonoBehaviour
 
     public void Init()
     {
-        transform.eulerAngles = new Vector3(0, 0, 0);
+        if (angleChangeMode == AngleChangeMode.ALTERNATE)
+        {
+            SetAngle(minAngle);
+            alternateAngleMin = true;
+        }
+        else
+        {
+            SetAngle(0);
+        }
         pieceIndex = 0;
+        SpawnPiece();
     }
 
     void Update()
     {
         if (spawnedPiece == null)
         {
+            if (angleChangeMode == AngleChangeMode.ALTERNATE)
+            {
+                SetAngle(alternateAngleMin ? maxAngle : minAngle);
+                alternateAngleMin = !alternateAngleMin;
+            }
             SpawnPiece();
-            spawnedPieceReadyToShoot = true;
         }
         else if(spawnedPieceReadyToShoot)
         {
@@ -35,27 +50,33 @@ public class PieceShooter : MonoBehaviour
 
         if (shootingEnabled)
         {
-            float angle = transform.eulerAngles.z;
-            if (angle > 90)
+            if(angleChangeMode == AngleChangeMode.SMOOTH)
             {
-                angle = angle - 360;
+                ChangeAngleSmoothly();
             }
-            if (angle < minAngle || angle > maxAngle)
-            {
-                float newAngle = GetRotator().GetDir() == Rotator.RotationDir.Clockwise ? maxAngle : minAngle;
-                Vector3 rotation = transform.eulerAngles;
-                transform.eulerAngles = new Vector3(rotation.x, rotation.y, angle < minAngle ? minAngle : maxAngle);
-                GetRotator().Reverse();
-            }
-            if(spawnedPieceReadyToShoot)
+
+            if (spawnedPieceReadyToShoot)
             {
                 Vector3 pieceRotation = spawnedPiece.transform.eulerAngles;
                 spawnedPiece.transform.eulerAngles = new Vector3(pieceRotation.x, pieceRotation.y, transform.eulerAngles.z);
             }
         }
-        else
+    }
+
+    private void ChangeAngleSmoothly()
+    {
+        float angle = transform.eulerAngles.z;
+        if (angle > 90)
         {
-            transform.eulerAngles = new Vector3(0, 0, 0);
+            angle -= 360;
+        }
+
+        if (angle < minAngle || angle > maxAngle)
+        {
+            float newAngle = (GetRotator().GetDir() == Rotator.RotationDir.Clockwise ? maxAngle : minAngle);
+            Vector3 rotation = transform.eulerAngles;
+            transform.eulerAngles = new Vector3(rotation.x, rotation.y, angle < minAngle ? minAngle : maxAngle);
+            GetRotator().Reverse();
         }
     }
 
@@ -68,11 +89,15 @@ public class PieceShooter : MonoBehaviour
         }
     }
 
+    private void SetAngle(float angle)
+    {
+        transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, angle);
+    }
+
     public void SetAngleRange(Vector2 angleRange)
     {
         minAngle = angleRange.x;
-        maxAngle = angleRange.y;
-        GetRotator().enabled = minAngle != maxAngle;
+        maxAngle = angleRange.y;       
     }
 
     private Rotator GetRotator()
@@ -103,10 +128,23 @@ public class PieceShooter : MonoBehaviour
             spawnedPiece.transform.position = gameObject.transform.position;
             spawnedPiece.transform.localScale = new Vector3(81, 81, 1);
         }
+
+        spawnedPieceReadyToShoot = true;
     }
 
     public void SetShootingEnabled(bool shootingEnabled)
     {
         this.shootingEnabled = shootingEnabled;
+    }
+
+    public void SetAngleChangeMode(AngleChangeMode mode)
+    {
+        angleChangeMode = mode;
+        GetRotator().enabled = (mode == AngleChangeMode.SMOOTH);
+    }
+
+    public enum AngleChangeMode
+    {
+        ALTERNATE, SMOOTH
     }
 }
