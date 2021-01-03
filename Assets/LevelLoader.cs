@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Analytics;
 
 public class LevelLoader : MonoBehaviour
 {
@@ -99,6 +100,8 @@ public class LevelLoader : MonoBehaviour
     {
         if (currLevel < LevelCount() - 1)
         {
+            int dispLevel = currLevel + 1;
+            AnalyticsEvent.LevelStart("level " + dispLevel, dispLevel);
             LoadLevel(++currLevel, delaySec);
         }
         else

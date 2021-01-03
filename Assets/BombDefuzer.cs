@@ -52,6 +52,8 @@ public class BombDefuzer : MonoBehaviour
                 { "level", currLevel + 1 },
                 { "score", newScore }
             });
+            int dispLevel = currLevel + 1;
+            AnalyticsEvent.LevelStart("level " + dispLevel, dispLevel);
             music.WindDown();
             shootTapZone.SetActive(false);
             timer.Pause();
