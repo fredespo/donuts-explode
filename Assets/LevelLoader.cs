@@ -59,6 +59,10 @@ public class LevelLoader : MonoBehaviour
         pieceShooter.GetComponent<PieceShooter>().SetShootingEnabled(true);
         bomb.SendMessage("StartBomb");
         music.Play();
+        AnalyticsEvent.LevelStart(currLevel + 1, new Dictionary<string, object>
+        {
+            { "score", score.GetScore() }
+        });
     }
 
     public void ResetCurrentLevel()
@@ -100,8 +104,6 @@ public class LevelLoader : MonoBehaviour
     {
         if (currLevel < LevelCount() - 1)
         {
-            int dispLevel = currLevel + 1;
-            AnalyticsEvent.LevelStart("level " + dispLevel, dispLevel);
             LoadLevel(++currLevel, delaySec);
         }
         else
