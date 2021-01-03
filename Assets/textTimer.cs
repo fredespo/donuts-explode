@@ -13,6 +13,7 @@ public class textTimer : MonoBehaviour
     private float startSeconds;
     public GameObject shootTapZone;
     public AudioSource music;
+    public Ads ads;
     private Text text;
     public float minMusicPitch = 1.0f;
     public float maxMusicPitch = 2.0f;
@@ -48,6 +49,7 @@ public class textTimer : MonoBehaviour
             {
                 seconds = 0.0f;
                 countingDownFast = false;
+                ads.ShowInterstitialAd();
                 foreach (Transform child in GameObject.FindGameObjectWithTag("WinUI").transform)
                 {
                     child.gameObject.SetActive(true);
