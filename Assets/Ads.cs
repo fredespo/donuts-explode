@@ -8,7 +8,8 @@ using System;
 public class Ads : MonoBehaviour
 {
     public AudioSource music;
-    private string adUnitId = "ca-app-pub-3940256099942544/1033173712";
+    public string testAdId = "ca-app-pub-3940256099942544/1033173712";
+    public string androidAdId = "ca-app-pub-3940256099942544/1033173712";
     private InterstitialAd interstitial;
 
     void Start()
@@ -19,7 +20,7 @@ public class Ads : MonoBehaviour
 
     public void ShowInterstitialAd()
     {
-        if (interstitial.IsLoaded())
+        if(interstitial != null && interstitial.IsLoaded())
         {
             music.Pause();
             interstitial.Show();
@@ -28,11 +29,17 @@ public class Ads : MonoBehaviour
 
     private void LoadInterstitialAd()
     {
+        if(Application.isEditor)
+        {
+            return;
+        }
+
         if(this.interstitial != null)
         {
             this.interstitial.Destroy();
         }
-        this.interstitial = new InterstitialAd(this.adUnitId);
+
+        this.interstitial = new InterstitialAd(androidAdId);
         this.interstitial.OnAdClosed += HandleOnAdClosed;
         AdRequest request = new AdRequest.Builder().Build();
         this.interstitial.LoadAd(request);
