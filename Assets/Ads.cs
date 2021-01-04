@@ -1,28 +1,46 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Advertisements;
+using GoogleMobileAds.Api;
+using GoogleMobileAds.Common;
+using System;
 
 public class Ads : MonoBehaviour
 {
-    public string gameId = "1234567";
-    public string interstitialAdPlacementId = "FullScreenAd";
-    public bool testMode = true;
+    public AudioSource music;
+    private string adUnitId = "ca-app-pub-3940256099942544/1033173712";
+    private InterstitialAd interstitial;
 
     void Start()
     {
-        Advertisement.Initialize(gameId, testMode);
+        MobileAds.Initialize(initStatus => { });
+        LoadInterstitialAd();
     }
 
     public void ShowInterstitialAd()
     {
-        if (Advertisement.IsReady(interstitialAdPlacementId))
+        if (interstitial.IsLoaded())
         {
-            Advertisement.Show(interstitialAdPlacementId);
+            music.Pause();
+            interstitial.Show();
         }
-        else
+    }
+
+    private void LoadInterstitialAd()
+    {
+        if(this.interstitial != null)
         {
-            Debug.Log("Interstitial ad not ready at the moment! Please try again later!");
+            this.interstitial.Destroy();
         }
+        this.interstitial = new InterstitialAd(this.adUnitId);
+        this.interstitial.OnAdClosed += HandleOnAdClosed;
+        AdRequest request = new AdRequest.Builder().Build();
+        this.interstitial.LoadAd(request);
+    }
+
+    public void HandleOnAdClosed(object sender, EventArgs args)
+    {
+        music.Play();
+        LoadInterstitialAd();
     }
 }
