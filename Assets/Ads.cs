@@ -9,7 +9,7 @@ public class Ads : MonoBehaviour
 {
     public AudioSource music;
     public string testAdId = "ca-app-pub-3940256099942544/1033173712";
-    public string androidAdId = "ca-app-pub-3940256099942544/1033173712";
+    public string androidAdId = "ca-app-pub-8136996048120593/8224216593";
     private InterstitialAd interstitial;
 
     void Start()
