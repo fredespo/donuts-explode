@@ -18,8 +18,8 @@ public class TitleMenu : MonoBehaviour
 
     public void Start()
     {
-        if (forceStartLevel) dataStorage.SaveLevel(startLevelIndex);
         dataStorage = GameObject.FindGameObjectWithTag("DataStorage").GetComponent<DataStorage>();
+        if (forceStartLevel) dataStorage.SaveLevel(startLevelIndex);
         mainMenuTransform = mainMenu.GetComponent<RectTransform>();
         Init();
     }
