@@ -21,7 +21,7 @@ public class Magnet : MonoBehaviour
         {
             if(obj != null)
             {
-                obj.SendMessage("CaughtInMagnet");
+                obj.SendMessage("CaughtInMagnet", null, SendMessageOptions.DontRequireReceiver);
                 MoveTowardsMagnet(obj);
             }
         }
