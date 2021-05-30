@@ -16,7 +16,7 @@ public class LevelLoader : MonoBehaviour
     public GameObject shootTapZone;
     public GameOverUI gameOverUI;
     public Score score;
-    public List<Reflector> reflectors;
+    public List<Reflector> pieceReflectors;
     public List<Level> levels;
     private int currLevel = -1;
     private float startDelaySec;
@@ -74,7 +74,7 @@ public class LevelLoader : MonoBehaviour
         }
         bomb = Instantiate(level.bomb);
         bomb.transform.SetParent(canvas.transform, false);
-        foreach(Reflector r in reflectors)
+        foreach(Reflector r in pieceReflectors)
         {
             r.SetTarget(bomb);
         }
