@@ -7,6 +7,7 @@ using System;
 
 public class Ads : MonoBehaviour
 {
+    public bool adsEnabled = true;
     public AudioSource music;
     public string testAdId = "ca-app-pub-3940256099942544/1033173712";
     public string androidAdId = "ca-app-pub-8136996048120593/8224216593";
@@ -20,6 +21,11 @@ public class Ads : MonoBehaviour
 
     public void ShowInterstitialAd()
     {
+        if(!this.adsEnabled)
+        {
+            return;
+        }
+
         if(interstitial != null && interstitial.IsLoaded())
         {
             music.Pause();
@@ -29,7 +35,7 @@ public class Ads : MonoBehaviour
 
     private void LoadInterstitialAd()
     {
-        if(Application.isEditor)
+        if(Application.isEditor || !this.adsEnabled)
         {
             return;
         }
