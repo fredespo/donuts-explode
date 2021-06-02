@@ -19,7 +19,6 @@ public class TitleMenu : MonoBehaviour
     public void Start()
     {
         dataStorage = GameObject.FindGameObjectWithTag("DataStorage").GetComponent<DataStorage>();
-        if (forceStartLevel) dataStorage.SaveLevel(startLevelIndex);
         mainMenuTransform = mainMenu.GetComponent<RectTransform>();
         Init();
     }
@@ -63,6 +62,7 @@ public class TitleMenu : MonoBehaviour
         yield return new WaitForSeconds(loadDelaySec);
         screenManager.ShowGameScreen();
         int savedLevel = dataStorage.GetLevel();
+        if (forceStartLevel) savedLevel = startLevelIndex;
         if (savedLevel >= 0 && savedLevel < levelLoader.LevelCount())
         {
             levelLoader.LoadLevel(savedLevel, startDelaySec);
@@ -71,5 +71,11 @@ public class TitleMenu : MonoBehaviour
         {
             levelLoader.LoadLevel(0, startDelaySec);
         }
+    }
+
+    public void ForceLevel(int level)
+    {
+        this.forceStartLevel = true;
+        this.startLevelIndex = level - 1;
     }
 }
