@@ -81,4 +81,9 @@ public class BombDefuzer : MonoBehaviour
     {
         return (int)Mathf.Round(timer.GetSecondsLeft() * 100);
     }
+
+    public int GetNumHolesLeft()
+    {
+        return gameObject.transform.childCount;
+    }
 }

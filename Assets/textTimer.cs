@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class textTimer : MonoBehaviour
 {
     private Detonator detonator;
+    private BombDefuzer defuzer;
     public GameObject gameOverUI;
     public PieceShooter pieceShooter;
     public float gameOverDelaySec;
@@ -31,15 +32,16 @@ public class textTimer : MonoBehaviour
         startSeconds = seconds;
     }
 
-    public void Init(Detonator detonator)
+    public void Init(Detonator detonator, BombDefuzer defuzer)
     {
         this.detonator = detonator;
+        this.defuzer = defuzer;
         paused = false;
     }
 
     void Update()
     {
-        if (seconds < 1 && seconds > 0 && !paused && !countingDownFast && !this.pieceShooter.IsSpawnedPieceReadyToShoot())
+        if (seconds < 1 && seconds > 0 && !paused && !countingDownFast && !this.pieceShooter.IsSpawnedPieceReadyToShoot() && this.defuzer.GetNumHolesLeft() == 1)
         {
             Time.timeScale = this.slowMoTimeScale;
         }

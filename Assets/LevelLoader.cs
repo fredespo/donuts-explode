@@ -78,7 +78,7 @@ public class LevelLoader : MonoBehaviour
         {
             r.SetTarget(bomb);
         }
-        timer.Init(bomb.GetComponent<Detonator>());
+        timer.Init(bomb.GetComponent<Detonator>(), bomb.GetComponentInChildren<BombDefuzer>());
         timer.gameObject.SetActive(true);
         timer.setTime(level.secondsOnTimer);
         timer.Pause();
