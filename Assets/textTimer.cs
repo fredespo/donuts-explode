@@ -39,28 +39,12 @@ public class textTimer : MonoBehaviour
         this.detonator = detonator;
         this.defuzer = defuzer;
         paused = false;
+        this.slowMo = false;
     }
 
     void Update()
     {
-        if (seconds < 1 && seconds > 0 && !paused && !countingDownFast && !this.pieceShooter.IsSpawnedPieceReadyToShoot() && this.defuzer.GetNumHolesLeft() == 1)
-        {
-            this.slowMo = true;
-        }
-
-        if(paused || countingDownFast)
-        {
-            this.slowMo = false;
-        }
-
-        if (this.slowMo)
-        {
-            Time.timeScale = this.slowMoTimeScale;
-        }
-        else
-        {
-            Time.timeScale = 1.0f;
-        }
+        HandleSlowMo();
 
         if (seconds <= 0)
         {
@@ -100,6 +84,31 @@ public class textTimer : MonoBehaviour
             }
         }
         RefreshText();
+    }
+
+    private void HandleSlowMo()
+    {
+        if (!this.slowMo && ShouldEnterSlowMo())
+        {
+            this.slowMo = true;
+        }
+
+        if (this.slowMo && ShouldExitSlowMo())
+        {
+            this.slowMo = false;
+        }
+
+        Time.timeScale = this.slowMo ? this.slowMoTimeScale : 1.0f;
+    }
+
+    private bool ShouldEnterSlowMo()
+    {
+        return this.seconds < 1 && this.seconds > 0 && !this.pieceShooter.IsSpawnedPieceReadyToShoot() && this.defuzer.GetNumHolesLeft() == 1;
+    }
+
+    private bool ShouldExitSlowMo()
+    {
+        return this.defuzer.GetNumHolesLeft() == 0 || this.seconds <= 0;
     }
 
     public void Pause()
