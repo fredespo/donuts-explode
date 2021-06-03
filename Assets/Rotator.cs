@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Rotator : MonoBehaviour
 {
-    public int degPerSec = 50;
+    public float degPerSec = 50;
     public RotationDir direction = RotationDir.Clockwise;
     public enum RotationDir
     {
@@ -16,6 +16,11 @@ public class Rotator : MonoBehaviour
     void Update()
     {
         transform.Rotate(0, 0, degPerSec * Time.deltaTime * (direction == RotationDir.Clockwise ? -1 : 1));
+    }
+
+    void FixedUpdate()
+    {
+        this.degPerSec += 0.2f;
     }
 
     public void Reverse()
