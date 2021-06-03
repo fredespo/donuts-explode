@@ -55,7 +55,7 @@ public class PieceShooter : MonoBehaviour
                 ChangeAngleSmoothly();
             }
 
-            if (spawnedPieceReadyToShoot)
+            if (spawnedPieceReadyToShoot && spawnedPiece != null)
             {
                 Vector3 pieceRotation = spawnedPiece.transform.eulerAngles;
                 spawnedPiece.transform.eulerAngles = new Vector3(pieceRotation.x, pieceRotation.y, transform.eulerAngles.z);
