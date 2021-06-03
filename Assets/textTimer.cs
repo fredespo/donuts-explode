@@ -24,6 +24,7 @@ public class textTimer : MonoBehaviour
     public float slowMoTimeScale = 0.2f;
     private bool countingDownFast = false;
     private bool paused = false;
+    private bool slowMo = false;
 
     void Start()
     {
@@ -42,6 +43,16 @@ public class textTimer : MonoBehaviour
     void Update()
     {
         if (seconds < 1 && seconds > 0 && !paused && !countingDownFast && !this.pieceShooter.IsSpawnedPieceReadyToShoot() && this.defuzer.GetNumHolesLeft() == 1)
+        {
+            this.slowMo = true;
+        }
+
+        if(paused || countingDownFast)
+        {
+            this.slowMo = false;
+        }
+
+        if (this.slowMo)
         {
             Time.timeScale = this.slowMoTimeScale;
         }
