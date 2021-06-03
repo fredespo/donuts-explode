@@ -25,6 +25,7 @@ public class textTimer : MonoBehaviour
     private bool countingDownFast = false;
     private bool paused = false;
     private bool slowMo = false;
+    public float slowMoMusicPitch = 0.5f;
 
     void Start()
     {
@@ -129,7 +130,7 @@ public class textTimer : MonoBehaviour
     {
         float timeElapsed = startSeconds - seconds;
         currCurveVal = musicPitchCurve.Evaluate(timeElapsed / startSeconds);
-        music.pitch = minMusicPitch + ((maxMusicPitch - minMusicPitch) * currCurveVal);
+        music.pitch = this.slowMo ? this.slowMoMusicPitch : minMusicPitch + ((maxMusicPitch - minMusicPitch) * currCurveVal);
     }
 
     public float GetSecondsLeft()
