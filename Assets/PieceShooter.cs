@@ -147,4 +147,9 @@ public class PieceShooter : MonoBehaviour
     {
         ALTERNATE, SMOOTH
     }
+
+    public bool IsSpawnedPieceReadyToShoot()
+    {
+        return this.spawnedPieceReadyToShoot;
+    }
 }

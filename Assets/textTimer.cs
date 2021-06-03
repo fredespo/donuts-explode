@@ -7,6 +7,7 @@ public class textTimer : MonoBehaviour
 {
     private Detonator detonator;
     public GameObject gameOverUI;
+    public PieceShooter pieceShooter;
     public float gameOverDelaySec;
     public float seconds = 10;
     public float countDownFastPerSecond = 4.0f;
@@ -38,7 +39,7 @@ public class textTimer : MonoBehaviour
 
     void Update()
     {
-        if (seconds < 1 && seconds > 0 && !paused && !countingDownFast)
+        if (seconds < 1 && seconds > 0 && !paused && !countingDownFast && !this.pieceShooter.IsSpawnedPieceReadyToShoot())
         {
             Time.timeScale = this.slowMoTimeScale;
         }
