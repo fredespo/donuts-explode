@@ -32,6 +32,7 @@ public class Detonator : MonoBehaviour
 
     public void activate()
     {
+        Time.timeScale = 1.0f;
         if (score != null && score.GetScore() > 0)
         {
             score.AddAfterDelay(-200, 1.5f);

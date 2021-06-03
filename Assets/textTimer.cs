@@ -38,7 +38,16 @@ public class textTimer : MonoBehaviour
 
     void Update()
     {
-        if(seconds <= 0)
+        if (seconds < 1 && seconds > 0 && !paused && !countingDownFast)
+        {
+            Time.timeScale = this.slowMoTimeScale;
+        }
+        else
+        {
+            Time.timeScale = 1.0f;
+        }
+
+        if (seconds <= 0)
         {
             return;
         }
@@ -73,15 +82,6 @@ public class textTimer : MonoBehaviour
                 music.Pause();
                 gameOverUI.SetActive(true);
                 gameObject.SetActive(false);
-            }
-
-            if(seconds < 0.5 && seconds > 0)
-            {
-                Time.timeScale = this.slowMoTimeScale;
-            }
-            else
-            {
-                Time.timeScale = 1.0f;
             }
         }
         RefreshText();
