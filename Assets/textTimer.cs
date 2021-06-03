@@ -19,6 +19,7 @@ public class textTimer : MonoBehaviour
     public float maxMusicPitch = 2.0f;
     [SerializeField] public AnimationCurve musicPitchCurve;
     public float currCurveVal;
+    public float slowMoTimeScale = 0.2f;
     private bool countingDownFast = false;
     private bool paused = false;
 
@@ -72,6 +73,15 @@ public class textTimer : MonoBehaviour
                 music.Pause();
                 gameOverUI.SetActive(true);
                 gameObject.SetActive(false);
+            }
+
+            if(seconds < 0.5 && seconds > 0)
+            {
+                Time.timeScale = this.slowMoTimeScale;
+            }
+            else
+            {
+                Time.timeScale = 1.0f;
             }
         }
         RefreshText();
