@@ -9,6 +9,7 @@ public class textTimer : MonoBehaviour
     private BombDefuzer defuzer;
     public GameObject gameOverUI;
     public PieceShooter pieceShooter;
+    public Animator camAnim;
     public float gameOverDelaySec;
     public float seconds = 10;
     public float countDownFastPerSecond = 4.0f;
@@ -99,6 +100,7 @@ public class textTimer : MonoBehaviour
         }
 
         Time.timeScale = this.slowMo ? this.slowMoTimeScale : 1.0f;
+        this.camAnim.SetBool("slowmo", this.slowMo);
     }
 
     private bool ShouldEnterSlowMo()

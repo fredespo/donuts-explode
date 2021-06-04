@@ -12,6 +12,7 @@ public class Detonator : MonoBehaviour
     private GameObject pieceShooter;
     private Score score;
     private GameOverUI gameOverUI;
+    private Animator camAnim;
 
     public void Start()
     {
@@ -19,7 +20,8 @@ public class Detonator : MonoBehaviour
         pieces = GameObject.FindGameObjectWithTag("PieceKeeper");
         pieceShooter = GameObject.FindGameObjectWithTag("PieceShooter");
         GameObject scoreObj = GameObject.FindGameObjectWithTag("Score");
-        if(scoreObj != null)
+        camAnim = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Animator>();
+        if (scoreObj != null)
         {
             score = scoreObj.GetComponent<Score>();
         }
@@ -33,6 +35,7 @@ public class Detonator : MonoBehaviour
     public void activate()
     {
         Time.timeScale = 1.0f;
+        camAnim.SetBool("slowmo", false);
         if (score != null && score.GetScore() > 0)
         {
             score.AddAfterDelay(-200, 1.5f);
