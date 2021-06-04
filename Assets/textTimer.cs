@@ -27,6 +27,7 @@ public class textTimer : MonoBehaviour
     private bool paused = false;
     private bool slowMo = false;
     public float slowMoMusicPitch = 0.5f;
+    private bool fading;
 
     void Start()
     {
@@ -41,11 +42,13 @@ public class textTimer : MonoBehaviour
         this.defuzer = defuzer;
         paused = false;
         this.slowMo = false;
+        this.fading = false;
     }
 
     void Update()
     {
         HandleSlowMo();
+        HandleFading();
 
         if (seconds <= 0)
         {
@@ -58,6 +61,7 @@ public class textTimer : MonoBehaviour
             if (seconds < timeChange)
             {
                 seconds = 0.0f;
+                this.fading = true;
                 countingDownFast = false;
                 ads.ShowInterstitialAd();
                 foreach (Transform child in GameObject.FindGameObjectWithTag("WinUI").transform)
@@ -85,6 +89,31 @@ public class textTimer : MonoBehaviour
             }
         }
         RefreshText();
+    }
+
+    private void HandleFading()
+    {
+        if(this.fading && this.GetAlpha() > 0f)
+        {
+            this.SetAlpha(this.GetAlpha() - 0.0045f);
+        }
+
+        if(this.text != null && !this.fading)
+        {
+            this.SetAlpha(1.0f);
+        }
+    }
+
+    private float GetAlpha()
+    {
+        return this.text.color.a;
+    }
+
+    private void SetAlpha(float alpha)
+    {
+        Color color = this.text.color;
+        color = new Color(color.r, color.g, color.b, alpha);
+        this.text.color = color;
     }
 
     private void HandleSlowMo()
