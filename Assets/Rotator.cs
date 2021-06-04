@@ -20,7 +20,10 @@ public class Rotator : MonoBehaviour
 
     void FixedUpdate()
     {
-        this.degPerSec += 0.2f;
+        if (this.degPerSec < 270f)
+        {
+            this.degPerSec += 0.2f;
+        }
     }
 
     public void Reverse()
