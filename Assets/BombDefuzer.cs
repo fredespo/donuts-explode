@@ -47,10 +47,14 @@ public class BombDefuzer : MonoBehaviour
             int newScore = score.GetScore() + GetPointsEarned();
             dataStorage.SaveScore(newScore);
             int currLevel = GameObject.FindGameObjectWithTag("LevelLoader").GetComponent<LevelLoader>().GetCurrentLevel();
-            AnalyticsEvent.LevelComplete(currLevel + 1, new Dictionary<string, object> 
+            if (!Application.isEditor)
             {
-                { "score", newScore }
-            });
+                AnalyticsEvent.LevelComplete(currLevel + 1, new Dictionary<string, object> 
+                {
+                    { "score", newScore }
+                });
+            }
+                
             music.WindDown();
             shootTapZone.SetActive(false);
             timer.Pause();

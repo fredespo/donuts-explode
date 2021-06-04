@@ -59,10 +59,13 @@ public class LevelLoader : MonoBehaviour
         pieceShooter.GetComponent<PieceShooter>().SetShootingEnabled(true);
         bomb.SendMessage("StartBomb");
         music.Play();
-        AnalyticsEvent.LevelStart(currLevel + 1, new Dictionary<string, object>
+        if(!Application.isEditor)
         {
-            { "score", score.GetScore() }
-        });
+            AnalyticsEvent.LevelStart(currLevel + 1, new Dictionary<string, object>
+            {
+                { "score", score.GetScore() }
+            });
+        }
     }
 
     public void ResetCurrentLevel()
