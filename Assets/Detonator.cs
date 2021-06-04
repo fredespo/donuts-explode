@@ -49,8 +49,14 @@ public class Detonator : MonoBehaviour
             spawnedExplosion.gameObject.transform.SetParent(explosionParent.gameObject.transform);
         }
         explosionSound.Play(0);
-        if(pieces != null) pieces.SetActive(false);
-        if(pieceShooter != null) pieceShooter.SetActive(false);
+        if(pieceShooter != null) pieceShooter.GetComponent<PieceShooter>().Inactivate();
+        if (pieces != null)
+        {
+            foreach(Transform child in pieces.transform)
+            {
+                BlowAway(child.GetComponent<Rigidbody2D>());
+            }
+        }
         if(destroyOnDetonation)
         {
             Destroy(gameObject);
@@ -59,5 +65,12 @@ public class Detonator : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
+    }
+
+    private void BlowAway(Rigidbody2D rb)
+    {
+        rb.velocity = Vector2.zero;
+        Vector2 force = (rb.gameObject.transform.position - gameObject.transform.position).normalized * 15;
+        rb.AddForce(force, ForceMode2D.Impulse);
     }
 }

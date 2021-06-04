@@ -152,4 +152,9 @@ public class PieceShooter : MonoBehaviour
     {
         return this.spawnedPieceReadyToShoot;
     }
+
+    public void Inactivate()
+    {
+        gameObject.SetActive(false);
+    }
 }
