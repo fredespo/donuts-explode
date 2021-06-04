@@ -95,7 +95,7 @@ public class textTimer : MonoBehaviour
     {
         if(this.fading && this.GetAlpha() > 0f)
         {
-            this.SetAlpha(this.GetAlpha() - 0.0045f);
+            this.SetAlpha(this.GetAlpha() - 0.007f);
         }
 
         if(this.text != null && !this.fading)
