@@ -16,31 +16,32 @@ public class PieceShooter : MonoBehaviour
     private float minAngle;
     private float maxAngle;
     private Rotator rotator;
+    private float currAngle;
 
     public void Init()
     {
+        pieceIndex = 0;
         if (angleChangeMode == AngleChangeMode.ALTERNATE)
         {
             SetAngle(minAngle);
             alternateAngleMin = true;
         }
+        else if(angleChangeMode == AngleChangeMode.TRI)
+        {
+            SetAngle(minAngle);
+        }
         else
         {
             SetAngle(0);
         }
-        pieceIndex = 0;
         SpawnPiece();
     }
 
     void Update()
     {
-        if (spawnedPiece == null)
+        if (spawnedPiece == null && CanSpawnPiece())
         {
-            if (angleChangeMode == AngleChangeMode.ALTERNATE)
-            {
-                SetAngle(alternateAngleMin ? maxAngle : minAngle);
-                alternateAngleMin = !alternateAngleMin;
-            }
+            ChangeAngleIfNeeded();
             SpawnPiece();
         }
         else if(spawnedPieceReadyToShoot)
@@ -59,6 +60,31 @@ public class PieceShooter : MonoBehaviour
             {
                 Vector3 pieceRotation = spawnedPiece.transform.eulerAngles;
                 spawnedPiece.transform.eulerAngles = new Vector3(pieceRotation.x, pieceRotation.y, transform.eulerAngles.z);
+            }
+        }
+    }
+
+    private void ChangeAngleIfNeeded()
+    {
+        if (angleChangeMode == AngleChangeMode.ALTERNATE)
+        {
+            SetAngle(alternateAngleMin ? maxAngle : minAngle);
+            alternateAngleMin = !alternateAngleMin;
+        }
+        else if (angleChangeMode == AngleChangeMode.TRI)
+        {
+            float midAngle = (this.minAngle + this.maxAngle) / 2;
+            if (this.currAngle == this.minAngle)
+            {
+                SetAngle(midAngle);
+            }
+            else if (this.currAngle == midAngle)
+            {
+                SetAngle(this.maxAngle);
+            }
+            else
+            {
+                SetAngle(this.minAngle);
             }
         }
     }
@@ -91,13 +117,14 @@ public class PieceShooter : MonoBehaviour
 
     private void SetAngle(float angle)
     {
+        currAngle = angle;
         transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, angle);
     }
 
     public void SetAngleRange(Vector2 angleRange)
     {
         minAngle = angleRange.x;
-        maxAngle = angleRange.y;       
+        maxAngle = angleRange.y;
     }
 
     private Rotator GetRotator()
@@ -111,7 +138,7 @@ public class PieceShooter : MonoBehaviour
 
     void SpawnPiece()
     {
-        if(pieceIndex < 0 || pieceIndex >= pieces.Length)
+        if (!CanSpawnPiece())
         {
             return;
         }
@@ -145,7 +172,7 @@ public class PieceShooter : MonoBehaviour
 
     public enum AngleChangeMode
     {
-        ALTERNATE, SMOOTH
+        ALTERNATE, SMOOTH, TRI
     }
 
     public bool IsSpawnedPieceReadyToShoot()
@@ -156,5 +183,10 @@ public class PieceShooter : MonoBehaviour
     public void Inactivate()
     {
         gameObject.SetActive(false);
+    }
+
+    private bool CanSpawnPiece()
+    {
+        return pieceIndex >= 0 && pieceIndex < pieces.Length;
     }
 }

@@ -91,8 +91,8 @@ public class LevelLoader : MonoBehaviour
         }
         bombPieces.SetActive(true);
         pieceShooter.SetActive(true);
-        pieceShooterComp.SetAngleRange(level.pieceShooterAngleRange);
         pieceShooterComp.SetAngleChangeMode(level.pieceShooterAngleChangeMode);
+        pieceShooterComp.SetAngleRange(level.pieceShooterAngleRange);
         pieceShooterComp.Init();
         if (this.startDelaySec > 0)
         {
