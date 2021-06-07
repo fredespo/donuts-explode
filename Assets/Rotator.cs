@@ -6,6 +6,8 @@ using UnityEngine;
 public class Rotator : MonoBehaviour
 {
     public float degPerSec = 50;
+    public float acceleration = 0.2f;
+    public float maxSpeed = 270f;
     public RotationDir direction = RotationDir.Clockwise;
     public enum RotationDir
     {
@@ -20,9 +22,9 @@ public class Rotator : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (this.degPerSec < 270f)
+        if (this.degPerSec < maxSpeed)
         {
-            this.degPerSec += 0.2f;
+            this.degPerSec += acceleration;
         }
     }
 
