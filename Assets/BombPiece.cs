@@ -9,11 +9,16 @@ public class BombPiece : MonoBehaviour
     public float fadeSpeed = 1;
     SpriteRenderer spriteRenderer;
     private bool fading = false;
-    private bool caughtInMagnet = false;   
+    private bool caughtInMagnet = false;
+    private bool reflectingToBomb = false;
+    private GameObject bomb;
+    private Rigidbody2D rigibody;
 
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        this.bomb = GameObject.FindGameObjectWithTag("bomb");
+        this.rigibody = GetComponent<Rigidbody2D>();
     }
 
     void OnCollisionEnter2D(Collision2D col)
@@ -24,11 +29,22 @@ public class BombPiece : MonoBehaviour
         }
     }
 
+    void FixedUpdate()
+    {
+        if(this.reflectingToBomb && !this.fading && !this.caughtInMagnet)
+        {
+            Vector2 p1 = this.bomb.transform.position;
+            Vector2 p2 = gameObject.transform.position;
+            rigibody.velocity = (p1 - p2).normalized * rigibody.velocity.magnitude;
+            rigibody.MoveRotation(90 + Mathf.Atan2(p2.y - p1.y, p2.x - p1.x) * 180 / Mathf.PI);
+        }
+    }
+
     void Update()
     {
         if (caughtInMagnet)
         {
-            LookAt(GameObject.FindGameObjectWithTag("bomb"));
+            LookAt(this.bomb);
         }
 
         if (fading)
@@ -59,6 +75,11 @@ public class BombPiece : MonoBehaviour
         color.a = 1.0f;
         spriteRenderer.color = color;
         caughtInMagnet = true;
+    }
+
+    public void ReflectToBomb()
+    {
+        this.reflectingToBomb = true;
     }
 
     public bool ShouldReflect()

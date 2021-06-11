@@ -77,10 +77,6 @@ public class LevelLoader : MonoBehaviour
         }
         bomb = Instantiate(level.bomb);
         bomb.transform.SetParent(canvas.transform, false);
-        foreach(Reflector r in pieceReflectors)
-        {
-            r.SetTarget(bomb);
-        }
         timer.Init(bomb.GetComponent<Detonator>(), bomb.GetComponentInChildren<BombDefuzer>());
         timer.gameObject.SetActive(true);
         timer.setTime(level.secondsOnTimer);
