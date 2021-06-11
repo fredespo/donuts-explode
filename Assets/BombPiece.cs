@@ -60,4 +60,9 @@ public class BombPiece : MonoBehaviour
         spriteRenderer.color = color;
         caughtInMagnet = true;
     }
+
+    public bool ShouldReflect()
+    {
+        return !this.fading;
+    }
 }

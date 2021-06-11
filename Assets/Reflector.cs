@@ -15,7 +15,8 @@ public class Reflector : MonoBehaviour
     void OnTriggerEnter2D(Collider2D col)
     {
         Rigidbody2D rigidbody = col.gameObject.GetComponent<Rigidbody2D>();
-        if(rigidbody != null && target != null)
+        BombPiece bombPiece = col.gameObject.GetComponent<BombPiece>();
+        if(rigidbody != null && target != null && bombPiece != null && bombPiece.ShouldReflect())
         {
             Vector2 p1 = mCamera.WorldToScreenPoint(target.transform.position);
             Vector2 p2 = mCamera.WorldToScreenPoint(col.gameObject.transform.position);
