@@ -14,10 +14,14 @@ public class BombPiece : MonoBehaviour
     private GameObject bomb;
     private Rigidbody2D rigibody;
 
+    void Awake()
+    {
+        this.bomb = GameObject.FindGameObjectWithTag("bomb");
+    }
+
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        this.bomb = GameObject.FindGameObjectWithTag("bomb");
         this.rigibody = GetComponent<Rigidbody2D>();
     }
 
@@ -31,7 +35,7 @@ public class BombPiece : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(this.reflectingToBomb && !this.fading && !this.caughtInMagnet)
+        if(this.reflectingToBomb && !this.fading && !this.caughtInMagnet && this.bomb != null)
         {
             Vector2 p1 = this.bomb.transform.position;
             Vector2 p2 = gameObject.transform.position;
@@ -42,6 +46,11 @@ public class BombPiece : MonoBehaviour
 
     void Update()
     {
+        if(this.bomb == null && (caughtInMagnet || reflectingToBomb))
+        {
+            this.bomb = GameObject.FindGameObjectWithTag("bomb");
+        }
+
         if (caughtInMagnet)
         {
             LookAt(this.bomb);
