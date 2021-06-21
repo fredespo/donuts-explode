@@ -7,7 +7,6 @@ public class Rotator : MonoBehaviour
 {
     public float degPerSec = 50;
     public float acceleration = 0.2f;
-    public float maxSpeed = 270f;
     public RotationDir direction = RotationDir.Clockwise;
     public enum RotationDir
     {
@@ -22,7 +21,7 @@ public class Rotator : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (this.degPerSec < maxSpeed)
+        if (this.degPerSec < 230f)
         {
             this.degPerSec += acceleration;
         }
