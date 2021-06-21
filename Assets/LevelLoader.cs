@@ -16,6 +16,7 @@ public class LevelLoader : MonoBehaviour
     public GameObject shootTapZone;
     public GameOverUI gameOverUI;
     public Score score;
+    public LevelIndicator levelIndicator;
     public List<Reflector> pieceReflectors;
     public List<Level> levels;
     private int currLevel = -1;
@@ -97,6 +98,7 @@ public class LevelLoader : MonoBehaviour
         shootTapZone.SetActive(true);
         gameOverUI.Hide();
         music.Reset();
+        levelIndicator.Set(this.GetCurrentLevel() + 1, this.LevelCount());
     }
 
     public void LoadNextLevelAndStartAfterDelay(float delaySec)
