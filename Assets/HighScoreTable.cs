@@ -35,15 +35,17 @@ public class HighScoreTable : MonoBehaviour
     {
         float yPos = 0;
         int colorIndex = 0;
+        int rank = 1;
         foreach(Entry entry in entries)
         {
-            Add(entry, yPos, colors[colorIndex]);
+            Add(entry, yPos, colors[colorIndex], rank);
             colorIndex = (colorIndex + 1) % colors.Count;
             yPos -= spaceBetweenEntries;
+            ++rank;
         }
     }
 
-    private void Add(Entry entry, float yPos, Color color)
+    private void Add(Entry entry, float yPos, Color color, int rank)
     {
         GameObject entryObj = Instantiate(entryPrefab, transform);
         HighScoreEntry entryInfo = entryObj.GetComponent<HighScoreEntry>();
@@ -51,6 +53,7 @@ public class HighScoreTable : MonoBehaviour
         entryInfo.SetScore(entry.GetScore());
         entryInfo.SetColor(color);
         entryInfo.SetY(yPos);
+        entryInfo.SetRank(rank);
     }
 
     public int GetCapacity()

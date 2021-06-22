@@ -7,6 +7,7 @@ public class HighScoreEntry : MonoBehaviour
 {
     public Text nameText;
     public Text scoreText;
+    public Text rankText;
 
     public void SetName(string name)
     {
@@ -22,11 +23,17 @@ public class HighScoreEntry : MonoBehaviour
     {
         nameText.color = color;
         scoreText.color = color;
+        rankText.color = color;
     }
 
     public void SetY(float yPos)
     {
         RectTransform t = GetComponent<RectTransform>();
         t.localPosition = new Vector3(t.localPosition.x, yPos, t.localPosition.z);
+    }
+
+    public void SetRank(int rank)
+    {
+        rankText.text = rank + ".";
     }
 }
