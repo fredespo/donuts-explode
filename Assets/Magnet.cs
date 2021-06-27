@@ -8,11 +8,13 @@ public class Magnet : MonoBehaviour
     private List<GameObject> caughtObjects = new List<GameObject>();
     private string tagToLookFor;
     private Camera mCamera;
+    private BombHole hole;
 
     void Start()
     {
         tagToLookFor = transform.parent.tag;
         mCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        hole = transform.parent.GetComponent<BombHole>();
     }
 
     void Update()
@@ -30,12 +32,20 @@ public class Magnet : MonoBehaviour
     private void MoveTowardsMagnet(GameObject obj)
     {
         Vector3 objPos = obj.transform.position;
-        float offsetX = GetOffsetX(objPos);
-        float offsetY = GetOffsetY(objPos);
-        obj.transform.position = new Vector3(objPos.x + offsetX, objPos.y + offsetY, objPos.z);
+        float offsetX = GetMovementX(objPos);
+        float offsetY = GetMovementY(objPos);
+        
+        if (Mathf.Abs(objPos.x - transform.position.x) + Mathf.Abs(objPos.y - transform.position.y) < 0.08f)
+        {
+            this.hole.fillWith(obj);
+        }
+        else
+        {
+            obj.transform.position = new Vector3(objPos.x + offsetX, objPos.y + offsetY, objPos.z);
+        }
     }
 
-    private float GetOffsetX(Vector3 otherPos)
+    private float GetMovementX(Vector3 otherPos)
     {
         float offset = speed * Time.deltaTime;
         float diff = Mathf.Abs(otherPos.x - transform.position.x);
@@ -46,7 +56,7 @@ public class Magnet : MonoBehaviour
         return otherPos.x > transform.position.x ? -offset : offset;
     }
 
-    private float GetOffsetY(Vector3 otherPos)
+    private float GetMovementY(Vector3 otherPos)
     {
         float offset = speed * Time.deltaTime;
         float diff = Mathf.Abs(otherPos.y - transform.position.y);
@@ -67,7 +77,17 @@ public class Magnet : MonoBehaviour
                 rb.isKinematic = true;
                 rb.velocity = new Vector3(0, 0, 0);
                 caughtObjects.Add(col.gameObject);
+                Invoke("FillWithFirstCaught", 0.2f);
             }
+        }
+    }
+
+    public void FillWithFirstCaught()
+    {
+        GameObject firstCaught = this.caughtObjects[0];
+        if (firstCaught != null)
+        {
+            this.hole.fillWith(firstCaught);
         }
     }
 }

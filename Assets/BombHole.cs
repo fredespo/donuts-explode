@@ -16,11 +16,16 @@ public class BombHole : MonoBehaviour
     {
         if(col.gameObject.CompareTag(gameObject.tag))
         {
-            Destroy(col.gameObject);
-            Destroy(gameObject);
-            filledCollider.transform.SetParent(gameObject.transform.parent.transform.parent, true);
-            filledCollider.SetActive(true);
-            filledCollider.GetComponent<PolygonCollider2D>().enabled = true;
+            fillWith(col.gameObject);
         }
+    }
+
+    public void fillWith(GameObject obj)
+    {
+        Destroy(obj);
+        Destroy(gameObject);
+        filledCollider.transform.SetParent(gameObject.transform.parent.transform.parent, true);
+        filledCollider.SetActive(true);
+        filledCollider.GetComponent<PolygonCollider2D>().enabled = true;
     }
 }
