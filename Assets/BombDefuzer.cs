@@ -65,7 +65,7 @@ public class BombDefuzer : MonoBehaviour
             spawnedDefuzedUI.gameObject.transform.SetParent(gameObject.transform.parent.transform, false);
             spawnedDefuzedUI.gameObject.transform.rotation = Quaternion.identity;
             pieces.SetActive(false);
-            pieceShooter.SetActive(false);
+            GameObject.FindGameObjectWithTag("PieceShooter").SetActive(false);
             bombHighlightAnim.enabled = false;
             bombHighlightAnim.enabled = true;
             soundEffect.Play(0);
