@@ -60,7 +60,12 @@ public class LevelLoader : MonoBehaviour
         pieceShooter.GetComponent<PieceShooter>().SetShootingEnabled(true);
         bomb.SendMessage("StartBomb");
         music.Play();
-        if(!Application.isEditor)
+        pieceShooter.SetActive(true);
+        Level level = levels[currLevel];
+        pieceShooterComp.SetAngleChangeMode(level.pieceShooterAngleChangeMode);
+        pieceShooterComp.SetAngleRange(level.pieceShooterAngleRange);
+        pieceShooterComp.Init();
+        if (!Application.isEditor)
         {
             AnalyticsEvent.LevelStart(currLevel + 1, new Dictionary<string, object>
             {
@@ -72,7 +77,8 @@ public class LevelLoader : MonoBehaviour
     public void ResetCurrentLevel()
     {
         Level level = levels[currLevel];
-        foreach(GameObject prevBomb in GameObject.FindGameObjectsWithTag("bomb"))
+        pieceShooter.SetActive(false);
+        foreach (GameObject prevBomb in GameObject.FindGameObjectsWithTag("bomb"))
         {
             Destroy(prevBomb);
         }
@@ -87,10 +93,6 @@ public class LevelLoader : MonoBehaviour
             Destroy(child.gameObject);
         }
         bombPieces.SetActive(true);
-        pieceShooter.SetActive(true);
-        pieceShooterComp.SetAngleChangeMode(level.pieceShooterAngleChangeMode);
-        pieceShooterComp.SetAngleRange(level.pieceShooterAngleRange);
-        pieceShooterComp.Init();
         if (this.startDelaySec > 0)
         {
             pieceShooter.GetComponent<PieceShooter>().SetShootingEnabled(false);
