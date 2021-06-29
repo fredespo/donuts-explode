@@ -72,13 +72,10 @@ public class Magnet : MonoBehaviour
         if (col.gameObject.CompareTag(tagToLookFor))
         {
             Rigidbody2D rb = col.gameObject.GetComponent<Rigidbody2D>();
-            if (!rb.isKinematic)
-            {
-                rb.isKinematic = true;
-                rb.velocity = new Vector3(0, 0, 0);
-                caughtObjects.Add(col.gameObject);
-                Invoke("FillWithFirstCaught", 0.2f);
-            }
+            rb.velocity = new Vector3(0, 0, 0);
+            caughtObjects.Add(col.gameObject);
+            Invoke("FillWithFirstCaught", 0.3f);
+            col.gameObject.transform.SetParent(GameObject.FindWithTag("bomb").transform);
         }
     }
 
