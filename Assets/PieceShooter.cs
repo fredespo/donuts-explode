@@ -15,7 +15,6 @@ public class PieceShooter : MonoBehaviour
     private bool spawnedPieceReadyToShoot = false;
     private float minAngle;
     private float maxAngle;
-    private Rotator rotator;
     private float currAngle;
 
     public void Init()
@@ -34,6 +33,16 @@ public class PieceShooter : MonoBehaviour
         {
             SetAngle(0);
         }
+
+        if (angleChangeMode == AngleChangeMode.TRI_CONTINUOUS)
+        {
+            StartCoroutine("ChangeAngleContinuously");
+        }
+        else
+        {
+            StopCoroutine("ChangeAngleContinuously");
+        }
+
         SpawnPiece();
     }
 
@@ -44,18 +53,13 @@ public class PieceShooter : MonoBehaviour
             ChangeAngleIfNeeded();
             SpawnPiece();
         }
-        else if(spawnedPieceReadyToShoot)
+        else if(spawnedPieceReadyToShoot && spawnedPiece != null)
         {
             spawnedPiece.SetActive(shootingEnabled);
         }
 
         if (shootingEnabled)
         {
-            if(angleChangeMode == AngleChangeMode.SMOOTH)
-            {
-                ChangeAngleSmoothly();
-            }
-
             if (spawnedPieceReadyToShoot && spawnedPiece != null)
             {
                 Vector3 pieceRotation = spawnedPiece.transform.eulerAngles;
@@ -73,36 +77,33 @@ public class PieceShooter : MonoBehaviour
         }
         else if (angleChangeMode == AngleChangeMode.TRI)
         {
-            float midAngle = (this.minAngle + this.maxAngle) / 2;
-            if (this.currAngle == this.minAngle)
-            {
-                SetAngle(midAngle);
-            }
-            else if (this.currAngle == midAngle)
-            {
-                SetAngle(this.maxAngle);
-            }
-            else
-            {
-                SetAngle(this.minAngle);
-            }
+            ChangeAngleTri();
         }
     }
 
-    private void ChangeAngleSmoothly()
+    IEnumerator ChangeAngleContinuously()
     {
-        float angle = transform.eulerAngles.z;
-        if (angle > 90)
+        while(angleChangeMode == AngleChangeMode.TRI_CONTINUOUS)
         {
-            angle -= 360;
+            yield return new WaitForSeconds(1.0f);
+            ChangeAngleTri();
         }
+    }
 
-        if (angle < minAngle || angle > maxAngle)
+    private void ChangeAngleTri()
+    {
+        float midAngle = (this.minAngle + this.maxAngle) / 2;
+        if (this.currAngle == this.minAngle)
         {
-            float newAngle = (GetRotator().GetDir() == Rotator.RotationDir.Clockwise ? maxAngle : minAngle);
-            Vector3 rotation = transform.eulerAngles;
-            transform.eulerAngles = new Vector3(rotation.x, rotation.y, angle < minAngle ? minAngle : maxAngle);
-            GetRotator().Reverse();
+            SetAngle(midAngle);
+        }
+        else if (this.currAngle == midAngle)
+        {
+            SetAngle(this.maxAngle);
+        }
+        else
+        {
+            SetAngle(this.minAngle);
         }
     }
 
@@ -125,15 +126,6 @@ public class PieceShooter : MonoBehaviour
     {
         minAngle = angleRange.x;
         maxAngle = angleRange.y;
-    }
-
-    private Rotator GetRotator()
-    {
-        if(rotator == null)
-        {
-            rotator = GetComponent<Rotator>();
-        }
-        return rotator;
     }
 
     void SpawnPiece()
@@ -167,12 +159,11 @@ public class PieceShooter : MonoBehaviour
     public void SetAngleChangeMode(AngleChangeMode mode)
     {
         angleChangeMode = mode;
-        GetRotator().enabled = (mode == AngleChangeMode.SMOOTH);
     }
 
     public enum AngleChangeMode
     {
-        ALTERNATE, SMOOTH, TRI
+        ALTERNATE, TRI_CONTINUOUS, TRI
     }
 
     public bool IsSpawnedPieceReadyToShoot()
