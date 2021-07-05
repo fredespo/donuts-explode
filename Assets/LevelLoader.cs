@@ -57,6 +57,7 @@ public class LevelLoader : MonoBehaviour
     public void StartCurrentLevel()
     {
         timer.UnPause();
+        pieceShooter.SetActive(false);
         pieceShooter.GetComponent<PieceShooter>().SetShootingEnabled(true);
         bomb.SendMessage("StartBomb");
         music.Play();

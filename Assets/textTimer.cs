@@ -85,6 +85,7 @@ public class textTimer : MonoBehaviour
                 detonator.activate();
                 music.Pause();
                 gameOverUI.SetActive(true);
+                this.pieceShooter.gameObject.SetActive(false);
                 gameObject.SetActive(false);
             }
         }
