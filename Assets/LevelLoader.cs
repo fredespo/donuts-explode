@@ -63,7 +63,7 @@ public class LevelLoader : MonoBehaviour
         pieceShooter.SetActive(true);
         Level level = levels[currLevel];
         pieceShooterComp.SetAngleChangeMode(level.pieceShooterAngleChangeMode);
-        pieceShooterComp.SetAngleRange(level.pieceShooterAngleRange);
+        pieceShooterComp.SetAngles(level.pieceShooterAngles);
         pieceShooterComp.Init();
         if (!Application.isEditor)
         {
@@ -132,7 +132,7 @@ public class LevelLoader : MonoBehaviour
     {
         public GameObject bomb;
         public float secondsOnTimer;
-        public Vector2 pieceShooterAngleRange;
-        public PieceShooter.AngleChangeMode pieceShooterAngleChangeMode = PieceShooter.AngleChangeMode.ALTERNATE;
+        public float[] pieceShooterAngles;
+        public PieceShooter.AngleChangeMode pieceShooterAngleChangeMode = PieceShooter.AngleChangeMode.ON_SHOOT;
     }
 }
