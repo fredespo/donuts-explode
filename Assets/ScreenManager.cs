@@ -17,11 +17,13 @@ public class ScreenManager : MonoBehaviour
     public TitleMenu titleMenu;
     public AudioSource music;
     public GameObject gameWonScreen;
+    public GameObject settingsScreen;
 
     public void ShowTitleScreen()
     {
         gameScreen.SetActive(false);
         gameWonScreen.SetActive(false);
+        settingsScreen.SetActive(false);
         titleScreen.SetActive(true);
         titleScreenBomb.SetActive(true);
         startBtn.GetComponent<Image>().enabled = true;
@@ -39,11 +41,20 @@ public class ScreenManager : MonoBehaviour
         }
     }
 
+    public void ShowSettingsScreen()
+    {
+        gameScreen.SetActive(false);
+        gameWonScreen.SetActive(false);
+        titleScreen.SetActive(false);
+        settingsScreen.SetActive(true);
+    }
+
     public void ShowGameScreen()
     {
         titleScreen.SetActive(false);
         gameScreen.SetActive(true);
         gameWonScreen.SetActive(false);
+        settingsScreen.SetActive(false);
         if (!music.isPlaying)
         {
             music.pitch = 1.0f;
@@ -56,6 +67,7 @@ public class ScreenManager : MonoBehaviour
         gameWonScreen.SetActive(true);
         titleScreen.SetActive(false);
         gameScreen.SetActive(false);
+        settingsScreen.SetActive(false);
         gameWonScreen.GetComponent<GameWonScreen>().Refresh();
     }
 }
