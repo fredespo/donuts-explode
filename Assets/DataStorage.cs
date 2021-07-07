@@ -9,6 +9,8 @@ public class DataStorage : MonoBehaviour
     private static string KEY_SCORE = "Score";
     private static string KEY_LEVEL = "Level";
     private static string KEY_HIGH_SCORES = "HighScores";
+    private static string KEY_VOLUME_MUSIC = "MusicVolume";
+    private static string KEY_VOLUME_SOUNDFX = "SoundFxVolume";
 
     public void Start()
     {
@@ -97,6 +99,40 @@ public class DataStorage : MonoBehaviour
             return 0;
         }
         return entries[entries.Count - 1].GetScore();
+    }
+
+    public void SaveMusicVolumePct(int pct)
+    {
+        PlayerPrefs.SetString(KEY_VOLUME_MUSIC, pct.ToString());
+    }
+
+    public int GetMusicVolumePct()
+    {
+        if (PlayerPrefs.HasKey(KEY_VOLUME_MUSIC))
+        {
+            return int.Parse(PlayerPrefs.GetString(KEY_VOLUME_MUSIC));
+        }
+        else
+        {
+            return 100;
+        }
+    }
+
+    public void SaveSoundFxVolumePct(int pct)
+    {
+        PlayerPrefs.SetString(KEY_VOLUME_SOUNDFX, pct.ToString());
+    }
+
+    public int GetSoundFxVolumePct()
+    {
+        if (PlayerPrefs.HasKey(KEY_VOLUME_SOUNDFX))
+        {
+            return int.Parse(PlayerPrefs.GetString(KEY_VOLUME_SOUNDFX));
+        }
+        else
+        {
+            return 100;
+        }
     }
 
     private string SerializeHighScores(List<HighScoreTable.Entry> entries)
