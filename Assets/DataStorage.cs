@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class DataStorage : MonoBehaviour
 {
     public bool deleteHighScores = false;
     public HighScoreTable highScoreTable;
+    public AudioMixer mixer;
     private static string KEY_SCORE = "Score";
     private static string KEY_LEVEL = "Level";
     private static string KEY_HIGH_SCORES = "HighScores";
@@ -18,6 +20,7 @@ public class DataStorage : MonoBehaviour
         {
             PlayerPrefs.DeleteKey(KEY_HIGH_SCORES);
         }
+        LoadMusicVol();
     }
 
     public int GetScore()
@@ -99,6 +102,14 @@ public class DataStorage : MonoBehaviour
             return 0;
         }
         return entries[entries.Count - 1].GetScore();
+    }
+
+    public void LoadMusicVol()
+    {
+        float musicVol = GetMusicVolumePct() > 0 ? (float)GetMusicVolumePct() / 100 : 0.0001f;
+        float soundFxVol = GetSoundFxVolumePct() > 0 ? (float)GetSoundFxVolumePct() / 100 : 0.0001f;
+        mixer.SetFloat("MusicVolume", Mathf.Log10(musicVol) * 20);
+        mixer.SetFloat("SoundFxVolume", Mathf.Log10(soundFxVol) * 20);
     }
 
     public void SaveMusicVolumePct(int pct)
