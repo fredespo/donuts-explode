@@ -12,11 +12,17 @@ public class VolumeSlider : MonoBehaviour
 
     void Start()
     {
-        this.slider = gameObject.GetComponent<Slider>();        
+        this.slider = gameObject.GetComponent<Slider>();
+        this.slider.onValueChanged.AddListener(delegate { ValueChanged(); });
     }
 
-    void Update()
+    public void ValueChanged()
     {
-        mixer.SetFloat(mixerParam, Mathf.Log10(this.slider.value) * 20);
+        SetVolume(this.slider.value);
+    }
+
+    private void SetVolume(float val)
+    {
+        mixer.SetFloat(mixerParam, Mathf.Log10(val) * 20);
     }
 }
