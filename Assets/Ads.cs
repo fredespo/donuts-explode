@@ -12,6 +12,8 @@ public class Ads : MonoBehaviour
     public string testAdId = "ca-app-pub-3940256099942544/1033173712";
     public string androidAdId = "ca-app-pub-8136996048120593/8224216593";
     private InterstitialAd interstitial;
+    public int minLevelForAds = 4;
+    public LevelLoader levelLoader;
 
     void Start()
     {
@@ -21,7 +23,7 @@ public class Ads : MonoBehaviour
 
     public void ShowInterstitialAd()
     {
-        if(!this.adsEnabled)
+        if(!this.adsEnabled || levelLoader.GetCurrentLevel() < this.minLevelForAds)
         {
             return;
         }
