@@ -81,15 +81,25 @@ public class textTimer : MonoBehaviour
             if (seconds < 0)
             {
                 seconds = 0;
-                shootTapZone.SetActive(false);
-                detonator.activate();
-                music.Pause();
-                gameOverUI.SetActive(true);
-                this.pieceShooter.gameObject.SetActive(false);
-                gameObject.SetActive(false);
+                Invoke("DetonateBomb", 0.05f);
             }
         }
         RefreshText();
+    }
+
+    private void DetonateBomb()
+    {
+        if(this.paused)
+        {
+            return;
+        }
+
+        shootTapZone.SetActive(false);
+        detonator.activate();
+        music.Pause();
+        gameOverUI.SetActive(true);
+        this.pieceShooter.gameObject.SetActive(false);
+        gameObject.SetActive(false);
     }
 
     private void HandleFading()
@@ -151,6 +161,10 @@ public class textTimer : MonoBehaviour
     public void UnPause()
     {
         paused = false;
+        if(this.seconds <= 0)
+        {
+            DetonateBomb();
+        }
     }
 
     public void CountDownFast()
