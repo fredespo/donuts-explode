@@ -19,7 +19,7 @@ public class LevelLoader : MonoBehaviour
     public LevelIndicator levelIndicator;
     public List<Reflector> pieceReflectors;
     public List<Level> levels;
-    private int currLevel = -1;
+    private int currLevelIdx = -1;
     private float startDelaySec;
     private GameObject bomb;
     private DataStorage dataStorage;
@@ -37,7 +37,7 @@ public class LevelLoader : MonoBehaviour
         {
             score.Reset();
         }
-        currLevel = levelIndex;
+        currLevelIdx = levelIndex;
         ResetCurrentLevel();
         StartCoroutine(StartCurrentLevelAfterDelay(startDelaySec));
     }
@@ -62,13 +62,13 @@ public class LevelLoader : MonoBehaviour
         bomb.SendMessage("StartBomb");
         music.Play();
         pieceShooter.SetActive(true);
-        Level level = levels[currLevel];
+        Level level = levels[currLevelIdx];
         pieceShooterComp.SetAngleChangeMode(level.pieceShooterAngleChangeMode);
         pieceShooterComp.SetAngles(level.pieceShooterAngles);
         pieceShooterComp.Init();
         if (!Application.isEditor)
         {
-            AnalyticsEvent.LevelStart(currLevel + 1, new Dictionary<string, object>
+            AnalyticsEvent.LevelStart(currLevelIdx + 1, new Dictionary<string, object>
             {
                 { "score", score.GetScore() }
             });
@@ -77,7 +77,7 @@ public class LevelLoader : MonoBehaviour
 
     public void ResetCurrentLevel()
     {
-        Level level = levels[currLevel];
+        Level level = levels[currLevelIdx];
         pieceShooter.SetActive(false);
         foreach (GameObject prevBomb in GameObject.FindGameObjectsWithTag("bomb"))
         {
@@ -101,26 +101,26 @@ public class LevelLoader : MonoBehaviour
         shootTapZone.SetActive(true);
         gameOverUI.Hide();
         music.Reset();
-        levelIndicator.Set(this.GetCurrentLevel() + 1, this.LevelCount());
+        levelIndicator.Set(this.GetCurrentLevelIndex() + 1, this.LevelCount());
     }
 
     public void LoadNextLevelAndStartAfterDelay(float delaySec)
     {
-        if (currLevel < LevelCount() - 1)
+        if (currLevelIdx < LevelCount() - 1)
         {
-            LoadLevel(++currLevel, delaySec);
+            LoadLevel(++currLevelIdx, delaySec);
         }
         else
         {
-            currLevel = 0;
+            currLevelIdx = 0;
             dataStorage.SaveLevel(0);
             screenManager.ShowGameWonScreen();
         }
     }
 
-    public int GetCurrentLevel()
+    public int GetCurrentLevelIndex()
     {
-        return currLevel;
+        return currLevelIdx;
     }
 
     public int LevelCount()

@@ -46,10 +46,10 @@ public class BombDefuzer : MonoBehaviour
             StartCoroutine(AddTimeToScoreAfterDelay(1.0f));
             int newScore = score.GetScore() + GetPointsEarned();
             dataStorage.SaveScore(newScore);
-            int currLevel = GameObject.FindGameObjectWithTag("LevelLoader").GetComponent<LevelLoader>().GetCurrentLevel();
+            int currLevel = GameObject.FindGameObjectWithTag("LevelLoader").GetComponent<LevelLoader>().GetCurrentLevelIndex() + 1;
             if (!Application.isEditor)
             {
-                AnalyticsEvent.LevelComplete(currLevel + 1, new Dictionary<string, object> 
+                AnalyticsEvent.LevelComplete(currLevel, new Dictionary<string, object> 
                 {
                     { "score", newScore }
                 });
@@ -69,7 +69,7 @@ public class BombDefuzer : MonoBehaviour
             bombHighlightAnim.enabled = false;
             bombHighlightAnim.enabled = true;
             soundEffect.Play(0);
-            dataStorage.SaveLevel(currLevel + 1);
+            dataStorage.SaveLevel(currLevel);
             defuzed = true;
         }
     }

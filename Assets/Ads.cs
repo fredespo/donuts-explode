@@ -23,7 +23,7 @@ public class Ads : MonoBehaviour
 
     public void ShowInterstitialAd()
     {
-        if(!this.adsEnabled || levelLoader.GetCurrentLevel() + 1 < this.minLevelForAds)
+        if(!this.adsEnabled || levelLoader.GetCurrentLevelIndex() + 1 < this.minLevelForAds)
         {
             return;
         }
