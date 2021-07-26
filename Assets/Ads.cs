@@ -49,6 +49,7 @@ public class Ads : MonoBehaviour
 
         this.interstitial = new InterstitialAd(androidAdId);
         this.interstitial.OnAdClosed += HandleOnAdClosed;
+        this.interstitial.OnAdFailedToLoad += HandleOnAdFailedToLoad;
         AdRequest request = new AdRequest.Builder().Build();
         this.interstitial.LoadAd(request);
     }
@@ -57,5 +58,10 @@ public class Ads : MonoBehaviour
     {
         music.Play();
         LoadInterstitialAd();
+    }
+
+    public void HandleOnAdFailedToLoad(object sender, AdFailedToLoadEventArgs args)
+    {
+        Invoke("LoadInterstitialAd", 60);
     }
 }
