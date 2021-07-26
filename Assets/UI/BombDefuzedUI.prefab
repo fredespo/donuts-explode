@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3073162567095825893}
+  - component: {fileID: 7328085599419278743}
   m_Layer: 5
   m_Name: BombDefuzedUI
   m_TagString: WinUI
@@ -38,6 +39,32 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &7328085599419278743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3073162567095825894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cdfeb69388ca9f428f3f479513407c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onBackButtonPressed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2289317592556661962}
+        m_MethodName: BackToTitle
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3073162567314448480
 GameObject:
   m_ObjectHideFlags: 0
@@ -272,6 +299,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 2084450460388208030}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2289317592556661962 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 227500632749293908, guid: 7088ec529b81d9742a981c153724aa69,
+    type: 3}
+  m_PrefabInstance: {fileID: 2084450460388208030}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91d88af1409661e43976cd413ca3c56f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3073162567231477663
 PrefabInstance:
   m_ObjectHideFlags: 0
