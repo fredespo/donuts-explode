@@ -14,6 +14,8 @@ public class Ads : MonoBehaviour
     private InterstitialAd interstitial;
     public int minLevelForAds = 4;
     public LevelLoader levelLoader;
+    private float origTimeScale;
+    private Action onAdClosed;
 
     void Start()
     {
@@ -21,17 +23,24 @@ public class Ads : MonoBehaviour
         LoadInterstitialAd();
     }
 
-    public void ShowInterstitialAd()
+    public void ShowInterstitialAdAndThen(Action action)
     {
         if(!this.adsEnabled || levelLoader.GetCurrentLevelIndex() + 1 < this.minLevelForAds)
         {
+            action.Invoke();
             return;
         }
 
         if(interstitial != null && interstitial.IsLoaded())
         {
-            music.Pause();
+            origTimeScale = Time.timeScale;
+            Time.timeScale = 0f;
+            this.onAdClosed = action;
             interstitial.Show();
+        }
+        else
+        {
+            action.Invoke();
         }
     }
 
@@ -56,7 +65,12 @@ public class Ads : MonoBehaviour
 
     public void HandleOnAdClosed(object sender, EventArgs args)
     {
-        music.Play();
+        Time.timeScale = origTimeScale;
+        if(this.onAdClosed != null)
+        {
+            this.onAdClosed.Invoke();
+            this.onAdClosed = null;
+        }
         LoadInterstitialAd();
     }
 

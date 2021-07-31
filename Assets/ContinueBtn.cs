@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class ContinueBtn : MonoBehaviour
 {
+    private Ads ads;
     private LevelLoader levelLoader;
 
     public void Start()
     {
         levelLoader = GameObject.FindGameObjectWithTag("LevelLoader").GetComponent<LevelLoader>();
+        ads = GameObject.FindGameObjectWithTag("AdsManager").GetComponent<Ads>();
     }
 
     public void Continue()
     {
-        levelLoader.LoadNextLevelAndStartAfterDelay(0.1f);
+        ads.ShowInterstitialAdAndThen(() =>
+        {
+            levelLoader.LoadNextLevelAndStartAfterDelay(0.5f);
+        });
     }
 }

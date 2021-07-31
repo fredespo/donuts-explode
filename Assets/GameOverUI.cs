@@ -5,8 +5,6 @@ using UnityEngine.Analytics;
 
 public class GameOverUI : MonoBehaviour
 {
-    public Ads ads;
-
     public void ShowAfterDelay(float delaySec)
     {
         StartCoroutine(ShowAfterDelayCoroutine(delaySec));
@@ -20,7 +18,6 @@ public class GameOverUI : MonoBehaviour
 
     public void Show()
     {
-        ads.ShowInterstitialAd();
         foreach (Transform child in transform)
         {
             child.gameObject.SetActive(true);
