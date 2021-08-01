@@ -10,7 +10,7 @@ public class textTimer : MonoBehaviour
     public GameObject gameOverUI;
     public PieceShooter pieceShooter;
     public Animator camAnim;
-    public float gameOverDelaySec = 0.1f;
+    public float bombDetonationDelay = 0.1f;
     public float seconds = 10;
     public float countDownFastPerSecond = 4.0f;
     private float startSeconds;
@@ -71,7 +71,7 @@ public class textTimer : MonoBehaviour
         {
             seconds -= Time.deltaTime;
             AdjustMusic();
-            if (seconds < -gameOverDelaySec)
+            if (seconds < -bombDetonationDelay)
             {
                 DetonateBomb();
             }
