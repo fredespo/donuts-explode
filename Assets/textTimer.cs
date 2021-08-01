@@ -127,28 +127,21 @@ public class textTimer : MonoBehaviour
 
     private void HandleSlowMo()
     {
-        if (!this.slowMo && ShouldEnterSlowMo())
-        {
-            this.slowMo = true;
-        }
-
-        if (this.slowMo && ShouldExitSlowMo())
-        {
-            this.slowMo = false;
-        }
-
+        this.slowMo = ShouldSlowMo();
         Time.timeScale = this.slowMo ? this.slowMoTimeScale : 1.0f;
         this.camAnim.SetBool("slowmo", this.slowMo);
     }
 
-    private bool ShouldEnterSlowMo()
+    private bool ShouldSlowMo()
     {
-        return this.seconds < 1 && this.seconds > 0 && !this.pieceShooter.IsSpawnedPieceReadyToShoot() && this.defuzer.GetNumHolesLeft() == 1;
-    }
-
-    private bool ShouldExitSlowMo()
-    {
-        return this.defuzer.GetNumHolesLeft() == 0 || this.seconds <= 0;
+        return this.seconds < 1 && this.seconds > 0
+            && this.defuzer != null
+            && this.defuzer.GetNumHolesLeft() == 1
+            && this.pieceShooter != null
+            && !this.pieceShooter.IsSpawnedPieceReadyToShoot()
+            && this.pieceShooter.GetPiece() != null
+            && this.pieceShooter.GetPiece().GetComponent<SpriteRenderer>().color.a > 0.7f
+            && Vector2.Distance(this.defuzer.GetHoles()[0].transform.position, this.pieceShooter.GetPiece().transform.position) < 3.5;
     }
 
     public void Pause()

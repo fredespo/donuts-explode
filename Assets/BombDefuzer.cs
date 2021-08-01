@@ -90,4 +90,14 @@ public class BombDefuzer : MonoBehaviour
     {
         return gameObject.transform.childCount;
     }
+
+    public List<Transform> GetHoles()
+    {
+        List<Transform> holes = new List<Transform>();
+        foreach (Transform child in gameObject.transform)
+        {
+            holes.Add(child);
+        }
+        return holes;
+    }
 }

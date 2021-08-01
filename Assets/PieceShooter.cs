@@ -152,4 +152,9 @@ public class PieceShooter : MonoBehaviour
     {
         return pieceIndex >= 0 && pieceIndex < pieces.Length;
     }
+
+    public GameObject GetPiece()
+    {
+        return this.spawnedPiece;
+    }
 }
