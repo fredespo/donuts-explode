@@ -10,7 +10,7 @@ public class textTimer : MonoBehaviour
     public GameObject gameOverUI;
     public PieceShooter pieceShooter;
     public Animator camAnim;
-    public float gameOverDelaySec;
+    public float gameOverDelaySec = 0.1f;
     public float seconds = 10;
     public float countDownFastPerSecond = 4.0f;
     private float startSeconds;
@@ -49,11 +49,6 @@ public class textTimer : MonoBehaviour
         HandleSlowMo();
         HandleFading();
 
-        if (seconds <= 0)
-        {
-            return;
-        }
-
         if(countingDownFast)
         {
             float timeChange = countDownFastPerSecond * Time.deltaTime;
@@ -76,10 +71,9 @@ public class textTimer : MonoBehaviour
         {
             seconds -= Time.deltaTime;
             AdjustMusic();
-            if (seconds < 0)
+            if (seconds < -gameOverDelaySec)
             {
-                seconds = 0;
-                Invoke("DetonateBomb", 0.05f);
+                DetonateBomb();
             }
         }
         RefreshText();
@@ -167,7 +161,8 @@ public class textTimer : MonoBehaviour
     {
         if(text != null)
         {
-            text.text = seconds.ToString("00.00").Replace(".", ":");
+            float secToDisplay = Mathf.Max(0f, this.seconds);
+            text.text = secToDisplay.ToString("00.00").Replace(".", ":");
         }
     }
 
