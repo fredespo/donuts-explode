@@ -9,7 +9,7 @@ public class RetryBtn : MonoBehaviour
 
     public void Retry()
     {
-        ads.ShowInterstitialAdAndThen(() =>
+        ads.ShowInterstitialAdAndThen((wasAdShown) =>
         {
             levelLoader.ResetCurrentLevel();
             levelLoader.StartCurrentLevelAfterDelaySec(0);

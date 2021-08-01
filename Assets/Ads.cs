@@ -15,7 +15,7 @@ public class Ads : MonoBehaviour
     public int minLevelForAds = 4;
     public LevelLoader levelLoader;
     private float origTimeScale;
-    private Action onAdClosed;
+    private Action<bool> onAdClosed;
 
     void Start()
     {
@@ -23,11 +23,11 @@ public class Ads : MonoBehaviour
         LoadInterstitialAd();
     }
 
-    public void ShowInterstitialAdAndThen(Action action)
+    public void ShowInterstitialAdAndThen(Action<bool> action)
     {
         if(!this.adsEnabled || levelLoader.GetCurrentLevelIndex() + 1 < this.minLevelForAds)
         {
-            action.Invoke();
+            action.Invoke(false);
             return;
         }
 
@@ -40,7 +40,7 @@ public class Ads : MonoBehaviour
         }
         else
         {
-            action.Invoke();
+            action.Invoke(false);
         }
     }
 
@@ -68,7 +68,7 @@ public class Ads : MonoBehaviour
         Time.timeScale = origTimeScale;
         if(this.onAdClosed != null)
         {
-            this.onAdClosed.Invoke();
+            this.onAdClosed.Invoke(true);
             this.onAdClosed = null;
         }
         LoadInterstitialAd();

@@ -14,7 +14,7 @@ public class StartGameBtn : MonoBehaviour
 
     public void StartGame()
     {
-        ads.ShowInterstitialAdAndThen(() => {
+        ads.ShowInterstitialAdAndThen((wasAdShown) => {
             titleMenu.StartGameAfterDelay(delay);
             detonator.activate();
             title.SetActive(false);
