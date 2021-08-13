@@ -14,6 +14,7 @@ public class PieceShooter : MonoBehaviour
     private bool spawnedPieceReadyToShoot = false;
     private float[] angles;
     private int angleIdx;
+    private AudioSource soundEffect;
 
     public void Init()
     {
@@ -31,6 +32,7 @@ public class PieceShooter : MonoBehaviour
         }
 
         SpawnPiece();
+        soundEffect = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -78,6 +80,8 @@ public class PieceShooter : MonoBehaviour
         {
             spawnedPiece.GetComponent<Rigidbody2D>().velocity = transform.up * speed;
             spawnedPieceReadyToShoot = false;
+            soundEffect.pitch = Random.Range(0.6f, 1.0f);
+            soundEffect.Play(0);
         }
     }
 

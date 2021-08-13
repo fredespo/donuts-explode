@@ -27,5 +27,6 @@ public class BombHole : MonoBehaviour
         filledCollider.transform.SetParent(gameObject.transform.parent.transform.parent, true);
         filledCollider.SetActive(true);
         filledCollider.GetComponent<PolygonCollider2D>().enabled = true;
+        GameObject.FindWithTag("PieceFitsSoundEffect").GetComponent<AudioSource>().Play(0);
     }
 }

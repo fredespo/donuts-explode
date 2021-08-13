@@ -13,6 +13,7 @@ public class BombPiece : MonoBehaviour
     private bool reflectingToBomb = false;
     private GameObject bomb;
     private Rigidbody2D rigibody;
+    private AudioSource soundEffect;
 
     void Awake()
     {
@@ -23,13 +24,15 @@ public class BombPiece : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         this.rigibody = GetComponent<Rigidbody2D>();
+        this.soundEffect = GetComponent<AudioSource>();
     }
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if(!fading && col.gameObject.CompareTag("bomb"))
+        if(!fading && col.gameObject.CompareTag("bomb") && !caughtInMagnet)
         {
             fading = true;
+            this.soundEffect.Play(0);
         }
     }
 
@@ -84,6 +87,7 @@ public class BombPiece : MonoBehaviour
         color.a = 1.0f;
         spriteRenderer.color = color;
         caughtInMagnet = true;
+        this.soundEffect.Stop();
     }
 
     public void ReflectToBomb()
