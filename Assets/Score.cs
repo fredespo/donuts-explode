@@ -11,7 +11,6 @@ public class Score : MonoBehaviour
     public DataStorage dataStorage;
     private float dispScore;
     private AudioSource soundEffect;
-    private float lastSoundEffectTime;
     private float delayBetweenSoundEffects = 0.1f;
     private float origVolume;
     private float origPitch;
@@ -20,7 +19,6 @@ public class Score : MonoBehaviour
     {
         text = GetComponent<Text>();
         soundEffect = GetComponent<AudioSource>();
-        origVolume = soundEffect.volume;
         origPitch = soundEffect.pitch;
         score = dataStorage.GetScore();
         dispScore = score;
@@ -40,20 +38,22 @@ public class Score : MonoBehaviour
             {
                 dispScore += scoreChange;
                 soundEffect.pitch = origPitch;
-                soundEffect.volume = origVolume;
             }
             else if(dispScore > score)
             {
                 dispScore -= scoreChange;
                 soundEffect.pitch = origPitch - 0.2f;
-                soundEffect.volume = origVolume + 0.1f;
             }
             RefreshText();
-            if(Time.time - lastSoundEffectTime >= delayBetweenSoundEffects)
+
+            if(!soundEffect.isPlaying)
             {
                 soundEffect.Play(0);
-                lastSoundEffectTime = Time.time;
             }
+        }
+        else
+        {
+            soundEffect.Stop();
         }
     }
 
