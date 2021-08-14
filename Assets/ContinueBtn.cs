@@ -17,7 +17,7 @@ public class ContinueBtn : MonoBehaviour
     {
         ads.ShowInterstitialAdAndThen((wasAdShown) =>
         {
-            levelLoader.LoadNextLevelAndStartAfterDelay(wasAdShown ? 0.5f : 0.1f);
+            levelLoader.LoadNextLevelAndStartAfterDelay(wasAdShown ? 0.7f : 0.1f);
         });
     }
 }

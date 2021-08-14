@@ -12,7 +12,7 @@ public class RetryBtn : MonoBehaviour
         ads.ShowInterstitialAdAndThen((wasAdShown) =>
         {
             levelLoader.ResetCurrentLevel();
-            levelLoader.StartCurrentLevelAfterDelaySec(0);
+            levelLoader.StartCurrentLevelAfterDelaySec(wasAdShown ? 0.7f : 0.1f);
         });   
     }
 }
