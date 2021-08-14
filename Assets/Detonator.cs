@@ -38,8 +38,13 @@ public class Detonator : MonoBehaviour
         camAnim.SetBool("slowmo", false);
         if (score != null && score.GetScore() > 0)
         {
-            score.AddAfterDelay(-1 * (int)Mathf.Ceil((float)score.GetScore() / 2), 1.5f);
-            if (gameOverUI != null) gameOverUI.ShowAfterDelay(2.5f);
+            float scoreAddDelay = 1.5f;
+            float timeToChangeScore = Mathf.Min(score.maxTimeToChange, (float)score.GetScore() / 2 / score.scoreChangePerSec);
+            score.AddAfterDelay(-1 * (int)Mathf.Ceil((float)score.GetScore() / 2), scoreAddDelay);
+            if (gameOverUI != null)
+            {
+                gameOverUI.ShowAfterDelay(timeToChangeScore + scoreAddDelay);
+            }
         }
         else if (gameOverUI != null) gameOverUI.ShowAfterDelay(1.0f);
 

@@ -8,6 +8,8 @@ public class Score : MonoBehaviour
     private Text text;
     public int score;
     public int scoreChangePerSec = 500;
+    private int currScoreChangePerSec;
+    public int maxTimeToChange = 4;
     public DataStorage dataStorage;
     private float dispScore;
     private AudioSource soundEffect;
@@ -22,6 +24,7 @@ public class Score : MonoBehaviour
         origPitch = soundEffect.pitch;
         score = dataStorage.GetScore();
         dispScore = score;
+        currScoreChangePerSec = scoreChangePerSec;
         RefreshText();
     }
 
@@ -29,7 +32,7 @@ public class Score : MonoBehaviour
     {
         if(dispScore != score)
         {
-            float scoreChange = Time.deltaTime * scoreChangePerSec;
+            float scoreChange = Time.deltaTime * currScoreChangePerSec;
             if (Mathf.Abs(dispScore - score) < scoreChange)
             {
                 dispScore = score;
@@ -78,6 +81,16 @@ public class Score : MonoBehaviour
 
     public void Add(int amt)
     {
+        float timeToChange = Mathf.Abs(amt) / scoreChangePerSec;
+        if(timeToChange > this.maxTimeToChange)
+        {
+            currScoreChangePerSec = Mathf.Abs(amt) / this.maxTimeToChange;
+        }
+        else
+        {
+            currScoreChangePerSec = scoreChangePerSec;
+        }
+
         score += amt;
         if(score < 0)
         {
