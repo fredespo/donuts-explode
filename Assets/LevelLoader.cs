@@ -73,6 +73,7 @@ public class LevelLoader : MonoBehaviour
                 { "score", score.GetScore() }
             });
         }
+        score.RefreshDispScore();
     }
 
     public void ResetCurrentLevel()
@@ -102,6 +103,7 @@ public class LevelLoader : MonoBehaviour
         gameOverUI.Hide();
         music.Reset();
         levelIndicator.Set(this.GetCurrentLevelIndex() + 1, this.LevelCount());
+        score.RefreshDispScore();
     }
 
     public void LoadNextLevelAndStartAfterDelay(float delaySec)

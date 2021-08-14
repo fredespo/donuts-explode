@@ -116,4 +116,10 @@ public class Score : MonoBehaviour
     {
         return score;
     }
+
+    public void RefreshDispScore()
+    {
+        dispScore = score;
+        RefreshText();
+    }
 }
