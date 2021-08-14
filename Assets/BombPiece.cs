@@ -33,6 +33,8 @@ public class BombPiece : MonoBehaviour
         {
             fading = true;
             this.soundEffect.Play(0);
+            var impulse = (Random.Range(100f, 300f) * Mathf.Deg2Rad) * this.rigibody.inertia;
+            this.rigibody.AddTorque(impulse, ForceMode2D.Impulse);
         }
     }
 
