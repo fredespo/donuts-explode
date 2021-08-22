@@ -80,7 +80,7 @@ public class PieceShooter : MonoBehaviour
         {
             spawnedPiece.GetComponent<Rigidbody2D>().velocity = transform.up * speed;
             spawnedPieceReadyToShoot = false;
-            soundEffect.pitch = Random.Range(0.6f, 1.0f);
+            soundEffect.pitch = Random.Range(0.7f, 1.0f);
             soundEffect.Play(0);
         }
     }
