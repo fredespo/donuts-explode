@@ -154,6 +154,11 @@ public class IAP : MonoBehaviour, IStoreListener
         m_StoreController = controller;
         // Store specific subsystem, for accessing device-specific store features.
         m_StoreExtensionProvider = extensions;
+
+        if(m_StoreController.products.WithID(noAdsID).hasReceipt)
+        {
+            ads.adsEnabled = false;
+        }
     }
 
 
