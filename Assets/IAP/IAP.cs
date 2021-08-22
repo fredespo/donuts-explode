@@ -10,12 +10,13 @@ public class IAP : MonoBehaviour, IStoreListener
 
     private static IStoreController m_StoreController;          // The Unity Purchasing system.
     private static IExtensionProvider m_StoreExtensionProvider; // The store-specific Purchasing subsystems.
+    private Toaster toaster;
 
     // Product identifiers for all products capable of being purchased: 
     // "convenience" general identifiers for use with Purchasing, and their store-specific identifier 
     // counterparts for use with and outside of Unity Purchasing. Define store-specific identifiers 
     // also on each platform's publisher dashboard (iTunes Connect, Google Play Developer Console, etc.)
-    public static string noAdsID = "com.defuze.noads";
+    public static string noAdsID = "com.defuze.noads2";
 
     // Apple App Store-specific product identifier for the subscription product.
     private static string kProductNameAppleSubscription = "com.unity3d.subscription.new";
@@ -25,6 +26,7 @@ public class IAP : MonoBehaviour, IStoreListener
 
     void Start()
     {
+        this.toaster = GameObject.FindWithTag("Toaster").GetComponent<Toaster>();
         // If we haven't set up the Unity Purchasing reference
         if (m_StoreController == null)
         {
@@ -154,11 +156,6 @@ public class IAP : MonoBehaviour, IStoreListener
         m_StoreController = controller;
         // Store specific subsystem, for accessing device-specific store features.
         m_StoreExtensionProvider = extensions;
-
-        if(m_StoreController.products.WithID(noAdsID).hasReceipt)
-        {
-            ads.adsEnabled = false;
-        }
     }
 
 
@@ -166,6 +163,7 @@ public class IAP : MonoBehaviour, IStoreListener
     {
         // Purchasing set-up has not succeeded. Check error for reason. Consider sharing this reason with the user.
         Debug.Log("OnInitializeFailed InitializationFailureReason:" + error);
+        this.toaster.ShowToast("OnInitializeFailed InitializationFailureReason:" + error, 3);
     }
 
 
@@ -174,7 +172,7 @@ public class IAP : MonoBehaviour, IStoreListener
         // A consumable product has been purchased by this user.
         if (String.Equals(args.purchasedProduct.definition.id, noAdsID, StringComparison.Ordinal))
         {
-            ads.adsEnabled = false;
+            ads.DisableAds();
         }
 
         // Return a flag indicating whether this product has completely been received, or if the application needs 

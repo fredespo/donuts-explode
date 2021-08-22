@@ -13,6 +13,7 @@ public class DataStorage : MonoBehaviour
     private static string KEY_HIGH_SCORES = "HighScores";
     private static string KEY_VOLUME_MUSIC = "MusicVolume";
     private static string KEY_VOLUME_SOUNDFX = "SoundFxVolume";
+    private static string KEY_ADS_ENABLED = "AdsEnabled";
 
     public void Start()
     {
@@ -178,5 +179,22 @@ public class DataStorage : MonoBehaviour
             }
         }
         return highScores;
+    }
+
+    public void SaveAdsEnabled(bool adsEnabled)
+    {
+        PlayerPrefs.SetString(KEY_ADS_ENABLED, adsEnabled.ToString());
+    }
+
+    public bool GetAdsEnabledOrDefault(bool defaultVal)
+    {
+        if (PlayerPrefs.HasKey(KEY_ADS_ENABLED))
+        {
+            return bool.Parse(PlayerPrefs.GetString(KEY_ADS_ENABLED));
+        }
+        else
+        {
+            return defaultVal;
+        }
     }
 }

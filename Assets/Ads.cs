@@ -16,16 +16,19 @@ public class Ads : MonoBehaviour
     public LevelLoader levelLoader;
     private float origTimeScale;
     private Action<bool> onAdClosed;
+    private DataStorage storage;
 
     void Start()
     {
+        this.storage = GameObject.FindWithTag("DataStorage").GetComponent<DataStorage>();
+        this.adsEnabled = storage.GetAdsEnabledOrDefault(true);
         MobileAds.Initialize(initStatus => { });
         LoadInterstitialAd();
     }
 
     public void ShowInterstitialAdAndThen(Action<bool> action)
     {
-        if(!this.adsEnabled || levelLoader.GetCurrentLevelIndex() + 1 < this.minLevelForAds)
+        if(Application.isEditor || !this.adsEnabled || levelLoader.GetCurrentLevelIndex() + 1 < this.minLevelForAds)
         {
             action.Invoke(false);
             return;
@@ -77,5 +80,11 @@ public class Ads : MonoBehaviour
     public void HandleOnAdFailedToLoad(object sender, AdFailedToLoadEventArgs args)
     {
         Invoke("LoadInterstitialAd", 60);
+    }
+
+    public void DisableAds()
+    {
+        this.adsEnabled = false;
+        storage.SaveAdsEnabled(false);
     }
 }
