@@ -10,7 +10,6 @@ public class IAP : MonoBehaviour, IStoreListener
 
     private static IStoreController m_StoreController;          // The Unity Purchasing system.
     private static IExtensionProvider m_StoreExtensionProvider; // The store-specific Purchasing subsystems.
-    private Toaster toaster;
 
     // Product identifiers for all products capable of being purchased: 
     // "convenience" general identifiers for use with Purchasing, and their store-specific identifier 
@@ -26,7 +25,6 @@ public class IAP : MonoBehaviour, IStoreListener
 
     void Start()
     {
-        this.toaster = GameObject.FindWithTag("Toaster").GetComponent<Toaster>();
         // If we haven't set up the Unity Purchasing reference
         if (m_StoreController == null)
         {
@@ -163,7 +161,6 @@ public class IAP : MonoBehaviour, IStoreListener
     {
         // Purchasing set-up has not succeeded. Check error for reason. Consider sharing this reason with the user.
         Debug.Log("OnInitializeFailed InitializationFailureReason:" + error);
-        this.toaster.ShowToast("OnInitializeFailed InitializationFailureReason:" + error, 3);
     }
 
 
