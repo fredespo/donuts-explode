@@ -22,6 +22,7 @@ public class GameWonScreen : MonoBehaviour
             highScoreMsg.SetActive(true);
             saveScoreBtn.SetActive(true);
             nameField.gameObject.SetActive(true);
+            TouchScreenKeyboard.hideInput = true;
             nameField.text = "";
             finishBtn.SetActive(false);
         }
