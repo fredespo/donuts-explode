@@ -39,6 +39,11 @@ public class GameWonScreen : MonoBehaviour
         }
     }
 
+    public void OnExit()
+    {
+        score.Reset();
+    }
+
     private bool CanSaveHighScore()
     {
         return highScoreTable.GetSize() < highScoreTable.GetCapacity()
