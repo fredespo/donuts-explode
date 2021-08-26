@@ -13,6 +13,8 @@ public class GameWonScreen : MonoBehaviour
     public DataStorage dataStorage;
     public Score score;
     public Text scoreText;
+    public GameObject mainMenu;
+    public GameObject dontSaveConfirmMenu;
 
     public void Refresh()
     {
@@ -25,6 +27,8 @@ public class GameWonScreen : MonoBehaviour
             TouchScreenKeyboard.hideInput = true;
             nameField.text = "";
             finishBtn.SetActive(false);
+            mainMenu.SetActive(true);
+            dontSaveConfirmMenu.SetActive(false);
         }
         else
         {
