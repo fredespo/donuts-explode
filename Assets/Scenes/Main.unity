@@ -3534,6 +3534,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+--- !u!1 &530543629 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5057343903013985594, guid: d20c7564618eea144b6f462e1c2af3b4,
+    type: 3}
+  m_PrefabInstance: {fileID: 1891654262221254130}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &580655274
 GameObject:
   m_ObjectHideFlags: 0
@@ -3878,6 +3884,7 @@ MonoBehaviour:
   title: {fileID: 235990329}
   gameScreen: {fileID: 974466847}
   titleMenu: {fileID: 1333197894}
+  removeAdsButton: {fileID: 530543629}
   music: {fileID: 1779454661}
   gameWonScreen: {fileID: 111133906}
   settingsScreen: {fileID: 1165516163}
@@ -10250,7 +10257,7 @@ PrefabInstance:
     - target: {fileID: 6660765553727437404, guid: d4c3e40bacb488549aa56fcdd38a982d,
         type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.size
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6660765553727437404, guid: d4c3e40bacb488549aa56fcdd38a982d,
         type: 3}
@@ -10396,11 +10403,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[5].m_Target
       value: 
-      objectReference: {fileID: 1237871240}
+      objectReference: {fileID: 530543629}
     - target: {fileID: 6660765553727437404, guid: d4c3e40bacb488549aa56fcdd38a982d,
         type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[5].m_MethodName
-      value: set_enabled
+      value: SetActive
       objectReference: {fileID: 0}
     - target: {fileID: 6660765553727437404, guid: d4c3e40bacb488549aa56fcdd38a982d,
         type: 3}
@@ -10634,6 +10641,7 @@ MonoBehaviour:
   title: {fileID: 235990329}
   mainMenu: {fileID: 1664052034}
   newGameConfirmMenu: {fileID: 521263179}
+  removeAdsBtn: {fileID: 530543629}
 --- !u!114 &1754816356 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6660765553727437404, guid: d4c3e40bacb488549aa56fcdd38a982d,

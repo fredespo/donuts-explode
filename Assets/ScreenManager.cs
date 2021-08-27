@@ -15,6 +15,7 @@ public class ScreenManager : MonoBehaviour
     public GameObject title;
     public GameObject gameScreen;
     public TitleMenu titleMenu;
+    public GameObject removeAdsButton;
     public AudioSource music;
     public GameObject gameWonScreen;
     public GameObject settingsScreen;
@@ -33,6 +34,7 @@ public class ScreenManager : MonoBehaviour
         startBtnText.GetComponent<Text>().enabled = true;
         newGameBtnText.GetComponent<Text>().enabled = true;
         title.SetActive(true);
+        removeAdsButton.SetActive(true);
         titleMenu.Init();
         if (!music.isPlaying)
         {

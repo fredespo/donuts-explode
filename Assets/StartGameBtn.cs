@@ -11,6 +11,7 @@ public class StartGameBtn : MonoBehaviour
     public GameObject title;
     public GameObject mainMenu;
     public GameObject newGameConfirmMenu;
+    public GameObject removeAdsBtn;
 
     public void StartGame()
     {
@@ -20,6 +21,7 @@ public class StartGameBtn : MonoBehaviour
             title.SetActive(false);
             mainMenu.SetActive(false);
             newGameConfirmMenu.SetActive(false);
+            removeAdsBtn.SetActive(false);
         });
     }
 }
