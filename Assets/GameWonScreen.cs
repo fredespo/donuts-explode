@@ -8,17 +8,19 @@ public class GameWonScreen : MonoBehaviour
     public GameObject highScoreMsg;
     public InputField nameField;
     public GameObject saveScoreBtn;
-    public GameObject finishBtn;
     public HighScoreTable highScoreTable;
     public DataStorage dataStorage;
+    public LevelLoader levelLoader;
     public Score score;
     public Text scoreText;
     public GameObject mainMenu;
     public GameObject dontSaveConfirmMenu;
+    public GameObject noScoreMenu;
 
     public void Refresh()
     {
         scoreText.text = score.GetScore().ToString();
+        dontSaveConfirmMenu.SetActive(false);
         if (CanSaveHighScore())
         {
             highScoreMsg.SetActive(true);
@@ -26,22 +28,22 @@ public class GameWonScreen : MonoBehaviour
             nameField.gameObject.SetActive(true);
             TouchScreenKeyboard.hideInput = true;
             nameField.text = "";
-            finishBtn.SetActive(false);
             mainMenu.SetActive(true);
-            dontSaveConfirmMenu.SetActive(false);
+            noScoreMenu.SetActive(false);
         }
         else
         {
             highScoreMsg.SetActive(false);
-            saveScoreBtn.SetActive(false);
+            mainMenu.SetActive(false);
+            noScoreMenu.SetActive(true);
             nameField.gameObject.SetActive(false);
-            finishBtn.SetActive(true);
         }
     }
 
     public void OnExit()
     {
         score.Reset();
+        levelLoader.ResetToFirstLevel();
     }
 
     private bool CanSaveHighScore()

@@ -114,10 +114,14 @@ public class LevelLoader : MonoBehaviour
         }
         else
         {
-            currLevelIdx = 0;
-            dataStorage.SaveLevel(0);
             screenManager.ShowGameWonScreen();
         }
+    }
+
+    public void ResetToFirstLevel()
+    {
+        currLevelIdx = 0;
+        dataStorage.SaveLevel(0);
     }
 
     public int GetCurrentLevelIndex()
