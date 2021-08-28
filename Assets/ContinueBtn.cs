@@ -15,6 +15,13 @@ public class ContinueBtn : MonoBehaviour
 
     public void Continue()
     {
+        if(levelLoader.GetCurrentLevelIndex() + 1 >= levelLoader.LevelCount())
+        {
+            //Don't show ad after beating last level
+            levelLoader.LoadNextLevelAndStartAfterDelay(0.1f);
+            return;
+        }
+
         ads.ShowInterstitialAdAndThen((wasAdShown) =>
         {
             levelLoader.LoadNextLevelAndStartAfterDelay(wasAdShown ? 0.7f : 0.1f);
