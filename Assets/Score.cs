@@ -82,7 +82,7 @@ public class Score : MonoBehaviour
     public void Add(int amt)
     {
         float timeToChange = Mathf.Abs(amt) / scoreChangePerSec;
-        if(timeToChange > this.maxTimeToChange)
+        if(amt < 0 && timeToChange > this.maxTimeToChange)
         {
             currScoreChangePerSec = Mathf.Abs(amt) / this.maxTimeToChange;
         }
