@@ -7,6 +7,7 @@ using UnityEngine.Purchasing;
 public class IAP : MonoBehaviour, IStoreListener
 {
     public Ads ads;
+    public DataStorage dataStorage;
 
     private static IStoreController m_StoreController;          // The Unity Purchasing system.
     private static IExtensionProvider m_StoreExtensionProvider; // The store-specific Purchasing subsystems.

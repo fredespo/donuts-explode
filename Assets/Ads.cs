@@ -82,9 +82,20 @@ public class Ads : MonoBehaviour
         Invoke("LoadInterstitialAd", 60);
     }
 
+    public void EnableAds()
+    {
+        this.adsEnabled = true;
+        SaveAdsEnabled();
+    }
+
     public void DisableAds()
     {
         this.adsEnabled = false;
-        storage.SaveAdsEnabled(false);
+        SaveAdsEnabled();
+    }
+
+    private void SaveAdsEnabled()
+    {
+        storage.SaveAdsEnabled(this.adsEnabled);
     }
 }

@@ -1,9 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RemoveAds : MonoBehaviour
 {
+    public Button btn;
+    public Image img;
+    public Text txt;
     private Ads ads;
 
     public void Start()
@@ -18,9 +22,9 @@ public class RemoveAds : MonoBehaviour
 
     public void Update()
     {
-        if(!this.ads.adsEnabled)
-        {
-            gameObject.SetActive(false);
-        }
+        bool enabled = this.ads.adsEnabled || Application.isEditor;
+        this.btn.enabled = enabled;
+        this.img.enabled = enabled;
+        this.txt.enabled = enabled;
     }
 }
