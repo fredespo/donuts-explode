@@ -19,6 +19,7 @@ public class GooglePlayServices : MonoBehaviour
             txt.text = result.ToString();
             signedIn = result == SignInStatus.Success;
         });
+        PlayGamesPlatform.Activate();
     }
 
     public void ShowLeaderboard()
