@@ -2,53 +2,64 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class GameWonScreen : MonoBehaviour
 {
-    public GameObject highScoreMsg;
-    public InputField nameField;
-    public GameObject saveScoreBtn;
-    public HighScoreTable highScoreTable;
-    public DataStorage dataStorage;
-    public LevelLoader levelLoader;
+    public UnityEvent onInit;
+    public UnityEvent onAutoSaveScore;
+    public UnityEvent onFailedAutoSaveScore;
+    public UnityEvent onScoreSaved;
+    public UnityEvent onScoreSaveError;
+    public UnityEvent onExit;
     public Score score;
     public Text scoreText;
-    public GameObject mainMenu;
-    public GameObject dontSaveConfirmMenu;
-    public GameObject noScoreMenu;
+    public GooglePlayServices playServices;
+    private bool autoSavedHighScore;
 
-    public void Refresh()
+    public void Init()
     {
+        onInit.Invoke();
         scoreText.text = score.GetScore().ToString();
-        dontSaveConfirmMenu.SetActive(false);
-        if (CanSaveHighScore())
+        autoSavedHighScore = false;
+        if (playServices.IsSignedIn())
         {
-            highScoreMsg.SetActive(true);
-            saveScoreBtn.SetActive(true);
-            nameField.gameObject.SetActive(true);
-            TouchScreenKeyboard.hideInput = true;
-            nameField.text = "";
-            mainMenu.SetActive(true);
-            noScoreMenu.SetActive(false);
+            playServices.PostHighScoreAndThen(score.GetScore(), (success) =>
+            {
+                if (success)
+                {
+                    this.autoSavedHighScore = true;
+                    onAutoSaveScore.Invoke();
+                }
+                else
+                {
+                    onFailedAutoSaveScore.Invoke();
+                }
+            });
         }
         else
         {
-            highScoreMsg.SetActive(false);
-            mainMenu.SetActive(false);
-            noScoreMenu.SetActive(true);
-            nameField.gameObject.SetActive(false);
+            onFailedAutoSaveScore.Invoke();
         }
+    }
+
+    public void PostScore()
+    {
+        playServices.PostHighScoreAndThen(score.GetScore(), (success) =>
+        {
+            if (success)
+            {
+                onScoreSaved.Invoke();
+            }
+            else
+            {
+                onScoreSaveError.Invoke();
+            }
+        });
     }
 
     public void OnExit()
     {
-        score.Reset();
-        levelLoader.ResetToFirstLevel();
-    }
-
-    private bool CanSaveHighScore()
-    {
-        return highScoreTable.GetSize() < highScoreTable.GetCapacity()
-            || score.GetScore() > dataStorage.GetLowestScore();
+        onExit.Invoke();
     }
 }

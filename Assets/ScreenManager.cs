@@ -70,6 +70,6 @@ public class ScreenManager : MonoBehaviour
         titleScreen.SetActive(false);
         gameScreen.SetActive(false);
         settingsScreen.SetActive(false);
-        gameWonScreen.GetComponent<GameWonScreen>().Refresh();
+        gameWonScreen.GetComponent<GameWonScreen>().Init();
     }
 }

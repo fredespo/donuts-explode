@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using GooglePlayGames;
 using UnityEngine.SocialPlatforms;
 using GooglePlayGames.BasicApi;
+using System;
 
 public class GooglePlayServices : MonoBehaviour
 {
@@ -25,11 +26,24 @@ public class GooglePlayServices : MonoBehaviour
 
     public void ShowLeaderboard()
     {
-        if(!this.IsSignedIn())
+        EnsureSignedIn();
+        Social.ShowLeaderboardUI();
+    }
+
+    private void EnsureSignedIn()
+    {
+        if (!this.IsSignedIn())
         {
             this.SignIn();
         }
-        Social.ShowLeaderboardUI();
+    }
+
+    public void PostHighScoreAndThen(int score, Action<bool> action)
+    {
+        EnsureSignedIn();
+        Social.ReportScore(score, "CgkIx6OD85cGEAIQAQ", (bool success) => {
+            action.Invoke(success);
+        });
     }
 
     public void SignIn()
