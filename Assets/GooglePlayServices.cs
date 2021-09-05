@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using GooglePlayGames;
 using UnityEngine.SocialPlatforms;
@@ -8,6 +9,7 @@ using GooglePlayGames.BasicApi;
 
 public class GooglePlayServices : MonoBehaviour
 {
+    public UnityEvent afterInitialSignInAttempt;
     public Text txt;
     private bool signedIn;
 
@@ -16,6 +18,7 @@ public class GooglePlayServices : MonoBehaviour
     {
         // authenticate user:
         PlayGamesPlatform.Instance.Authenticate(SignInInteractivity.CanPromptOnce, (result) => {
+            afterInitialSignInAttempt.Invoke();
             txt.text = result.ToString();
             signedIn = result == SignInStatus.Success;
         });
