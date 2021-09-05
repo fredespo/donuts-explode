@@ -10,7 +10,6 @@ using GooglePlayGames.BasicApi;
 public class GooglePlayServices : MonoBehaviour
 {
     public UnityEvent afterInitialSignInAttempt;
-    public Text txt;
     private bool signedIn;
 
     // Start is called before the first frame update
@@ -19,7 +18,6 @@ public class GooglePlayServices : MonoBehaviour
         // authenticate user:
         PlayGamesPlatform.Instance.Authenticate(SignInInteractivity.CanPromptOnce, (result) => {
             afterInitialSignInAttempt.Invoke();
-            txt.text = result.ToString();
             signedIn = result == SignInStatus.Success;
         });
         PlayGamesPlatform.Activate();
@@ -33,7 +31,6 @@ public class GooglePlayServices : MonoBehaviour
     public void SignIn()
     {
         PlayGamesPlatform.Instance.Authenticate(SignInInteractivity.CanPromptAlways, (result) => {
-            txt.text = result.ToString();
             signedIn = result == SignInStatus.Success;
         });
     }
