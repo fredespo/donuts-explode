@@ -25,6 +25,10 @@ public class GooglePlayServices : MonoBehaviour
 
     public void ShowLeaderboard()
     {
+        if(!this.IsSignedIn())
+        {
+            this.SignIn();
+        }
         Social.ShowLeaderboardUI();
     }
 
