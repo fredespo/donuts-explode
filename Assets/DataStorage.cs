@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -8,12 +10,31 @@ public class DataStorage : MonoBehaviour
     public bool deleteHighScores = false;
     public HighScoreTable highScoreTable;
     public AudioMixer mixer;
-    private static string KEY_SCORE = "Score";
-    private static string KEY_LEVEL = "Level";
+    private SaveData saveData;
+    private BinaryFormatter formatter;
+    private string saveFilePath;
     private static string KEY_HIGH_SCORES = "HighScores";
     private static string KEY_VOLUME_MUSIC = "MusicVolume";
     private static string KEY_VOLUME_SOUNDFX = "SoundFxVolume";
-    private static string KEY_ADS_ENABLED = "AdsEnabled";
+
+    public void Awake()
+    {
+        this.saveFilePath = Application.persistentDataPath + "/save.dat";
+        this.formatter = new BinaryFormatter();
+        this.saveData = new SaveData();
+        LoadSaveData();
+    }
+
+    private void LoadSaveData()
+    {
+        if(File.Exists(this.saveFilePath))
+        {
+            using (FileStream saveFile = new FileStream(this.saveFilePath, FileMode.Open))
+            {
+                this.saveData = this.formatter.Deserialize(saveFile) as SaveData;
+            }
+        }
+    }
 
     public void Start()
     {
@@ -26,36 +47,32 @@ public class DataStorage : MonoBehaviour
 
     public int GetScore()
     {
-        if (PlayerPrefs.HasKey(KEY_SCORE))
-        {
-            return PlayerPrefs.GetInt(KEY_SCORE);
-        }
-        else
-        {
-            return 0;
-        }
+        return this.saveData.score;
     }
 
     public void SaveScore(int score)
     {
-        PlayerPrefs.SetInt(KEY_SCORE, score);
+        this.saveData.score = score;
+        Save();
+    }
+
+    private void Save()
+    {
+        using (FileStream saveFile = new FileStream(this.saveFilePath, FileMode.Create))
+        {
+            this.formatter.Serialize(saveFile, this.saveData);
+        }
     }
 
     public int GetLevel()
     {
-        if (PlayerPrefs.HasKey(KEY_LEVEL))
-        {
-            return PlayerPrefs.GetInt(KEY_LEVEL);
-        }
-        else
-        {
-            return 0;
-        }
+        return this.saveData.level;
     }
 
     public void SaveLevel(int levelIndex)
     {
-        PlayerPrefs.SetInt(KEY_LEVEL, levelIndex);
+        this.saveData.level = levelIndex;
+        Save();
     }
 
     public List<HighScoreTable.Entry> GetHighScoreEntries()
@@ -183,18 +200,12 @@ public class DataStorage : MonoBehaviour
 
     public void SaveAdsEnabled(bool adsEnabled)
     {
-        PlayerPrefs.SetString(KEY_ADS_ENABLED, adsEnabled.ToString());
+        this.saveData.adsEnabled = adsEnabled;
+        Save();
     }
 
-    public bool GetAdsEnabledOrDefault(bool defaultVal)
+    public bool GetAdsEnabled()
     {
-        if (PlayerPrefs.HasKey(KEY_ADS_ENABLED))
-        {
-            return bool.Parse(PlayerPrefs.GetString(KEY_ADS_ENABLED));
-        }
-        else
-        {
-            return defaultVal;
-        }
+        return this.saveData.adsEnabled;
     }
 }

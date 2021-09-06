@@ -22,7 +22,7 @@ public class Ads : MonoBehaviour
     void Start()
     {
         this.storage = GameObject.FindWithTag("DataStorage").GetComponent<DataStorage>();
-        this.adsEnabled = storage.GetAdsEnabledOrDefault(true);
+        this.adsEnabled = storage.GetAdsEnabled();
         MobileAds.Initialize(initStatus => { });
         LoadInterstitialAd();
     }
