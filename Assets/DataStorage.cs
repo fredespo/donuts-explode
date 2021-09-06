@@ -20,6 +20,7 @@ public class DataStorage : MonoBehaviour
     public void Awake()
     {
         this.saveFilePath = Application.persistentDataPath + "/save.dat";
+        Debug.Log(this.saveFilePath);
         this.formatter = new BinaryFormatter();
         this.saveData = new SaveData();
         LoadSaveData();
@@ -139,7 +140,19 @@ public class DataStorage : MonoBehaviour
     {
         if (PlayerPrefs.HasKey(KEY_VOLUME_MUSIC))
         {
-            return int.Parse(PlayerPrefs.GetString(KEY_VOLUME_MUSIC));
+            int vol = int.Parse(PlayerPrefs.GetString(KEY_VOLUME_MUSIC));
+            if (vol < 0)
+            {
+                return 0;
+            }
+            else if (vol > 100)
+            {
+                return 100;
+            }
+            else
+            {
+                return vol;
+            }
         }
         else
         {
@@ -156,7 +169,19 @@ public class DataStorage : MonoBehaviour
     {
         if (PlayerPrefs.HasKey(KEY_VOLUME_SOUNDFX))
         {
-            return int.Parse(PlayerPrefs.GetString(KEY_VOLUME_SOUNDFX));
+            int vol = int.Parse(PlayerPrefs.GetString(KEY_VOLUME_SOUNDFX));
+            if(vol < 0)
+            {
+                return 0;
+            }
+            else if (vol > 100)
+            {
+                return 100;
+            }
+            else
+            {
+                return vol;
+            }
         }
         else
         {
