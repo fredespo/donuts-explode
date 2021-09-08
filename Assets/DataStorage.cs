@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -13,6 +14,7 @@ public class DataStorage : MonoBehaviour
     private SaveData saveData;
     private BinaryFormatter formatter;
     private string saveFilePath;
+    private string checksumFilePath;
     private static string KEY_HIGH_SCORES = "HighScores";
     private static string KEY_VOLUME_MUSIC = "MusicVolume";
     private static string KEY_VOLUME_SOUNDFX = "SoundFxVolume";
@@ -20,6 +22,7 @@ public class DataStorage : MonoBehaviour
     public void Awake()
     {
         this.saveFilePath = Application.persistentDataPath + "/save.dat";
+        this.checksumFilePath = Application.persistentDataPath + "/checksum.dat";
         Debug.Log(this.saveFilePath);
         this.formatter = new BinaryFormatter();
         this.saveData = new SaveData();
@@ -32,8 +35,31 @@ public class DataStorage : MonoBehaviour
         {
             using (FileStream saveFile = new FileStream(this.saveFilePath, FileMode.Open))
             {
-                this.saveData = this.formatter.Deserialize(saveFile) as SaveData;
+                SaveData saveData = this.formatter.Deserialize(saveFile) as SaveData;
+                if (IsSaveDataValid(saveData))
+                {
+                    this.saveData = saveData;
+                }
+                else
+                {
+                    Debug.Log("Invalid checksum!");
+                }
             }
+        }
+    }
+
+    private bool IsSaveDataValid(SaveData saveData)
+    {
+        string checksum = calcChecksum(ObjectToByteArray(saveData));
+        return File.Exists(this.checksumFilePath) && File.ReadAllText(this.checksumFilePath).Equals(checksum);
+    }
+
+    private byte[] ObjectToByteArray(object obj)
+    {
+        using (var stream = new MemoryStream())
+        {
+            this.formatter.Serialize(stream, obj);
+            return stream.ToArray();
         }
     }
 
@@ -63,6 +89,8 @@ public class DataStorage : MonoBehaviour
         {
             this.formatter.Serialize(saveFile, this.saveData);
         }
+        string checksum = calcChecksum(File.ReadAllBytes(this.saveFilePath));
+        File.WriteAllText(this.checksumFilePath, checksum);
     }
 
     public int GetLevel()
@@ -232,5 +260,18 @@ public class DataStorage : MonoBehaviour
     public bool GetAdsEnabled()
     {
         return this.saveData.adsEnabled;
+    }
+
+    private string calcChecksum(byte[] data)
+    {
+        SHA256Managed crypt = new SHA256Managed();
+        string checksum = string.Empty;
+        byte[] hash = crypt.ComputeHash(data);
+        foreach (byte bit in hash)
+        {
+            checksum += bit.ToString("x2");
+        }
+        Debug.Log("checksum = " + checksum);
+        return checksum;
     }
 }
