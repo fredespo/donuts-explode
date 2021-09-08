@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Security.Cryptography;
+using System.Text;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -15,6 +16,7 @@ public class DataStorage : MonoBehaviour
     private BinaryFormatter formatter;
     private string saveFilePath;
     private string checksumFilePath;
+    private byte[] pepper;
     private static string KEY_HIGH_SCORES = "HighScores";
     private static string KEY_VOLUME_MUSIC = "MusicVolume";
     private static string KEY_VOLUME_SOUNDFX = "SoundFxVolume";
@@ -23,6 +25,7 @@ public class DataStorage : MonoBehaviour
     {
         this.saveFilePath = Application.persistentDataPath + "/save.dat";
         this.checksumFilePath = Application.persistentDataPath + "/checksum.dat";
+        this.pepper = Encoding.UTF8.GetBytes("j=2kE9-/Q7HTM-:U!MqygFAzkYcZvw");
         Debug.Log(this.saveFilePath);
         this.formatter = new BinaryFormatter();
         this.saveData = new SaveData();
@@ -50,7 +53,7 @@ public class DataStorage : MonoBehaviour
 
     private bool IsSaveDataValid(SaveData saveData)
     {
-        string checksum = calcChecksum(ObjectToByteArray(saveData));
+        string checksum = CalcChecksum(AddPepper(ObjectToByteArray(saveData)));
         return File.Exists(this.checksumFilePath) && File.ReadAllText(this.checksumFilePath).Equals(checksum);
     }
 
@@ -61,6 +64,29 @@ public class DataStorage : MonoBehaviour
             this.formatter.Serialize(stream, obj);
             return stream.ToArray();
         }
+    }
+
+    private byte[] AddPepper(byte[] data)
+    {
+        return Concat(data, this.pepper);
+    }
+
+    private T[] Concat<T>(T[] first, T[] second)
+    {
+        if (first == null)
+        {
+            return second;
+        }
+        if (second == null)
+        {
+            return first;
+        }
+
+        T[] result = new T[first.Length + second.Length];
+        first.CopyTo(result, 0);
+        second.CopyTo(result, first.Length);
+
+        return result;
     }
 
     public void Start()
@@ -89,7 +115,7 @@ public class DataStorage : MonoBehaviour
         {
             this.formatter.Serialize(saveFile, this.saveData);
         }
-        string checksum = calcChecksum(File.ReadAllBytes(this.saveFilePath));
+        string checksum = CalcChecksum(AddPepper(File.ReadAllBytes(this.saveFilePath)));
         File.WriteAllText(this.checksumFilePath, checksum);
     }
 
@@ -262,7 +288,7 @@ public class DataStorage : MonoBehaviour
         return this.saveData.adsEnabled;
     }
 
-    private string calcChecksum(byte[] data)
+    private string CalcChecksum(byte[] data)
     {
         SHA256Managed crypt = new SHA256Managed();
         string checksum = string.Empty;
