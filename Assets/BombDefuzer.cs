@@ -70,6 +70,7 @@ public class BombDefuzer : MonoBehaviour
             bombHighlightAnim.enabled = true;
             soundEffect.Play(0);
             dataStorage.SaveLevel(currLevel);
+            dataStorage.Save();
             defuzed = true;
         }
     }

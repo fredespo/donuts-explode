@@ -106,10 +106,9 @@ public class DataStorage : MonoBehaviour
     public void SaveScore(int score)
     {
         this.saveData.score = score;
-        Save();
     }
 
-    private void Save()
+    public void Save()
     {
         using (FileStream saveFile = new FileStream(this.saveFilePath, FileMode.Create))
         {
@@ -127,7 +126,6 @@ public class DataStorage : MonoBehaviour
     public void SaveLevel(int levelIndex)
     {
         this.saveData.level = levelIndex;
-        Save();
     }
 
     public List<HighScoreTable.Entry> GetHighScoreEntries()
@@ -280,7 +278,6 @@ public class DataStorage : MonoBehaviour
     public void SaveAdsEnabled(bool adsEnabled)
     {
         this.saveData.adsEnabled = adsEnabled;
-        Save();
     }
 
     public bool GetAdsEnabled()
