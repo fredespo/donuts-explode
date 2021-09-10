@@ -26,30 +26,49 @@ public class GooglePlayServices : MonoBehaviour
 
     public void ShowLeaderboard()
     {
-        EnsureSignedIn();
-        Social.ShowLeaderboardUI();
+        EnsureSignedIn(() =>
+        {
+            if(this.signedIn)
+            {
+                Social.ShowLeaderboardUI();
+            }
+        });
     }
 
-    private void EnsureSignedIn()
+    private void EnsureSignedIn(Action andThen)
     {
         if (!this.IsSignedIn())
         {
-            this.SignIn();
+            this.SignIn(andThen);
+        }
+        else
+        {
+            andThen.Invoke();
         }
     }
 
     public void PostHighScoreAndThen(int score, Action<bool> action)
     {
-        EnsureSignedIn();
-        Social.ReportScore(score, "CgkIx6OD85cGEAIQAQ", (bool success) => {
-            action.Invoke(success);
+        EnsureSignedIn(() =>
+        {
+            if(this.signedIn)
+            {
+                Social.ReportScore(score, "CgkIx6OD85cGEAIQAQ", (bool success) => {
+                    action.Invoke(success);
+                });
+            }
+            else
+            {
+                action.Invoke(false);
+            }
         });
     }
 
-    public void SignIn()
+    public void SignIn(Action andThen)
     {
         PlayGamesPlatform.Instance.Authenticate(SignInInteractivity.CanPromptAlways, (result) => {
             signedIn = result == SignInStatus.Success;
+            andThen.Invoke();
         });
     }
 

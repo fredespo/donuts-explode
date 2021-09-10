@@ -22,7 +22,7 @@ public class GooglePlayServicesSignInOut : MonoBehaviour
         }
         else
         {
-            googlePlayServices.SignIn();
+            googlePlayServices.SignIn(() => { });
         }
     }
 
