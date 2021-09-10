@@ -5,26 +5,27 @@ using UnityEngine;
 
 public class Rotator : MonoBehaviour
 {
-    public float degPerSec = 50;
-    public float acceleration = 0.2f;
     public RotationDir direction = RotationDir.Clockwise;
     public enum RotationDir
     {
         Clockwise,
         Counterclockwise
     }
+    private textTimer timer;
+
+    void Start()
+    {
+        this.timer = GameObject.FindWithTag("BombTimer").GetComponent<textTimer>();
+    }
 
     void Update()
     {
+        float min = 140f;
+        float max = 400f;
+        float elapsedRatio = this.timer.GetTimeElapsed() / this.timer.GetStartSeconds();
+        float degPerSec = min + ((max - min) * elapsedRatio);
+        Debug.Log(degPerSec);
         transform.Rotate(0, 0, degPerSec * Time.deltaTime * (direction == RotationDir.Clockwise ? -1 : 1));
-    }
-
-    void FixedUpdate()
-    {
-        if (this.degPerSec < 230f)
-        {
-            this.degPerSec += acceleration;
-        }
     }
 
     public void Reverse()

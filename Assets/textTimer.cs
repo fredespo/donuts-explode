@@ -32,7 +32,6 @@ public class textTimer : MonoBehaviour
     {
         text = GetComponent<Text>();
         RefreshText();
-        startSeconds = seconds;
     }
 
     public void Init(Detonator detonator, BombDefuzer defuzer)
@@ -169,19 +168,30 @@ public class textTimer : MonoBehaviour
 
     private void AdjustMusic()
     {
-        float timeElapsed = startSeconds - seconds;
+        float timeElapsed = GetTimeElapsed();
         currCurveVal = musicPitchCurve.Evaluate(timeElapsed / startSeconds);
         music.pitch = this.slowMo ? this.slowMoMusicPitch : minMusicPitch + ((maxMusicPitch - minMusicPitch) * currCurveVal);
     }
 
+    public float GetTimeElapsed()
+    {
+        return startSeconds - seconds;
+    }
+
+    public float GetStartSeconds()
+    {
+        return this.startSeconds;
+    }
+
     public float GetSecondsLeft()
     {
-        return seconds;
+        return seconds - bombDetonationDelay;
     }
 
     public void setTime(float seconds)
     {
         this.seconds = seconds;
+        this.startSeconds = seconds;
         RefreshText();
     }
 }
