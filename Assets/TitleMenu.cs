@@ -45,6 +45,7 @@ public class TitleMenu : MonoBehaviour
     {
         dataStorage.SaveLevel(0);
         dataStorage.SaveScore(0);
+        dataStorage.Save();
     }
 
     public void StartGameAfterDelay(float loadDelaySec)

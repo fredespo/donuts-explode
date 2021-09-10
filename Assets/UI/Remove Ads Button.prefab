@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5057343903013985605}
   - component: {fileID: 7334608798173231719}
   - component: {fileID: 5919207438468392357}
+  - component: {fileID: 8139876255200905811}
   m_Layer: 5
   m_Name: Remove Ads Button
   m_TagString: Untagged
@@ -138,7 +139,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 7334608798173231719}
           m_MethodName: BuyNoAds
           m_Mode: 1
           m_Arguments:
@@ -183,6 +184,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8139876255200905811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5057343903013985594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0df43b3c92e3e5046b3b69ff1cbf4095, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleEffect: 0.95
+  durationFrames: 3
 --- !u!1 &5057343903112370934
 GameObject:
   m_ObjectHideFlags: 0
