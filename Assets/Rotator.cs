@@ -24,7 +24,6 @@ public class Rotator : MonoBehaviour
         float max = 400f;
         float elapsedRatio = this.timer.GetTimeElapsed() / this.timer.GetStartSeconds();
         float degPerSec = min + ((max - min) * elapsedRatio);
-        Debug.Log(degPerSec);
         transform.Rotate(0, 0, degPerSec * Time.deltaTime * (direction == RotationDir.Clockwise ? -1 : 1));
     }
 
