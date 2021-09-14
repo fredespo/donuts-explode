@@ -20,8 +20,8 @@ public class Rotator : MonoBehaviour
 
     void Update()
     {
-        float min = 140f;
-        float max = 400f;
+        float min = 120f;
+        float max = 275f;
         float elapsedRatio = this.timer.GetTimeElapsed() / this.timer.GetStartSeconds();
         float degPerSec = min + ((max - min) * elapsedRatio);
         transform.Rotate(0, 0, degPerSec * Time.deltaTime * (direction == RotationDir.Clockwise ? -1 : 1));
