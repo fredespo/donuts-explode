@@ -26,7 +26,6 @@ public class DataStorage : MonoBehaviour
         this.saveFilePath = Application.persistentDataPath + "/save.dat";
         this.checksumFilePath = Application.persistentDataPath + "/checksum.dat";
         this.pepper = Encoding.UTF8.GetBytes("j=2kE9-/Q7HTM-:U!MqygFAzkYcZvw");
-        Debug.Log(this.saveFilePath);
         this.formatter = new BinaryFormatter();
         this.saveData = new SaveData();
         LoadSaveData();
@@ -294,7 +293,6 @@ public class DataStorage : MonoBehaviour
         {
             checksum += bit.ToString("x2");
         }
-        Debug.Log("checksum = " + checksum);
         return checksum;
     }
 }
