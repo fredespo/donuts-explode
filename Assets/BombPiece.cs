@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class BombPiece : MonoBehaviour
 {
@@ -13,7 +14,8 @@ public class BombPiece : MonoBehaviour
     private bool reflectingToBomb = false;
     private GameObject bomb;
     private Rigidbody2D rigibody;
-    private AudioSource soundEffect;
+    private AudioSource hitBombSoundEffect;
+    private AudioSource reflectSoundEffect;
 
     void Awake()
     {
@@ -24,7 +26,8 @@ public class BombPiece : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         this.rigibody = GetComponent<Rigidbody2D>();
-        this.soundEffect = GetComponent<AudioSource>();
+        this.hitBombSoundEffect = GetComponent<AudioSource>();
+        this.reflectSoundEffect = GameObject.FindWithTag("PieceReflectSoundEffect").GetComponent<AudioSource>();
     }
 
     void OnCollisionEnter2D(Collision2D col)
@@ -32,8 +35,8 @@ public class BombPiece : MonoBehaviour
         if(!fading && col.gameObject.CompareTag("bomb") && !caughtInMagnet)
         {
             fading = true;
-            this.soundEffect.pitch = Random.Range(0.25f, 0.55f);
-            this.soundEffect.Play(0);
+            this.hitBombSoundEffect.pitch = Random.Range(0.25f, 0.55f);
+            this.hitBombSoundEffect.Play(0);
             var impulse = (Random.Range(100f, 300f) * Mathf.Deg2Rad) * this.rigibody.inertia;
             this.rigibody.AddTorque(impulse, ForceMode2D.Impulse);
         }
@@ -90,12 +93,24 @@ public class BombPiece : MonoBehaviour
         color.a = 1.0f;
         spriteRenderer.color = color;
         caughtInMagnet = true;
-        this.soundEffect.Stop();
+        this.hitBombSoundEffect.Stop();
     }
 
     public void ReflectToBomb()
     {
+        if (!this.reflectingToBomb)
+        {
+            PlayBounceSoundEffect();
+        }
         this.reflectingToBomb = true;
+    }
+
+    private void PlayBounceSoundEffect()
+    {
+        float xPos = gameObject.transform.position.x;
+        this.reflectSoundEffect.panStereo = xPos < 25 ? -1 : 1;
+        this.reflectSoundEffect.pitch = Random.Range(1.5f, 2.0f);
+        this.reflectSoundEffect.Play();
     }
 
     public bool ShouldReflect()
