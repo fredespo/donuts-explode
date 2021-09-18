@@ -10,18 +10,14 @@ public class Score : MonoBehaviour
     public int scoreChangePerSec = 500;
     private int currScoreChangePerSec;
     public int maxTimeToChange = 4;
+    public AudioSource pointGainedSound;
+    public AudioSource pointLostSound;
     public DataStorage dataStorage;
     private float dispScore;
-    private AudioSource soundEffect;
-    private float delayBetweenSoundEffects = 0.1f;
-    private float origVolume;
-    private float origPitch;
 
     void Start()
     {
         text = GetComponent<Text>();
-        soundEffect = GetComponent<AudioSource>();
-        origPitch = soundEffect.pitch;
         score = dataStorage.GetScore();
         dispScore = score;
         currScoreChangePerSec = scoreChangePerSec;
@@ -40,23 +36,33 @@ public class Score : MonoBehaviour
             else if(dispScore < score)
             {
                 dispScore += scoreChange;
-                soundEffect.pitch = origPitch;
+                PlayOnLoop(this.pointGainedSound);
             }
             else if(dispScore > score)
             {
                 dispScore -= scoreChange;
-                soundEffect.pitch = origPitch - 0.2f;
+                PlayOnLoop(this.pointLostSound);
             }
             RefreshText();
-
-            if(!soundEffect.isPlaying)
-            {
-                soundEffect.Play(0);
-            }
         }
         else
         {
-            soundEffect.Stop();
+            StopMakingSoundEffects();
+        }
+    }
+
+    private void StopMakingSoundEffects()
+    {
+        this.pointGainedSound.loop = false;
+        this.pointLostSound.loop = false;
+    }
+
+    private void PlayOnLoop(AudioSource audio)
+    {
+        if(!audio.isPlaying)
+        {
+            audio.loop = true;
+            audio.Play();
         }
     }
 

@@ -8,6 +8,7 @@ public class VolumeSlider : MonoBehaviour
 {
     public AudioMixer mixer;
     public string mixerParam;
+    public float boost = 0f;
     private Slider slider;
 
     void Start()
@@ -23,6 +24,6 @@ public class VolumeSlider : MonoBehaviour
 
     private void SetVolume(float val)
     {
-        mixer.SetFloat(mixerParam, Mathf.Log10(val) * 20);
+        mixer.SetFloat(mixerParam, Mathf.Log10(val) * 20 + this.boost);
     }
 }

@@ -68,6 +68,7 @@ public class BombDefuzer : MonoBehaviour
             GameObject.FindGameObjectWithTag("PieceShooter").SetActive(false);
             bombHighlightAnim.enabled = false;
             bombHighlightAnim.enabled = true;
+            soundEffect.volume = 0.8f;
             soundEffect.Play(0);
             dataStorage.SaveLevel(currLevel);
             dataStorage.Save();
