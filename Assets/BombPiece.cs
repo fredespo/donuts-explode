@@ -108,7 +108,7 @@ public class BombPiece : MonoBehaviour
     private void PlayBounceSoundEffect()
     {
         float xPos = gameObject.transform.position.x;
-        //this.reflectSoundEffect.panStereo = xPos < 25 ? -1 : 1;
+        this.reflectSoundEffect.panStereo = xPos < 25 ? -1 : 1;
         this.reflectSoundEffect.pitch = Random.Range(2.0f, 2.5f);
         this.reflectSoundEffect.Play();
     }
