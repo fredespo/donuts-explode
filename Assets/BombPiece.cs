@@ -35,7 +35,7 @@ public class BombPiece : MonoBehaviour
         if(!fading && col.gameObject.CompareTag("bomb") && !caughtInMagnet)
         {
             fading = true;
-            this.hitBombSoundEffect.pitch = Random.Range(0.3f, 0.4f);
+            this.hitBombSoundEffect.pitch = Random.Range(0.25f, 0.4f);
             this.hitBombSoundEffect.Play(0);
             var impulse = (Random.Range(100f, 300f) * Mathf.Deg2Rad) * this.rigibody.inertia;
             this.rigibody.AddTorque(impulse, ForceMode2D.Impulse);
