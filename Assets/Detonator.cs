@@ -38,24 +38,15 @@ public class Detonator : MonoBehaviour
         camAnim.SetBool("slowmo", false);
         if (score != null && score.GetScore() > 0)
         {
-            float scoreStartX = score.GetPos().x;
-            float scoreStartY = score.GetPos().y;
-            int scoreStartFontSize = score.GetFontSize();
-            score.StartMoveToHorizontalCenterCoroutineAfterDelay(1.0f, 1.5f);
-            score.MoveYPos(-320f, 1.0f, 1.5f);
-            score.TweenFontSize(120, 1.0f, 1.5f);
-            score.SetSnapToCenter(true, 2.5f);
             float timeToChangeScore = Mathf.Min(score.maxTimeToChange, (float)score.GetScore() / 2 / score.scoreChangePerSec);
+            SetupScoreAnimations(1.0f, 1.5f, timeToChangeScore, 0.5f);
             float scoreAddDelay = 3.0f;
             score.AddAfterDelay(-1 * (int)Mathf.Ceil((float)score.GetScore() / 2), scoreAddDelay);
             if (gameOverUI != null)
             {
                 gameOverUI.ShowAfterDelay(timeToChangeScore + scoreAddDelay);
             }
-            score.SetSnapToCenter(false, timeToChangeScore + scoreAddDelay);
-            score.MoveYPos(scoreStartY, 1.0f, timeToChangeScore + scoreAddDelay);
-            score.MoveXPos(scoreStartX, 1.0f, timeToChangeScore + scoreAddDelay);
-            score.TweenFontSize(scoreStartFontSize, 1.0f, timeToChangeScore + scoreAddDelay);
+            
         }
         else if (gameOverUI != null) gameOverUI.ShowAfterDelay(1.0f);
 
@@ -81,6 +72,24 @@ public class Detonator : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
+    }
+
+    private void SetupScoreAnimations(float duration, float initialDelay, float timeToChangeScore, float delayBeforeGoingBack)
+    {
+        float scoreStartX = score.GetPos().x;
+        float scoreStartY = score.GetPos().y;
+        int scoreStartFontSize = score.GetFontSize();
+        score.StartMoveToHorizontalCenterCoroutineAfterDelay(duration, initialDelay);
+        score.MoveYPos(-320f, duration, initialDelay);
+        score.TweenFontSize(120, duration, initialDelay);
+        score.SetSnapToCenter(true, initialDelay + duration);
+
+        float totalTime = initialDelay + duration + timeToChangeScore + delayBeforeGoingBack + duration;
+        score.SetSnapToCenter(false, totalTime);
+        float startGoingBackTime = initialDelay + duration + timeToChangeScore + delayBeforeGoingBack;
+        score.MoveYPos(scoreStartY, duration, startGoingBackTime);
+        score.MoveXPos(scoreStartX, duration, startGoingBackTime);
+        score.TweenFontSize(scoreStartFontSize, duration, startGoingBackTime);
     }
 
     private void BlowAway(Rigidbody2D rb)
