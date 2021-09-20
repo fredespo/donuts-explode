@@ -38,15 +38,7 @@ public class Detonator : MonoBehaviour
         camAnim.SetBool("slowmo", false);
         if (score != null && score.GetScore() > 0)
         {
-            float timeToChangeScore = Mathf.Min(score.maxTimeToChange, (float)score.GetScore() / 2 / score.scoreChangePerSec);
-            SetupScoreAnimations(1.0f, 1.5f, timeToChangeScore, 0.5f);
-            float scoreAddDelay = 3.0f;
-            score.AddAfterDelay(-1 * (int)Mathf.Ceil((float)score.GetScore() / 2), scoreAddDelay);
-            if (gameOverUI != null)
-            {
-                gameOverUI.ShowAfterDelay(timeToChangeScore + scoreAddDelay);
-            }
-            
+            DeductPoints(1.3f, 0.8f, 0.9f);   
         }
         else if (gameOverUI != null) gameOverUI.ShowAfterDelay(1.0f);
 
@@ -74,7 +66,7 @@ public class Detonator : MonoBehaviour
         }
     }
 
-    private void SetupScoreAnimations(float duration, float initialDelay, float timeToChangeScore, float delayBeforeGoingBack)
+    private void DeductPoints(float initialDelay, float duration, float delayBeforeGoingBack)
     {
         float scoreStartX = score.GetPos().x;
         float scoreStartY = score.GetPos().y;
@@ -84,12 +76,19 @@ public class Detonator : MonoBehaviour
         score.TweenFontSize(120, duration, initialDelay);
         score.SetSnapToCenter(true, initialDelay + duration);
 
+        float timeToChangeScore = Mathf.Min(score.maxTimeToChange, (float)score.GetScore() / 2 / score.scoreChangePerSec);
         float totalTime = initialDelay + duration + timeToChangeScore + delayBeforeGoingBack + duration;
-        score.SetSnapToCenter(false, totalTime);
         float startGoingBackTime = initialDelay + duration + timeToChangeScore + delayBeforeGoingBack;
+        score.SetSnapToCenter(false, startGoingBackTime);
         score.MoveYPos(scoreStartY, duration, startGoingBackTime);
         score.MoveXPos(scoreStartX, duration, startGoingBackTime);
         score.TweenFontSize(scoreStartFontSize, duration, startGoingBackTime);
+
+        score.AddAfterDelay(-1 * (int)Mathf.Ceil((float)score.GetScore() / 2), initialDelay + duration);
+        if (gameOverUI != null)
+        {
+            gameOverUI.ShowAfterDelay(totalTime);
+        }
     }
 
     private void BlowAway(Rigidbody2D rb)
