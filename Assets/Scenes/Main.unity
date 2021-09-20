@@ -3378,7 +3378,6 @@ GameObject:
   - component: {fileID: 487074910}
   - component: {fileID: 487074909}
   - component: {fileID: 487074908}
-  - component: {fileID: 487074907}
   - component: {fileID: 487074912}
   m_Layer: 5
   m_Name: SaveHighScoreButton
@@ -3407,22 +3406,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -432.4}
   m_SizeDelta: {x: 315, y: 70.20001}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &487074907
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 487074905}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 150371aca1b3c4345aacebdf6dc90381, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nameField: {fileID: 0}
-  buttonImage: {fileID: 487074910}
-  score: {fileID: 945567741}
-  dataStorage: {fileID: 1175133700}
 --- !u!114 &487074908
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5867,9 +5850,9 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 813761588}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 600d75abe545fc64d9244641c45f736c, type: 2}
+  m_Controller: {fileID: 9100000, guid: 62e6f28ad1b6aa948b3195d25bf3ce93, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -7319,6 +7302,7 @@ MonoBehaviour:
   pointGainedSound: {fileID: 812431822}
   pointLostSound: {fileID: 411006553}
   dataStorage: {fileID: 1175133700}
+  dispScore: 0
 --- !u!1 &967685317
 GameObject:
   m_ObjectHideFlags: 0
