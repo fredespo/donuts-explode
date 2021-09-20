@@ -8,6 +8,8 @@ public class Score : MonoBehaviour
     private Text text;
     public int score;
     public int scoreChangePerSec = 500;
+    public Vector2 textCenter;
+    private RectTransform pos;
     private int currScoreChangePerSec;
     public int maxTimeToChange = 4;
     public AudioSource pointGainedSound;
@@ -21,12 +23,13 @@ public class Score : MonoBehaviour
         score = dataStorage.GetScore();
         dispScore = score;
         currScoreChangePerSec = scoreChangePerSec;
+        pos = GetComponent<RectTransform>();
         RefreshText();
     }
 
     void Update()
     {
-        if(dispScore != score)
+        if (dispScore != score)
         {
             float scoreChange = Time.deltaTime * currScoreChangePerSec;
             if (Mathf.Abs(dispScore - score) < scoreChange)
@@ -49,6 +52,64 @@ public class Score : MonoBehaviour
         {
             StopMakingSoundEffects();
         }
+    }
+
+    public void StartMoveToHorizontalCenterCoroutineAfterDelay(float moveDurationSec, float delaySec = 0)
+    {
+        StartCoroutine(StartMoveToHorizontalCenterCoroutine(moveDurationSec, delaySec));
+    }
+
+    public IEnumerator StartMoveToHorizontalCenterCoroutine(float moveDurationSec, float delaySec)
+    {
+        yield return new WaitForSeconds(delaySec);
+        StartCoroutine(StartMoveToHorizontalCenter(moveDurationSec));
+    }
+
+    private IEnumerator StartMoveToHorizontalCenter(float durationSec)
+    {
+        float currentTime = 0;
+        float startX = this.pos.anchoredPosition.x;
+
+        while (currentTime < durationSec)
+        {
+            currentTime += Time.deltaTime;
+            float targetX = Mathf.Lerp(startX, CalcXPosNeededToCenter(), currentTime / durationSec);
+            this.pos.anchoredPosition = new Vector2(targetX, this.pos.anchoredPosition.y);
+            yield return null;
+        }
+        yield break;
+    }
+
+    public void MoveYPos(float targetY, float moveDurationSec, float delaySec)
+    {
+        StartCoroutine(StartMoveYPosCoroutine(targetY, moveDurationSec, delaySec));
+    }
+
+    private IEnumerator StartMoveYPosCoroutine(float targetY, float moveDurationSec, float delaySec)
+    {
+        yield return new WaitForSeconds(delaySec);
+        StartCoroutine(StartMoveYPos(targetY, moveDurationSec));
+    }
+
+    private IEnumerator StartMoveYPos(float targetY, float durationSec)
+    {
+        float currentTime = 0;
+        float startY = this.pos.anchoredPosition.y;
+
+        while (currentTime < durationSec)
+        {
+            currentTime += Time.deltaTime;
+            float newY = Mathf.Lerp(startY, targetY, currentTime / durationSec);
+            this.pos.anchoredPosition = new Vector2(this.pos.anchoredPosition.x, newY);
+            yield return null;
+        }
+        yield break;
+    }
+
+    private float CalcXPosNeededToCenter()
+    {
+        float centerX = this.pos.anchoredPosition.x - (this.text.preferredWidth / 2);
+        return this.pos.anchoredPosition.x - (centerX + 400);
     }
 
     private void StopMakingSoundEffects()

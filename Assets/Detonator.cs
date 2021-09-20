@@ -38,8 +38,10 @@ public class Detonator : MonoBehaviour
         camAnim.SetBool("slowmo", false);
         if (score != null && score.GetScore() > 0)
         {
-            float scoreAddDelay = 1.5f;
+            score.StartMoveToHorizontalCenterCoroutineAfterDelay(1.0f, 1.5f);
+            score.MoveYPos(-320f, 1.0f, 1.5f);
             float timeToChangeScore = Mathf.Min(score.maxTimeToChange, (float)score.GetScore() / 2 / score.scoreChangePerSec);
+            float scoreAddDelay = 3.0f;
             score.AddAfterDelay(-1 * (int)Mathf.Ceil((float)score.GetScore() / 2), scoreAddDelay);
             if (gameOverUI != null)
             {
