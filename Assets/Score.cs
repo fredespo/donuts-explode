@@ -15,7 +15,8 @@ public class Score : MonoBehaviour
     public AudioSource pointGainedSound;
     public AudioSource pointLostSound;
     public DataStorage dataStorage;
-    private float dispScore;
+    public float dispScore;
+    private bool snapToCenter;
 
     void Start()
     {
@@ -52,6 +53,22 @@ public class Score : MonoBehaviour
         {
             StopMakingSoundEffects();
         }
+
+        if(this.snapToCenter)
+        {
+            this.pos.anchoredPosition = new Vector2(CalcXPosNeededToCenter(), this.pos.anchoredPosition.y);
+        }
+    }
+
+    public void SetSnapToCenter(bool value, float delay = 0)
+    {
+        StartCoroutine(SetSnapToCenterCoroutine(value, delay));
+    }
+
+    private IEnumerator SetSnapToCenterCoroutine(bool value, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        this.snapToCenter = value;
     }
 
     public void StartMoveToHorizontalCenterCoroutineAfterDelay(float moveDurationSec, float delaySec = 0)
@@ -110,6 +127,32 @@ public class Score : MonoBehaviour
     {
         float centerX = this.pos.anchoredPosition.x - (this.text.preferredWidth / 2);
         return this.pos.anchoredPosition.x - (centerX + 400);
+    }
+
+    public void TweenFontSize(int targetSize, float duration, float delay)
+    {
+        StartCoroutine(StartTweenFontSizeCoroutine(targetSize, duration, delay));
+    }
+
+    private IEnumerator StartTweenFontSizeCoroutine(int targetSize, float duration, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        StartCoroutine(TweenFontSizeCoroutine(targetSize, duration));
+    }
+
+    private IEnumerator TweenFontSizeCoroutine(int targetSize, float duration)
+    {
+        float currentTime = 0;
+        float startSize = this.text.fontSize;
+
+        while (currentTime < duration)
+        {
+            currentTime += Time.deltaTime;
+            int newSize = (int)Mathf.Lerp(startSize, targetSize, currentTime / duration);
+            this.text.fontSize = newSize;
+            yield return null;
+        }
+        yield break;
     }
 
     private void StopMakingSoundEffects()

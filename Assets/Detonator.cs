@@ -40,6 +40,8 @@ public class Detonator : MonoBehaviour
         {
             score.StartMoveToHorizontalCenterCoroutineAfterDelay(1.0f, 1.5f);
             score.MoveYPos(-320f, 1.0f, 1.5f);
+            score.TweenFontSize(120, 1.0f, 1.5f);
+            score.SetSnapToCenter(true, 2.5f);
             float timeToChangeScore = Mathf.Min(score.maxTimeToChange, (float)score.GetScore() / 2 / score.scoreChangePerSec);
             float scoreAddDelay = 3.0f;
             score.AddAfterDelay(-1 * (int)Mathf.Ceil((float)score.GetScore() / 2), scoreAddDelay);
@@ -47,6 +49,7 @@ public class Detonator : MonoBehaviour
             {
                 gameOverUI.ShowAfterDelay(timeToChangeScore + scoreAddDelay);
             }
+            score.SetSnapToCenter(false, timeToChangeScore + scoreAddDelay);
         }
         else if (gameOverUI != null) gameOverUI.ShowAfterDelay(1.0f);
 
