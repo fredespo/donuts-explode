@@ -38,7 +38,7 @@ public class Detonator : MonoBehaviour
         camAnim.SetBool("slowmo", false);
         if (score != null && score.GetScore() > 0)
         {
-            DeductPoints(1.3f, 0.8f, 0.9f);   
+            DeductPoints(1.3f, 0.8f, 0.75f);   
         }
         else if (gameOverUI != null) gameOverUI.ShowAfterDelay(1.0f);
 
@@ -76,15 +76,16 @@ public class Detonator : MonoBehaviour
         score.TweenFontSize(120, duration, initialDelay);
         score.SetSnapToCenter(true, initialDelay + duration);
 
-        float timeToChangeScore = Mathf.Min(score.maxTimeToChange, (float)score.GetScore() / 2 / score.scoreChangePerSec);
-        float totalTime = initialDelay + duration + timeToChangeScore + delayBeforeGoingBack + duration;
+        float delayBeforeScoreChange = 0.3f;
+        float timeToChangeScore = Mathf.Min(score.maxTimeToChange, (float)score.GetScore() / 2 / score.scoreChangePerSec) + delayBeforeScoreChange;
+        float totalTime = initialDelay + duration + timeToChangeScore + delayBeforeGoingBack + duration + delayBeforeScoreChange;
         float startGoingBackTime = initialDelay + duration + timeToChangeScore + delayBeforeGoingBack;
         score.SetSnapToCenter(false, startGoingBackTime);
         score.MoveYPos(scoreStartY, duration, startGoingBackTime);
         score.MoveXPos(scoreStartX, duration, startGoingBackTime);
         score.TweenFontSize(scoreStartFontSize, duration, startGoingBackTime);
 
-        score.AddAfterDelay(-1 * (int)Mathf.Ceil((float)score.GetScore() / 2), initialDelay + duration);
+        score.AddAfterDelay(-1 * (int)Mathf.Ceil((float)score.GetScore() / 2), initialDelay + duration + delayBeforeScoreChange);
         if (gameOverUI != null)
         {
             gameOverUI.ShowAfterDelay(totalTime);
