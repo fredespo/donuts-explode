@@ -123,6 +123,32 @@ public class Score : MonoBehaviour
         yield break;
     }
 
+    public void MoveXPos(float targetX, float moveDurationSec, float delaySec)
+    {
+        StartCoroutine(StartMoveXPosCoroutine(targetX, moveDurationSec, delaySec));
+    }
+
+    private IEnumerator StartMoveXPosCoroutine(float targetX, float moveDurationSec, float delaySec)
+    {
+        yield return new WaitForSeconds(delaySec);
+        StartCoroutine(StartMoveXPos(targetX, moveDurationSec));
+    }
+
+    private IEnumerator StartMoveXPos(float targetX, float durationSec)
+    {
+        float currentTime = 0;
+        float startX = this.pos.anchoredPosition.x;
+
+        while (currentTime < durationSec)
+        {
+            currentTime += Time.deltaTime;
+            float newX = Mathf.Lerp(startX, targetX, currentTime / durationSec);
+            this.pos.anchoredPosition = new Vector2(newX, this.pos.anchoredPosition.y);
+            yield return null;
+        }
+        yield break;
+    }
+
     private float CalcXPosNeededToCenter()
     {
         float centerX = this.pos.anchoredPosition.x - (this.text.preferredWidth / 2);
@@ -231,5 +257,15 @@ public class Score : MonoBehaviour
     {
         dispScore = score;
         RefreshText();
+    }
+
+    public Vector2 GetPos()
+    {
+        return this.pos.anchoredPosition;
+    }
+
+    public int GetFontSize()
+    {
+        return this.text.fontSize;
     }
 }

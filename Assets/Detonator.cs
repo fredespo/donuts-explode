@@ -38,6 +38,9 @@ public class Detonator : MonoBehaviour
         camAnim.SetBool("slowmo", false);
         if (score != null && score.GetScore() > 0)
         {
+            float scoreStartX = score.GetPos().x;
+            float scoreStartY = score.GetPos().y;
+            int scoreStartFontSize = score.GetFontSize();
             score.StartMoveToHorizontalCenterCoroutineAfterDelay(1.0f, 1.5f);
             score.MoveYPos(-320f, 1.0f, 1.5f);
             score.TweenFontSize(120, 1.0f, 1.5f);
@@ -50,6 +53,9 @@ public class Detonator : MonoBehaviour
                 gameOverUI.ShowAfterDelay(timeToChangeScore + scoreAddDelay);
             }
             score.SetSnapToCenter(false, timeToChangeScore + scoreAddDelay);
+            score.MoveYPos(scoreStartY, 1.0f, timeToChangeScore + scoreAddDelay);
+            score.MoveXPos(scoreStartX, 1.0f, timeToChangeScore + scoreAddDelay);
+            score.TweenFontSize(scoreStartFontSize, 1.0f, timeToChangeScore + scoreAddDelay);
         }
         else if (gameOverUI != null) gameOverUI.ShowAfterDelay(1.0f);
 
