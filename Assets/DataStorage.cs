@@ -6,6 +6,7 @@ using System.Security.Cryptography;
 using System.Text;
 using UnityEngine;
 using UnityEngine.Audio;
+using System;
 
 public class DataStorage : MonoBehaviour
 {
@@ -189,26 +190,27 @@ public class DataStorage : MonoBehaviour
 
     public int GetMusicVolumePct()
     {
+        int vol = 100;
         if (PlayerPrefs.HasKey(KEY_VOLUME_MUSIC))
         {
-            int vol = int.Parse(PlayerPrefs.GetString(KEY_VOLUME_MUSIC));
+            try
+            {
+                vol = int.Parse(PlayerPrefs.GetString(KEY_VOLUME_MUSIC));
+            }
+            catch (Exception e)
+            {
+            }
+
             if (vol < 0)
             {
-                return 0;
+                vol = 0;
             }
             else if (vol > 100)
             {
-                return 100;
-            }
-            else
-            {
-                return vol;
+                vol = 100;
             }
         }
-        else
-        {
-            return 100;
-        }
+        return vol;
     }
 
     public void SaveSoundFxVolumePct(int pct)
@@ -218,26 +220,26 @@ public class DataStorage : MonoBehaviour
 
     public int GetSoundFxVolumePct()
     {
+        int vol = 100;
         if (PlayerPrefs.HasKey(KEY_VOLUME_SOUNDFX))
         {
-            int vol = int.Parse(PlayerPrefs.GetString(KEY_VOLUME_SOUNDFX));
+            try
+            {
+                vol = int.Parse(PlayerPrefs.GetString(KEY_VOLUME_SOUNDFX));
+            } catch(Exception e)
+            {
+            }
+
             if(vol < 0)
             {
-                return 0;
+                vol = 0;
             }
             else if (vol > 100)
             {
-                return 100;
-            }
-            else
-            {
-                return vol;
+                vol = 100;
             }
         }
-        else
-        {
-            return 100;
-        }
+        return vol;
     }
 
     private string SerializeHighScores(List<HighScoreTable.Entry> entries)
