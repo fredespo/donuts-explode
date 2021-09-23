@@ -25,6 +25,7 @@ public class Magnet : MonoBehaviour
             {
                 obj.SendMessage("CaughtInMagnet", null, SendMessageOptions.DontRequireReceiver);
                 MoveTowardsMagnet(obj);
+                RotateTowardsMagnet(obj);
             }
         }
     }
@@ -43,6 +44,12 @@ public class Magnet : MonoBehaviour
         {
             obj.transform.position = new Vector3(objPos.x + offsetX, objPos.y + offsetY, objPos.z);
         }
+    }
+
+    private void RotateTowardsMagnet(GameObject obj)
+    {
+        Quaternion targetRotation = Quaternion.LookRotation(obj.transform.position - transform.position);
+        Quaternion.RotateTowards(transform.rotation, targetRotation, Time.deltaTime * 10f);
     }
 
     private float GetMovementX(Vector3 otherPos)
