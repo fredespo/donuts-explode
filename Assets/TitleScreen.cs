@@ -9,14 +9,12 @@ public class TitleScreen : MonoBehaviour
     public Score score;
     public LevelLoader levelLoader;
     public ScreenManager screenManager;
-    public HighScoreTable highScoreTable;
 
     void Start()
     {
         if(dataStorage.GetLevel() == levelLoader.LevelCount())
         {
             score.score = dataStorage.GetScore();
-            highScoreTable.Refresh();
             screenManager.ShowGameWonScreen();
         }
     }
