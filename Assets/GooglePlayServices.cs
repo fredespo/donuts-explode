@@ -39,7 +39,7 @@ public class GooglePlayServices : MonoBehaviour
     {
         if (!this.IsSignedIn())
         {
-            this.SignIn(andThen);
+            this.SignIn(result => andThen.Invoke());
         }
         else
         {
@@ -64,11 +64,11 @@ public class GooglePlayServices : MonoBehaviour
         });
     }
 
-    public void SignIn(Action andThen)
+    public void SignIn(Action<SignInStatus> andThen)
     {
         PlayGamesPlatform.Instance.Authenticate(SignInInteractivity.CanPromptAlways, (result) => {
             signedIn = result == SignInStatus.Success;
-            andThen.Invoke();
+            andThen.Invoke(result);
         });
     }
 

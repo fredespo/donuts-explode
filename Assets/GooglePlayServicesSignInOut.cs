@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
+using GooglePlayGames.BasicApi;
 
 public class GooglePlayServicesSignInOut : MonoBehaviour
 {
+    public UnityEvent onNetworkError;
     public GooglePlayServices googlePlayServices;
     public Text buttonText;
 
@@ -22,7 +25,12 @@ public class GooglePlayServicesSignInOut : MonoBehaviour
         }
         else
         {
-            googlePlayServices.SignIn(() => { });
+            googlePlayServices.SignIn(result => {
+                if(result == SignInStatus.NetworkError)
+                {
+                    this.onNetworkError.Invoke();
+                }
+            });
         }
     }
 
