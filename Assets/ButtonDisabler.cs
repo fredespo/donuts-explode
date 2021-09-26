@@ -11,7 +11,7 @@ public class ButtonDisabler : MonoBehaviour
     private Image img;
     private float origAlpha;
 
-    void Start()
+    void Awake()
     {
         this.btn = GetComponent<Button>();
         this.img = GetComponent<Image>();

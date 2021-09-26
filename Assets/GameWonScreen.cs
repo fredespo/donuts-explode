@@ -62,4 +62,9 @@ public class GameWonScreen : MonoBehaviour
     {
         onExit.Invoke();
     }
+
+    public bool isAutosavedHighScore()
+    {
+        return this.autoSavedHighScore;
+    }
 }
