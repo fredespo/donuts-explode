@@ -10,20 +10,27 @@ public class ButtonPressEffect : MonoBehaviour
     public float durationFrames = 3;
     private Vector3 from;
     private Vector3 to;
+    private RectTransform rectTransform;
 
-    void Start()
+    void Awake()
     {
-        this.from = GetComponent<RectTransform>().localScale;
+        this.rectTransform = GetComponent<RectTransform>();
+        this.from = this.rectTransform.localScale;
         this.to = this.from * this.scaleEffect;
         GetComponent<Button>().onClick.AddListener(() =>
             StartCoroutine(Animate())
         );
     }
 
+    void OnEnable()
+    {
+        this.rectTransform.localScale = from;
+    }
+
     IEnumerator Animate()
     {
-        GetComponent<RectTransform>().localScale = to;
+        this.rectTransform.localScale = to;
         yield return new WaitForSeconds(Time.fixedDeltaTime * durationFrames);
-        GetComponent<RectTransform>().localScale = from;
+        this.rectTransform.localScale = from;
     }
 }
