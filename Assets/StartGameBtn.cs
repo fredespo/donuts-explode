@@ -16,7 +16,12 @@ public class StartGameBtn : MonoBehaviour
 
     public void StartGame()
     {
-        if(this.pressedBefore)
+        title.SetActive(false);
+        mainMenu.SetActive(false);
+        newGameConfirmMenu.SetActive(false);
+        removeAdsBtn.SetActive(false);
+
+        if (this.pressedBefore)
         {
             ads.ShowInterstitialAdAndThen((wasAdShown) => {
                 JustStartGame();
@@ -34,9 +39,5 @@ public class StartGameBtn : MonoBehaviour
     {
         titleMenu.StartGameAfterDelay(delay);
         detonator.activate();
-        title.SetActive(false);
-        mainMenu.SetActive(false);
-        newGameConfirmMenu.SetActive(false);
-        removeAdsBtn.SetActive(false);
     }
 }
