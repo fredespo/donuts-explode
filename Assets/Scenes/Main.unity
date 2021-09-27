@@ -2846,7 +2846,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1779454664}
+      - m_Target: {fileID: 0}
         m_MethodName: StartFadeCoroutine
         m_Mode: 1
         m_Arguments:
@@ -11143,7 +11143,6 @@ GameObject:
   - component: {fileID: 1779454662}
   - component: {fileID: 1779454661}
   - component: {fileID: 1779454663}
-  - component: {fileID: 1779454664}
   m_Layer: 0
   m_Name: Music
   m_TagString: GameMusic
@@ -11164,7 +11163,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: f5e578b4b4d36964d928c6d0913fdeab, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -11302,20 +11301,6 @@ MonoBehaviour:
     m_RotationOrder: 4
   timeToWindDown: 1
   curveVal: 0
---- !u!114 &1779454664
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1779454660}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 739710fddff67134baeda115b0115f5a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  duration: 0.5
-  targetVolume: 0.3
 --- !u!1 &1782060906 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6660765553727437347, guid: d4c3e40bacb488549aa56fcdd38a982d,
