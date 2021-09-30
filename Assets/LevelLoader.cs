@@ -24,7 +24,7 @@ public class LevelLoader : MonoBehaviour
     private float startDelaySec;
     private GameObject bomb;
     private DataStorage dataStorage;
-    private bool shouldAnimatePiece = false;
+    private bool shouldAnimatePiece = true;
 
     public void Start()
     {
@@ -43,6 +43,7 @@ public class LevelLoader : MonoBehaviour
         ResetCurrentLevel();
         if(this.shouldAnimatePiece)
         {
+            pieceTutorialAnimator.SetAngles(new float[] { -45f});
             pieceTutorialAnimator.AnimatePieceAndThen(() =>
             {
                 bomb.SetActive(true);

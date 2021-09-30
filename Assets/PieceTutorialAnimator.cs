@@ -8,14 +8,20 @@ public class PieceTutorialAnimator : MonoBehaviour
     public GameObject piece;
     public GameObject pieceParent;
     private Action onComplete;
+    private float[] angles;
 
     public void AnimatePieceAndThen(Action callback)
     {
         this.onComplete = callback;
-        StartCoroutine(AnimatePieceCoroutine());
+        StartCoroutine(AnimatePieceCoroutine(angles));
     }
 
-    private IEnumerator AnimatePieceCoroutine()
+    public void SetAngles(float[] angles)
+    {
+        this.angles = angles;
+    }
+
+    private IEnumerator AnimatePieceCoroutine(float[] angles)
     {
         GameObject spawnedPiece = Instantiate(piece, gameObject.transform.position, gameObject.transform.rotation);
         Animator anim = spawnedPiece.GetComponent<Animator>();
@@ -27,6 +33,13 @@ public class PieceTutorialAnimator : MonoBehaviour
         anim.enabled = true;
         anim.SetTrigger("ZoomIn");
         yield return new WaitForSeconds(2);
+
+        foreach(float angle in angles)
+        {
+            spawnedPiece.transform.eulerAngles = new Vector3(spawnedPiece.transform.eulerAngles.x, spawnedPiece.transform.eulerAngles.y, angle);
+            yield return new WaitForSeconds(1);
+        }
+
         anim.SetTrigger("ZoomOut");
         yield return new WaitForSeconds(2f);
         Destroy(spawnedPiece);
