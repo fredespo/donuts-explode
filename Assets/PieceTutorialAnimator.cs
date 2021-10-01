@@ -9,6 +9,7 @@ public class PieceTutorialAnimator : MonoBehaviour
     public GameObject pieceParent;
     private Action onComplete;
     private float[] angles;
+    private GameObject spawnedPiece;
 
     public void AnimatePieceAndThen(Action callback)
     {
@@ -23,7 +24,7 @@ public class PieceTutorialAnimator : MonoBehaviour
 
     private IEnumerator AnimatePieceCoroutine(float[] angles)
     {
-        GameObject spawnedPiece = Instantiate(piece, gameObject.transform.position, gameObject.transform.rotation);
+        this.spawnedPiece = Instantiate(piece, gameObject.transform.position, gameObject.transform.rotation);
         Animator anim = spawnedPiece.GetComponent<Animator>();
         spawnedPiece.transform.SetParent(pieceParent.transform);
         spawnedPiece.transform.position = gameObject.transform.position;
@@ -43,7 +44,12 @@ public class PieceTutorialAnimator : MonoBehaviour
 
         anim.SetTrigger("ZoomOut");
         yield return new WaitForSeconds(2f);
-        Destroy(spawnedPiece);
         onComplete.Invoke();
+    }
+
+    public void DestroySpawnedPiece()
+    {
+        Destroy(this.spawnedPiece);
+        this.spawnedPiece = null;
     }
 }

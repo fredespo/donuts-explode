@@ -89,6 +89,7 @@ public class LevelLoader : MonoBehaviour
             });
         }
         score.RefreshDispScore();
+        pieceTutorialAnimator.DestroySpawnedPiece();
     }
 
     public void ResetCurrentLevel()
