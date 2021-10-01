@@ -25,7 +25,6 @@ public class LevelLoader : MonoBehaviour
     private GameObject bomb;
     private DataStorage dataStorage;
     private bool shouldAnimatePiece = false;
-    private float[] prevShooterAngles = null;
 
     public void Start()
     {
@@ -42,10 +41,9 @@ public class LevelLoader : MonoBehaviour
         }
         currLevelIdx = levelIndex;
         ResetCurrentLevel();
-        float[] currPieceShooterAngles = levels[currLevelIdx].pieceShooterAngles;
         if(this.shouldAnimatePiece)
         {
-            pieceTutorialAnimator.SetAngles(mergeFloatArrays(new float[] {0}, currPieceShooterAngles));
+            pieceTutorialAnimator.SetAngles(this.levels[currLevelIdx].pieceAnimationAngles);
             pieceTutorialAnimator.AnimatePieceAndThen(() =>
             {
                 bomb.SetActive(true);
@@ -57,7 +55,6 @@ public class LevelLoader : MonoBehaviour
         {
             StartCoroutine(StartCurrentLevelAfterDelay(startDelaySec));
         }
-        this.prevShooterAngles = currPieceShooterAngles;
     }
 
     public void StartCurrentLevelAfterDelaySec(float delaySec)
@@ -105,7 +102,7 @@ public class LevelLoader : MonoBehaviour
         bomb = Instantiate(level.bomb);
         bomb.transform.SetParent(canvas.transform, false);
         timer.Init(bomb.GetComponent<Detonator>(), bomb.GetComponentInChildren<BombDefuzer>());
-        this.shouldAnimatePiece = this.prevShooterAngles != null && !floatArraysEqual(this.prevShooterAngles, level.pieceShooterAngles);
+        this.shouldAnimatePiece = level.pieceAnimationAngles.Length > 0;
         if (this.shouldAnimatePiece)
         {
             bomb.SetActive(false);
@@ -164,37 +161,6 @@ public class LevelLoader : MonoBehaviour
         public float secondsOnTimer;
         public float[] pieceShooterAngles;
         public PieceShooter.AngleChangeMode pieceShooterAngleChangeMode = PieceShooter.AngleChangeMode.ON_SHOOT;
-    }
-
-    private bool floatArraysEqual(float[] arr1, float[] arr2)
-    {
-        if(arr1.Length != arr2.Length)
-        {
-            return false;
-        }
-
-        for(int i = 0; i < arr1.Length; ++i)
-        {
-            if(arr1[i] != arr2[i])
-            {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private float[] mergeFloatArrays(float[] arr1, float[] arr2)
-    {
-        float[] merged = new float[arr1.Length + arr2.Length];
-        int mergedIndex = 0;
-        for(int i = 0; i < arr1.Length; ++i)
-        {
-            merged[mergedIndex++] = arr1[i];
-        }
-        for(int i = 0; i < arr2.Length; ++i)
-        {
-            merged[mergedIndex++] = arr2[i];
-        }
-        return merged;
+        public float[] pieceAnimationAngles;
     }
 }
