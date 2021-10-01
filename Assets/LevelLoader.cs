@@ -25,7 +25,7 @@ public class LevelLoader : MonoBehaviour
     private float startDelaySec;
     private GameObject bomb;
     private DataStorage dataStorage;
-    private bool shouldAnimatePiece = false;
+    private bool shouldAnimatePiece;
 
     public void Start()
     {
@@ -47,8 +47,6 @@ public class LevelLoader : MonoBehaviour
             pieceTutorialAnimator.SetAngles(this.levels[currLevelIdx].pieceAnimationAngles);
             pieceTutorialAnimator.AnimatePieceAndThen(() =>
             {
-                bomb.SetActive(true);
-                timer.gameObject.SetActive(true);
                 StartCoroutine(StartCurrentLevelAfterDelay(startDelaySec));
             });
         }
@@ -97,7 +95,8 @@ public class LevelLoader : MonoBehaviour
     {
         Level level = levels[currLevelIdx];
         pieceShooter.SetActive(false);
-        levelObscurer.SetActive(true);
+        this.shouldAnimatePiece = level.pieceAnimationAngles.Length > 0;
+        levelObscurer.SetActive(this.shouldAnimatePiece);
         foreach (GameObject prevBomb in GameObject.FindGameObjectsWithTag("bomb"))
         {
             Destroy(prevBomb);
@@ -105,12 +104,6 @@ public class LevelLoader : MonoBehaviour
         bomb = Instantiate(level.bomb);
         bomb.transform.SetParent(canvas.transform, false);
         timer.Init(bomb.GetComponent<Detonator>(), bomb.GetComponentInChildren<BombDefuzer>());
-        this.shouldAnimatePiece = level.pieceAnimationAngles.Length > 0;
-        if (this.shouldAnimatePiece)
-        {
-            bomb.SetActive(false);
-            timer.gameObject.SetActive(false);
-        }
         timer.setTime(level.secondsOnTimer);
         timer.Pause();
         foreach (Transform child in bombPieces.transform)
