@@ -17,6 +17,7 @@ public class LevelLoader : MonoBehaviour
     public GameObject shootTapZone;
     public GameOverUI gameOverUI;
     public Score score;
+    public GameObject levelObscurer;
     public LevelIndicator levelIndicator;
     public List<Reflector> pieceReflectors;
     public List<Level> levels;
@@ -77,6 +78,7 @@ public class LevelLoader : MonoBehaviour
         bomb.SendMessage("StartBomb");
         music.Play();
         pieceShooter.SetActive(true);
+        levelObscurer.SetActive(false);
         Level level = levels[currLevelIdx];
         pieceShooterComp.SetAngleChangeMode(level.pieceShooterAngleChangeMode);
         pieceShooterComp.SetAngles(level.pieceShooterAngles);
@@ -95,6 +97,7 @@ public class LevelLoader : MonoBehaviour
     {
         Level level = levels[currLevelIdx];
         pieceShooter.SetActive(false);
+        levelObscurer.SetActive(true);
         foreach (GameObject prevBomb in GameObject.FindGameObjectsWithTag("bomb"))
         {
             Destroy(prevBomb);
