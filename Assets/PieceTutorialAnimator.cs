@@ -24,6 +24,7 @@ public class PieceTutorialAnimator : MonoBehaviour
 
     private IEnumerator AnimatePieceCoroutine(float[] angles)
     {
+        pieceParent.SetActive(true);
         this.spawnedPiece = Instantiate(piece, gameObject.transform.position, gameObject.transform.rotation);
         Animator anim = spawnedPiece.GetComponent<Animator>();
         spawnedPiece.transform.SetParent(pieceParent.transform);

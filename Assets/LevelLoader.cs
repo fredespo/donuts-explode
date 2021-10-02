@@ -18,6 +18,7 @@ public class LevelLoader : MonoBehaviour
     public GameOverUI gameOverUI;
     public Score score;
     public GameObject levelObscurer;
+    public AnimatedCountDown countDown;
     public LevelIndicator levelIndicator;
     public List<Reflector> pieceReflectors;
     public List<Level> levels;
@@ -46,9 +47,12 @@ public class LevelLoader : MonoBehaviour
         ResetCurrentLevel();
         if(this.shouldAnimatePiece)
         {
+            bombPieces.SetActive(false);
             pieceTutorialAnimator.SetAngles(this.levels[currLevelIdx].pieceAnimationAngles);
             pieceTutorialAnimator.AnimatePieceAndThen(() =>
             {
+                bombPieces.SetActive(true);
+                pieceTutorialAnimator.DestroySpawnedPiece();
                 StartCoroutine(StartCurrentLevelAfterDelay(startDelaySec));
             });
         }
@@ -68,6 +72,8 @@ public class LevelLoader : MonoBehaviour
     public IEnumerator StartCurrentLevelAfterDelay(float delaySec)
     {
         yield return new WaitForSeconds(delaySec);
+        countDown.CountDownFrom(3);
+        yield return new WaitForSeconds(countDown.delay * 3);
         StartCurrentLevel();
     }
 
@@ -75,15 +81,12 @@ public class LevelLoader : MonoBehaviour
     {
         timer.UnPause();
         pieceShooter.SetActive(false);
-        pieceShooter.GetComponent<PieceShooter>().SetShootingEnabled(true);
+        this.pieceShooterComp.SetShootingEnabled(true);
         bomb.SendMessage("StartBomb");
         music.Play();
         pieceShooter.SetActive(true);
         levelObscurer.SetActive(false);
         Level level = levels[currLevelIdx];
-        pieceShooterComp.SetAngleChangeMode(level.pieceShooterAngleChangeMode);
-        pieceShooterComp.SetAngles(level.pieceShooterAngles);
-        pieceShooterComp.Init();
         if (!Application.isEditor)
         {
             AnalyticsEvent.LevelStart(currLevelIdx + 1, new Dictionary<string, object>
@@ -92,15 +95,14 @@ public class LevelLoader : MonoBehaviour
             });
         }
         score.RefreshDispScore();
-        pieceTutorialAnimator.DestroySpawnedPiece();
     }
 
     public void ResetCurrentLevel()
     {
         Level level = levels[currLevelIdx];
-        pieceShooter.SetActive(false);
+        pieceShooter.SetActive(true);
         this.shouldAnimatePiece = level.pieceAnimationAngles.Length > 0 && this.loadingLevel;
-        levelObscurer.SetActive(this.shouldAnimatePiece);
+        levelObscurer.SetActive(true);
         foreach (GameObject prevBomb in GameObject.FindGameObjectsWithTag("bomb"))
         {
             Destroy(prevBomb);
@@ -125,6 +127,10 @@ public class LevelLoader : MonoBehaviour
         music.Reset();
         levelIndicator.Set(this.GetCurrentLevelIndex() + 1, this.LevelCount());
         score.RefreshDispScore();
+        pieceShooterComp.SetShootingEnabled(true);
+        pieceShooterComp.SetAngleChangeMode(level.pieceShooterAngleChangeMode);
+        pieceShooterComp.SetAngles(level.pieceShooterAngles);
+        pieceShooterComp.Init();
     }
 
     public void LoadNextLevelAndStartAfterDelay(float delaySec)

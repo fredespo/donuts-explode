@@ -79,6 +79,7 @@ public class PieceShooter : MonoBehaviour
         if (shootingEnabled && spawnedPiece != null && spawnedPieceReadyToShoot)
         {
             spawnedPiece.GetComponent<Rigidbody2D>().velocity = transform.up * speed;
+            spawnedPiece.GetComponent<SpriteRenderer>().sortingOrder = 0;
             spawnedPieceReadyToShoot = false;
             soundEffect.pitch = Random.Range(0.75f, 1.0f);
             soundEffect.Play(0);
@@ -99,7 +100,7 @@ public class PieceShooter : MonoBehaviour
         SetAngle(angles[angleIdx]);
     }
 
-    void SpawnPiece()
+    public void SpawnPiece()
     {
         if (!CanSpawnPiece())
         {
@@ -117,6 +118,7 @@ public class PieceShooter : MonoBehaviour
             spawnedPiece.transform.SetParent(pieceParent.transform);
             spawnedPiece.transform.position = gameObject.transform.position;
             spawnedPiece.transform.localScale = new Vector3(81, 81, 1);
+            spawnedPiece.GetComponent<SpriteRenderer>().sortingOrder = -1;
         }
 
         spawnedPieceReadyToShoot = true;
