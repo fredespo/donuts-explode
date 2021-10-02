@@ -26,6 +26,7 @@ public class LevelLoader : MonoBehaviour
     private GameObject bomb;
     private DataStorage dataStorage;
     private bool shouldAnimatePiece;
+    private bool loadingLevel;
 
     public void Start()
     {
@@ -36,7 +37,8 @@ public class LevelLoader : MonoBehaviour
 
     public void LoadLevel(int levelIndex, float startDelaySec)
     {
-        if(levelIndex == 0)
+        this.loadingLevel = true;
+        if (levelIndex == 0)
         {
             score.Reset();
         }
@@ -54,6 +56,7 @@ public class LevelLoader : MonoBehaviour
         {
             StartCoroutine(StartCurrentLevelAfterDelay(startDelaySec));
         }
+        this.loadingLevel = false;
     }
 
     public void StartCurrentLevelAfterDelaySec(float delaySec)
@@ -96,7 +99,7 @@ public class LevelLoader : MonoBehaviour
     {
         Level level = levels[currLevelIdx];
         pieceShooter.SetActive(false);
-        this.shouldAnimatePiece = level.pieceAnimationAngles.Length > 0;
+        this.shouldAnimatePiece = level.pieceAnimationAngles.Length > 0 && this.loadingLevel;
         levelObscurer.SetActive(this.shouldAnimatePiece);
         foreach (GameObject prevBomb in GameObject.FindGameObjectsWithTag("bomb"))
         {
@@ -107,6 +110,7 @@ public class LevelLoader : MonoBehaviour
         timer.Init(bomb.GetComponent<Detonator>(), bomb.GetComponentInChildren<BombDefuzer>());
         timer.setTime(level.secondsOnTimer);
         timer.Pause();
+        timer.gameObject.SetActive(true);
         foreach (Transform child in bombPieces.transform)
         {
             Destroy(child.gameObject);
