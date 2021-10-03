@@ -72,8 +72,6 @@ public class LevelLoader : MonoBehaviour
     public IEnumerator StartCurrentLevelAfterDelay(float delaySec)
     {
         yield return new WaitForSeconds(delaySec);
-        countDown.CountDownFrom(3);
-        yield return new WaitForSeconds(countDown.delay * 3);
         StartCurrentLevel();
     }
 
@@ -102,7 +100,7 @@ public class LevelLoader : MonoBehaviour
         Level level = levels[currLevelIdx];
         pieceShooter.SetActive(true);
         this.shouldAnimatePiece = level.pieceAnimationAngles.Length > 0 && this.loadingLevel;
-        levelObscurer.SetActive(true);
+        levelObscurer.SetActive(this.shouldAnimatePiece);
         foreach (GameObject prevBomb in GameObject.FindGameObjectsWithTag("bomb"))
         {
             Destroy(prevBomb);
