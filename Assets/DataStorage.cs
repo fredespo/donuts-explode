@@ -35,14 +35,21 @@ public class DataStorage : MonoBehaviour
         {
             using (FileStream saveFile = new FileStream(this.saveFilePath, FileMode.Open))
             {
-                SaveData saveData = this.formatter.Deserialize(saveFile) as SaveData;
-                if (IsSaveDataValid(saveData))
+                try
                 {
-                    this.saveData = saveData;
+                    SaveData saveData = this.formatter.Deserialize(saveFile) as SaveData;
+                    if (IsSaveDataValid(saveData))
+                    {
+                        this.saveData = saveData;
+                    }
+                    else
+                    {
+                        Debug.Log("Invalid checksum!");
+                    }
                 }
-                else
+                catch(Exception e)
                 {
-                    Debug.Log("Invalid checksum!");
+                    Debug.Log("Corrupt save file!");
                 }
             }
         }
