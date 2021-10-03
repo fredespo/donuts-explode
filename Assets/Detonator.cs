@@ -47,7 +47,12 @@ public class Detonator : MonoBehaviour
             spawnedExplosion.gameObject.transform.SetParent(explosionParent.gameObject.transform);
         }
         explosionSound.Play(0);
-        if(pieceShooter != null) pieceShooter.GetComponent<PieceShooter>().Inactivate();
+        if (pieceShooter != null)
+        {
+            PieceShooter pieceShooterComp = pieceShooter.GetComponent<PieceShooter>();
+            pieceShooterComp.ResetConsecutiveShots();
+            pieceShooterComp.Inactivate();
+        }
         pieces = GameObject.FindGameObjectWithTag("PieceKeeper");
         if (pieces != null)
         {

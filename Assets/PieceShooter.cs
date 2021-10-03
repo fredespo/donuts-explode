@@ -183,4 +183,9 @@ public class PieceShooter : MonoBehaviour
     {
         return this.consecutiveGoodShots;
     }
+
+    public void ResetConsecutiveShots()
+    {
+        this.consecutiveGoodShots = 0;
+    }
 }
