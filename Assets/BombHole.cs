@@ -22,6 +22,7 @@ public class BombHole : MonoBehaviour
 
     public void fillWith(GameObject obj)
     {
+        obj.SendMessage("FilledHole");
         Destroy(obj);
         Destroy(gameObject);
         filledCollider.transform.SetParent(gameObject.transform.parent.transform.parent, true);

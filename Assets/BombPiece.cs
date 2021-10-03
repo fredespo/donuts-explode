@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.Events;
+using System;
 
 public class BombPiece : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class BombPiece : MonoBehaviour
     private Rigidbody2D rigibody;
     private AudioSource hitBombSoundEffect;
     private AudioSource reflectSoundEffect;
+    private Action onMiss;
+    private Action onFilledHole;
 
     void Awake()
     {
@@ -35,9 +38,9 @@ public class BombPiece : MonoBehaviour
         if(!fading && col.gameObject.CompareTag("bomb") && !caughtInMagnet)
         {
             fading = true;
-            this.hitBombSoundEffect.pitch = Random.Range(0.25f, 0.4f);
+            this.hitBombSoundEffect.pitch = UnityEngine.Random.Range(0.25f, 0.4f);
             this.hitBombSoundEffect.Play(0);
-            var impulse = (Random.Range(100f, 300f) * Mathf.Deg2Rad) * this.rigibody.inertia;
+            var impulse = (UnityEngine.Random.Range(100f, 300f) * Mathf.Deg2Rad) * this.rigibody.inertia;
             this.rigibody.AddTorque(impulse, ForceMode2D.Impulse);
         }
     }
@@ -72,6 +75,7 @@ public class BombPiece : MonoBehaviour
             spriteRenderer.color = color;
             if (color.a <= 0f)
             {
+                this.onMiss.Invoke();
                 Destroy(gameObject);
             }
         }
@@ -107,12 +111,27 @@ public class BombPiece : MonoBehaviour
 
     private void PlayBounceSoundEffect()
     {
-        this.reflectSoundEffect.pitch = Random.Range(2.0f, 2.5f);
+        this.reflectSoundEffect.pitch = UnityEngine.Random.Range(2.0f, 2.5f);
         this.reflectSoundEffect.Play();
     }
 
     public bool ShouldReflect()
     {
         return !this.fading;
+    }
+
+    public void SetOnMiss(Action onMiss)
+    {
+        this.onMiss = onMiss;
+    }
+
+    public void SetOnFilledHole(Action onFilledHole)
+    {
+        this.onFilledHole = onFilledHole;
+    }
+
+    public void FilledHole()
+    {
+        this.onFilledHole.Invoke();
     }
 }

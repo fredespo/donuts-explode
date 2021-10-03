@@ -15,11 +15,13 @@ public class PieceShooter : MonoBehaviour
     private float[] angles;
     private int angleIdx;
     private AudioSource soundEffect;
+    public int consecutiveGoodShots = 0;
 
     public void Init()
     {
         pieceIndex = 0;
         angleIdx = 0;
+        this.consecutiveGoodShots = 0;
         SetAngle(angles[angleIdx]);
 
         if (angleChangeMode == AngleChangeMode.CONTINUOUSLY)
@@ -119,6 +121,9 @@ public class PieceShooter : MonoBehaviour
             spawnedPiece.transform.position = gameObject.transform.position;
             spawnedPiece.transform.localScale = new Vector3(81, 81, 1);
             spawnedPiece.GetComponent<SpriteRenderer>().sortingOrder = -1;
+            BombPiece bombPiece = spawnedPiece.GetComponent<BombPiece>();
+            bombPiece.SetOnMiss(() => RecordMissedShot());
+            bombPiece.SetOnFilledHole(() => RecordGoodShot());
         }
 
         spawnedPieceReadyToShoot = true;
@@ -162,5 +167,20 @@ public class PieceShooter : MonoBehaviour
     public GameObject GetPiece()
     {
         return this.spawnedPiece;
+    }
+
+    public void RecordMissedShot()
+    {
+        this.consecutiveGoodShots = 0;
+    }
+
+    public void RecordGoodShot()
+    {
+        ++this.consecutiveGoodShots;
+    }
+
+    public int GetConsecutiveGoodShots()
+    {
+        return this.consecutiveGoodShots;
     }
 }
