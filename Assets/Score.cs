@@ -11,7 +11,7 @@ public class Score : MonoBehaviour
     public Vector2 textCenter;
     private RectTransform pos;
     private int currScoreChangePerSec;
-    public int maxTimeToChange = 4;
+    public int maxTimeToChange = 3;
     public AudioSource pointGainedSound;
     public AudioSource pointLostSound;
     public DataStorage dataStorage;

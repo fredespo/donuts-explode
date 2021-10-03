@@ -37,7 +37,7 @@ public class Detonator : MonoBehaviour
         camAnim.SetBool("slowmo", false);
         if (score != null && score.GetScore() > 0)
         {
-            DeductPoints(1.3f, 0.8f, 0.6f);   
+            DeductPoints(1.3f, 0.6f, 0.5f);   
         }
         else if (gameOverUI != null) gameOverUI.ShowAfterDelay(1.0f);
 
