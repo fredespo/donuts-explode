@@ -134,7 +134,7 @@ public class textTimer : MonoBehaviour
             && !this.pieceShooter.IsSpawnedPieceReadyToShoot()
             && this.pieceShooter.GetPiece() != null
             && this.pieceShooter.GetPiece().GetComponent<SpriteRenderer>().color.a > 0.5f
-            && Vector2.Distance(this.defuzer.GetHoles()[0].transform.position, this.pieceShooter.GetPiece().transform.position) < 3.5;
+            && Vector2.Distance(this.defuzer.GetHoles()[0].transform.position, this.pieceShooter.GetPiece().transform.position) < 4.5;
     }
 
     public void Pause()
