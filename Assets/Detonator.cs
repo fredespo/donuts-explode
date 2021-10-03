@@ -17,7 +17,6 @@ public class Detonator : MonoBehaviour
     public void Start()
     {
         explosionSound = GameObject.FindGameObjectWithTag("ExplosionSound").GetComponent<AudioSource>();
-        pieces = GameObject.FindGameObjectWithTag("PieceKeeper");
         pieceShooter = GameObject.FindGameObjectWithTag("PieceShooter");
         GameObject scoreObj = GameObject.FindGameObjectWithTag("Score");
         camAnim = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Animator>();
@@ -49,6 +48,7 @@ public class Detonator : MonoBehaviour
         }
         explosionSound.Play(0);
         if(pieceShooter != null) pieceShooter.GetComponent<PieceShooter>().Inactivate();
+        pieces = GameObject.FindGameObjectWithTag("PieceKeeper");
         if (pieces != null)
         {
             foreach(Transform child in pieces.transform)
