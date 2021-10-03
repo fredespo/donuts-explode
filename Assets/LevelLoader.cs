@@ -53,7 +53,7 @@ public class LevelLoader : MonoBehaviour
             {
                 bombPieces.SetActive(true);
                 pieceTutorialAnimator.DestroySpawnedPiece();
-                StartCoroutine(StartCurrentLevelAfterDelay(startDelaySec));
+                StartCoroutine(StartCurrentLevelAfterDelay(0));
             });
         }
         else

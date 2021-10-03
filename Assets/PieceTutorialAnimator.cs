@@ -32,19 +32,19 @@ public class PieceTutorialAnimator : MonoBehaviour
         spawnedPiece.transform.localScale = new Vector3(81, 81, 1);
         spawnedPiece.GetComponent<PolygonCollider2D>().enabled = false;
         spawnedPiece.transform.eulerAngles = new Vector3(spawnedPiece.transform.eulerAngles.x, spawnedPiece.transform.eulerAngles.y, this.angles[0]);
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(0.5f);
         anim.enabled = true;
         anim.SetTrigger("ZoomIn");
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
 
         for(int i = 1; i < this.angles.Length; ++i)
         {
             spawnedPiece.transform.eulerAngles = new Vector3(spawnedPiece.transform.eulerAngles.x, spawnedPiece.transform.eulerAngles.y, this.angles[i]);
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(0.7f);
         }
 
         anim.SetTrigger("ZoomOut");
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1);
         onComplete.Invoke();
     }
 
