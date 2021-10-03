@@ -80,7 +80,7 @@ public class BombDefuzer : MonoBehaviour
     {
         yield return new WaitForSeconds(delaySec);
         score.Add(GetPointsEarned());
-        timer.CountDownFast();
+        timer.CountDownFastAndThen(() => this.score.AddBonus());
     }
 
     private int GetPointsEarned()

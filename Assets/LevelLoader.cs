@@ -129,6 +129,7 @@ public class LevelLoader : MonoBehaviour
         pieceShooterComp.SetAngleChangeMode(level.pieceShooterAngleChangeMode);
         pieceShooterComp.SetAngles(level.pieceShooterAngles);
         pieceShooterComp.Init();
+        this.score.Init();
     }
 
     public void LoadNextLevelAndStartAfterDelay(float delaySec)

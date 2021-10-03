@@ -10,7 +10,7 @@ public class ScoreBonus : MonoBehaviour
     private Text text;
     private int bonus = 0;
 
-    void Start()
+    void Awake()
     {
         this.text = GetComponent<Text>();
     }
@@ -36,5 +36,17 @@ public class ScoreBonus : MonoBehaviour
         {
             this.text.text = "";
         }
+    }
+
+    public int GetBonus()
+    {
+        return this.bonus;
+    }
+
+    public void SetTextAlpha(float alpha)
+    {
+        Color color = this.text.color;
+        color.a = alpha;
+        this.text.color = color;
     }
 }

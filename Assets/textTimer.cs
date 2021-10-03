@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class textTimer : MonoBehaviour
 {
@@ -27,6 +28,7 @@ public class textTimer : MonoBehaviour
     private bool slowMo = false;
     public float slowMoMusicPitch = 0.5f;
     private bool fading;
+    private Action onDoneCountingDownFast;
 
     void Start()
     {
@@ -56,6 +58,7 @@ public class textTimer : MonoBehaviour
                 seconds = 0.0f;
                 this.fading = true;
                 countingDownFast = false;
+                this.onDoneCountingDownFast.Invoke();
                 foreach (Transform child in GameObject.FindGameObjectWithTag("WinUI").transform)
                 {
                     child.gameObject.SetActive(true);
@@ -151,9 +154,10 @@ public class textTimer : MonoBehaviour
         }
     }
 
-    public void CountDownFast()
+    public void CountDownFastAndThen(Action andThen)
     {
         countingDownFast = true;
+        this.onDoneCountingDownFast = andThen;
     }
 
     private void RefreshText()
