@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class ScoreBonus : MonoBehaviour
 {
-    public PieceShooter shooter;
-    public int bonusPerConsecutiveShot = 100;
     private Text text;
     private int bonus = 0;
 
@@ -14,16 +12,11 @@ public class ScoreBonus : MonoBehaviour
     {
         this.text = GetComponent<Text>();
     }
-
-    void Update()
+    
+    public void AddBonus(int value)
     {
-        int bonus = this.bonusPerConsecutiveShot * this.shooter.GetConsecutiveGoodShots();
-        if (this.bonus != bonus)
-        {
-            this.bonus = bonus;
-            RefreshText();
-        }
-
+        this.bonus += value;
+        RefreshText();
     }
 
     private void RefreshText()
@@ -41,6 +34,12 @@ public class ScoreBonus : MonoBehaviour
     public int GetBonus()
     {
         return this.bonus;
+    }
+
+    public void Reset()
+    {
+        this.bonus = 0;
+        RefreshText();
     }
 
     public void SetTextAlpha(float alpha)

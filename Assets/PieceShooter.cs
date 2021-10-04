@@ -16,6 +16,7 @@ public class PieceShooter : MonoBehaviour
     private int angleIdx;
     private AudioSource soundEffect;
     public int consecutiveGoodShots = 0;
+    public ScoreBonus scoreBonus;
 
     public void Init()
     {
@@ -35,6 +36,7 @@ public class PieceShooter : MonoBehaviour
 
         SpawnPiece();
         soundEffect = GetComponent<AudioSource>();
+        this.scoreBonus.Reset();
     }
 
     void Update()
@@ -177,6 +179,12 @@ public class PieceShooter : MonoBehaviour
     public void RecordGoodShot()
     {
         ++this.consecutiveGoodShots;
+        AwardBonusPoints();
+    }
+
+    private void AwardBonusPoints()
+    {
+        this.scoreBonus.AddBonus(this.consecutiveGoodShots * 100);
     }
 
     public int GetConsecutiveGoodShots()
