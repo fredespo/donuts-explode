@@ -60,4 +60,12 @@ public class ScoreBonus : MonoBehaviour
     {
         this.score.AddInstant(this.bonus);
     }
+
+    public void ShowWinUi()
+    {
+        foreach (Transform child in GameObject.FindGameObjectWithTag("WinUI").transform)
+        {
+            child.gameObject.SetActive(true);
+        }
+    }
 }

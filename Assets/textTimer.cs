@@ -59,10 +59,6 @@ public class textTimer : MonoBehaviour
                 this.fading = true;
                 countingDownFast = false;
                 this.onDoneCountingDownFast.Invoke();
-                foreach (Transform child in GameObject.FindGameObjectWithTag("WinUI").transform)
-                {
-                    child.gameObject.SetActive(true);
-                }
             }
             else
             {
