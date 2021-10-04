@@ -20,6 +20,7 @@ public class LevelLoader : MonoBehaviour
     public GameObject levelObscurer;
     public AnimatedCountDown countDown;
     public LevelIndicator levelIndicator;
+    public ScoreBonus scoreBonus;
     public List<Reflector> pieceReflectors;
     public List<Level> levels;
     private int currLevelIdx = -1;
@@ -129,7 +130,7 @@ public class LevelLoader : MonoBehaviour
         pieceShooterComp.SetAngleChangeMode(level.pieceShooterAngleChangeMode);
         pieceShooterComp.SetAngles(level.pieceShooterAngles);
         pieceShooterComp.Init();
-        this.score.Init();
+        this.scoreBonus.Reset();
     }
 
     public void LoadNextLevelAndStartAfterDelay(float delaySec)

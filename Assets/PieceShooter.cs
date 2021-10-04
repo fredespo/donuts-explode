@@ -36,7 +36,6 @@ public class PieceShooter : MonoBehaviour
 
         SpawnPiece();
         soundEffect = GetComponent<AudioSource>();
-        this.scoreBonus.Reset();
     }
 
     void Update()

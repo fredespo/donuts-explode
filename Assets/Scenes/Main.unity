@@ -266,6 +266,7 @@ MonoBehaviour:
   levelObscurer: {fileID: 884396256}
   countDown: {fileID: 487701821}
   levelIndicator: {fileID: 615484283}
+  scoreBonus: {fileID: 1286868786}
   pieceReflectors:
   - {fileID: 8244189}
   - {fileID: 880484485}
@@ -7270,7 +7271,6 @@ MonoBehaviour:
   pointLostSound: {fileID: 411006553}
   dataStorage: {fileID: 1175133700}
   dispScore: 0
-  bonus: {fileID: 1286868786}
 --- !u!1 &967685317
 GameObject:
   m_ObjectHideFlags: 0
@@ -8454,6 +8454,7 @@ GameObject:
   - component: {fileID: 1286868784}
   - component: {fileID: 1286868783}
   - component: {fileID: 1286868786}
+  - component: {fileID: 1286868787}
   m_Layer: 5
   m_Name: Bonus
   m_TagString: ScoreBonus
@@ -8545,6 +8546,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32f4c64a403e8364ea93e0b2012e2c03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &1286868787
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1286868781}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5f0607a938cc35341839dc53a0831e2f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1297367648
 GameObject:
   m_ObjectHideFlags: 0

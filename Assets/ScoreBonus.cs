@@ -7,10 +7,16 @@ public class ScoreBonus : MonoBehaviour
 {
     private Text text;
     private int bonus = 0;
+    private Score score;
 
     void Awake()
     {
         this.text = GetComponent<Text>();
+    }
+
+    void Start()
+    {
+        this.score = GameObject.FindGameObjectWithTag("Score").GetComponent<Score>();
     }
     
     public void AddBonus(int value)
@@ -40,6 +46,7 @@ public class ScoreBonus : MonoBehaviour
     {
         this.bonus = 0;
         RefreshText();
+        SetTextAlpha(1);
     }
 
     public void SetTextAlpha(float alpha)
@@ -47,5 +54,10 @@ public class ScoreBonus : MonoBehaviour
         Color color = this.text.color;
         color.a = alpha;
         this.text.color = color;
+    }
+
+    public void AddBonusToScore()
+    {
+        this.score.AddInstant(this.bonus);
     }
 }

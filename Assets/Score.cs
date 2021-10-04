@@ -16,7 +16,6 @@ public class Score : MonoBehaviour
     public AudioSource pointLostSound;
     public DataStorage dataStorage;
     public float dispScore;
-    public ScoreBonus bonus;
     private bool snapToCenter;
 
     void Start()
@@ -27,11 +26,6 @@ public class Score : MonoBehaviour
         currScoreChangePerSec = scoreChangePerSec;
         pos = GetComponent<RectTransform>();
         RefreshText();
-    }
-
-    public void Init()
-    {
-        this.bonus.SetTextAlpha(1);
     }
 
     void Update()
@@ -241,6 +235,12 @@ public class Score : MonoBehaviour
         SaveScore();
     }
 
+    public void AddInstant(int amt)
+    {
+        this.score += amt;
+        RefreshDispScore();
+    }
+
     private void SaveScore()
     {
         dataStorage.SaveScore(score);
@@ -273,18 +273,5 @@ public class Score : MonoBehaviour
     public int GetFontSize()
     {
         return this.text.fontSize;
-    }
-
-    public void AddBonus()
-    {
-        StartCoroutine(AddBonusPointsAfterDelay(0.75f));
-    }
-
-    private IEnumerator AddBonusPointsAfterDelay(float secDelay)
-    {
-        yield return new WaitForSeconds(secDelay);
-        this.score += this.bonus.GetBonus();
-        RefreshDispScore();
-        this.bonus.SetTextAlpha(0);
     }
 }
