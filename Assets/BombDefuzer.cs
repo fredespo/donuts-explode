@@ -23,7 +23,6 @@ public class BombDefuzer : MonoBehaviour
     void Start()
     {
         timer = GameObject.FindGameObjectWithTag("BombTimer").GetComponent<textTimer>();
-        pieces = GameObject.FindGameObjectWithTag("PieceKeeper");
         pieceShooter = GameObject.FindGameObjectWithTag("PieceShooter");
         shootTapZone = GameObject.FindGameObjectWithTag("ShootTapZone");
         music = GameObject.FindGameObjectWithTag("GameMusic").GetComponent<GameMusic>();
@@ -64,6 +63,7 @@ public class BombDefuzer : MonoBehaviour
             GameObject spawnedDefuzedUI = GameObject.Instantiate(defuzedUI);
             spawnedDefuzedUI.gameObject.transform.SetParent(gameObject.transform.parent.transform, false);
             spawnedDefuzedUI.gameObject.transform.rotation = Quaternion.identity;
+            pieces = GameObject.FindGameObjectWithTag("PieceKeeper");
             pieces.SetActive(false);
             GameObject.FindGameObjectWithTag("PieceShooter").SetActive(false);
             bombHighlightAnim.enabled = false;
