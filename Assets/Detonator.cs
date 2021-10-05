@@ -13,6 +13,7 @@ public class Detonator : MonoBehaviour
     private Score score;
     private GameOverUI gameOverUI;
     private Animator camAnim;
+    private GameObject scoreBonusObj;
     private ScoreBonus scoreBonus;
 
     public void Start()
@@ -21,7 +22,12 @@ public class Detonator : MonoBehaviour
         pieceShooter = GameObject.FindGameObjectWithTag("PieceShooter");
         GameObject scoreObj = GameObject.FindGameObjectWithTag("Score");
         camAnim = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Animator>();
-        scoreBonus = GameObject.FindGameObjectWithTag("ScoreBonus").GetComponent<ScoreBonus>();
+        scoreBonusObj = GameObject.FindGameObjectWithTag("ScoreBonus");
+        if (scoreBonusObj != null)
+        {
+            scoreBonus = scoreBonusObj.GetComponent<ScoreBonus>();
+        }
+
         if (scoreObj != null)
         {
             score = scoreObj.GetComponent<Score>();

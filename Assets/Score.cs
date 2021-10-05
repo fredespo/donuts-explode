@@ -239,6 +239,7 @@ public class Score : MonoBehaviour
     {
         this.score += amt;
         RefreshDispScore();
+        this.pointGainedSound.Play();
     }
 
     private void SaveScore()

@@ -8,10 +8,12 @@ public class ScoreBonus : MonoBehaviour
     private Text text;
     private int bonus = 0;
     private Score score;
+    private Animator anim;
 
     void Awake()
     {
         this.text = GetComponent<Text>();
+        this.anim = GetComponent<Animator>();
     }
 
     void Start()
@@ -23,6 +25,7 @@ public class ScoreBonus : MonoBehaviour
     {
         this.bonus += value;
         RefreshText();
+        this.anim.SetTrigger("Increase");
     }
 
     private void RefreshText()
