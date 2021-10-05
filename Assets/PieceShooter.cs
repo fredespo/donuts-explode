@@ -17,6 +17,13 @@ public class PieceShooter : MonoBehaviour
     private AudioSource soundEffect;
     public int consecutiveGoodShots = 0;
     public ScoreBonus scoreBonus;
+    public AudioSource bonusSound;
+    private float bonusSoundBasePitch;
+
+    void Start()
+    {
+        this.bonusSoundBasePitch = this.bonusSound.pitch;
+    }
 
     public void Init()
     {
@@ -179,6 +186,7 @@ public class PieceShooter : MonoBehaviour
     {
         ++this.consecutiveGoodShots;
         AwardBonusPoints();
+        MakeBonusSound(this.bonusSound, this.bonusSoundBasePitch);
     }
 
     private void AwardBonusPoints()
@@ -194,5 +202,11 @@ public class PieceShooter : MonoBehaviour
     public void ResetConsecutiveShots()
     {
         this.consecutiveGoodShots = 0;
+    }
+
+    public void MakeBonusSound(AudioSource audioSource, float basePitch)
+    {
+        audioSource.pitch = basePitch * Mathf.Pow(1.05946f, this.consecutiveGoodShots * 2);
+        audioSource.Play();
     }
 }

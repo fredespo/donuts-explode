@@ -67,11 +67,12 @@ public class BombDefuzer : MonoBehaviour
             spawnedDefuzedUI.gameObject.transform.rotation = Quaternion.identity;
             pieces = GameObject.FindGameObjectWithTag("PieceKeeper");
             pieces.SetActive(false);
-            GameObject.FindGameObjectWithTag("PieceShooter").SetActive(false);
+            GameObject pieceShooter = GameObject.FindGameObjectWithTag("PieceShooter");
             bombHighlightAnim.enabled = false;
             bombHighlightAnim.enabled = true;
             soundEffect.volume = 0.8f;
-            soundEffect.Play(0);
+            pieceShooter.GetComponent<PieceShooter>().MakeBonusSound(this.soundEffect, 0.673473f);
+            pieceShooter.SetActive(false);
             dataStorage.SaveLevel(currLevel);
             dataStorage.Save();
             defuzed = true;
