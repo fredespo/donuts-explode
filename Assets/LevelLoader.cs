@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Analytics;
 
 public class LevelLoader : MonoBehaviour
 {
@@ -86,13 +85,6 @@ public class LevelLoader : MonoBehaviour
         pieceShooter.SetActive(true);
         levelObscurer.SetActive(false);
         Level level = levels[currLevelIdx];
-        if (!Application.isEditor)
-        {
-            AnalyticsEvent.LevelStart(currLevelIdx + 1, new Dictionary<string, object>
-            {
-                { "score", score.GetScore() }
-            });
-        }
         score.RefreshDispScore();
     }
 
