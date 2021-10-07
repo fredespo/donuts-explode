@@ -7,6 +7,7 @@ using GooglePlayGames;
 using UnityEngine.SocialPlatforms;
 using GooglePlayGames.BasicApi;
 using System;
+using UnityEngine.Analytics;
 
 public class GooglePlayServices : MonoBehaviour
 {
@@ -54,6 +55,10 @@ public class GooglePlayServices : MonoBehaviour
             if(this.signedIn)
             {
                 Social.ReportScore(score, "CgkIx6OD85cGEAIQAQ", (bool success) => {
+                    if (!success)
+                    {
+                        Analytics.CustomEvent("high_score_post_fail");
+                    }
                     action.Invoke(success);
                 });
             }
