@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Analytics;
 
 public class BombDefuzer : MonoBehaviour
 {
@@ -47,6 +48,13 @@ public class BombDefuzer : MonoBehaviour
             int newScore = score.GetScore() + GetPointsEarned();
             dataStorage.SaveScore(newScore);
             int currLevel = GameObject.FindGameObjectWithTag("LevelLoader").GetComponent<LevelLoader>().GetCurrentLevelIndex() + 1;
+            if (!Application.isEditor)
+            {
+                AnalyticsEvent.LevelComplete(currLevel, new Dictionary<string, object> 
+                {
+                    { "score", newScore }
+                });
+            }
                 
             music.WindDown();
             shootTapZone.SetActive(false);
