@@ -10,16 +10,19 @@ public class RemoveAds : MonoBehaviour
     public Text txt;
     private Ads ads;
     private IAP iap;
+    private IapAnalytics iapAnalytics;
 
     public void Start()
     {
         this.ads = GameObject.FindWithTag("AdsManager").GetComponent<Ads>();
-        this.iap = GameObject.FindWithTag("IAP").GetComponent<IAP>();
+        GameObject iapObj = GameObject.FindWithTag("IAP");
+        this.iap = iapObj.GetComponent<IAP>();
+        this.iapAnalytics = iapObj.GetComponent<IapAnalytics>();
     }
 
     public void BuyNoAds()
     {
-        GameObject.FindWithTag("IAP").GetComponent<IAP>().BuyNoAds();
+        this.iap.BuyNoAds();
     }
 
     public void Update()
@@ -28,5 +31,10 @@ public class RemoveAds : MonoBehaviour
         this.btn.enabled = enabled;
         this.img.enabled = enabled;
         this.txt.enabled = enabled;
+    }
+
+    public void TappedRemoveAdsButtonOnLevelWonMenu()
+    {
+        this.iapAnalytics.TappedRemoveAdsOnLevelWonMenu();
     }
 }

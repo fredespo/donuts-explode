@@ -7,6 +7,7 @@ using UnityEngine.Purchasing;
 public class IAP : MonoBehaviour, IStoreListener
 {
     public Ads ads;
+    private IapAnalytics analytics;
 
     private static IStoreController m_StoreController;          // The Unity Purchasing system.
     private static IExtensionProvider m_StoreExtensionProvider; // The store-specific Purchasing subsystems.
@@ -31,6 +32,7 @@ public class IAP : MonoBehaviour, IStoreListener
             // Begin to configure our connection to Purchasing
             InitializePurchasing();
         }
+        this.analytics = GetComponent<IapAnalytics>();
     }
 
     public void InitializePurchasing()
@@ -169,7 +171,15 @@ public class IAP : MonoBehaviour, IStoreListener
         // A consumable product has been purchased by this user.
         if (String.Equals(args.purchasedProduct.definition.id, noAdsID, StringComparison.Ordinal))
         {
+            if (this.analytics != null)
+            {
+                this.analytics.PurchasedRemoveAds();
+            }
             ads.DisableAds();
+            if (this.analytics != null && !ads.adsEnabled)
+            {
+                this.analytics.AdsDisabled();
+            }
         }
 
         // Return a flag indicating whether this product has completely been received, or if the application needs 
@@ -184,5 +194,10 @@ public class IAP : MonoBehaviour, IStoreListener
         // A product purchase attempt did not succeed. Check failureReason for more detail. Consider sharing 
         // this reason with the user to guide their troubleshooting actions.
         Debug.Log(string.Format("OnPurchaseFailed: FAIL. Product: '{0}', PurchaseFailureReason: {1}", product.definition.storeSpecificId, failureReason));
+
+        if(this.analytics != null)
+        {
+            this.analytics.FailedToPurchaseRemoveAds(string.Format("{0}", failureReason));
+        }
     }
 }

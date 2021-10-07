@@ -1790,6 +1790,7 @@ GameObject:
   m_Component:
   - component: {fileID: 182298625}
   - component: {fileID: 182298624}
+  - component: {fileID: 182298626}
   m_Layer: 0
   m_Name: IapManager
   m_TagString: IAP
@@ -1824,6 +1825,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &182298626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 182298623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d19d980cd8550084dad4ba55214503a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &189276176
 GameObject:
   m_ObjectHideFlags: 0
@@ -5647,6 +5660,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5057343903013985605, guid: d20c7564618eea144b6f462e1c2af3b4,
         type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5057343903013985605, guid: d20c7564618eea144b6f462e1c2af3b4,
+        type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 182298624}
@@ -5654,6 +5672,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: BuyNoAds
+      objectReference: {fileID: 0}
+    - target: {fileID: 5057343903013985605, guid: d20c7564618eea144b6f462e1c2af3b4,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5057343903013985605, guid: d20c7564618eea144b6f462e1c2af3b4,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5057343903013985605, guid: d20c7564618eea144b6f462e1c2af3b4,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 182298626}
+    - target: {fileID: 5057343903013985605, guid: d20c7564618eea144b6f462e1c2af3b4,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: TappedRemoveAdsOnLevelLostMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 5057343903013985605, guid: d20c7564618eea144b6f462e1c2af3b4,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d20c7564618eea144b6f462e1c2af3b4, type: 3}
@@ -12799,9 +12842,39 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5057343903013985605, guid: d20c7564618eea144b6f462e1c2af3b4,
         type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5057343903013985605, guid: d20c7564618eea144b6f462e1c2af3b4,
+        type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 182298624}
+    - target: {fileID: 5057343903013985605, guid: d20c7564618eea144b6f462e1c2af3b4,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5057343903013985605, guid: d20c7564618eea144b6f462e1c2af3b4,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5057343903013985605, guid: d20c7564618eea144b6f462e1c2af3b4,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 182298626}
+    - target: {fileID: 5057343903013985605, guid: d20c7564618eea144b6f462e1c2af3b4,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: TappedRemoveAdsOnTitle
+      objectReference: {fileID: 0}
+    - target: {fileID: 5057343903013985605, guid: d20c7564618eea144b6f462e1c2af3b4,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 5057343903013985607, guid: d20c7564618eea144b6f462e1c2af3b4,
         type: 3}
       propertyPath: m_Color.r
