@@ -55,7 +55,11 @@ public class GooglePlayServices : MonoBehaviour
             if(this.signedIn)
             {
                 Social.ReportScore(score, "CgkIx6OD85cGEAIQAQ", (bool success) => {
-                    if (!success)
+                    if (success)
+                    {
+                        Analytics.CustomEvent("high_score_post_success");
+                    }
+                    else
                     {
                         Analytics.CustomEvent("high_score_post_fail");
                     }
