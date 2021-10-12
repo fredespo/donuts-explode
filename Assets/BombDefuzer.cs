@@ -20,6 +20,7 @@ public class BombDefuzer : MonoBehaviour
     private Animator scoreBonusAnimator;
     private DataStorage dataStorage;
     private Score score;
+    private ScoreBonus scoreBonus;
 
     void Start()
     {
@@ -30,6 +31,7 @@ public class BombDefuzer : MonoBehaviour
         scoreBonusAnimator = GameObject.FindGameObjectWithTag("ScoreBonus").GetComponent<Animator>();
         dataStorage = GameObject.FindGameObjectWithTag("DataStorage").GetComponent<DataStorage>();
         score = GameObject.FindGameObjectWithTag("Score").GetComponent<Score>();
+        scoreBonus = GameObject.FindGameObjectWithTag("ScoreBonus").GetComponent<ScoreBonus>();
     }
 
     void Update()
@@ -45,7 +47,7 @@ public class BombDefuzer : MonoBehaviour
         if (!defuzed)
         {
             StartCoroutine(AddTimeToScoreAfterDelay(1.0f));
-            int newScore = score.GetScore() + GetPointsEarned();
+            int newScore = score.GetScore() + GetPointsEarned() + this.scoreBonus.GetBonus();
             dataStorage.SaveScore(newScore);
             int currLevel = GameObject.FindGameObjectWithTag("LevelLoader").GetComponent<LevelLoader>().GetCurrentLevelIndex() + 1;
             if (!Application.isEditor)
