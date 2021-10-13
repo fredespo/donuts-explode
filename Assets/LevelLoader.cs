@@ -78,14 +78,16 @@ public class LevelLoader : MonoBehaviour
 
     public void StartCurrentLevel()
     {
+        Level level = levels[currLevelIdx];
         timer.UnPause();
-        pieceShooter.SetActive(false);
-        this.pieceShooterComp.SetShootingEnabled(true);
+        pieceShooter.SetActive(true);
+        pieceShooterComp.SetShootingEnabled(true);
+        pieceShooterComp.SetAngleChangeMode(level.pieceShooterAngleChangeMode);
+        pieceShooterComp.SetAngles(level.pieceShooterAngles);
+        pieceShooterComp.Init();
         bomb.SendMessage("StartBomb");
         music.Play();
-        pieceShooter.SetActive(true);
         levelObscurer.SetActive(false);
-        Level level = levels[currLevelIdx];
         if (!Application.isEditor)
         {
             AnalyticsEvent.LevelStart(currLevelIdx + 1, new Dictionary<string, object>
@@ -99,7 +101,7 @@ public class LevelLoader : MonoBehaviour
     public void ResetCurrentLevel()
     {
         Level level = levels[currLevelIdx];
-        pieceShooter.SetActive(true);
+        pieceShooter.SetActive(false);
         this.shouldAnimatePiece = level.pieceAnimationAngles.Length > 0 && this.loadingLevel;
         levelObscurer.SetActive(this.shouldAnimatePiece);
         foreach (GameObject prevBomb in GameObject.FindGameObjectsWithTag("bomb"))
@@ -117,19 +119,11 @@ public class LevelLoader : MonoBehaviour
             Destroy(child.gameObject);
         }
         bombPieces.SetActive(true);
-        if (this.startDelaySec > 0)
-        {
-            pieceShooter.GetComponent<PieceShooter>().SetShootingEnabled(false);
-        }
         shootTapZone.SetActive(true);
         gameOverUI.Hide();
         music.Reset();
         levelIndicator.Set(this.GetCurrentLevelIndex() + 1, this.LevelCount());
         score.RefreshDispScore();
-        pieceShooterComp.SetShootingEnabled(true);
-        pieceShooterComp.SetAngleChangeMode(level.pieceShooterAngleChangeMode);
-        pieceShooterComp.SetAngles(level.pieceShooterAngles);
-        pieceShooterComp.Init();
         this.scoreBonus.Reset();
     }
 
