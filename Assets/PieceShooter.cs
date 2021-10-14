@@ -206,7 +206,7 @@ public class PieceShooter : MonoBehaviour
 
     public void MakeBonusSound(AudioSource audioSource, float basePitch)
     {
-        audioSource.pitch = basePitch * Mathf.Pow(1.05946f, this.consecutiveGoodShots * 2);
+        audioSource.pitch = basePitch * Mathf.Min(2, Mathf.Pow(1.05946f, this.consecutiveGoodShots * 2));
         audioSource.Play();
     }
 }
