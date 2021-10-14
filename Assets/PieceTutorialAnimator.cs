@@ -10,6 +10,12 @@ public class PieceTutorialAnimator : MonoBehaviour
     private Action onComplete;
     private float[] angles;
     private GameObject spawnedPiece;
+    private AudioSource pieceChangeAngleSound;
+
+    void Start()
+    {
+        this.pieceChangeAngleSound = GetComponent<AudioSource>();
+    }
 
     public void AnimatePieceAndThen(Action callback)
     {
@@ -40,6 +46,7 @@ public class PieceTutorialAnimator : MonoBehaviour
         for(int i = 1; i < this.angles.Length; ++i)
         {
             spawnedPiece.transform.eulerAngles = new Vector3(spawnedPiece.transform.eulerAngles.x, spawnedPiece.transform.eulerAngles.y, this.angles[i]);
+            pieceChangeAngleSound.Play();
             yield return new WaitForSeconds(0.7f);
         }
 
