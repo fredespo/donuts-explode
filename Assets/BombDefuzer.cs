@@ -73,7 +73,7 @@ public class BombDefuzer : MonoBehaviour
             bombHighlightAnim.enabled = false;
             bombHighlightAnim.enabled = true;
             soundEffect.volume = 0.8f;
-            pieceShooter.GetComponent<PieceShooter>().MakeBonusSound(this.soundEffect, 0.673473f);
+            pieceShooter.GetComponent<PieceShooter>().MakeBonusSound(this.soundEffect, 0.473473f);
             pieceShooter.SetActive(false);
             dataStorage.SaveLevel(currLevel);
             dataStorage.Save();
