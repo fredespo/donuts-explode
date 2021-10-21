@@ -48,8 +48,12 @@ public class Magnet : MonoBehaviour
 
     private void RotateTowardsMagnet(GameObject obj)
     {
-        Quaternion targetRotation = Quaternion.LookRotation(obj.transform.position - transform.position);
-        Quaternion.RotateTowards(transform.rotation, targetRotation, Time.deltaTime * 10f);
+        Vector3 rotationVector = obj.transform.position - transform.position;
+        if(rotationVector.sqrMagnitude > 0.001)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(rotationVector);
+            Quaternion.RotateTowards(transform.rotation, targetRotation, Time.deltaTime * 10f);
+        }
     }
 
     private float GetMovementX(Vector3 otherPos)
