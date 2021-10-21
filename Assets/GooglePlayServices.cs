@@ -13,6 +13,7 @@ public class GooglePlayServices : MonoBehaviour
 {
     public UnityEvent afterInitialSignInAttempt;
     private bool signedIn;
+    private static string LEADERBOARD_ID = "CgkIx6OD85cGEAIQAQ";
 
     // Start is called before the first frame update
     void Start()
@@ -54,7 +55,7 @@ public class GooglePlayServices : MonoBehaviour
         {
             if(this.signedIn)
             {
-                Social.ReportScore(score, "CgkIx6OD85cGEAIQAQ", (bool success) => {
+                Social.ReportScore(score, LEADERBOARD_ID, (bool success) => {
                     if (success)
                     {
                         Analytics.CustomEvent("high_score_post_success");
@@ -71,6 +72,25 @@ public class GooglePlayServices : MonoBehaviour
                 action.Invoke(false);
             }
         });
+    }
+
+    public void ProcessCurrentHighScore(Action<long> action)
+    {
+        if(this.signedIn)
+        {
+            PlayGamesPlatform.Instance.LoadScores
+            (
+                LEADERBOARD_ID,
+                LeaderboardStart.PlayerCentered,
+                1,
+                LeaderboardCollection.Public,
+                LeaderboardTimeSpan.AllTime,
+                (LeaderboardScoreData data) =>
+                {
+                    action.Invoke(data.PlayerScore.value);
+                }
+            );
+        }
     }
 
     public void SignIn(Action<SignInStatus> andThen)

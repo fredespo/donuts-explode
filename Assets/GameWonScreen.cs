@@ -11,6 +11,7 @@ public class GameWonScreen : MonoBehaviour
     public UnityEvent onFailedAutoSaveScore;
     public UnityEvent onScoreSaved;
     public UnityEvent onScoreSaveError;
+    public UnityEvent onNewHighScoreDetected;
     public UnityEvent onExit;
     public Score score;
     public Text scoreText;
@@ -30,6 +31,13 @@ public class GameWonScreen : MonoBehaviour
                 {
                     this.autoSavedHighScore = true;
                     onAutoSaveScore.Invoke();
+                    playServices.ProcessCurrentHighScore(highscore =>
+                    {
+                        if(score.GetScore() == highscore)
+                        {
+                            onNewHighScoreDetected.Invoke();
+                        }
+                    });
                 }
                 else
                 {
@@ -50,6 +58,13 @@ public class GameWonScreen : MonoBehaviour
             if (success)
             {
                 onScoreSaved.Invoke();
+                playServices.ProcessCurrentHighScore(highscore =>
+                {
+                    if (score.GetScore() == highscore)
+                    {
+                        onNewHighScoreDetected.Invoke();
+                    }
+                });
             }
             else
             {
