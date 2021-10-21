@@ -17,9 +17,6 @@ public class ButtonPressEffect : MonoBehaviour
         this.rectTransform = GetComponent<RectTransform>();
         this.from = this.rectTransform.localScale;
         this.to = this.from * this.scaleEffect;
-        GetComponent<Button>().onClick.AddListener(() =>
-            StartCoroutine(Animate())
-        );
     }
 
     void OnEnable()
@@ -31,6 +28,16 @@ public class ButtonPressEffect : MonoBehaviour
     {
         this.rectTransform.localScale = to;
         yield return new WaitForSeconds(Time.fixedDeltaTime * durationFrames);
+        this.rectTransform.localScale = from;
+    }
+
+    public void onPressDown()
+    {
+        this.rectTransform.localScale = to;
+    }
+
+    public void onPressUp()
+    {
         this.rectTransform.localScale = from;
     }
 }
