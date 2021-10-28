@@ -117,6 +117,13 @@ public class BombPiece : MonoBehaviour
         return this.hitBomb;
     }
 
+    public void LeftMagnet()
+    {
+        this.inMagnetRange = false;
+        this.caughtInMagnet = false;
+        this.fading = true;
+    }
+
     private void StopFading()
     {
         fading = false;

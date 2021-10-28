@@ -5,7 +5,8 @@ using UnityEngine;
 public class Magnet : MonoBehaviour
 {
     public float speed = 1.0f;
-    private List<GameObject> caughtObjects = new List<GameObject>();
+    private HashSet<GameObject> caughtObjects = new HashSet<GameObject>();
+    private HashSet<GameObject> leftObjects = new HashSet<GameObject>();
     private string tagToLookFor;
     private Camera mCamera;
     private BombHole hole;
@@ -21,7 +22,7 @@ public class Magnet : MonoBehaviour
     {
         foreach(GameObject obj in caughtObjects)
         {
-            if(obj != null)
+            if(obj != null && !this.leftObjects.Contains(obj))
             {
                 if(obj.GetComponent<BombPiece>().CaughtInMagnet())
                 {
@@ -88,12 +89,12 @@ public class Magnet : MonoBehaviour
         }
     }
 
-    public void FillWithFirstCaught()
+    void OnTriggerExit2D(Collider2D col)
     {
-        GameObject firstCaught = this.caughtObjects[0];
-        if (firstCaught != null)
+        if (col.gameObject.CompareTag(tagToLookFor))
         {
-            this.hole.fillWith(firstCaught);
+            leftObjects.Add(col.gameObject);
+            col.gameObject.GetComponent<BombPiece>().LeftMagnet();
         }
     }
 }
