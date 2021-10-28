@@ -12,6 +12,7 @@ public class BombPiece : MonoBehaviour
     SpriteRenderer spriteRenderer;
     private bool fading = false;
     private bool caughtInMagnet = false;
+    private bool inMagnetRange = false;
     private bool reflectingToBomb = false;
     private GameObject bomb;
     private Rigidbody2D rigibody;
@@ -19,6 +20,7 @@ public class BombPiece : MonoBehaviour
     private AudioSource reflectSoundEffect;
     private Action onMiss;
     private Action onFilledHole;
+    private bool hitBomb = false;
 
     void Awake()
     {
@@ -35,13 +37,17 @@ public class BombPiece : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if(!fading && col.gameObject.CompareTag("bomb") && !caughtInMagnet)
+        if(col.gameObject.CompareTag("bomb"))
         {
-            fading = true;
-            this.hitBombSoundEffect.pitch = UnityEngine.Random.Range(0.25f, 0.4f);
-            this.hitBombSoundEffect.Play(0);
-            var impulse = (UnityEngine.Random.Range(100f, 300f) * Mathf.Deg2Rad) * this.rigibody.inertia;
-            this.rigibody.AddTorque(impulse, ForceMode2D.Impulse);
+            this.hitBomb = true;
+            if (!fading && !inMagnetRange)
+            {
+                fading = true;
+                this.hitBombSoundEffect.pitch = UnityEngine.Random.Range(0.25f, 0.4f);
+                this.hitBombSoundEffect.Play(0);
+                var impulse = (UnityEngine.Random.Range(100f, 300f) * Mathf.Deg2Rad) * this.rigibody.inertia;
+                this.rigibody.AddTorque(impulse, ForceMode2D.Impulse);
+            }
         }
     }
 
@@ -90,14 +96,38 @@ public class BombPiece : MonoBehaviour
         transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
     }
 
-    void CaughtInMagnet()
+   public bool CaughtInMagnet()
+    {
+        this.inMagnetRange = true;
+        StopFading();
+        if (this.hitBomb)
+        {
+            this.hitBombSoundEffect.Stop();
+            if(!caughtInMagnet)
+            {
+                caughtInMagnet = true;
+                //this.rigibody.velocity = Vector3.zero;
+                if (this.bomb == null)
+                {
+                    this.bomb = GameObject.FindGameObjectWithTag("bomb");
+                }
+                this.transform.parent = this.bomb.transform;
+            }
+        }
+        return this.hitBomb;
+    }
+
+    private void StopFading()
     {
         fading = false;
+        SetAlpha(1.0f);
+    }
+
+    private void SetAlpha(float value)
+    {
         Color color = spriteRenderer.color;
-        color.a = 1.0f;
+        color.a = value;
         spriteRenderer.color = color;
-        caughtInMagnet = true;
-        this.hitBombSoundEffect.Stop();
     }
 
     public void ReflectToBomb()

@@ -23,9 +23,11 @@ public class Magnet : MonoBehaviour
         {
             if(obj != null)
             {
-                obj.SendMessage("CaughtInMagnet", null, SendMessageOptions.DontRequireReceiver);
-                MoveTowardsMagnet(obj);
-                RotateTowardsMagnet(obj);
+                if(obj.GetComponent<BombPiece>().CaughtInMagnet())
+                {
+                    MoveTowardsMagnet(obj);
+                    RotateTowardsMagnet(obj);
+                }
             }
         }
     }
@@ -52,7 +54,7 @@ public class Magnet : MonoBehaviour
         if(rotationVector.sqrMagnitude > 0.001)
         {
             Quaternion targetRotation = Quaternion.LookRotation(rotationVector);
-            Quaternion.RotateTowards(transform.rotation, targetRotation, Time.deltaTime * 10f);
+            Quaternion.RotateTowards(transform.rotation, targetRotation, Time.deltaTime * 0.5f);
         }
     }
 
@@ -82,11 +84,7 @@ public class Magnet : MonoBehaviour
     {
         if (col.gameObject.CompareTag(tagToLookFor))
         {
-            Rigidbody2D rb = col.gameObject.GetComponent<Rigidbody2D>();
-            rb.velocity = new Vector3(0, 0, 0);
             caughtObjects.Add(col.gameObject);
-            Invoke("FillWithFirstCaught", 0.3f);
-            col.gameObject.transform.SetParent(GameObject.FindWithTag("bomb").transform);
         }
     }
 
