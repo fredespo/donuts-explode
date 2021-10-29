@@ -63,16 +63,15 @@ public class BombPiece : MonoBehaviour
             rigibody.velocity = (p1 - p2).normalized * rigibody.velocity.magnitude;
             rigibody.MoveRotation(90 + Mathf.Atan2(p2.y - p1.y, p2.x - p1.x) * 180 / Mathf.PI);
         }
-    }
-
-    void Update()
-    {
 
         if (caughtInMagnet)
         {
             LookAt(this.bomb);
         }
+    }
 
+    void Update()
+    {
         if (fading)
         {
             Color color = spriteRenderer.color;
@@ -89,10 +88,13 @@ public class BombPiece : MonoBehaviour
     private void LookAt(GameObject target)
     {
         if (target == null) return;
-        Vector3 diff = target.transform.position - transform.position;
-        diff.Normalize();
-        float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
+        float angle = Mathf.Atan2(target.transform.position.y - transform.position.y, target.transform.position.x - transform.position.x) * Mathf.Rad2Deg;
+
+        //subtract 90 degrees because bomb pieces are always displayed at +90 degrees relative to their actual rotation due to how the sprite is defined (oops lol)
+        angle -= 90f;
+
+        Quaternion targetRotation = Quaternion.Euler(new Vector3(0, 0, angle));
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 700f * Time.deltaTime);
     }
 
     public bool CaughtInMagnet()
@@ -113,7 +115,7 @@ public class BombPiece : MonoBehaviour
                 this.transform.parent = this.bomb.transform;
             }
         }
-        return this.hitBomb;
+        return this.caughtInMagnet;
     }
 
     public void LeftMagnet()
