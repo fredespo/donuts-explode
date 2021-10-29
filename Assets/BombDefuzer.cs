@@ -98,6 +98,19 @@ public class BombDefuzer : MonoBehaviour
         return gameObject.transform.childCount;
     }
 
+    public int GetNumUnfilledHoles()
+    {
+        int count = 0;
+        foreach (Transform child in gameObject.transform)
+        {
+            if (!child.gameObject.GetComponent<BombHole>().IsFilled())
+            {
+                ++count;
+            }
+        }
+        return count;
+    }
+
     public List<Transform> GetHoles()
     {
         List<Transform> holes = new List<Transform>();

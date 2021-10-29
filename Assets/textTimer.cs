@@ -128,6 +128,7 @@ public class textTimer : MonoBehaviour
     {
             && this.defuzer != null
             && this.defuzer.GetNumHolesLeft() == 1
+            && this.defuzer.GetNumUnfilledHoles() == 1
             && this.pieceShooter != null
             && !this.pieceShooter.IsSpawnedPieceReadyToShoot()
             && this.pieceShooter.GetPiece() != null

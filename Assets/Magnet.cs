@@ -5,6 +5,7 @@ using UnityEngine;
 public class Magnet : MonoBehaviour
 {
     public float speed = 1.0f;
+    public float marginDist = 0.08f;
     private HashSet<BombPiece> caughtPieces = new HashSet<BombPiece>();
     private HashSet<BombPiece> leftPieces = new HashSet<BombPiece>();
     private string tagToLookFor;
@@ -22,9 +23,17 @@ public class Magnet : MonoBehaviour
     {
         foreach(BombPiece piece in caughtPieces)
         {
-            if(piece != null && !this.leftPieces.Contains(piece) && piece.CaughtInMagnet())
+            if(piece != null && !this.leftPieces.Contains(piece))
             {
-                MoveTowardsMagnet(piece.gameObject);
+                if(piece.CaughtInMagnet())
+                {
+                    MoveTowardsMagnet(piece.gameObject);
+                }
+                
+                if(Vector3.Distance(transform.position, piece.gameObject.transform.position) <= this.marginDist)
+                {
+                    this.hole.FillWith(piece.gameObject);
+                }
             }
         }
     }
@@ -34,15 +43,7 @@ public class Magnet : MonoBehaviour
         Vector3 objPos = obj.transform.position;
         float offsetX = GetMovementX(objPos);
         float offsetY = GetMovementY(objPos);
-        
-        if (Mathf.Abs(objPos.x - transform.position.x) + Mathf.Abs(objPos.y - transform.position.y) < 0.08f)
-        {
-            this.hole.fillWith(obj);
-        }
-        else
-        {
-            obj.transform.position = new Vector3(objPos.x + offsetX, objPos.y + offsetY, objPos.z);
-        }
+        obj.transform.position = new Vector3(objPos.x + offsetX, objPos.y + offsetY, objPos.z);
     }
 
     private float GetMovementX(Vector3 otherPos)
