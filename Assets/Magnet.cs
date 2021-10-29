@@ -5,8 +5,8 @@ using UnityEngine;
 public class Magnet : MonoBehaviour
 {
     public float speed = 1.0f;
-    private HashSet<GameObject> caughtObjects = new HashSet<GameObject>();
-    private HashSet<GameObject> leftObjects = new HashSet<GameObject>();
+    private HashSet<BombPiece> caughtPieces = new HashSet<BombPiece>();
+    private HashSet<BombPiece> leftPieces = new HashSet<BombPiece>();
     private string tagToLookFor;
     private Camera mCamera;
     private BombHole hole;
@@ -18,17 +18,13 @@ public class Magnet : MonoBehaviour
         hole = transform.parent.GetComponent<BombHole>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        foreach(GameObject obj in caughtObjects)
+        foreach(BombPiece piece in caughtPieces)
         {
-            if(obj != null && !this.leftObjects.Contains(obj))
+            if(piece != null && !this.leftPieces.Contains(piece) && piece.CaughtInMagnet())
             {
-                if(obj.GetComponent<BombPiece>().CaughtInMagnet())
-                {
-                    MoveTowardsMagnet(obj);
-                    RotateTowardsMagnet(obj);
-                }
+                MoveTowardsMagnet(piece.gameObject);
             }
         }
     }
@@ -46,16 +42,6 @@ public class Magnet : MonoBehaviour
         else
         {
             obj.transform.position = new Vector3(objPos.x + offsetX, objPos.y + offsetY, objPos.z);
-        }
-    }
-
-    private void RotateTowardsMagnet(GameObject obj)
-    {
-        Vector3 rotationVector = obj.transform.position - transform.position;
-        if(rotationVector.sqrMagnitude > 0.001)
-        {
-            Quaternion targetRotation = Quaternion.LookRotation(rotationVector);
-            Quaternion.RotateTowards(transform.rotation, targetRotation, Time.deltaTime * 0.5f);
         }
     }
 
@@ -85,7 +71,7 @@ public class Magnet : MonoBehaviour
     {
         if (col.gameObject.CompareTag(tagToLookFor))
         {
-            caughtObjects.Add(col.gameObject);
+            caughtPieces.Add(col.gameObject.GetComponent<BombPiece>());
         }
     }
 
@@ -93,8 +79,9 @@ public class Magnet : MonoBehaviour
     {
         if (col.gameObject.CompareTag(tagToLookFor))
         {
-            leftObjects.Add(col.gameObject);
-            col.gameObject.GetComponent<BombPiece>().LeftMagnet();
+            BombPiece piece = col.gameObject.GetComponent<BombPiece>();
+            leftPieces.Add(piece);
+            piece.LeftMagnet();
         }
     }
 }

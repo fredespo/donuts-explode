@@ -21,6 +21,8 @@ public class BombPiece : MonoBehaviour
     private Action onMiss;
     private Action onFilledHole;
     private bool hitBomb = false;
+    private bool leftMagnet = false;
+    private Transform origParent;
 
     void Awake()
     {
@@ -33,6 +35,7 @@ public class BombPiece : MonoBehaviour
         this.rigibody = GetComponent<Rigidbody2D>();
         this.hitBombSoundEffect = GetComponent<AudioSource>();
         this.reflectSoundEffect = GameObject.FindWithTag("PieceReflectSoundEffect").GetComponent<AudioSource>();
+        this.origParent = transform.parent;
     }
 
     void OnCollisionEnter2D(Collision2D col)
@@ -64,10 +67,6 @@ public class BombPiece : MonoBehaviour
 
     void Update()
     {
-        if(this.bomb == null && (caughtInMagnet || reflectingToBomb))
-        {
-            this.bomb = GameObject.FindGameObjectWithTag("bomb");
-        }
 
         if (caughtInMagnet)
         {
@@ -96,8 +95,13 @@ public class BombPiece : MonoBehaviour
         transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
     }
 
-   public bool CaughtInMagnet()
+    public bool CaughtInMagnet()
     {
+        if(this.leftMagnet)
+        {
+            return false;
+        }
+
         this.inMagnetRange = true;
         StopFading();
         if (this.hitBomb)
@@ -106,11 +110,6 @@ public class BombPiece : MonoBehaviour
             if(!caughtInMagnet)
             {
                 caughtInMagnet = true;
-                //this.rigibody.velocity = Vector3.zero;
-                if (this.bomb == null)
-                {
-                    this.bomb = GameObject.FindGameObjectWithTag("bomb");
-                }
                 this.transform.parent = this.bomb.transform;
             }
         }
@@ -122,6 +121,8 @@ public class BombPiece : MonoBehaviour
         this.inMagnetRange = false;
         this.caughtInMagnet = false;
         this.fading = true;
+        this.leftMagnet = true;
+        transform.parent = this.origParent;
     }
 
     private void StopFading()
