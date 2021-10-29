@@ -9,8 +9,10 @@ using System;
 public class BombPiece : MonoBehaviour
 {
     public float fadeSpeed = 1;
+    public float fadeDelaySec = 0.2f;
     SpriteRenderer spriteRenderer;
     private bool fading = false;
+    private float fadeStartTime;
     private bool caughtInMagnet = false;
     private bool inMagnetRange = false;
     private bool reflectingToBomb = false;
@@ -46,6 +48,7 @@ public class BombPiece : MonoBehaviour
             if (!fading && !inMagnetRange)
             {
                 fading = true;
+                fadeStartTime = Time.time;
                 this.hitBombSoundEffect.pitch = UnityEngine.Random.Range(0.25f, 0.4f);
                 this.hitBombSoundEffect.Play(0);
                 var impulse = (UnityEngine.Random.Range(100f, 300f) * Mathf.Deg2Rad) * this.rigibody.inertia;
@@ -72,7 +75,7 @@ public class BombPiece : MonoBehaviour
 
     void Update()
     {
-        if (fading)
+        if (fading && Time.time >= this.fadeStartTime + this.fadeDelaySec)
         {
             Color color = spriteRenderer.color;
             color.a -= fadeSpeed * Time.deltaTime;
