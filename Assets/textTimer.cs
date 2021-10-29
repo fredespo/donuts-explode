@@ -126,7 +126,6 @@ public class textTimer : MonoBehaviour
 
     private bool ShouldSlowMo()
     {
-        return this.seconds < 1 && this.seconds > 0
             && this.defuzer != null
             && this.defuzer.GetNumHolesLeft() == 1
             && this.pieceShooter != null
