@@ -119,7 +119,17 @@ public class textTimer : MonoBehaviour
 
     private void HandleSlowMo()
     {
-        this.slowMo = ShouldSlowMo();
+        if(this.slowMo)
+        {
+            if((this.defuzer.GetNumUnfilledHoles() == 0 || this.seconds <= 0))
+            {
+                this.slowMo = false;
+            }
+        }
+        else
+        {
+            this.slowMo = ShouldSlowMo();
+        }
         Time.timeScale = this.slowMo ? this.slowMoTimeScale : 1.0f;
         this.camAnim.SetBool("slowmo", this.slowMo);
     }
