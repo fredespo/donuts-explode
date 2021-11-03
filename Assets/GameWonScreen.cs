@@ -14,6 +14,7 @@ public class GameWonScreen : MonoBehaviour
     public UnityEvent onNewHighScoreDetected;
     public UnityEvent onExit;
     public Score score;
+    public GameObject levelIndicator;
     public Text scoreText;
     public GooglePlayServices playServices;
     private bool autoSavedHighScore;
@@ -23,6 +24,10 @@ public class GameWonScreen : MonoBehaviour
         onInit.Invoke();
         scoreText.text = score.GetScore().ToString();
         autoSavedHighScore = false;
+    }
+
+    public void PostInit()
+    {
         if (playServices.IsSignedIn())
         {
             playServices.PostHighScoreAndThen(score.GetScore(), (success) =>
@@ -33,7 +38,7 @@ public class GameWonScreen : MonoBehaviour
                     onAutoSaveScore.Invoke();
                     playServices.ProcessCurrentHighScore(highscore =>
                     {
-                        if(score.GetScore() == highscore)
+                        if (score.GetScore() == highscore)
                         {
                             onNewHighScoreDetected.Invoke();
                         }
@@ -49,6 +54,16 @@ public class GameWonScreen : MonoBehaviour
         {
             onFailedAutoSaveScore.Invoke();
         }
+    }
+
+    public void MakeLevelIndicatorBold()
+    {
+        this.levelIndicator.GetComponent<Text>().fontStyle = FontStyle.Bold;
+    }
+
+    public void MakeLevelIndicatorNormal()
+    {
+        this.levelIndicator.GetComponent<Text>().fontStyle = FontStyle.Normal;
     }
 
     public void PostScore()
