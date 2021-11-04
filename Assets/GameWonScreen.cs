@@ -17,13 +17,27 @@ public class GameWonScreen : MonoBehaviour
     public GameObject levelIndicator;
     public Text scoreText;
     public GooglePlayServices playServices;
+    public AudioSource gameMusic;
+    public AudioSource victoryMusic;
+    private float initGameMusicVolume;
+    private float initVictoryMusicVolume;
     private bool autoSavedHighScore;
+
+    void Awake()
+    {
+        this.initGameMusicVolume = this.gameMusic.volume;
+        this.initVictoryMusicVolume = this.victoryMusic.volume;
+    }
 
     public void Init()
     {
         onInit.Invoke();
         scoreText.text = score.GetScore().ToString();
         autoSavedHighScore = false;
+        StartCoroutine(FadeAudioSource(this.gameMusic, 3, 0));
+        this.victoryMusic.volume = 0;
+        this.victoryMusic.Play();
+        StartCoroutine(FadeAudioSource(this.victoryMusic, 3, this.initVictoryMusicVolume));
     }
 
     public void PostInit()
@@ -90,11 +104,33 @@ public class GameWonScreen : MonoBehaviour
 
     public void OnExit()
     {
+        this.victoryMusic.Stop();
+        this.gameMusic.volume = this.initGameMusicVolume;
+        this.gameMusic.Play();
         onExit.Invoke();
     }
 
     public bool isAutosavedHighScore()
     {
         return this.autoSavedHighScore;
+    }
+
+    IEnumerator FadeAudioSource(AudioSource audio, float duration, float targetVolume)
+    {
+        //Calculate the steps
+        int volumeChangesPerSecond = 10;
+        int numSteps = (int)(volumeChangesPerSecond * duration);
+        float stepTime = duration / numSteps;
+        float stepSize = (targetVolume - audio.volume) / numSteps;
+
+        //Fade now
+        for (int i = 1; i < numSteps; i++)
+        {
+            audio.volume += stepSize;
+            yield return new WaitForSeconds(stepTime);
+        }
+
+        //Make sure the targetVolume is set
+        audio.volume = targetVolume;
     }
 }
