@@ -15,7 +15,7 @@ public class TitleScreen : MonoBehaviour
         if(dataStorage.GetLevel() == levelLoader.LevelCount())
         {
             score.score = dataStorage.GetScore();
-            screenManager.ShowGameWonScreen();
+            screenManager.ShowGameWonScreen(false);
         }
     }
 

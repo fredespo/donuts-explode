@@ -7,6 +7,7 @@ using UnityEngine.Events;
 public class GameWonScreen : MonoBehaviour
 {
     public UnityEvent onInit;
+    public UnityEvent onSkipAnimation;
     public UnityEvent onAutoSaveScore;
     public UnityEvent onFailedAutoSaveScore;
     public UnityEvent onScoreSaved;
@@ -22,22 +23,38 @@ public class GameWonScreen : MonoBehaviour
     private float initGameMusicVolume;
     private float initVictoryMusicVolume;
     private bool autoSavedHighScore;
+    private Animator anim;
 
     void Awake()
     {
         this.initGameMusicVolume = this.gameMusic.volume;
         this.initVictoryMusicVolume = this.victoryMusic.volume;
+        this.anim = GetComponent<Animator>();
     }
 
-    public void Init()
+    public void Init(bool showAnimation = true)
     {
         onInit.Invoke();
         scoreText.text = score.GetScore().ToString();
         autoSavedHighScore = false;
-        StartCoroutine(FadeAudioSource(this.gameMusic, 3, 0));
-        this.victoryMusic.volume = 0;
-        this.victoryMusic.Play();
-        StartCoroutine(FadeAudioSource(this.victoryMusic, 3, this.initVictoryMusicVolume));
+        if(showAnimation)
+        {
+            this.anim.enabled = true;
+            this.anim.SetTrigger("Intro");
+            StartCoroutine(FadeAudioSource(this.gameMusic, 3, 0));
+            this.victoryMusic.volume = 0;
+            this.victoryMusic.Play();
+            StartCoroutine(FadeAudioSource(this.victoryMusic, 3, this.initVictoryMusicVolume));
+        }
+        else
+        {
+            this.anim.enabled = false;
+            this.gameMusic.Stop();
+            this.victoryMusic.volume = this.initVictoryMusicVolume;
+            this.victoryMusic.Play();
+            this.onSkipAnimation.Invoke();
+            PostInit();
+        }
     }
 
     public void PostInit()

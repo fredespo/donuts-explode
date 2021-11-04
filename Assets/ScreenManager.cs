@@ -64,12 +64,12 @@ public class ScreenManager : MonoBehaviour
         }
     }
 
-    public void ShowGameWonScreen()
+    public void ShowGameWonScreen(bool showAnimation = true)
     {
         gameWonScreen.SetActive(true);
         titleScreen.SetActive(false);
         gameScreen.SetActive(false);
         settingsScreen.SetActive(false);
-        gameWonScreen.GetComponent<GameWonScreen>().Init();
+        gameWonScreen.GetComponent<GameWonScreen>().Init(showAnimation);
     }
 }
