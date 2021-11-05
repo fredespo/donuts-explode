@@ -21,6 +21,7 @@ public class GameWonScreen : MonoBehaviour
     public AudioSource gameMusic;
     public AudioSource victoryMusic;
     public AudioSource metalImpactSound;
+    public AudioSource extinguishSound;
     private float initGameMusicVolume;
     private float initVictoryMusicVolume;
     private bool autoSavedHighScore;
@@ -155,5 +156,10 @@ public class GameWonScreen : MonoBehaviour
     public void PlayMetalImpactSound()
     {
         this.metalImpactSound.Play();
+    }
+
+    public void PlayExtinguishSound()
+    {
+        this.extinguishSound.Play();
     }
 }
