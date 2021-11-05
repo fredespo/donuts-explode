@@ -20,6 +20,7 @@ public class GameWonScreen : MonoBehaviour
     public GooglePlayServices playServices;
     public AudioSource gameMusic;
     public AudioSource victoryMusic;
+    public AudioSource metalImpactSound;
     private float initGameMusicVolume;
     private float initVictoryMusicVolume;
     private bool autoSavedHighScore;
@@ -149,5 +150,10 @@ public class GameWonScreen : MonoBehaviour
 
         //Make sure the targetVolume is set
         audio.volume = targetVolume;
+    }
+
+    public void PlayMetalImpactSound()
+    {
+        this.metalImpactSound.Play();
     }
 }
