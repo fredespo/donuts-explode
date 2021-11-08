@@ -1,0 +1,1 @@
+If you change the size of the particle system, don't forget to change the rate over distance parameter in the emission tab.

@@ -1,0 +1,10 @@
+How to add sound to the fireworks:
+1. Add script to the main particle component that throw fireworks.
+2. You can add sound collection for explosions, shoots or for both.
+3. Create Pools for explosions or shoots if you have sound collection for them.
+4. Write "AudioExplosion" tag for explosion and "AudioShot" tag for shooting.
+IMPORTANT! Don't create pool if you don't add any sound elements.
+For example: if you add only 1 or many sounds for explosion, then create only 1 pool for explosions (AudioExplosion pool name).
+5. Create prefab with audiosourse and add to the pool or pools.
+6. Set pool size for your effect. If you don't know what size you want, then write ~20.
+7. Set volume and pitch.
