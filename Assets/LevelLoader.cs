@@ -20,9 +20,11 @@ public class LevelLoader : MonoBehaviour
     public GameObject levelObscurer;
     public AnimatedCountDown countDown;
     public LevelIndicator levelIndicator;
+    public GameObject bonusLevelIndicator;
     public ScoreBonus scoreBonus;
     public List<Reflector> pieceReflectors;
     public List<Level> levels;
+    public float bonusLevelStartDelaySec;
     public List<BonusLevel> bonusLevels;
     private int bonusLevelIndex;
     private int currLevelIdx = -1;
@@ -83,7 +85,7 @@ public class LevelLoader : MonoBehaviour
     public void StartCurrentLevel()
     {
         PieceShooter.AngleChangeMode pieceShooterAngleChangeMode = PieceShooter.AngleChangeMode.ON_SHOOT;
-        float[] pieceShooterAngles = {0};
+        float[] pieceShooterAngles = { 0 };
         if (!this.isBonusLevel)
         {
             timer.UnPause();
@@ -92,13 +94,16 @@ public class LevelLoader : MonoBehaviour
             pieceShooterAngles = level.pieceShooterAngles;
             bomb.SendMessage("StartBomb");
         }
+
+        if (this.isBonusLevel)
+        {
+            StartCoroutine(StartPieceShooterAfterDelaySec(bonusLevelStartDelaySec, pieceShooterAngleChangeMode, pieceShooterAngles));
+        }
+        else
+        {
+            StartPieceShooter(pieceShooterAngleChangeMode, pieceShooterAngles);
+        }
         
-        pieceShooter.SetActive(true);
-        pieceShooterComp.SetShootingEnabled(true);
-        pieceShooterComp.SetAngleChangeMode(pieceShooterAngleChangeMode);
-        pieceShooterComp.SetAngles(pieceShooterAngles);
-        pieceShooterComp.SetIsBonusLevel(this.isBonusLevel);
-        pieceShooterComp.Init();
         music.Play();
         levelObscurer.SetActive(false);
         if (!Application.isEditor)
@@ -109,6 +114,22 @@ public class LevelLoader : MonoBehaviour
             });
         }
         score.RefreshDispScore();
+    }
+
+    private IEnumerator StartPieceShooterAfterDelaySec(float delaySec, PieceShooter.AngleChangeMode angleChangeMode, float[] angles)
+    {
+        yield return new WaitForSeconds(delaySec);
+        StartPieceShooter(angleChangeMode, angles);
+    }
+
+    private void StartPieceShooter(PieceShooter.AngleChangeMode angleChangeMode, float[] angles)
+    {
+        pieceShooter.SetActive(true);
+        pieceShooterComp.SetShootingEnabled(true);
+        pieceShooterComp.SetAngleChangeMode(angleChangeMode);
+        pieceShooterComp.SetAngles(angles);
+        pieceShooterComp.SetIsBonusLevel(this.isBonusLevel);
+        pieceShooterComp.Init();
     }
 
     public void ResetCurrentLevel()
@@ -125,6 +146,7 @@ public class LevelLoader : MonoBehaviour
         if(this.isBonusLevel)
         {
             levelIndicator.gameObject.SetActive(false);
+            bonusLevelIndicator.SetActive(true);
         }
         else
         {
@@ -134,6 +156,7 @@ public class LevelLoader : MonoBehaviour
             timer.setTime(level.secondsOnTimer);
             timer.Pause();
             timer.gameObject.SetActive(true);
+            bonusLevelIndicator.SetActive(false);
             levelIndicator.gameObject.SetActive(true);
             levelIndicator.Set(this.GetCurrentLevelIndex() + 1, this.LevelCount());
         }
