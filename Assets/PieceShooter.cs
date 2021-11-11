@@ -19,6 +19,7 @@ public class PieceShooter : MonoBehaviour
     public ScoreBonus scoreBonus;
     public AudioSource bonusSound;
     private float bonusSoundBasePitch;
+    private bool isBonusLevel;
 
     void Start()
     {
@@ -49,7 +50,11 @@ public class PieceShooter : MonoBehaviour
     {
         if (spawnedPiece == null && CanSpawnPiece())
         {
-            OnShoot();
+            if (angleChangeMode == AngleChangeMode.ON_SHOOT)
+            {
+                ChangeAngle();
+            }
+            SpawnPiece();
         }
         else if(spawnedPieceReadyToShoot && spawnedPiece != null)
         {
@@ -64,15 +69,6 @@ public class PieceShooter : MonoBehaviour
                 spawnedPiece.transform.eulerAngles = new Vector3(pieceRotation.x, pieceRotation.y, transform.eulerAngles.z);
             }
         }
-    }
-
-    private void OnShoot()
-    {
-        if(angleChangeMode == AngleChangeMode.ON_SHOOT)
-        {
-            ChangeAngle();
-        }
-        SpawnPiece();
     }
 
     IEnumerator ChangeAngleContinuously()
@@ -117,7 +113,7 @@ public class PieceShooter : MonoBehaviour
             return;
         }
 
-        if(GameObject.FindGameObjectsWithTag(pieces[pieceIndex].transform.tag).Length == 0)
+        if(GameObject.FindGameObjectsWithTag(pieces[pieceIndex].transform.tag).Length == 0 && !this.isBonusLevel)
         {
             ++pieceIndex;
         }
@@ -208,5 +204,10 @@ public class PieceShooter : MonoBehaviour
     {
         audioSource.pitch = basePitch * Mathf.Min(3, Mathf.Pow(1.05946f, this.consecutiveGoodShots * 2));
         audioSource.Play();
+    }
+
+    public void SetIsBonusLevel(bool value)
+    {
+        this.isBonusLevel = value;
     }
 }

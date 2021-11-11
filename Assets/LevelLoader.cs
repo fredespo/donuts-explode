@@ -23,12 +23,15 @@ public class LevelLoader : MonoBehaviour
     public ScoreBonus scoreBonus;
     public List<Reflector> pieceReflectors;
     public List<Level> levels;
+    public List<BonusLevel> bonusLevels;
+    private int bonusLevelIndex;
     private int currLevelIdx = -1;
     private float startDelaySec;
     private GameObject bomb;
     private DataStorage dataStorage;
     private bool shouldAnimatePiece;
     private bool loadingLevel;
+    private bool isBonusLevel;
 
     public void Start()
     {
@@ -37,14 +40,15 @@ public class LevelLoader : MonoBehaviour
         pieceShooterComp = pieceShooter.GetComponent<PieceShooter>();
     }
 
-    public void LoadLevel(int levelIndex, float startDelaySec)
+    public void LoadLevel(int levelIndex, float startDelaySec, int bonusLevelsCompleted = 0)
     {
         this.loadingLevel = true;
         if (levelIndex == 0)
         {
             score.Reset();
         }
-        currLevelIdx = levelIndex;
+        this.currLevelIdx = levelIndex;
+        this.isBonusLevel = bonusLevelsCompleted < this.bonusLevels.Count && levelIndex == this.bonusLevels[bonusLevelsCompleted].afterLevel;
         ResetCurrentLevel();
         if(this.shouldAnimatePiece)
         {
@@ -78,14 +82,23 @@ public class LevelLoader : MonoBehaviour
 
     public void StartCurrentLevel()
     {
-        Level level = levels[currLevelIdx];
-        timer.UnPause();
+        PieceShooter.AngleChangeMode pieceShooterAngleChangeMode = PieceShooter.AngleChangeMode.ON_SHOOT;
+        float[] pieceShooterAngles = {0};
+        if (!this.isBonusLevel)
+        {
+            timer.UnPause();
+            Level level = levels[currLevelIdx];
+            pieceShooterAngleChangeMode = level.pieceShooterAngleChangeMode;
+            pieceShooterAngles = level.pieceShooterAngles;
+            bomb.SendMessage("StartBomb");
+        }
+        
         pieceShooter.SetActive(true);
         pieceShooterComp.SetShootingEnabled(true);
-        pieceShooterComp.SetAngleChangeMode(level.pieceShooterAngleChangeMode);
-        pieceShooterComp.SetAngles(level.pieceShooterAngles);
+        pieceShooterComp.SetAngleChangeMode(pieceShooterAngleChangeMode);
+        pieceShooterComp.SetAngles(pieceShooterAngles);
+        pieceShooterComp.SetIsBonusLevel(this.isBonusLevel);
         pieceShooterComp.Init();
-        bomb.SendMessage("StartBomb");
         music.Play();
         levelObscurer.SetActive(false);
         if (!Application.isEditor)
@@ -108,21 +121,32 @@ public class LevelLoader : MonoBehaviour
         {
             Destroy(prevBomb);
         }
-        bomb = Instantiate(level.bomb);
-        bomb.transform.SetParent(canvas.transform, false);
-        timer.Init(bomb.GetComponent<Detonator>(), bomb.GetComponentInChildren<BombDefuzer>());
-        timer.setTime(level.secondsOnTimer);
-        timer.Pause();
-        timer.gameObject.SetActive(true);
+
+        if(this.isBonusLevel)
+        {
+            levelIndicator.gameObject.SetActive(false);
+        }
+        else
+        {
+            bomb = Instantiate(level.bomb);
+            bomb.transform.SetParent(canvas.transform, false);
+            timer.Init(bomb.GetComponent<Detonator>(), bomb.GetComponentInChildren<BombDefuzer>());
+            timer.setTime(level.secondsOnTimer);
+            timer.Pause();
+            timer.gameObject.SetActive(true);
+            levelIndicator.gameObject.SetActive(true);
+            levelIndicator.Set(this.GetCurrentLevelIndex() + 1, this.LevelCount());
+        }
+        
         foreach (Transform child in bombPieces.transform)
         {
             Destroy(child.gameObject);
         }
+
         bombPieces.SetActive(true);
         shootTapZone.SetActive(true);
         gameOverUI.Hide();
         music.Reset();
-        levelIndicator.Set(this.GetCurrentLevelIndex() + 1, this.LevelCount());
         score.RefreshDispScore();
         this.scoreBonus.Reset();
     }
@@ -163,5 +187,11 @@ public class LevelLoader : MonoBehaviour
         public float[] pieceShooterAngles;
         public PieceShooter.AngleChangeMode pieceShooterAngleChangeMode = PieceShooter.AngleChangeMode.ON_SHOOT;
         public float[] pieceAnimationAngles;
+    }
+
+    [System.Serializable]
+    public class BonusLevel
+    {
+        public int afterLevel;
     }
 }
