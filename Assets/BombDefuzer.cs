@@ -5,6 +5,7 @@ using UnityEngine.Analytics;
 
 public class BombDefuzer : MonoBehaviour
 {
+    public bool isBonusBomb = false;
     private textTimer timer;
     public Rotator bombRotator;
     public Animator bombHighlightAnim;
@@ -44,41 +45,49 @@ public class BombDefuzer : MonoBehaviour
 
     void Defuze()
     {
-        if (!defuzed)
+        if(defuzed)
         {
-            StartCoroutine(AddTimeToScoreAfterDelay(1.0f));
-            int newScore = score.GetScore() + GetPointsEarned() + this.scoreBonus.GetBonus();
-            dataStorage.SaveScore(newScore);
-            int currLevel = GameObject.FindGameObjectWithTag("LevelLoader").GetComponent<LevelLoader>().GetCurrentLevelIndex() + 1;
-            if (!Application.isEditor)
-            {
-                AnalyticsEvent.LevelComplete(currLevel, new Dictionary<string, object> 
+            return;
+        }
+
+        if (this.isBonusBomb)
+        {
+            fuseFlare.SetActive(false);
+            return;
+        }
+
+        StartCoroutine(AddTimeToScoreAfterDelay(1.0f));
+        int newScore = score.GetScore() + GetPointsEarned() + this.scoreBonus.GetBonus();
+        dataStorage.SaveScore(newScore);
+        int currLevel = GameObject.FindGameObjectWithTag("LevelLoader").GetComponent<LevelLoader>().GetCurrentLevelIndex() + 1;
+        if (!Application.isEditor)
+        {
+            AnalyticsEvent.LevelComplete(currLevel, new Dictionary<string, object>
                 {
                     { "score", newScore }
                 });
-            }
-                
-            music.WindDown();
-            shootTapZone.SetActive(false);
-            timer.Pause();
-            fuseAnim.enabled = false;
-            fuseFlare.SetActive(false);
-            bombRotator.enabled = false;
-            GameObject spawnedDefuzedUI = GameObject.Instantiate(defuzedUI);
-            spawnedDefuzedUI.gameObject.transform.SetParent(gameObject.transform.parent.transform, false);
-            spawnedDefuzedUI.gameObject.transform.rotation = Quaternion.identity;
-            pieces = GameObject.FindGameObjectWithTag("PieceKeeper");
-            pieces.SetActive(false);
-            GameObject pieceShooter = GameObject.FindGameObjectWithTag("PieceShooter");
-            bombHighlightAnim.enabled = false;
-            bombHighlightAnim.enabled = true;
-            soundEffect.volume = 0.8f;
-            pieceShooter.GetComponent<PieceShooter>().MakeBonusSound(this.soundEffect, 0.473473f);
-            pieceShooter.SetActive(false);
-            dataStorage.SaveLevel(currLevel);
-            dataStorage.Save();
-            defuzed = true;
         }
+
+        music.WindDown();
+        shootTapZone.SetActive(false);
+        timer.Pause();
+        fuseAnim.enabled = false;
+        fuseFlare.SetActive(false);
+        bombRotator.enabled = false;
+        GameObject spawnedDefuzedUI = GameObject.Instantiate(defuzedUI);
+        spawnedDefuzedUI.gameObject.transform.SetParent(gameObject.transform.parent.transform, false);
+        spawnedDefuzedUI.gameObject.transform.rotation = Quaternion.identity;
+        pieces = GameObject.FindGameObjectWithTag("PieceKeeper");
+        pieces.SetActive(false);
+        GameObject pieceShooter = GameObject.FindGameObjectWithTag("PieceShooter");
+        bombHighlightAnim.enabled = false;
+        bombHighlightAnim.enabled = true;
+        soundEffect.volume = 0.8f;
+        pieceShooter.GetComponent<PieceShooter>().MakeBonusSound(this.soundEffect, 0.473473f);
+        pieceShooter.SetActive(false);
+        dataStorage.SaveLevel(currLevel);
+        dataStorage.Save();
+        defuzed = true;
     }
 
     private IEnumerator AddTimeToScoreAfterDelay(float delaySec)

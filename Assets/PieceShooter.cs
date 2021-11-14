@@ -8,6 +8,7 @@ public class PieceShooter : MonoBehaviour
     public bool shootingEnabled = false;
     public GameObject[] pieces;
     public int pieceIndex = 0;
+    public GameObject bonusPiece;
     public float speed = 1.0f;
     public AngleChangeMode angleChangeMode;
     private GameObject spawnedPiece;
@@ -122,12 +123,25 @@ public class PieceShooter : MonoBehaviour
             ++pieceIndex;
         }
 
+        GameObject pieceToSpawn;
+        Vector3 scale;
+        if (this.isBonusLevel)
+        {
+            pieceToSpawn = this.bonusPiece;
+            scale = new Vector3(40.5f, 40.5f, 1);
+        }
+        else
+        {
+            pieceToSpawn = pieces[pieceIndex];
+            scale = new Vector3(81, 81, 1);
+        }
+
         if(pieceIndex < pieces.Length)
         {
-            spawnedPiece = Instantiate(pieces[pieceIndex], gameObject.transform.position, gameObject.transform.rotation);
+            spawnedPiece = Instantiate(pieceToSpawn, gameObject.transform.position, gameObject.transform.rotation);
             spawnedPiece.transform.SetParent(pieceParent.transform);
             spawnedPiece.transform.position = gameObject.transform.position;
-            spawnedPiece.transform.localScale = new Vector3(81, 81, 1);
+            spawnedPiece.transform.localScale = scale;
             spawnedPiece.GetComponent<SpriteRenderer>().sortingOrder = -1;
             BombPiece bombPiece = spawnedPiece.GetComponent<BombPiece>();
             bombPiece.SetOnMiss(() => RecordMissedShot());

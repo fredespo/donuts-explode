@@ -25,12 +25,12 @@ public class Magnet : MonoBehaviour
         {
             if(piece != null && !this.leftPieces.Contains(piece))
             {
-                if(piece.CaughtInMagnet())
+                if(piece.CaughtInMagnet(transform.parent.transform.parent.transform.parent))
                 {
                     MoveTowardsMagnet(piece.gameObject);
                 }
-                
-                if(Vector3.Distance(transform.position, piece.gameObject.transform.position) <= this.marginDist)
+
+                if (Vector3.Distance(transform.position, piece.gameObject.transform.position) <= this.marginDist)
                 {
                     this.hole.FillWith(piece.gameObject);
                 }

@@ -100,7 +100,7 @@ public class BombPiece : MonoBehaviour
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 700f * Time.deltaTime);
     }
 
-    public bool CaughtInMagnet()
+    public bool CaughtInMagnet(Transform parent)
     {
         if(this.leftMagnet)
         {
@@ -115,7 +115,7 @@ public class BombPiece : MonoBehaviour
             if(!caughtInMagnet)
             {
                 caughtInMagnet = true;
-                this.transform.parent = this.bomb.transform;
+                this.transform.parent = parent;
             }
         }
         return this.caughtInMagnet;

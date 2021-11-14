@@ -20,15 +20,22 @@ public class LevelLoader : MonoBehaviour
     public GameObject levelObscurer;
     public AnimatedCountDown countDown;
     public LevelIndicator levelIndicator;
+    public GameObject bonusLevelIndicator;
     public ScoreBonus scoreBonus;
     public List<Reflector> pieceReflectors;
     public List<Level> levels;
+    public float bonusLevelStartDelaySec;
+    public BonusBombs bonusBombs;
+    public List<BonusLevel> bonusLevels;
+    private int bonusLevelIndex;
     private int currLevelIdx = -1;
     private float startDelaySec;
     private GameObject bomb;
     private DataStorage dataStorage;
     private bool shouldAnimatePiece;
     private bool loadingLevel;
+    private bool isBonusLevel;
+    private BonusLevel currBonusLevel;
 
     public void Start()
     {
@@ -37,16 +44,21 @@ public class LevelLoader : MonoBehaviour
         pieceShooterComp = pieceShooter.GetComponent<PieceShooter>();
     }
 
-    public void LoadLevel(int levelIndex, float startDelaySec)
+    public void LoadLevel(int levelIndex, float startDelaySec, int bonusLevelsCompleted = 0)
     {
         this.loadingLevel = true;
         if (levelIndex == 0)
         {
             score.Reset();
         }
-        currLevelIdx = levelIndex;
+        this.currLevelIdx = levelIndex;
+        this.isBonusLevel = bonusLevelsCompleted < this.bonusLevels.Count && levelIndex == this.bonusLevels[bonusLevelsCompleted].afterLevel;
+        if (this.isBonusLevel)
+        {
+            this.currBonusLevel = this.bonusLevels[bonusLevelsCompleted];
+        }
         ResetCurrentLevel();
-        if(this.shouldAnimatePiece)
+        if (this.shouldAnimatePiece)
         {
             bombPieces.SetActive(false);
             pieceTutorialAnimator.SetAngles(this.levels[currLevelIdx].pieceAnimationAngles);
@@ -78,14 +90,27 @@ public class LevelLoader : MonoBehaviour
 
     public void StartCurrentLevel()
     {
-        Level level = levels[currLevelIdx];
-        timer.UnPause();
-        pieceShooter.SetActive(true);
-        pieceShooterComp.SetShootingEnabled(true);
-        pieceShooterComp.SetAngleChangeMode(level.pieceShooterAngleChangeMode);
-        pieceShooterComp.SetAngles(level.pieceShooterAngles);
-        pieceShooterComp.Init();
-        bomb.SendMessage("StartBomb");
+        PieceShooter.AngleChangeMode pieceShooterAngleChangeMode = PieceShooter.AngleChangeMode.ON_SHOOT;
+        float[] pieceShooterAngles = { 0 };
+        if (!this.isBonusLevel)
+        {
+            timer.UnPause();
+            Level level = levels[currLevelIdx];
+            pieceShooterAngleChangeMode = level.pieceShooterAngleChangeMode;
+            pieceShooterAngles = level.pieceShooterAngles;
+            bomb.SendMessage("StartBomb");
+        }
+
+        if (this.isBonusLevel)
+        {
+            StartCoroutine(StartPieceShooterAfterDelaySec(bonusLevelStartDelaySec, pieceShooterAngleChangeMode, pieceShooterAngles));
+            this.bonusBombs.Init(this.currBonusLevel.spawns);
+        }
+        else
+        {
+            StartPieceShooter(pieceShooterAngleChangeMode, pieceShooterAngles);
+        }
+
         music.Play();
         levelObscurer.SetActive(false);
         if (!Application.isEditor)
@@ -98,6 +123,22 @@ public class LevelLoader : MonoBehaviour
         score.RefreshDispScore();
     }
 
+    private IEnumerator StartPieceShooterAfterDelaySec(float delaySec, PieceShooter.AngleChangeMode angleChangeMode, float[] angles)
+    {
+        yield return new WaitForSeconds(delaySec);
+        StartPieceShooter(angleChangeMode, angles);
+    }
+
+    private void StartPieceShooter(PieceShooter.AngleChangeMode angleChangeMode, float[] angles)
+    {
+        pieceShooter.SetActive(true);
+        pieceShooterComp.SetShootingEnabled(true);
+        pieceShooterComp.SetAngleChangeMode(angleChangeMode);
+        pieceShooterComp.SetAngles(angles);
+        pieceShooterComp.SetIsBonusLevel(this.isBonusLevel);
+        pieceShooterComp.Init();
+    }
+
     public void ResetCurrentLevel()
     {
         Level level = levels[currLevelIdx];
@@ -108,21 +149,34 @@ public class LevelLoader : MonoBehaviour
         {
             Destroy(prevBomb);
         }
-        bomb = Instantiate(level.bomb);
-        bomb.transform.SetParent(canvas.transform, false);
-        timer.Init(bomb.GetComponent<Detonator>(), bomb.GetComponentInChildren<BombDefuzer>());
-        timer.setTime(level.secondsOnTimer);
-        timer.Pause();
-        timer.gameObject.SetActive(true);
+
+        if (this.isBonusLevel)
+        {
+            levelIndicator.gameObject.SetActive(false);
+            bonusLevelIndicator.SetActive(true);
+        }
+        else
+        {
+            bomb = Instantiate(level.bomb);
+            bomb.transform.SetParent(canvas.transform, false);
+            timer.Init(bomb.GetComponent<Detonator>(), bomb.GetComponentInChildren<BombDefuzer>());
+            timer.setTime(level.secondsOnTimer);
+            timer.Pause();
+            timer.gameObject.SetActive(true);
+            bonusLevelIndicator.SetActive(false);
+            levelIndicator.gameObject.SetActive(true);
+            levelIndicator.Set(this.GetCurrentLevelIndex() + 1, this.LevelCount());
+        }
+
         foreach (Transform child in bombPieces.transform)
         {
             Destroy(child.gameObject);
         }
+
         bombPieces.SetActive(true);
         shootTapZone.SetActive(true);
         gameOverUI.Hide();
         music.Reset();
-        levelIndicator.Set(this.GetCurrentLevelIndex() + 1, this.LevelCount());
         score.RefreshDispScore();
         this.scoreBonus.Reset();
     }
@@ -163,5 +217,21 @@ public class LevelLoader : MonoBehaviour
         public float[] pieceShooterAngles;
         public PieceShooter.AngleChangeMode pieceShooterAngleChangeMode = PieceShooter.AngleChangeMode.ON_SHOOT;
         public float[] pieceAnimationAngles;
+    }
+
+    [System.Serializable]
+    public class BonusLevel
+    {
+        public int afterLevel;
+        public BonusLevelSpawn[] spawns;
+    }
+
+    [System.Serializable]
+    public class BonusLevelSpawn
+    {
+        public float spawnDelaySec; //number of seconds to wait after previous spawn
+        public GameObject obj;
+        public BezierPath path;
+        public float speed; //fraction of path traveled per second
     }
 }
