@@ -63,9 +63,9 @@ public class BombDefuzer : MonoBehaviour
         if (!Application.isEditor)
         {
             AnalyticsEvent.LevelComplete(currLevel, new Dictionary<string, object>
-                {
-                    { "score", newScore }
-                });
+            {
+                { "score", newScore }
+            });
         }
 
         music.WindDown();

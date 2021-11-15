@@ -1,21 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(ObjectsOnRails))]
 public class BonusBombs : MonoBehaviour
 {
+    public UnityEvent onBonusLevelComplete;
     private ObjectsOnRails rails;
     private LevelLoader.BonusLevelSpawn[] spawns;
+    private bool doneSpawning;
+    private DataStorage dataStorage;
 
     void Start()
     {
         this.rails = GetComponent<ObjectsOnRails>();
+        this.dataStorage = GameObject.FindGameObjectWithTag("DataStorage").GetComponent<DataStorage>();
     }
 
     public void Init(LevelLoader.BonusLevelSpawn[] spawns)
     {
         this.spawns = spawns;
+        this.doneSpawning = false;
         StartCoroutine(SpawnCoroutine());
     }
 
@@ -28,5 +34,22 @@ public class BonusBombs : MonoBehaviour
             GameObject spawn = Instantiate(curr.obj, curr.path.GetPosAlongPath2D(0), Quaternion.identity, this.transform);
             this.rails.Add(spawn, curr.path, curr.speed);
         }
+        this.doneSpawning = true;
+    }
+
+    void Update()
+    {
+        if(this.doneSpawning && transform.childCount == 0)
+        {
+            BonusLevelComplete();
+        }
+    }
+
+    private void BonusLevelComplete()
+    {
+        this.onBonusLevelComplete.Invoke();
+        int currLevel = GameObject.FindGameObjectWithTag("LevelLoader").GetComponent<LevelLoader>().GetCurrentLevelIndex() + 1;
+        this.dataStorage.SaveLevel(currLevel);
+        this.dataStorage.Save();
     }
 }
