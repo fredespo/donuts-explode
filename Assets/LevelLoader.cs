@@ -21,6 +21,7 @@ public class LevelLoader : MonoBehaviour
     public AnimatedCountDown countDown;
     public LevelIndicator levelIndicator;
     public GameObject bonusLevelIndicator;
+    public GameObject bonusWinUI;
     public ScoreBonus scoreBonus;
     public List<Reflector> pieceReflectors;
     public List<Level> levels;
@@ -104,6 +105,7 @@ public class LevelLoader : MonoBehaviour
         if (this.isBonusLevel)
         {
             StartCoroutine(StartPieceShooterAfterDelaySec(bonusLevelStartDelaySec, pieceShooterAngleChangeMode, pieceShooterAngles));
+            this.bonusBombs.gameObject.SetActive(true);
             this.bonusBombs.Init(this.currBonusLevel.spawns);
         }
         else
@@ -149,6 +151,7 @@ public class LevelLoader : MonoBehaviour
         {
             Destroy(prevBomb);
         }
+        bonusWinUI.SetActive(false);
 
         if (this.isBonusLevel)
         {
