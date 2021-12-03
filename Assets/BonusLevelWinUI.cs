@@ -5,8 +5,7 @@ using UnityEngine.UI;
 
 public class BonusLevelWinUI : MonoBehaviour
 {
-    public Animator anim;
-    public BonusBombs bonusBombs;
+    public Animator anim;    
     public GameObject buttons;
     public Text numDefuzedMsg;
     public Text bonusPointsText;
@@ -34,5 +33,13 @@ public class BonusLevelWinUI : MonoBehaviour
     public void ShowButtons()
     {
         this.buttons.SetActive(true);
+    }
+
+    public void DeactivateAllChildren()
+    {
+        foreach(Transform child in transform)
+        {
+            child.gameObject.SetActive(false);
+        }
     }
 }
