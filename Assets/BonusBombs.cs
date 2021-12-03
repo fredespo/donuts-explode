@@ -6,6 +6,7 @@ using UnityEngine.Events;
 [RequireComponent(typeof(ObjectsOnRails))]
 public class BonusBombs : MonoBehaviour
 {
+    public int numBonusBombsDefuzed;
     public UnityEvent onBonusLevelComplete;
     private ObjectsOnRails rails;
     private LevelLoader.BonusLevelSpawn[] spawns;
@@ -22,6 +23,7 @@ public class BonusBombs : MonoBehaviour
     {
         this.spawns = spawns;
         this.doneSpawning = false;
+        this.numBonusBombsDefuzed = 0;
         StartCoroutine(SpawnCoroutine());
     }
 
@@ -48,5 +50,10 @@ public class BonusBombs : MonoBehaviour
     private void BonusLevelComplete()
     {
         this.onBonusLevelComplete.Invoke();
+    }
+
+    public void DefuzedBonusBomb()
+    {
+        ++this.numBonusBombsDefuzed;
     }
 }

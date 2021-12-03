@@ -52,9 +52,11 @@ public class BombDefuzer : MonoBehaviour
         {
             return;
         }
+        defuzed = true;
 
         if (this.isBonusBomb)
         {
+            GameObject.FindGameObjectWithTag("BonusBombsManager").GetComponent<BonusBombs>().DefuzedBonusBomb();
             fuseFlare.SetActive(false);
             return;
         }
@@ -90,7 +92,6 @@ public class BombDefuzer : MonoBehaviour
         pieceShooter.SetActive(false);
         dataStorage.SaveLevel(currLevel);
         dataStorage.Save();
-        defuzed = true;
     }
 
     private IEnumerator AddTimeToScoreAfterDelay(float delaySec)
