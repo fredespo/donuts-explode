@@ -14,6 +14,7 @@ public class BonusBombs : MonoBehaviour
     private ObjectsOnRails rails;
     private LevelLoader.BonusLevelSpawn[] spawns;
     private bool doneSpawning;
+    private int bonusPoints;
     private DataStorage dataStorage;
 
     void Start()
@@ -53,9 +54,8 @@ public class BonusBombs : MonoBehaviour
     private void BonusLevelComplete()
     {
         this.onBonusLevelComplete.Invoke();
-        int bonusPoints = this.pointsPerBombDefuzed * this.numBonusBombsDefuzed;
-        this.winUI.Reveal(this.numBonusBombsDefuzed, bonusPoints);
-        this.score.AddInstant(bonusPoints);
+        this.bonusPoints = this.pointsPerBombDefuzed * this.numBonusBombsDefuzed;
+        this.winUI.RevealAndAwardBonus(this.numBonusBombsDefuzed, this.bonusPoints);
     }
 
     public void DefuzedBonusBomb()

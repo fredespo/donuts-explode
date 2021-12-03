@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class ScoreBonus : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class ScoreBonus : MonoBehaviour
     private int bonus = 0;
     private Score score;
     private Animator anim;
+    private Action onFinishedApplying;
 
     void Awake()
     {
@@ -19,6 +21,12 @@ public class ScoreBonus : MonoBehaviour
     void Start()
     {
         this.score = GameObject.FindGameObjectWithTag("Score").GetComponent<Score>();
+    }
+
+    public void AddToScoreWithAnimationAndThen(Action andThen)
+    {
+        this.anim.SetTrigger("Apply");
+        this.onFinishedApplying = andThen;
     }
     
     public void AddBonus(int value)
@@ -63,12 +71,13 @@ public class ScoreBonus : MonoBehaviour
     {
         this.score.AddInstant(this.bonus);
     }
-
-    public void ShowWinUi()
+    
+    public void OnFinsihedApplying()
     {
-        foreach (Transform child in GameObject.FindGameObjectWithTag("WinUI").transform)
+        if(this.onFinishedApplying != null)
         {
-            child.gameObject.SetActive(true);
+            this.onFinishedApplying.Invoke();
+            this.onFinishedApplying = null;
         }
     }
 }

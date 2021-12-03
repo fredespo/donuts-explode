@@ -18,7 +18,6 @@ public class BombDefuzer : MonoBehaviour
     public GameObject fuseFlare;
     private GameMusic music;
     private bool defuzed = false;
-    private Animator scoreBonusAnimator;
     private DataStorage dataStorage;
     private Score score;
     private ScoreBonus scoreBonus;
@@ -32,7 +31,6 @@ public class BombDefuzer : MonoBehaviour
         pieceShooter = GameObject.FindGameObjectWithTag("PieceShooter");
         shootTapZone = GameObject.FindGameObjectWithTag("ShootTapZone");
         music = GameObject.FindGameObjectWithTag("GameMusic").GetComponent<GameMusic>();
-        scoreBonusAnimator = GameObject.FindGameObjectWithTag("ScoreBonus").GetComponent<Animator>();
         dataStorage = GameObject.FindGameObjectWithTag("DataStorage").GetComponent<DataStorage>();
         score = GameObject.FindGameObjectWithTag("Score").GetComponent<Score>();
         scoreBonus = GameObject.FindGameObjectWithTag("ScoreBonus").GetComponent<ScoreBonus>();
@@ -98,7 +96,20 @@ public class BombDefuzer : MonoBehaviour
     {
         yield return new WaitForSeconds(delaySec);
         score.Add(GetPointsEarned());
-        timer.CountDownFastAndThen(() => this.scoreBonusAnimator.SetTrigger("Apply"));
+        timer.CountDownFastAndThen(() => ApplyBonusAndShowWinUI());
+    }
+
+    private void ApplyBonusAndShowWinUI()
+    {
+        this.scoreBonus.AddToScoreWithAnimationAndThen(() => ShowWinUi());
+    }
+
+    private void ShowWinUi()
+    {
+        foreach (Transform child in GameObject.FindGameObjectWithTag("WinUI").transform)
+        {
+            child.gameObject.SetActive(true);
+        }
     }
 
     private int GetPointsEarned()

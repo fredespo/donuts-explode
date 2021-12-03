@@ -6,26 +6,33 @@ using UnityEngine.UI;
 public class BonusLevelWinUI : MonoBehaviour
 {
     public Animator anim;
+    public BonusBombs bonusBombs;
     public GameObject buttons;
     public Text numDefuzedMsg;
-    public Text bonusPoints;
+    public Text bonusPointsText;
+    public ScoreBonus scoreBonus;
+    private int bonusPoints;
 
-    public void Reveal(int numDefuzed, int numBonusPoints)
+    public void RevealAndAwardBonus(int numDefuzed, int numBonusPoints)
     {
         this.numDefuzedMsg.text = numDefuzed + " bonus bombs";
-        this.bonusPoints.text = numBonusPoints + "";
+        this.bonusPointsText.text = numBonusPoints + "";
         this.anim.SetTrigger("show");
+        this.bonusPoints = numBonusPoints;
     }
 
-    public void AwardBonusPoints()
+    public void ShowScoreBonus()
     {
-        Debug.Log("Awarding bonus points...");
-        StartCoroutine(ShowButtonsAfterDelay(2.0f));
+        this.scoreBonus.AddBonus(this.bonusPoints);
     }
 
-    private IEnumerator ShowButtonsAfterDelay(float delaySec)
+    public void AwardBonusPointsThenShowButtons()
     {
-        yield return new WaitForSeconds(delaySec);
+        this.scoreBonus.AddToScoreWithAnimationAndThen(() => ShowButtons());
+    }
+
+    public void ShowButtons()
+    {
         this.buttons.SetActive(true);
     }
 }
