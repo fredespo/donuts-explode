@@ -53,8 +53,9 @@ public class BonusBombs : MonoBehaviour
     private void BonusLevelComplete()
     {
         this.onBonusLevelComplete.Invoke();
-        this.winUI.Reveal(this.numBonusBombsDefuzed);
-        this.score.AddInstant(this.pointsPerBombDefuzed * this.numBonusBombsDefuzed);
+        int bonusPoints = this.pointsPerBombDefuzed * this.numBonusBombsDefuzed;
+        this.winUI.Reveal(this.numBonusBombsDefuzed, bonusPoints);
+        this.score.AddInstant(bonusPoints);
     }
 
     public void DefuzedBonusBomb()

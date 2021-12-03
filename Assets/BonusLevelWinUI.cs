@@ -8,10 +8,12 @@ public class BonusLevelWinUI : MonoBehaviour
     public Animator anim;
     public GameObject buttons;
     public Text numDefuzedMsg;
+    public Text bonusPoints;
 
-    public void Reveal(int numDefuzed)
+    public void Reveal(int numDefuzed, int numBonusPoints)
     {
-        numDefuzedMsg.text = numDefuzed + " defuzed";
+        this.numDefuzedMsg.text = numDefuzed + " defuzed";
+        this.bonusPoints.text = numBonusPoints + "";
         this.anim.SetTrigger("show");
     }
 
