@@ -10,6 +10,7 @@ public class BonusLevelWinUI : MonoBehaviour
     public Text numDefuzedMsg;
     public Text bonusPointsText;
     public ScoreBonus scoreBonus;
+    public AudioSource impactSound;
     private int bonusPoints;
 
     public void RevealAndAwardBonus(int numDefuzed, int numBonusPoints)
@@ -41,5 +42,10 @@ public class BonusLevelWinUI : MonoBehaviour
         {
             child.gameObject.SetActive(false);
         }
+    }
+
+    public void PlayImpactSound()
+    {
+        this.impactSound.Play();
     }
 }
