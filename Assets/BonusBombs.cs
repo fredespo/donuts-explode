@@ -7,6 +7,8 @@ using UnityEngine.Events;
 public class BonusBombs : MonoBehaviour
 {
     public int numBonusBombsDefuzed;
+    public Score score;
+    public int pointsPerBombDefuzed = 100;
     public UnityEvent onBonusLevelComplete;
     private ObjectsOnRails rails;
     private LevelLoader.BonusLevelSpawn[] spawns;
@@ -50,6 +52,7 @@ public class BonusBombs : MonoBehaviour
     private void BonusLevelComplete()
     {
         this.onBonusLevelComplete.Invoke();
+        this.score.AddInstant(this.pointsPerBombDefuzed * this.numBonusBombsDefuzed);
     }
 
     public void DefuzedBonusBomb()
