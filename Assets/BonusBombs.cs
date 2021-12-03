@@ -7,6 +7,7 @@ using UnityEngine.Events;
 public class BonusBombs : MonoBehaviour
 {
     public int numBonusBombsDefuzed;
+    public BonusLevelWinUI winUI;
     public Score score;
     public int pointsPerBombDefuzed = 100;
     public UnityEvent onBonusLevelComplete;
@@ -52,6 +53,7 @@ public class BonusBombs : MonoBehaviour
     private void BonusLevelComplete()
     {
         this.onBonusLevelComplete.Invoke();
+        this.winUI.Reveal(this.numBonusBombsDefuzed);
         this.score.AddInstant(this.pointsPerBombDefuzed * this.numBonusBombsDefuzed);
     }
 

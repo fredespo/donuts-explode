@@ -1,14 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BonusLevelWinUI : MonoBehaviour
 {
     public Animator anim;
     public GameObject buttons;
+    public Text numDefuzedMsg;
 
-    public void Reveal()
+    public void Reveal(int numDefuzed)
     {
+        numDefuzedMsg.text = numDefuzed + " defuzed";
         this.anim.SetTrigger("show");
     }
 
