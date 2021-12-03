@@ -12,7 +12,7 @@ public class BonusLevelWinUI : MonoBehaviour
 
     public void Reveal(int numDefuzed, int numBonusPoints)
     {
-        this.numDefuzedMsg.text = numDefuzed + " defuzed";
+        this.numDefuzedMsg.text = numDefuzed + " bonus bombs";
         this.bonusPoints.text = numBonusPoints + "";
         this.anim.SetTrigger("show");
     }
