@@ -128,6 +128,21 @@ public class DataStorage : MonoBehaviour
         this.saveData.level = levelIndex;
     }
 
+    public void ResetBonusLevelsCompleted()
+    {
+        this.saveData.bonusLevelsCompleted = 0;
+    }
+
+    public void IncrementBonusLevelsCompleted()
+    {
+        ++this.saveData.bonusLevelsCompleted;
+    }
+
+    public int GetBonusLevelsCompleted()
+    {
+        return this.saveData.bonusLevelsCompleted;
+    }
+
     public void LoadMusicVol()
     {
         float musicVol = GetMusicVolumePct() > 0 ? (float)GetMusicVolumePct() / 100 : 0.0001f;

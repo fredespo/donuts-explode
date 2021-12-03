@@ -45,7 +45,7 @@ public class LevelLoader : MonoBehaviour
         pieceShooterComp = pieceShooter.GetComponent<PieceShooter>();
     }
 
-    public void LoadLevel(int levelIndex, float startDelaySec, int bonusLevelsCompleted = 0)
+    public void LoadLevel(int levelIndex, float startDelaySec)
     {
         this.loadingLevel = true;
         if (levelIndex == 0)
@@ -53,6 +53,7 @@ public class LevelLoader : MonoBehaviour
             score.Reset();
         }
         this.currLevelIdx = levelIndex;
+        int bonusLevelsCompleted = dataStorage.GetBonusLevelsCompleted();
         this.isBonusLevel = bonusLevelsCompleted < this.bonusLevels.Count && levelIndex == this.bonusLevels[bonusLevelsCompleted].afterLevel;
         if (this.isBonusLevel)
         {
@@ -188,7 +189,11 @@ public class LevelLoader : MonoBehaviour
     {
         if (currLevelIdx < LevelCount() - 1)
         {
-            LoadLevel(++currLevelIdx, delaySec);
+            if(!this.isBonusLevel)
+            {
+                ++currLevelIdx;
+            }
+            LoadLevel(currLevelIdx, delaySec);
         }
         else
         {
@@ -210,6 +215,12 @@ public class LevelLoader : MonoBehaviour
     public int LevelCount()
     {
         return levels.Count;
+    }
+
+    public void BonusLevelCompleted()
+    {
+        this.dataStorage.IncrementBonusLevelsCompleted();
+        this.dataStorage.Save();
     }
 
     [System.Serializable]

@@ -48,8 +48,5 @@ public class BonusBombs : MonoBehaviour
     private void BonusLevelComplete()
     {
         this.onBonusLevelComplete.Invoke();
-        int currLevel = GameObject.FindGameObjectWithTag("LevelLoader").GetComponent<LevelLoader>().GetCurrentLevelIndex() + 1;
-        this.dataStorage.SaveLevel(currLevel);
-        this.dataStorage.Save();
     }
 }
