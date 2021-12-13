@@ -198,11 +198,8 @@ public class PieceShooter : MonoBehaviour
 
     public void RecordGoodShot()
     {
-        if(!this.isBonusLevel)
-        {
-            ++this.consecutiveGoodShots;
-            AwardBonusPoints();
-        }
+        ++this.consecutiveGoodShots;
+        AwardBonusPoints();
         MakeBonusSound(this.bonusSound, this.bonusSoundBasePitch);
     }
 
