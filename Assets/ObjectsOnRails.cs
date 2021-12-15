@@ -1,14 +1,32 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class ObjectsOnRails : MonoBehaviour
 {
     private Dictionary<GameObject, MovementDetails> movementDetailsPerObj = new Dictionary<GameObject, MovementDetails>();
+    private Dictionary<GameObject, Action<GameObject, float>> callbacksOnMove = new Dictionary<GameObject, Action<GameObject, float>>();
 
     public void Add(GameObject obj, BezierPath path, float speed)
     {
         this.movementDetailsPerObj.Add(obj, new MovementDetails(path, speed));
+    }
+
+    public void Remove(GameObject obj)
+    {
+        this.movementDetailsPerObj.Remove(obj);
+        ClearMoveCallbacks(obj);
+    }
+
+    public void SetMoveCallback(GameObject obj, Action<GameObject, float> callback)
+    {
+        this.callbacksOnMove.Add(obj, callback);
+    }
+
+    public void ClearMoveCallbacks(GameObject obj)
+    {
+        this.callbacksOnMove.Remove(obj);
     }
 
     void FixedUpdate()
@@ -23,6 +41,10 @@ public class ObjectsOnRails : MonoBehaviour
             {
                 Vector2 newPosOnPath = movementDetails.path.GetPosAlongPath2D(movementDetails.progress);
                 obj.transform.position = new Vector3(newPosOnPath.x, newPosOnPath.y, obj.transform.position.z);
+                if (this.callbacksOnMove.ContainsKey(obj))
+                {
+                    this.callbacksOnMove[obj].Invoke(obj, movementDetails.progress);
+                }
             }
             else
             {
@@ -35,7 +57,7 @@ public class ObjectsOnRails : MonoBehaviour
     private class MovementDetails
     {
         public BezierPath path;
-        public float speed; //fraction of path traveled per second
+        public float speed; //fraction of path per second
         public float progress; //fraction of path traveled so far
 
         public MovementDetails(BezierPath path, float speed)

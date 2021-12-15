@@ -605,6 +605,7 @@ GameObject:
   - component: {fileID: 5938720258720801485}
   - component: {fileID: 5938720258720801484}
   - component: {fileID: 4972697074599758858}
+  - component: {fileID: 4904731977557924886}
   m_Layer: 0
   m_Name: Bonus Bomb
   m_TagString: BonusBomb
@@ -664,6 +665,22 @@ MonoBehaviour:
   rotator: {fileID: 5938720258720801484}
   fuseFlareSpawner: {fileID: 5938720258347885480}
   fuseAnimator: {fileID: 5938720258640560979}
+--- !u!114 &4904731977557924886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5938720258720801486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93d5ce742a67d474cbe7cf408ff54b41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosion: {fileID: 7163814724372912085, guid: 18d5d76b8ad806a44b0113e51e230125,
+    type: 3}
+  explosionSound: {fileID: 0}
+  defuzer: {fileID: 5938720259173960945}
 --- !u!1 &5938720259173960947
 GameObject:
   m_ObjectHideFlags: 0

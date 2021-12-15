@@ -144,4 +144,9 @@ public class BombDefuzer : MonoBehaviour
         }
         return holes;
     }
+
+    public bool IsDefuzed()
+    {
+        return this.defuzed;
+    }
 }

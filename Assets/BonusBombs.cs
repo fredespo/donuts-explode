@@ -6,6 +6,7 @@ using UnityEngine.Events;
 [RequireComponent(typeof(ObjectsOnRails))]
 public class BonusBombs : MonoBehaviour
 {
+    public float explodeAfterTraveledPct = 0.8f;
     public int numBonusBombsDefuzed;
     public BonusLevelWinUI winUI;
     public Score score;
@@ -39,6 +40,22 @@ public class BonusBombs : MonoBehaviour
             yield return new WaitForSeconds(curr.spawnDelaySec);
             GameObject spawn = Instantiate(curr.obj, curr.path.GetPosAlongPath2D(0), Quaternion.identity, this.transform);
             this.rails.Add(spawn, curr.path, curr.speed);
+            this.rails.SetMoveCallback(spawn, (obj, pctTraveled) => {
+                if(pctTraveled >= this.explodeAfterTraveledPct)
+                {
+                    BonusBomb bonusBomb = obj.GetComponent<BonusBomb>();
+                    if(!bonusBomb.IsDefuzed())
+                    {
+                        this.rails.Remove(spawn);
+                        bonusBomb.Explode();
+                    }
+                    else
+                    {
+                        this.rails.ClearMoveCallbacks(spawn);
+                    }
+                }
+
+            });
         }
         this.doneSpawning = true;
     }
