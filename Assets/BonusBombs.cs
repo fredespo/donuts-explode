@@ -41,7 +41,8 @@ public class BonusBombs : MonoBehaviour
             GameObject spawn = Instantiate(curr.obj, curr.path.GetPosAlongPath2D(0), Quaternion.identity, this.transform);
             this.rails.Add(spawn, curr.path, curr.speed);
             this.rails.SetMoveCallback(spawn, (obj, pctTraveled) => {
-                if(pctTraveled >= this.explodeAfterTraveledPct)
+                obj.GetComponent<Bomb>().SetFuzePct(pctTraveled / this.explodeAfterTraveledPct);
+                if (pctTraveled >= this.explodeAfterTraveledPct)
                 {
                     BonusBomb bonusBomb = obj.GetComponent<BonusBomb>();
                     if(!bonusBomb.IsDefuzed())
