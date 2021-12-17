@@ -17,6 +17,7 @@ public class BonusBombs : MonoBehaviour
     public UnityEvent onBonusLevelComplete;
     private ObjectsOnRails rails;
     private LevelLoader.BonusLevelSpawn[] spawns;
+    private float defaultBombSpeed;
     private bool doneSpawning;
     private int bonusPoints;
     private DataStorage dataStorage;
@@ -28,9 +29,10 @@ public class BonusBombs : MonoBehaviour
         this.spawnSoundEffectPitchOrig = this.spawnSoundEffect.pitch;
     }
 
-    public void Init(LevelLoader.BonusLevelSpawn[] spawns)
+    public void Init(LevelLoader.BonusLevelSpawn[] spawns, float defaultBombSpeed)
     {
         this.spawns = spawns;
+        this.defaultBombSpeed = defaultBombSpeed;
         this.doneSpawning = false;
         this.numBonusBombsDefuzed = 0;
         StartCoroutine(SpawnCoroutine());
@@ -45,7 +47,7 @@ public class BonusBombs : MonoBehaviour
             GameObject spawn = Instantiate(curr.obj, curr.path.GetPosAlongPath2D(0), Quaternion.identity, this.transform);
             this.spawnSoundEffect.pitch = Random.Range(this.spawnSoundEffectPitchOrig - this.spawnSoundEffectPitchSpread, this.spawnSoundEffectPitchOrig + this.spawnSoundEffectPitchSpread);
             this.spawnSoundEffect.Play();
-            this.rails.Add(spawn, curr.path, curr.speed);
+            this.rails.Add(spawn, curr.path, this.defaultBombSpeed);
             this.rails.SetMoveCallback(spawn, (obj, pctTraveled) => {
                 obj.GetComponent<Bomb>().SetFuzePct(pctTraveled / this.explodeAfterTraveledPct);
                 if (pctTraveled >= this.explodeAfterTraveledPct)
