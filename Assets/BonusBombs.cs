@@ -69,9 +69,10 @@ public class BonusBombs : MonoBehaviour
 
     void Update()
     {
-        if(this.doneSpawning && transform.childCount == 0)
+        if(this.doneSpawning && NumBonusBombsInFlight() == 0)
         {
             BonusLevelComplete();
+            this.doneSpawning = false;
         }
     }
 
@@ -85,5 +86,18 @@ public class BonusBombs : MonoBehaviour
     public void DefuzedBonusBomb()
     {
         ++this.numBonusBombsDefuzed;
+    }
+
+    private int NumBonusBombsInFlight()
+    {
+        int count = 0;
+        foreach(Transform child in transform)
+        {
+            if(child.tag == "BonusBomb" || child.tag == "Explosion")
+            {
+                ++count;
+            }
+        }
+        return count;
     }
 }
