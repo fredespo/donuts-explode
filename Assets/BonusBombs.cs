@@ -6,6 +6,9 @@ using UnityEngine.Events;
 [RequireComponent(typeof(ObjectsOnRails))]
 public class BonusBombs : MonoBehaviour
 {
+    public AudioSource spawnSoundEffect;
+    public float spawnSoundEffectPitchSpread;
+    private float spawnSoundEffectPitchOrig;
     public float explodeAfterTraveledPct = 0.8f;
     public int numBonusBombsDefuzed;
     public BonusLevelWinUI winUI;
@@ -22,6 +25,7 @@ public class BonusBombs : MonoBehaviour
     {
         this.rails = GetComponent<ObjectsOnRails>();
         this.dataStorage = GameObject.FindGameObjectWithTag("DataStorage").GetComponent<DataStorage>();
+        this.spawnSoundEffectPitchOrig = this.spawnSoundEffect.pitch;
     }
 
     public void Init(LevelLoader.BonusLevelSpawn[] spawns)
@@ -39,6 +43,8 @@ public class BonusBombs : MonoBehaviour
             LevelLoader.BonusLevelSpawn curr = this.spawns[i];
             yield return new WaitForSeconds(curr.spawnDelaySec);
             GameObject spawn = Instantiate(curr.obj, curr.path.GetPosAlongPath2D(0), Quaternion.identity, this.transform);
+            this.spawnSoundEffect.pitch = Random.Range(this.spawnSoundEffectPitchOrig - this.spawnSoundEffectPitchSpread, this.spawnSoundEffectPitchOrig + this.spawnSoundEffectPitchSpread);
+            this.spawnSoundEffect.Play();
             this.rails.Add(spawn, curr.path, curr.speed);
             this.rails.SetMoveCallback(spawn, (obj, pctTraveled) => {
                 obj.GetComponent<Bomb>().SetFuzePct(pctTraveled / this.explodeAfterTraveledPct);
