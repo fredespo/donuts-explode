@@ -47,7 +47,8 @@ public class BonusBombs : MonoBehaviour
             GameObject spawn = Instantiate(curr.obj, curr.path.GetPosAlongPath2D(0), Quaternion.identity, this.transform);
             this.spawnSoundEffect.pitch = Random.Range(this.spawnSoundEffectPitchOrig - this.spawnSoundEffectPitchSpread, this.spawnSoundEffectPitchOrig + this.spawnSoundEffectPitchSpread);
             this.spawnSoundEffect.Play();
-            this.rails.Add(spawn, curr.path, this.defaultBombSpeed);
+            float speed = curr.overrideSpeed ? curr.speedOverrideValue : this.defaultBombSpeed;
+            this.rails.Add(spawn, curr.path, speed);
             this.rails.SetMoveCallback(spawn, (obj, pctTraveled) => {
                 obj.GetComponent<Bomb>().SetFuzePct(pctTraveled / this.explodeAfterTraveledPct);
                 if (pctTraveled >= this.explodeAfterTraveledPct)

@@ -247,5 +247,7 @@ public class LevelLoader : MonoBehaviour
         public float spawnDelaySec; //number of seconds to wait after previous spawn
         public GameObject obj;
         public BezierPath path;
+        public bool overrideSpeed;
+        public float speedOverrideValue;
     }
 }
