@@ -94,12 +94,13 @@ public class LevelLoader : MonoBehaviour
     {
         PieceShooter.AngleChangeMode pieceShooterAngleChangeMode = PieceShooter.AngleChangeMode.ON_SHOOT;
         float[] pieceShooterAngles = { 0 };
+        Level level = levels[currLevelIdx];
+        pieceShooterAngleChangeMode = level.pieceShooterAngleChangeMode;
+        pieceShooterAngles = level.pieceShooterAngles;
+
         if (!this.isBonusLevel)
         {
             timer.UnPause();
-            Level level = levels[currLevelIdx];
-            pieceShooterAngleChangeMode = level.pieceShooterAngleChangeMode;
-            pieceShooterAngles = level.pieceShooterAngles;
             bomb.SendMessage("StartBomb");
         }
 

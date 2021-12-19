@@ -28,7 +28,7 @@ public class BombPiece : MonoBehaviour
 
     void Awake()
     {
-        this.bomb = GameObject.FindGameObjectWithTag("bomb");
+        this.bomb = GameObject.FindGameObjectWithTag("BombSpawn");
     }
 
     void Start()
