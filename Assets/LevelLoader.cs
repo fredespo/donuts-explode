@@ -108,7 +108,7 @@ public class LevelLoader : MonoBehaviour
         {
             StartCoroutine(StartPieceShooterAfterDelaySec(bonusLevelStartDelaySec, pieceShooterAngleChangeMode, pieceShooterAngles));
             this.bonusBombs.gameObject.SetActive(true);
-            this.bonusBombs.Init(this.currBonusLevel.spawns, this.currBonusLevel.defaultBombSpeed);
+            this.bonusBombs.Init(this.currBonusLevel.spawns, this.currBonusLevel.defaultBombSpeed, this.currBonusLevel.bomb);
         }
         else
         {
@@ -238,6 +238,7 @@ public class LevelLoader : MonoBehaviour
     public class BonusLevel
     {
         public int afterLevel;
+        public GameObject bomb;
         public float defaultBombSpeed; //fraction of path traveled per second
         public BonusLevelSpawn[] spawns;
     }
@@ -246,7 +247,6 @@ public class LevelLoader : MonoBehaviour
     public class BonusLevelSpawn
     {
         public float spawnDelaySec; //number of seconds to wait after previous spawn
-        public GameObject obj;
         public BezierPath path;
         public bool overrideSpeed;
         public float speedOverrideValue;

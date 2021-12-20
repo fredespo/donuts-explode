@@ -8,6 +8,8 @@ public class BombHolePlacer : MonoBehaviour
 {
     public GameObject center;
     public GameObject edge;
+    public float radiusOffset;
+    public Vector2 centerOffset;
     public float degrees;
 
     void Update()
@@ -16,11 +18,12 @@ public class BombHolePlacer : MonoBehaviour
         {
             return;
         }
-        float radius = Vector2.Distance(center.transform.position, edge.transform.position);
+        Vector2 centerPos = new Vector2(this.center.transform.position.x + this.centerOffset.x, this.center.transform.position.y + this.centerOffset.y);
+        float radius = Vector2.Distance(centerPos, edge.transform.position) + this.radiusOffset;
         float radians = degrees * Mathf.Deg2Rad;
         float x = Mathf.Cos(radians) * radius;
         float y = Mathf.Sin(radians) * radius;
-        gameObject.transform.position = new Vector3(center.transform.position.x + x, center.transform.position.y + y, 0);
+        gameObject.transform.position = new Vector3(centerPos.x + x, centerPos.y + y, 0);
         gameObject.transform.eulerAngles = new Vector3
         (
             0,

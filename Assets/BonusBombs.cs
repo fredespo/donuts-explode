@@ -21,6 +21,7 @@ public class BonusBombs : MonoBehaviour
     private bool doneSpawning;
     private int bonusPoints;
     private DataStorage dataStorage;
+    private GameObject bomb;
 
     void Start()
     {
@@ -29,12 +30,13 @@ public class BonusBombs : MonoBehaviour
         this.spawnSoundEffectPitchOrig = this.spawnSoundEffect.pitch;
     }
 
-    public void Init(LevelLoader.BonusLevelSpawn[] spawns, float defaultBombSpeed)
+    public void Init(LevelLoader.BonusLevelSpawn[] spawns, float defaultBombSpeed, GameObject bomb)
     {
         this.spawns = spawns;
         this.defaultBombSpeed = defaultBombSpeed;
         this.doneSpawning = false;
         this.numBonusBombsDefuzed = 0;
+        this.bomb = bomb;
         StartCoroutine(SpawnCoroutine());
     }
 
@@ -44,7 +46,7 @@ public class BonusBombs : MonoBehaviour
         {
             LevelLoader.BonusLevelSpawn curr = this.spawns[i];
             yield return new WaitForSeconds(curr.spawnDelaySec);
-            GameObject spawn = Instantiate(curr.obj, curr.path.GetPosAlongPath2D(0), Quaternion.identity, this.transform);
+            GameObject spawn = Instantiate(this.bomb, curr.path.GetPosAlongPath2D(0), Quaternion.identity, this.transform);
             this.spawnSoundEffect.pitch = Random.Range(this.spawnSoundEffectPitchOrig - this.spawnSoundEffectPitchSpread, this.spawnSoundEffectPitchOrig + this.spawnSoundEffectPitchSpread);
             this.spawnSoundEffect.Play();
             float speed = curr.overrideSpeed ? curr.speedOverrideValue : this.defaultBombSpeed;
