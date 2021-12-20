@@ -16,7 +16,7 @@ public class BombPiece : MonoBehaviour
     private bool caughtInMagnet = false;
     private bool inMagnetRange = false;
     private bool reflectingToBomb = false;
-    private float prevDistToReflectTarget;
+    private int numReflections = 0;
     private GameObject bomb;
     private Rigidbody2D rigibody;
     private AudioSource hitBombSoundEffect;
@@ -64,14 +64,12 @@ public class BombPiece : MonoBehaviour
         {
             Vector2 p1 = this.bomb.transform.position;
             Vector2 p2 = gameObject.transform.position;
-            float currDistToReflectTarget = Vector2.Distance(p1, p2);
-            if(this.prevDistToReflectTarget > 0 && currDistToReflectTarget > this.prevDistToReflectTarget)
+            if(Vector2.Distance(p1, p2) < 0.1f)
             {
                 this.reflectingToBomb = false;
             }
             else
             {
-                this.prevDistToReflectTarget = currDistToReflectTarget;
                 rigibody.velocity = (p1 - p2).normalized * rigibody.velocity.magnitude;
                 rigibody.MoveRotation(90 + Mathf.Atan2(p2.y - p1.y, p2.x - p1.x) * 180 / Mathf.PI);
             }
@@ -155,11 +153,17 @@ public class BombPiece : MonoBehaviour
 
     public void ReflectToBomb()
     {
+        if(this.numReflections > 0)
+        {
+            return;
+        }
+
         if (!this.reflectingToBomb)
         {
             PlayBounceSoundEffect();
         }
         this.reflectingToBomb = true;
+        ++this.numReflections;
     }
 
     private void PlayBounceSoundEffect()
