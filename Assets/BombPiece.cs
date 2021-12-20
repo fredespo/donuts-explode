@@ -16,6 +16,7 @@ public class BombPiece : MonoBehaviour
     private bool caughtInMagnet = false;
     private bool inMagnetRange = false;
     private bool reflectingToBomb = false;
+    private float prevDistToReflectTarget;
     private GameObject bomb;
     private Rigidbody2D rigibody;
     private AudioSource hitBombSoundEffect;
@@ -63,8 +64,17 @@ public class BombPiece : MonoBehaviour
         {
             Vector2 p1 = this.bomb.transform.position;
             Vector2 p2 = gameObject.transform.position;
-            rigibody.velocity = (p1 - p2).normalized * rigibody.velocity.magnitude;
-            rigibody.MoveRotation(90 + Mathf.Atan2(p2.y - p1.y, p2.x - p1.x) * 180 / Mathf.PI);
+            float currDistToReflectTarget = Vector2.Distance(p1, p2);
+            if(this.prevDistToReflectTarget > 0 && currDistToReflectTarget > this.prevDistToReflectTarget)
+            {
+                this.reflectingToBomb = false;
+            }
+            else
+            {
+                this.prevDistToReflectTarget = currDistToReflectTarget;
+                rigibody.velocity = (p1 - p2).normalized * rigibody.velocity.magnitude;
+                rigibody.MoveRotation(90 + Mathf.Atan2(p2.y - p1.y, p2.x - p1.x) * 180 / Mathf.PI);
+            }
         }
 
         if (caughtInMagnet)

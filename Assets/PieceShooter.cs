@@ -163,7 +163,6 @@ public class PieceShooter : MonoBehaviour
 
     public void SetAngles(float[] angles)
     {
-        Debug.Log("Set angles(" + string.Join(",", angles) + ")");
         this.angles = angles;
     }
 
