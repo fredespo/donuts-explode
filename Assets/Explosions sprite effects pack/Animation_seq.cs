@@ -18,7 +18,7 @@ public class Animation_seq: MonoBehaviour
 
     void NextFrame()
     {
-        rendererMy.sharedMaterial.SetTexture("_MainTex", frames[frameIndex]);
+        rendererMy.material.SetTexture("_MainTex", frames[frameIndex]);
         frameIndex = frameIndex + 0001;
         if(frameIndex >= frames.Length)
         {
