@@ -124,16 +124,13 @@ public class PieceShooter : MonoBehaviour
         }
 
         GameObject pieceToSpawn;
-        Vector3 scale;
         if (this.isBonusLevel)
         {
             pieceToSpawn = this.bonusPiece;
-            scale = new Vector3(40.5f, 40.5f, 1);
         }
         else
         {
             pieceToSpawn = pieces[pieceIndex];
-            scale = new Vector3(81, 81, 1);
         }
 
         if(pieceIndex < pieces.Length)
@@ -141,7 +138,7 @@ public class PieceShooter : MonoBehaviour
             spawnedPiece = Instantiate(pieceToSpawn, gameObject.transform.position, gameObject.transform.rotation);
             spawnedPiece.transform.SetParent(pieceParent.transform);
             spawnedPiece.transform.position = gameObject.transform.position;
-            spawnedPiece.transform.localScale = scale;
+            spawnedPiece.transform.localScale = new Vector3(81, 81, 1);
             spawnedPiece.GetComponent<SpriteRenderer>().sortingOrder = -1;
             BombPiece bombPiece = spawnedPiece.GetComponent<BombPiece>();
             bombPiece.SetOnMiss(() => RecordMissedShot());

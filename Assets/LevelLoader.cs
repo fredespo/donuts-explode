@@ -247,8 +247,8 @@ public class LevelLoader : MonoBehaviour
     public class BonusLevelSpawn
     {
         public float spawnDelaySec; //number of seconds to wait after previous spawn
-        public BezierPath path;
+        public BezierPath[] paths;
         public bool overrideSpeed;
-        public float speedOverrideValue;
+        public float[] speedOverrideValues;
     }
 }

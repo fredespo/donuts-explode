@@ -46,14 +46,14 @@ public class BonusBombs : MonoBehaviour
         {
             LevelLoader.BonusLevelSpawn curr = this.spawns[i];
             yield return new WaitForSeconds(curr.spawnDelaySec);
-            GameObject spawn = Instantiate(this.bomb, curr.path.GetPosAlongPath2D(0), Quaternion.identity, this.transform);
+            GameObject spawn = Instantiate(this.bomb, curr.paths[0].GetPosAlongPath2D(0), Quaternion.identity, this.transform);
             this.spawnSoundEffect.pitch = Random.Range(this.spawnSoundEffectPitchOrig - this.spawnSoundEffectPitchSpread, this.spawnSoundEffectPitchOrig + this.spawnSoundEffectPitchSpread);
             this.spawnSoundEffect.Play();
-            float speed = curr.overrideSpeed ? curr.speedOverrideValue : this.defaultBombSpeed;
-            this.rails.Add(spawn, curr.path, speed);
-            this.rails.SetMoveCallback(spawn, (obj, pctTraveled) => {
-                obj.GetComponent<Bomb>().SetFuzePct(pctTraveled / this.explodeAfterTraveledPct);
-                if (pctTraveled >= this.explodeAfterTraveledPct)
+            float[] speeds = curr.overrideSpeed ? curr.speedOverrideValues : new float[] {this.defaultBombSpeed};
+            this.rails.Add(spawn, curr.paths, speeds);
+            this.rails.SetMoveCallback(spawn, (obj, pctTraveled, paths, pathIdx) => {
+                obj.GetComponent<Bomb>().SetFuzePct((pctTraveled / this.explodeAfterTraveledPct) * ((pathIdx + 1) / paths.Length));
+                if (pathIdx == paths.Length - 1 && pctTraveled >= this.explodeAfterTraveledPct)
                 {
                     BonusBomb bonusBomb = obj.GetComponent<BonusBomb>();
                     if(!bonusBomb.IsDefuzed())
