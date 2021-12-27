@@ -9,34 +9,31 @@ public class BonusBombs : MonoBehaviour
     public AudioSource spawnSoundEffect;
     public float spawnSoundEffectPitchSpread;
     private float spawnSoundEffectPitchOrig;
-    public float explodeAfterTraveledPct = 0.8f;
     public int numBonusBombsDefuzed;
     public BonusLevelWinUI winUI;
     public Score score;
     public int pointsPerBombDefuzed = 100;
     public UnityEvent onBonusLevelComplete;
     private ObjectsOnRails rails;
-    private LevelLoader.BonusLevelSpawn[] spawns;
-    private float defaultBombSpeed;
+    private BonusLevel.SpawnData[] spawns;
     private bool doneSpawning;
     private int bonusPoints;
     private DataStorage dataStorage;
-    private GameObject bomb;
+    private Vector3 centerPos;
 
     void Start()
     {
         this.rails = GetComponent<ObjectsOnRails>();
         this.dataStorage = GameObject.FindGameObjectWithTag("DataStorage").GetComponent<DataStorage>();
         this.spawnSoundEffectPitchOrig = this.spawnSoundEffect.pitch;
+        this.centerPos = GameObject.FindWithTag("center").transform.position;
     }
 
-    public void Init(LevelLoader.BonusLevelSpawn[] spawns, float defaultBombSpeed, GameObject bomb)
+    public void Init(BonusLevel.SpawnData[] spawns)
     {
         this.spawns = spawns;
-        this.defaultBombSpeed = defaultBombSpeed;
         this.doneSpawning = false;
         this.numBonusBombsDefuzed = 0;
-        this.bomb = bomb;
         StartCoroutine(SpawnCoroutine());
     }
 
@@ -44,26 +41,25 @@ public class BonusBombs : MonoBehaviour
     {
         for(int i = 0; i < this.spawns.Length; ++i)
         {
-            LevelLoader.BonusLevelSpawn curr = this.spawns[i];
-            yield return new WaitForSeconds(curr.spawnDelaySec);
-            GameObject spawn = Instantiate(this.bomb, curr.paths[0].GetPosAlongPath2D(0), Quaternion.identity, this.transform);
+            yield return new WaitForSeconds(this.spawns[i].delay);
+            BonusBombSpawn bonusSpawn = this.spawns[i].spawn;
+            GameObject bomb = Instantiate(bonusSpawn.bomb, bonusSpawn.movements[0].path.GetPosAlongPath2D(0, this.centerPos), Quaternion.identity, this.transform);
             this.spawnSoundEffect.pitch = Random.Range(this.spawnSoundEffectPitchOrig - this.spawnSoundEffectPitchSpread, this.spawnSoundEffectPitchOrig + this.spawnSoundEffectPitchSpread);
             this.spawnSoundEffect.Play();
-            float[] speeds = curr.overrideSpeed ? curr.speedOverrideValues : new float[] {this.defaultBombSpeed};
-            this.rails.Add(spawn, curr.paths, speeds);
-            this.rails.SetMoveCallback(spawn, (obj, pctTraveled, paths, pathIdx) => {
-                obj.GetComponent<Bomb>().SetFuzePct((pctTraveled / this.explodeAfterTraveledPct) * ((pathIdx + 1) / paths.Length));
-                if (pathIdx == paths.Length - 1 && pctTraveled >= this.explodeAfterTraveledPct)
+            this.rails.Add(bomb, bonusSpawn.movements);
+            this.rails.SetMoveCallback(bomb, (movementDetails) => {
+                bomb.GetComponent<Bomb>().SetFuzePct((movementDetails.progress / bonusSpawn.destroyAt) * ((movementDetails.idx + 1) / movementDetails.movements.Length));
+                if (movementDetails.idx == movementDetails.movements.Length - 1 && movementDetails.progress >= bonusSpawn.destroyAt)
                 {
-                    BonusBomb bonusBomb = obj.GetComponent<BonusBomb>();
+                    BonusBomb bonusBomb = bomb.GetComponent<BonusBomb>();
                     if(!bonusBomb.IsDefuzed())
                     {
-                        this.rails.Remove(spawn);
+                        this.rails.Remove(bomb);
                         bonusBomb.Explode();
                     }
                     else
                     {
-                        this.rails.ClearMoveCallbacks(spawn);
+                        this.rails.ClearMoveCallbacks(bomb);
                     }
                 }
 

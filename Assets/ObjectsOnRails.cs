@@ -6,11 +6,17 @@ using System;
 public class ObjectsOnRails : MonoBehaviour
 {
     private Dictionary<GameObject, MovementDetails> movementDetailsPerObj = new Dictionary<GameObject, MovementDetails>();
-    private Dictionary<GameObject, Action<GameObject, float, BezierPath[], int>> callbacksOnMove = new Dictionary<GameObject, Action<GameObject, float, BezierPath[], int>>();
+    private Dictionary<GameObject, Action<ObjectsOnRails.MovementDetails>> callbacksOnMove = new Dictionary<GameObject, Action<ObjectsOnRails.MovementDetails>>();
+    private Vector3 centerPos;
 
-    public void Add(GameObject obj, BezierPath[] paths, float[] speeds)
+    void Start()
     {
-        this.movementDetailsPerObj.Add(obj, new MovementDetails(paths, speeds));
+        this.centerPos = GameObject.FindWithTag("center").transform.position;
+    }
+
+    public void Add(GameObject obj, BonusBombMovement[] movements)
+    {
+        this.movementDetailsPerObj.Add(obj, new MovementDetails(movements));
     }
 
     public void Remove(GameObject obj)
@@ -19,7 +25,7 @@ public class ObjectsOnRails : MonoBehaviour
         ClearMoveCallbacks(obj);
     }
 
-    public void SetMoveCallback(GameObject obj, Action<GameObject, float, BezierPath[], int> callback)
+    public void SetMoveCallback(GameObject obj, Action<ObjectsOnRails.MovementDetails> callback)
     {
         this.callbacksOnMove.Add(obj, callback);
     }
@@ -35,15 +41,15 @@ public class ObjectsOnRails : MonoBehaviour
         foreach (var obj in keys)
         {
             MovementDetails movementDetails = this.movementDetailsPerObj[obj];
-            movementDetails.progress += movementDetails.speeds[movementDetails.pathIdx] * Time.deltaTime;
+            movementDetails.progress += movementDetails.movements[movementDetails.idx].speed * Time.deltaTime;
             this.movementDetailsPerObj[obj] = movementDetails;
             if (movementDetails.progress < 1)
             {
-                Vector2 newPosOnPath = movementDetails.CurrPath().GetPosAlongPath2D(movementDetails.progress);
+                Vector2 newPosOnPath = movementDetails.CurrPath().GetPosAlongPath2D(movementDetails.progress, this.centerPos);
                 obj.transform.position = new Vector3(newPosOnPath.x, newPosOnPath.y, obj.transform.position.z);
                 if (this.callbacksOnMove.ContainsKey(obj))
                 {
-                    this.callbacksOnMove[obj].Invoke(obj, movementDetails.progress, movementDetails.paths, movementDetails.pathIdx);
+                    this.callbacksOnMove[obj].Invoke(movementDetails);
                 }
             }
             else if(movementDetails.HasNextPath())
@@ -58,34 +64,37 @@ public class ObjectsOnRails : MonoBehaviour
         }
     }
 
-    private class MovementDetails
+    public class MovementDetails
     {
-        public BezierPath[] paths;
-        public int pathIdx;
-        public float[] speeds; //fraction of path per second
+        public BonusBombMovement[] movements;
+        public int idx;
         public float progress; //fraction of path traveled so far
 
-        public MovementDetails(BezierPath[] paths, float[] speeds)
+        public MovementDetails(BonusBombMovement[] movements)
         {
-            this.paths = paths;
-            this.speeds = speeds;
+            this.movements = movements;
             this.progress = 0;
-            this.pathIdx = 0;
+            this.idx = 0;
         }
 
         public BezierPath CurrPath()
         {
-            return this.paths[this.pathIdx];
+            return this.movements[this.idx].path;
+        }
+
+        public float currSpeed()
+        {
+            return this.movements[this.idx].speed;
         }
 
         public bool HasNextPath()
         {
-            return this.pathIdx < this.paths.Length - 1;
+            return this.idx < this.movements.Length - 1;
         }
 
         public void GoToNextPath()
         {
-            ++this.pathIdx;
+            ++this.idx;
             this.progress = 0;
         }
     }

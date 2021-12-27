@@ -10,16 +10,16 @@ public class BezierPath : MonoBehaviour
     public Vector3[] controlPoints = new Vector3[4];
     private Vector2 gizmosPosition;
 
-    public Vector2 GetPosAlongPath2D(float pctTraveled)
+    public Vector2 GetPosAlongPath2D(float pctTraveled, Vector3 centerPos)
     {
-        return Mathf.Pow(1 - pctTraveled, 3) * (controlPoints[0] + transform.position) + 3 * Mathf.Pow(1 - pctTraveled, 2) * pctTraveled * (controlPoints[1] + transform.position) + 3 * (1 - pctTraveled) * Mathf.Pow(pctTraveled, 2) * (controlPoints[2] + transform.position) + Mathf.Pow(pctTraveled, 3) * (controlPoints[3] + transform.position);
+        return Mathf.Pow(1 - pctTraveled, 3) * (controlPoints[0] + centerPos) + 3 * Mathf.Pow(1 - pctTraveled, 2) * pctTraveled * (controlPoints[1] + centerPos) + 3 * (1 - pctTraveled) * Mathf.Pow(pctTraveled, 2) * (controlPoints[2] + centerPos) + Mathf.Pow(pctTraveled, 3) * (controlPoints[3] + centerPos);
     }
 
     private void OnDrawGizmos()
     {
         for (float t = 0; t <= 1; t += 0.02f)
         {
-            Gizmos.DrawWireSphere(GetPosAlongPath2D(t), 0.02f);
+            Gizmos.DrawWireSphere(GetPosAlongPath2D(t, transform.position), 0.02f);
         }
 
         Gizmos.DrawLine(new Vector2(controlPoints[0].x + transform.position.x, controlPoints[0].y + transform.position.y), new Vector2(controlPoints[1].x + transform.position.x, controlPoints[1].y + transform.position.y));
