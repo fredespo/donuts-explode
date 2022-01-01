@@ -8,10 +8,24 @@ public class ObjectsOnRails : MonoBehaviour
     private Dictionary<GameObject, MovementDetails> movementDetailsPerObj = new Dictionary<GameObject, MovementDetails>();
     private Dictionary<GameObject, Action<ObjectsOnRails.MovementDetails>> callbacksOnMove = new Dictionary<GameObject, Action<ObjectsOnRails.MovementDetails>>();
     private Vector3 centerPos;
+    private Vector3 rightPos;
+    private Vector3 topPos;
+    private float width;
+    private float height;
+    public float targetWidth = 6.75f;
+    public float targetHeight = 12f;
+    private float widthRatio;
+    private float heightRatio;
 
     void Start()
     {
         this.centerPos = GameObject.FindWithTag("center").transform.position;
+        this.rightPos = GameObject.FindWithTag("right").transform.position;
+        this.topPos = GameObject.FindWithTag("top").transform.position;
+        this.width = (this.rightPos.x - this.centerPos.x) * 2;
+        this.height = (this.topPos.y - this.centerPos.y) * 2;
+        this.widthRatio = this.width / this.targetWidth;
+        this.heightRatio = this.height / this.targetHeight;
     }
 
     public void Add(GameObject obj, BonusBombMovement[] movements)
@@ -45,7 +59,7 @@ public class ObjectsOnRails : MonoBehaviour
             this.movementDetailsPerObj[obj] = movementDetails;
             if (movementDetails.progress < 1)
             {
-                Vector2 newPosOnPath = movementDetails.CurrPath().GetPosAlongPath2D(movementDetails.progress, this.centerPos);
+                Vector2 newPosOnPath = movementDetails.CurrPath().GetPosAlongPath2D(movementDetails.progress, this.centerPos, this.widthRatio, this.heightRatio);
                 obj.transform.position = new Vector3(newPosOnPath.x, newPosOnPath.y, obj.transform.position.z);
                 if (this.callbacksOnMove.ContainsKey(obj))
                 {
