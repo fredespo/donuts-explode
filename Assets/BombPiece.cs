@@ -43,7 +43,7 @@ public class BombPiece : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if(col.gameObject.CompareTag("bomb"))
+        if(this.rigibody.velocity.magnitude != 0 && col.gameObject.CompareTag("bomb"))
         {
             this.hitBomb = true;
             if (!fading && !inMagnetRange)
