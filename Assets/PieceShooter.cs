@@ -89,7 +89,9 @@ public class PieceShooter : MonoBehaviour
     {
         if (shootingEnabled && spawnedPiece != null && spawnedPieceReadyToShoot)
         {
-            spawnedPiece.GetComponent<Rigidbody2D>().velocity = transform.up * speed;
+            Rigidbody2D pieceRb = spawnedPiece.GetComponent<Rigidbody2D>();
+            pieceRb.isKinematic = false;
+            pieceRb.velocity = transform.up * speed;
             spawnedPiece.GetComponent<SpriteRenderer>().sortingOrder = 0;
             spawnedPieceReadyToShoot = false;
             soundEffect.pitch = Random.Range(0.75f, 1.0f);
@@ -140,6 +142,7 @@ public class PieceShooter : MonoBehaviour
             spawnedPiece.transform.position = gameObject.transform.position;
             spawnedPiece.transform.localScale = new Vector3(81, 81, 1);
             spawnedPiece.GetComponent<SpriteRenderer>().sortingOrder = -1;
+            spawnedPiece.GetComponent<Rigidbody2D>().isKinematic = true;
             BombPiece bombPiece = spawnedPiece.GetComponent<BombPiece>();
             bombPiece.SetOnMiss(() => RecordMissedShot());
             bombPiece.SetOnFilledHole(() => RecordGoodShot());
