@@ -200,7 +200,7 @@ public class PieceShooter : MonoBehaviour
     {
         ++this.consecutiveGoodShots;
         AwardBonusPoints();
-        MakeBonusSound(this.bonusSound, this.bonusSoundBasePitch);
+        MakeBonusSound(this.bonusSound, this.bonusSoundBasePitch, this.isBonusLevel ? this.consecutiveGoodShots : this.consecutiveGoodShots * 2);
     }
 
     private void AwardBonusPoints()
@@ -220,7 +220,13 @@ public class PieceShooter : MonoBehaviour
 
     public void MakeBonusSound(AudioSource audioSource, float basePitch)
     {
-        audioSource.pitch = basePitch * Mathf.Min(3, Mathf.Pow(1.05946f, this.consecutiveGoodShots * 2));
+        MakeBonusSound(audioSource, basePitch, this.consecutiveGoodShots * 2);
+    }
+
+    //Note: not totally sure this is how semitones work, check the math before reusing
+    public void MakeBonusSound(AudioSource audioSource, float basePitch, int numSemiTonesAboveBase)
+    {
+        audioSource.pitch = basePitch * Mathf.Min(3, Mathf.Pow(1.05946f, numSemiTonesAboveBase));
         audioSource.Play();
     }
 }
