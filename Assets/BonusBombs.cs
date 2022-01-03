@@ -13,6 +13,8 @@ public class BonusBombs : MonoBehaviour
     public BonusLevelWinUI winUI;
     public Score score;
     public int pointsPerBombDefuzed = 100;
+    public float endingDelay;
+    public UnityEvent onAllBombsDestroyed;
     public UnityEvent onBonusLevelComplete;
     private ObjectsOnRails rails;
     private BonusLevel.SpawnData[] spawns;
@@ -72,9 +74,16 @@ public class BonusBombs : MonoBehaviour
     {
         if(this.doneSpawning && NumBonusBombsInFlight() == 0)
         {
-            BonusLevelComplete();
+            this.onAllBombsDestroyed.Invoke();
+            StartCoroutine(BonusLevelCompleteCoroutine());
             this.doneSpawning = false;
         }
+    }
+
+    private IEnumerator BonusLevelCompleteCoroutine()
+    {
+        yield return new WaitForSeconds(this.endingDelay);
+        BonusLevelComplete();
     }
 
     private void BonusLevelComplete()
