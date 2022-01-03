@@ -13,8 +13,6 @@ GameObject:
   - component: {fileID: 7163814724372912082}
   - component: {fileID: 7163814724372912083}
   - component: {fileID: 7163814724372912084}
-  - component: {fileID: 5630284066375794381}
-  - component: {fileID: 3048136063466405236}
   m_Layer: 0
   m_Name: explosionSmall
   m_TagString: Explosion
@@ -32,7 +30,8 @@ Transform:
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -15, y: 265, z: 0}
   m_LocalScale: {x: 90, y: 90, z: 90}
-  m_Children: []
+  m_Children:
+  - {fileID: 2524714320490293130}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
@@ -130,20 +129,68 @@ MonoBehaviour:
   - {fileID: 2800000, guid: f991767b7a6f36a4cb0c3c48cbcedbf3, type: 3}
   - {fileID: 2800000, guid: 59886c129acdf4a44a4817ba47f1b9ab, type: 3}
   - {fileID: 2800000, guid: 9727109e0d37b40448bfe122dc9982d5, type: 3}
---- !u!82 &5630284066375794381
+--- !u!1 &8757430709062927771
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2524714320490293130}
+  - component: {fileID: 4471498122249328543}
+  - component: {fileID: 3690723529249373010}
+  - component: {fileID: 3559090127433432588}
+  - component: {fileID: 853924273647288025}
+  m_Layer: 0
+  m_Name: soundEffect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2524714320490293130
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8757430709062927771}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7163814724372912080}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4471498122249328543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8757430709062927771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 846a99c417a23b148b01bbdccfde4bf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  generationsToGoBackFromGrandparent: 1
+  delay: 0.5
+--- !u!82 &3690723529249373010
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7163814724372912085}
+  m_GameObject: {fileID: 8757430709062927771}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 4805680758596140671, guid: d4cf59b570deb6d45a88ff28391ac6d4,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 8b3f676fe7b41044495a2964396b8ba3, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.65
+  m_Volume: 0.55
   m_Pitch: 0.85
   Loop: 0
   Mute: 0
@@ -227,17 +274,30 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &3048136063466405236
+--- !u!114 &3559090127433432588
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7163814724372912085}
+  m_GameObject: {fileID: 8757430709062927771}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f9bdcb055408994fb4efd80a2635d71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pitchSpread: 0.1
-  volumeSpread: 0.1
+  pitchSpread: 0.15
+  volumeSpread: 0.15
+--- !u!114 &853924273647288025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8757430709062927771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1372cd939d3b674a8207e4fbf01db77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delay: 3
