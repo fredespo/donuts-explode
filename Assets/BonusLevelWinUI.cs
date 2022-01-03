@@ -15,7 +15,14 @@ public class BonusLevelWinUI : MonoBehaviour
 
     public void RevealAndAwardBonus(int numDefuzed, int numBonusPoints)
     {
-        this.numDefuzedMsg.text = numDefuzed + " bonus bomb" + (numDefuzed == 1 ? "" : "s");
+        if(numDefuzed > 0)
+        {
+            this.numDefuzedMsg.text = numDefuzed + " bonus bomb" + (numDefuzed == 1 ? "" : "s");
+        }
+        else
+        {
+            this.numDefuzedMsg.text = "No bonus bombs";
+        }
         this.bonusPointsText.text = numBonusPoints + "";
         this.anim.SetTrigger("show");
         this.bonusPoints = numBonusPoints;
