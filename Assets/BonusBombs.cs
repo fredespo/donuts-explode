@@ -9,6 +9,7 @@ public class BonusBombs : MonoBehaviour
     public AudioSource spawnSoundEffect;
     public float spawnSoundEffectPitchSpread;
     private float spawnSoundEffectPitchOrig;
+    public AudioSource bombHittingSideSoundEffect;
     public int numBonusBombsDefuzed;
     public BonusLevelWinUI winUI;
     public Score score;
@@ -65,6 +66,10 @@ public class BonusBombs : MonoBehaviour
                     }
                 }
 
+            });
+            this.rails.SetPathChangeCallback(bomb, (movementDetails) =>
+            {
+                this.bombHittingSideSoundEffect.Play();
             });
         }
         this.doneSpawning = true;

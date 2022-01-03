@@ -7,6 +7,7 @@ public class ObjectsOnRails : MonoBehaviour
 {
     private Dictionary<GameObject, MovementDetails> movementDetailsPerObj = new Dictionary<GameObject, MovementDetails>();
     private Dictionary<GameObject, Action<ObjectsOnRails.MovementDetails>> callbacksOnMove = new Dictionary<GameObject, Action<ObjectsOnRails.MovementDetails>>();
+    private Dictionary<GameObject, Action<ObjectsOnRails.MovementDetails>> callbacksOnPathChange = new Dictionary<GameObject, Action<ObjectsOnRails.MovementDetails>>();
     private Vector3 centerPos;
     private Vector3 rightPos;
     private Vector3 topPos;
@@ -44,6 +45,11 @@ public class ObjectsOnRails : MonoBehaviour
         this.callbacksOnMove.Add(obj, callback);
     }
 
+    public void SetPathChangeCallback(GameObject obj, Action<ObjectsOnRails.MovementDetails> callback)
+    {
+        this.callbacksOnPathChange.Add(obj, callback);
+    }
+
     public void ClearMoveCallbacks(GameObject obj)
     {
         this.callbacksOnMove.Remove(obj);
@@ -69,6 +75,10 @@ public class ObjectsOnRails : MonoBehaviour
             else if(movementDetails.HasNextPath())
             {
                 movementDetails.GoToNextPath();
+                if (this.callbacksOnPathChange.ContainsKey(obj))
+                {
+                    this.callbacksOnPathChange[obj].Invoke(movementDetails);
+                }
             }
             else
             {
