@@ -7,6 +7,7 @@ public class PieceTutorialAnimator : MonoBehaviour
 {
     public GameObject piece;
     public GameObject pieceParent;
+    public string pieceSortingLayer;
     private Action onComplete;
     private float[] angles;
     private GameObject spawnedPiece;
@@ -34,6 +35,7 @@ public class PieceTutorialAnimator : MonoBehaviour
         this.spawnedPiece = Instantiate(piece, gameObject.transform.position, gameObject.transform.rotation);
         Animator anim = spawnedPiece.GetComponent<Animator>();
         spawnedPiece.transform.SetParent(pieceParent.transform);
+        spawnedPiece.GetComponent<SpriteRenderer>().sortingLayerName = this.pieceSortingLayer;
         spawnedPiece.transform.position = gameObject.transform.position;
         spawnedPiece.transform.localScale = new Vector3(81, 81, 1);
         spawnedPiece.GetComponent<PolygonCollider2D>().enabled = false;
