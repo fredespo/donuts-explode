@@ -2,7 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 
 [ExecuteInEditMode]
 public class BezierPath : MonoBehaviour
@@ -43,6 +45,7 @@ public class BezierPath : MonoBehaviour
         }
     }
 
+    #if UNITY_EDITOR
     [CustomEditor(typeof(BezierPath))]
     public class BezierPathEditor : Editor
     {
@@ -63,4 +66,5 @@ public class BezierPath : MonoBehaviour
             
         }
     }
+    #endif
 }
