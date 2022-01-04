@@ -8,6 +8,9 @@ using System;
 public class Ads : MonoBehaviour
 {
     public bool adsEnabled = true;
+    public float minutesBetweenAds = 3;
+    public float minutesBetweenStartAndFirstAd = 1;
+    private float lastAdShownAt = 0;
     public AudioSource music;
     public string testAdId = "ca-app-pub-3940256099942544/1033173712";
     public string androidAdId = "ca-app-pub-8136996048120593/8224216593";
@@ -24,12 +27,15 @@ public class Ads : MonoBehaviour
         this.storage = GameObject.FindWithTag("DataStorage").GetComponent<DataStorage>();
         this.adsEnabled = storage.GetAdsEnabled();
         MobileAds.Initialize(initStatus => { });
-        LoadInterstitialAd();
+        if(this.adsEnabled)
+        {
+            LoadInterstitialAd();
+        }
     }
 
     public void ShowInterstitialAdAndThen(Action<bool> action)
     {
-        if(Application.isEditor || !this.adsEnabled || levelLoader.GetCurrentLevelIndex() + 1 < this.minLevelForAds)
+        if(Application.isEditor || !this.adsEnabled || levelLoader.GetCurrentLevelIndex() + 1 < this.minLevelForAds || IsTooSoonToShowAd())
         {
             action.Invoke(false);
             return;
@@ -40,6 +46,7 @@ public class Ads : MonoBehaviour
             origTimeScale = Time.timeScale;
             Time.timeScale = 0f;
             this.onAdClosed = action;
+            this.lastAdShownAt = Time.time;
             interstitial.Show();
         }
         else
@@ -89,7 +96,7 @@ public class Ads : MonoBehaviour
     public void HandleOnAdFailedToLoad(object sender, AdFailedToLoadEventArgs args)
     {
         this.adLoaded = false;
-        Invoke("LoadInterstitialAd", 60);
+        Invoke("LoadInterstitialAd", 10);
     }
 
     public void EnableAds()
@@ -114,6 +121,28 @@ public class Ads : MonoBehaviour
         if (!pause)
         {
             LoadInterstitialAd();
+        }
+    }
+
+    private float SecondsSinceLastAd()
+    {
+        return Time.time - this.lastAdShownAt;
+    }
+
+    private Boolean HaveShownFirstAd()
+    {
+        return this.lastAdShownAt > 0;
+    }
+
+    private Boolean IsTooSoonToShowAd()
+    {
+        if(HaveShownFirstAd())
+        {
+            return SecondsSinceLastAd() < this.minutesBetweenAds * 60;
+        }
+        else
+        {
+            return Time.time < this.minutesBetweenStartAndFirstAd * 60;
         }
     }
 }
