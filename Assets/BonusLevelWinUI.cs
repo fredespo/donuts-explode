@@ -9,9 +9,14 @@ public class BonusLevelWinUI : MonoBehaviour
     public GameObject buttons;
     public Text numDefuzedMsg;
     public Text bonusPointsText;
-    public ScoreBonus scoreBonus;
     public AudioSource impactSound;
     private int bonusPoints;
+    private ScoreBonus scoreBonus;
+
+    void Start()
+    {
+        this.scoreBonus = GameObject.FindWithTag("ScoreBonus").GetComponent<ScoreBonus>();
+    }
 
     public void RevealAndAwardBonus(int numDefuzed, int numBonusPoints)
     {
@@ -54,5 +59,10 @@ public class BonusLevelWinUI : MonoBehaviour
     public void PlayImpactSound()
     {
         this.impactSound.Play();
+    }
+
+    public void DestroyGameObject()
+    {
+        Destroy(gameObject);
     }
 }

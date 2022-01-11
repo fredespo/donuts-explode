@@ -21,7 +21,6 @@ public class LevelLoader : MonoBehaviour
     public AnimatedCountDown countDown;
     public LevelIndicator levelIndicator;
     public GameObject bonusLevelIndicator;
-    public GameObject bonusWinUI;
     public ScoreBonus scoreBonus;
     public List<Reflector> pieceReflectors;
     public List<Level> levels;
@@ -153,7 +152,6 @@ public class LevelLoader : MonoBehaviour
         {
             Destroy(prevBomb);
         }
-        bonusWinUI.SetActive(false);
 
         if (this.isBonusLevel)
         {

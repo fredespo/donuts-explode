@@ -11,7 +11,7 @@ public class BonusBombs : MonoBehaviour
     private float spawnSoundEffectPitchOrig;
     public AudioSource bombHittingSideSoundEffect;
     public int numBonusBombsDefuzed;
-    public BonusLevelWinUI winUI;
+    public GameObject winUI;
     public Score score;
     public int pointsPerBombDefuzed = 100;
     public float endingDelay;
@@ -95,7 +95,8 @@ public class BonusBombs : MonoBehaviour
     {
         this.onBonusLevelComplete.Invoke();
         this.bonusPoints = this.pointsPerBombDefuzed * this.numBonusBombsDefuzed;
-        this.winUI.RevealAndAwardBonus(this.numBonusBombsDefuzed, this.bonusPoints);
+        GameObject winUI = Instantiate(this.winUI, transform.parent.transform);
+        winUI.GetComponent<BonusLevelWinUI>().RevealAndAwardBonus(this.numBonusBombsDefuzed, this.bonusPoints);
     }
 
     public void DefuzedBonusBomb()
