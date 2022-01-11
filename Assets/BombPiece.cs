@@ -96,6 +96,13 @@ public class BombPiece : MonoBehaviour
         }
     }
 
+    public void OutOfBounds()
+    {
+        if (this.inMagnetRange) return;
+        this.onMiss.Invoke();
+        Destroy(gameObject);
+    }
+
     private void LookAt(GameObject target)
     {
         if (target == null) return;
