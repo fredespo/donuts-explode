@@ -6,6 +6,7 @@ using System;
 
 public class ScoreBonus : MonoBehaviour
 {
+    public AudioSource bonusSound;
     private Text text;
     private int bonus = 0;
     private Score score;
@@ -34,6 +35,7 @@ public class ScoreBonus : MonoBehaviour
         this.bonus += value;
         RefreshText();
         this.anim.SetTrigger("Increase");
+        this.bonusSound.Play();
     }
 
     private void RefreshText()

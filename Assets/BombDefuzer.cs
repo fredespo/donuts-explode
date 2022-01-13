@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Analytics;
+using System;
 
 public class BombDefuzer : MonoBehaviour
 {
@@ -96,16 +97,20 @@ public class BombDefuzer : MonoBehaviour
     {
         yield return new WaitForSeconds(delaySec);
         score.Add(GetPointsEarned());
-        timer.CountDownFastAndThen(() => ApplyBonusAndShowWinUI());
+        timer.CountDownFastAndThen(() => GameObject.FindGameObjectWithTag("WinUI").GetComponent<LevelWinUI>().ShowAccuracy(1.0f, () => StartCoroutine(ApplyBonusAndShowWinUICoroutine(0.75f))));
     }
 
-    private void ApplyBonusAndShowWinUI()
+    private IEnumerator ApplyBonusAndShowWinUICoroutine(float initialDelaySec)
     {
-        this.scoreBonus.AddToScoreWithAnimationAndThen(() => ShowWinUi());
+        yield return new WaitForSeconds(initialDelaySec);
+        this.scoreBonus.AddBonus(GameObject.FindWithTag("LevelShotStats").GetComponent<LevelStats>().AccuracyBonus());
+        yield return new WaitForSeconds(1.2f);
+        this.scoreBonus.AddToScoreWithAnimationAndThen(() => StartCoroutine(ShowWinUiCoroutine(0.5f)));
     }
 
-    private void ShowWinUi()
+    private IEnumerator ShowWinUiCoroutine(float initDelaySec)
     {
+        yield return new WaitForSeconds(initDelaySec);
         foreach (Transform child in GameObject.FindGameObjectWithTag("WinUI").transform)
         {
             child.gameObject.SetActive(true);
