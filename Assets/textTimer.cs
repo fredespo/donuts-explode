@@ -199,6 +199,11 @@ public class textTimer : MonoBehaviour
         return seconds - bombDetonationDelay;
     }
 
+    public float GetSeconds()
+    {
+        return seconds;
+    }
+
     public void setTime(float seconds)
     {
         this.seconds = seconds;

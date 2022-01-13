@@ -119,7 +119,7 @@ public class BombDefuzer : MonoBehaviour
 
     private int GetPointsEarned()
     {
-        return (int)Mathf.Max(0, Mathf.Round(timer.GetSecondsLeft() * 100));
+        return (int)Mathf.Max(0, Mathf.Round(timer.GetSeconds() * 100));
     }
 
     public int GetNumHolesLeft()
