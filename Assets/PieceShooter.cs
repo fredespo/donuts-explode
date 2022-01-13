@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PieceShooter : MonoBehaviour
 {
+    public LevelStats levelStats;
     public GameObject pieceParent;
     public bool shootingEnabled = false;
     public GameObject[] pieces;
@@ -45,6 +46,7 @@ public class PieceShooter : MonoBehaviour
 
         SpawnPiece();
         soundEffect = GetComponent<AudioSource>();
+        this.levelStats.Reset();
     }
 
     void Update()
@@ -97,6 +99,7 @@ public class PieceShooter : MonoBehaviour
             spawnedPieceReadyToShoot = false;
             soundEffect.pitch = Random.Range(0.75f, 1.0f);
             soundEffect.Play(0);
+            this.levelStats.RecordShot();
         }
     }
 
@@ -200,7 +203,7 @@ public class PieceShooter : MonoBehaviour
     public void RecordGoodShot()
     {
         ++this.consecutiveGoodShots;
-        AwardBonusPoints();
+        this.levelStats.RecordGoodShot();
         MakeBonusSound(this.bonusSound, this.bonusSoundBasePitch, this.isBonusLevel ? this.consecutiveGoodShots : this.consecutiveGoodShots * 2);
     }
 
