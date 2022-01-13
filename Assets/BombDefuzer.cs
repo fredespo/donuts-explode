@@ -61,7 +61,7 @@ public class BombDefuzer : MonoBehaviour
         }
 
         StartCoroutine(AddTimeToScoreAfterDelay(1.0f));
-        int newScore = score.GetScore() + GetPointsEarned() + this.scoreBonus.GetBonus();
+        int newScore = score.GetScore() + GetPointsEarned() + GameObject.FindWithTag("LevelShotStats").GetComponent<LevelStats>().AccuracyBonus();
         dataStorage.SaveScore(newScore);
         int currLevel = GameObject.FindGameObjectWithTag("LevelLoader").GetComponent<LevelLoader>().GetCurrentLevelIndex() + 1;
         if (!Application.isEditor)
