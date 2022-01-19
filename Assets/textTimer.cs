@@ -119,18 +119,13 @@ public class textTimer : MonoBehaviour
 
     private void HandleSlowMo()
     {
-        if(this.slowMo)
+        bool shouldSlowMo = ShouldSlowMo();
+        if(this.slowMo != shouldSlowMo)
         {
-            if((this.defuzer.GetNumUnfilledHoles() == 0 || this.seconds <= 0))
-            {
-                this.slowMo = false;
-            }
+            this.slowMo = shouldSlowMo;
+            float targetTimeScale = this.slowMo ? this.slowMoTimeScale : 1f;
+            LeanTween.value(gameObject, (float v, float r) => {Time.timeScale = v;}, Time.timeScale, targetTimeScale, 0.2f).setIgnoreTimeScale(true).setEase(LeanTweenType.easeOutCirc);
         }
-        else
-        {
-            this.slowMo = ShouldSlowMo();
-        }
-        Time.timeScale = this.slowMo ? this.slowMoTimeScale : 1.0f;
         this.camAnim.SetBool("slowmo", this.slowMo);
     }
 
