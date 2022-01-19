@@ -198,4 +198,9 @@ public class BombPiece : MonoBehaviour
     {
         this.onFilledHole.Invoke();
     }
+
+    public bool IsCaughtInMagnet()
+    {
+        return this.caughtInMagnet;
+    }
 }
