@@ -90,6 +90,7 @@ public class textTimer : MonoBehaviour
         gameOverUI.SetActive(true);
         this.pieceShooter.gameObject.SetActive(false);
         gameObject.SetActive(false);
+        this.pieceShooter.DestroySpawnedPiece();
     }
 
     private void HandleFading()

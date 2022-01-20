@@ -238,4 +238,9 @@ public class PieceShooter : MonoBehaviour
     {
         this.isBonusLevel = value;
     }
+
+    public void DestroySpawnedPiece()
+    {
+        Destroy(this.spawnedPiece);
+    }
 }
