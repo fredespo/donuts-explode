@@ -70,10 +70,17 @@ public class Magnet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.CompareTag(tagToLookFor))
+        if (col.gameObject.CompareTag(tagToLookFor) && col.gameObject.GetComponent<Rigidbody2D>().velocity.magnitude > 1 && IsMovingTowardsMagent(col.gameObject))
         {
             caughtPieces.Add(col.gameObject.GetComponent<BombPiece>());
         }
+    }
+
+    bool IsMovingTowardsMagent(GameObject obj)
+    {
+        Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
+        Vector3 targetDir = (transform.position - obj.transform.position).normalized;
+        return Vector3.Dot(rb.velocity.normalized, targetDir) > 0;
     }
 
     void OnTriggerExit2D(Collider2D col)

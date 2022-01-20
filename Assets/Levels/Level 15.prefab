@@ -263,6 +263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c44c82e820eec48bfdabfe2a90ba43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isBonusBomb: 0
   bombRotator: {fileID: 6706467554741298092}
   bombHighlightAnim: {fileID: 3310493893718238836}
   soundEffect: {fileID: 270602910291917452}
@@ -283,7 +284,7 @@ GameObject:
   - component: {fileID: 6706467554741298083}
   - component: {fileID: 3111510162694833362}
   m_Layer: 0
-  m_Name: Level 5C Bomb
+  m_Name: Level 15
   m_TagString: bomb
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -325,7 +326,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cca1e6cf2e0ee2841a5447975c3e686a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  degPerSec: 140
   direction: 0
 --- !u!114 &6706467554741298083
 MonoBehaviour:
@@ -358,6 +358,7 @@ MonoBehaviour:
   rotator: {fileID: 6706467554741298092}
   fuseFlareSpawner: {fileID: 4953792591026861554}
   fuseAnimator: {fileID: 4953792589037573385}
+  fuzeTransform: {fileID: 0}
 --- !u!1001 &888917059629426326
 PrefabInstance:
   m_ObjectHideFlags: 0
