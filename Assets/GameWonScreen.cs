@@ -55,7 +55,7 @@ public class GameWonScreen : MonoBehaviour
             this.victoryMusic.volume = this.initVictoryMusicVolume;
             this.victoryMusic.Play();
             this.onSkipAnimation.Invoke();
-            PostInit();
+            playServices.SignIn((res) => PostInit());
         }
     }
 
