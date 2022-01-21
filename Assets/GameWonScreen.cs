@@ -7,6 +7,7 @@ using UnityEngine.Events;
 public class GameWonScreen : MonoBehaviour
 {
     public UnityEvent onInit;
+    public UnityEvent onPostInit;
     public UnityEvent onSkipAnimation;
     public UnityEvent onAutoSaveScore;
     public UnityEvent onFailedAutoSaveScore;
@@ -61,6 +62,7 @@ public class GameWonScreen : MonoBehaviour
 
     public void PostInit()
     {
+        this.onPostInit.Invoke();
         if (playServices.IsSignedIn())
         {
             playServices.PostHighScoreAndThen(score.GetScore(), (success) =>

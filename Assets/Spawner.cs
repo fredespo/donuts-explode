@@ -7,10 +7,17 @@ public class Spawner : MonoBehaviour
     public float intervalSeconds = 1.0f;
     public float probabilityPerInterval = 1.0f;
     public GameObject[] toSpawn;
+    private IEnumerator spawnCoroutine;
 
-    void Awake()
+    public void Init()
     {
-        StartCoroutine(SpawnCoroutine());
+        this.spawnCoroutine = SpawnCoroutine();
+        StartCoroutine(this.spawnCoroutine);
+    }
+
+    public void Stop()
+    {
+        StopCoroutine(this.spawnCoroutine);
     }
 
     private IEnumerator SpawnCoroutine()
@@ -34,5 +41,13 @@ public class Spawner : MonoBehaviour
 
         int randSpawnIndex = Random.Range(0, this.toSpawn.Length);
         Instantiate(this.toSpawn[randSpawnIndex], transform);
+    }
+
+    public void DestroyAllChildren()
+    {
+        foreach(Transform child in transform)
+        {
+            Destroy(child.gameObject);
+        }
     }
 }
