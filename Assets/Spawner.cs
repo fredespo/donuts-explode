@@ -8,6 +8,7 @@ public class Spawner : MonoBehaviour
     public float probabilityPerInterval = 1.0f;
     public GameObject[] toSpawn;
     private IEnumerator spawnCoroutine;
+    private int i;
 
     public void Init()
     {
@@ -39,8 +40,8 @@ public class Spawner : MonoBehaviour
             return;
         }
 
-        int randSpawnIndex = Random.Range(0, this.toSpawn.Length);
-        Instantiate(this.toSpawn[randSpawnIndex], transform);
+        Instantiate(this.toSpawn[i], transform);
+        i = (i + Random.Range(1, this.toSpawn.Length - 1)) % this.toSpawn.Length;
     }
 
     public void DestroyAllChildren()
