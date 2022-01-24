@@ -10,9 +10,11 @@ public class GamePauser : MonoBehaviour
     public Button btn;
     public AudioSource music;
     private bool musicWasPlayingBeforePause;
+    private float prevTimeScale;
 
     public void PauseGame()
     {
+        prevTimeScale = Time.timeScale;
         Time.timeScale = 0;
         pauseMenu.SetActive(true);
         btn.enabled = false;
@@ -22,7 +24,7 @@ public class GamePauser : MonoBehaviour
 
     public void ResumeGame()
     {
-        Time.timeScale = 1;
+        Time.timeScale = prevTimeScale;
         pauseMenu.SetActive(false);
         btn.enabled = true;
         if (musicWasPlayingBeforePause)
