@@ -43,21 +43,22 @@ public class ScreenManager : MonoBehaviour
         }
     }
 
-    public void ShowSettingsScreen()
+    public void ShowSettingsScreen(bool fromPauseMenu = false)
     {
         gameScreen.SetActive(false);
         gameWonScreen.SetActive(false);
         titleScreen.SetActive(false);
         settingsScreen.SetActive(true);
+        settingsScreen.GetComponent<SettingsScreen>().Init(fromPauseMenu);
     }
 
-    public void ShowGameScreen()
+    public void ShowGameScreen(bool playMusic = true)
     {
         titleScreen.SetActive(false);
         gameScreen.SetActive(true);
         gameWonScreen.SetActive(false);
         settingsScreen.SetActive(false);
-        if (!music.isPlaying)
+        if (playMusic && !music.isPlaying)
         {
             music.pitch = 1.0f;
             music.Play(0);
