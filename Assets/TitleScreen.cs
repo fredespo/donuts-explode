@@ -9,6 +9,7 @@ public class TitleScreen : MonoBehaviour
     public Score score;
     public LevelLoader levelLoader;
     public ScreenManager screenManager;
+    public AudioSource gameMusic;
 
     void Start()
     {
@@ -16,6 +17,10 @@ public class TitleScreen : MonoBehaviour
         {
             score.score = dataStorage.GetScore();
             screenManager.ShowGameWonScreen(false);
+        }
+        else
+        {
+            gameMusic.Play();
         }
     }
 
