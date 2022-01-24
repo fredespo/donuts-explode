@@ -22,6 +22,7 @@ public class BombDefuzer : MonoBehaviour
     private DataStorage dataStorage;
     private Score score;
     private ScoreBonus scoreBonus;
+    private GameObject pauseButton;
 
     void Start()
     {
@@ -35,6 +36,7 @@ public class BombDefuzer : MonoBehaviour
         dataStorage = GameObject.FindGameObjectWithTag("DataStorage").GetComponent<DataStorage>();
         score = GameObject.FindGameObjectWithTag("Score").GetComponent<Score>();
         scoreBonus = GameObject.FindGameObjectWithTag("ScoreBonus").GetComponent<ScoreBonus>();
+        pauseButton = GameObject.FindGameObjectWithTag("PauseButton");
     }
 
     void Update()
@@ -72,6 +74,7 @@ public class BombDefuzer : MonoBehaviour
             });
         }
 
+        pauseButton.SetActive(false);
         music.WindDown();
         shootTapZone.SetActive(false);
         timer.Pause();

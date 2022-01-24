@@ -2,53 +2,32 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GamePauser : MonoBehaviour
 {
-    public GameObject tutorialText;
-    public GameObject pauseUI;
-    public GameObject pausedButtons;
-    public GameObject quitConfirmUI;
-    public GameObject shootTapZone;
-    private bool tutTextWasActive;
+    public GameObject pauseMenu;
+    public Button btn;
     public AudioSource music;
+    private bool musicWasPlayingBeforePause;
 
     public void PauseGame()
     {
         Time.timeScale = 0;
-        pauseUI.SetActive(true);
-        tutTextWasActive = tutorialText.activeSelf;
-        tutorialText.SetActive(false);
-        shootTapZone.SetActive(false);
+        pauseMenu.SetActive(true);
+        btn.enabled = false;
+        musicWasPlayingBeforePause = music.isPlaying;
         music.Pause();
     }
 
     public void ResumeGame()
     {
         Time.timeScale = 1;
-        pauseUI.SetActive(false);
-        if(tutTextWasActive)
+        pauseMenu.SetActive(false);
+        btn.enabled = true;
+        if (musicWasPlayingBeforePause)
         {
-            tutorialText.SetActive(true);
+            music.Play();
         }
-        shootTapZone.SetActive(true);
-        if(!music.isPlaying)
-        {
-            music.pitch = 1.0f;
-            music.Play(0);
-        }
-    }
-
-    public void ShowConfirmQuitUI()
-    {
-        pausedButtons.SetActive(false);
-        quitConfirmUI.SetActive(true);
-    }
-
-    public void CancelQuit()
-    {
-        pausedButtons.SetActive(true);
-        quitConfirmUI.SetActive(false);
     }
 }

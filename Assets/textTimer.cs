@@ -10,6 +10,7 @@ public class textTimer : MonoBehaviour
     private BombDefuzer defuzer;
     public GameObject gameOverUI;
     public PieceShooter pieceShooter;
+    public GameObject pauseButton;
     public Animator camAnim;
     public float bombDetonationDelay = 0.1f;
     public float seconds = 10;
@@ -43,6 +44,7 @@ public class textTimer : MonoBehaviour
         paused = false;
         this.slowMo = false;
         this.fading = false;
+        this.pauseButton.SetActive(true);
     }
 
     void Update()
@@ -91,6 +93,7 @@ public class textTimer : MonoBehaviour
         this.pieceShooter.gameObject.SetActive(false);
         gameObject.SetActive(false);
         this.pieceShooter.DestroySpawnedPiece();
+        this.pauseButton.SetActive(false);
     }
 
     private void HandleFading()
