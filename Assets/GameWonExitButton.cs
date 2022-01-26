@@ -11,7 +11,7 @@ public class GameWonExitButton : MonoBehaviour
 
     public void click()
     {
-        if(screen.isAutosavedHighScore())
+        if(screen.IsScoreSaved())
         {
             onExit.Invoke();
         }

@@ -25,7 +25,7 @@ public class GameWonScreen : MonoBehaviour
     public AudioSource extinguishSound;
     private float initGameMusicVolume;
     private float initVictoryMusicVolume;
-    private bool autoSavedHighScore;
+    private bool savedScore;
     private Animator anim;
 
     void Awake()
@@ -39,7 +39,7 @@ public class GameWonScreen : MonoBehaviour
     {
         onInit.Invoke();
         scoreText.text = score.GetScore().ToString();
-        autoSavedHighScore = false;
+        this.savedScore = false;
         if(showAnimation)
         {
             this.anim.enabled = true;
@@ -69,7 +69,7 @@ public class GameWonScreen : MonoBehaviour
             {
                 if (success)
                 {
-                    this.autoSavedHighScore = true;
+                    this.savedScore = true;
                     onAutoSaveScore.Invoke();
                     playServices.ProcessCurrentHighScore(highscore =>
                     {
@@ -107,6 +107,7 @@ public class GameWonScreen : MonoBehaviour
         {
             if (success)
             {
+                this.savedScore = true;
                 onScoreSaved.Invoke();
                 playServices.ProcessCurrentHighScore(highscore =>
                 {
@@ -131,9 +132,9 @@ public class GameWonScreen : MonoBehaviour
         onExit.Invoke();
     }
 
-    public bool isAutosavedHighScore()
+    public bool IsScoreSaved()
     {
-        return this.autoSavedHighScore;
+        return this.savedScore;
     }
 
     IEnumerator FadeAudioSource(AudioSource audio, float duration, float targetVolume)
