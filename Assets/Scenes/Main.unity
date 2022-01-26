@@ -1367,6 +1367,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scaleEffect: 0.95
   durationFrames: 3
+--- !u!114 &82705932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 82705930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cdfeb69388ca9f428f3f479513407c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onBackButtonPressed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1858927351}
+        m_MethodName: BackToTitle
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &111133906
 GameObject:
   m_ObjectHideFlags: 0
@@ -12317,7 +12343,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1327249376}
   - component: {fileID: 1327249377}
-  - component: {fileID: 1327249378}
   m_Layer: 0
   m_Name: Game Over UI
   m_TagString: GameOverUI
@@ -12359,32 +12384,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4df506766b7a8c64d9eb20c51458994c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1327249378
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1327249375}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cdfeb69388ca9f428f3f479513407c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onBackButtonPressed:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1858927351}
-        m_MethodName: BackToTitle
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &1328338502
 GameObject:
   m_ObjectHideFlags: 0
