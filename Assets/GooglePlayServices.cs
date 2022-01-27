@@ -14,6 +14,7 @@ public class GooglePlayServices : MonoBehaviour
     public UnityEvent afterInitialSignInAttempt;
     private bool signedIn;
     private static string LEADERBOARD_ID = "CgkIx6OD85cGEAIQAQ";
+    public bool IsInitialized { get; private set; } = false;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +25,7 @@ public class GooglePlayServices : MonoBehaviour
             signedIn = result == SignInStatus.Success;
         });
         PlayGamesPlatform.Activate();
+        this.IsInitialized = true;
     }
 
     public void ShowLeaderboard()

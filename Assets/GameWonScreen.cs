@@ -37,10 +37,15 @@ public class GameWonScreen : MonoBehaviour
 
     public void Init(bool showAnimation = true)
     {
+        StartCoroutine(InitCoroutine(showAnimation));
+    }
+
+    private IEnumerator InitCoroutine(bool showAnimation)
+    {
         onInit.Invoke();
         scoreText.text = score.GetScore().ToString();
         this.savedScore = false;
-        if(showAnimation)
+        if (showAnimation)
         {
             this.anim.enabled = true;
             this.anim.SetTrigger("Intro");
@@ -56,6 +61,11 @@ public class GameWonScreen : MonoBehaviour
             this.victoryMusic.volume = this.initVictoryMusicVolume;
             this.victoryMusic.Play();
             this.onSkipAnimation.Invoke();
+            while (!playServices.IsInitialized)
+            {
+                yield return new WaitForSeconds(0.5f);
+            }
+            yield return new WaitForSeconds(2f);
             playServices.SignIn((res) => PostInit());
         }
     }
