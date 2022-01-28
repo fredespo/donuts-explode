@@ -147,7 +147,7 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.7702648, y: -1.5941356}
+    - - {x: 1.6333389, y: -3.2603486}
       - {x: 2.53, y: -2.5249999}
       - {x: 2.6399999, y: -2.395}
       - {x: 2.77, y: -2.235}
@@ -171,17 +171,9 @@ PolygonCollider2D:
       - {x: 3.1399999, y: 1.045}
       - {x: 2.96, y: 1.395}
       - {x: 2.81, y: 1.635}
-      - {x: 2.74, y: 1.735}
-      - {x: 2.6, y: 1.905}
-      - {x: 2.53, y: 1.985}
-      - {x: 2.25, y: 2.2649999}
-      - {x: 2.12, y: 2.375}
-      - {x: 1.9599999, y: 2.5049999}
-      - {x: 1.81, y: 2.605}
-      - {x: 1.66, y: 2.695}
-      - {x: 1.37, y: 2.835}
-      - {x: 1.1999999, y: 2.905}
-      - {x: 1.04, y: 2.975}
+      - {x: 2.74, y: 1.7709274}
+      - {x: 0.8821897, y: 0.98409045}
+      - {x: 0.9920978, y: 2.9750001}
       - {x: 0.97999996, y: 2.985}
       - {x: 0.97999996, y: 3.5249999}
       - {x: 0.95, y: 3.605}
@@ -222,11 +214,10 @@ PolygonCollider2D:
       - {x: -3.1499999, y: -1.5849999}
       - {x: -2.9399998, y: -1.985}
       - {x: -2.82, y: -2.175}
-      - {x: -2.75, y: -2.2749999}
-      - {x: -2.61, y: -2.445}
-      - {x: -2.54, y: -2.5249999}
-      - {x: -0.76983446, y: -1.5750145}
-      - {x: -0.6865756, y: -3.6033425}
+      - {x: -2.695968, y: -2.3135948}
+      - {x: -0.87017936, y: -1.5287014}
+      - {x: -0.9943863, y: -3.52639}
+      - {x: -0.51573724, y: -3.625412}
       - {x: 0.38, y: -3.645}
       - {x: 0.45999998, y: -3.635}
       - {x: 0.67331934, y: -3.6049995}
@@ -280,6 +271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c44c82e820eec48bfdabfe2a90ba43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isBonusBomb: 0
   bombRotator: {fileID: 6706467554741298092}
   bombHighlightAnim: {fileID: 3310493893718238836}
   soundEffect: {fileID: 270602910291917452}
@@ -300,7 +292,7 @@ GameObject:
   - component: {fileID: 6706467554741298083}
   - component: {fileID: 3111510162694833362}
   m_Layer: 0
-  m_Name: Level 3 Bomb
+  m_Name: Level 3
   m_TagString: bomb
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -342,7 +334,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cca1e6cf2e0ee2841a5447975c3e686a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  degPerSec: 140
   direction: 0
 --- !u!114 &6706467554741298083
 MonoBehaviour:
@@ -375,6 +366,7 @@ MonoBehaviour:
   rotator: {fileID: 6706467554741298092}
   fuseFlareSpawner: {fileID: 4953792591026861554}
   fuseAnimator: {fileID: 4953792589037573385}
+  fuzeTransform: {fileID: 0}
 --- !u!1001 &4268643956036441797
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -395,7 +387,7 @@ PrefabInstance:
     - target: {fileID: 7363224565615695286, guid: 3426be1627270d74191b21a9c9ca5244,
         type: 3}
       propertyPath: degrees
-      value: -120
+      value: 55
       objectReference: {fileID: 0}
     - target: {fileID: 7363224565615695287, guid: 3426be1627270d74191b21a9c9ca5244,
         type: 3}
@@ -425,12 +417,12 @@ PrefabInstance:
     - target: {fileID: 7363224565615695287, guid: 3426be1627270d74191b21a9c9ca5244,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.25881907
+      value: 0.95371693
       objectReference: {fileID: 0}
     - target: {fileID: 7363224565615695287, guid: 3426be1627270d74191b21a9c9ca5244,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9659259
+      value: 0.30070582
       objectReference: {fileID: 0}
     - target: {fileID: 7363224565615695287, guid: 3426be1627270d74191b21a9c9ca5244,
         type: 3}
@@ -455,12 +447,12 @@ PrefabInstance:
     - target: {fileID: 7363224565615695287, guid: 3426be1627270d74191b21a9c9ca5244,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -1.2493899
+      value: 1.433241
       objectReference: {fileID: 0}
     - target: {fileID: 7363224565615695287, guid: 3426be1627270d74191b21a9c9ca5244,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -52.164005
+      value: -47.95312
       objectReference: {fileID: 0}
     - target: {fileID: 7363224565615695287, guid: 3426be1627270d74191b21a9c9ca5244,
         type: 3}
@@ -751,7 +743,7 @@ PrefabInstance:
     - target: {fileID: 7363224565615695286, guid: 3426be1627270d74191b21a9c9ca5244,
         type: 3}
       propertyPath: degrees
-      value: -60
+      value: 235
       objectReference: {fileID: 0}
     - target: {fileID: 7363224565615695287, guid: 3426be1627270d74191b21a9c9ca5244,
         type: 3}
@@ -781,12 +773,12 @@ PrefabInstance:
     - target: {fileID: 7363224565615695287, guid: 3426be1627270d74191b21a9c9ca5244,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.25881907
+      value: 0.30070588
       objectReference: {fileID: 0}
     - target: {fileID: 7363224565615695287, guid: 3426be1627270d74191b21a9c9ca5244,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9659259
+      value: -0.95371693
       objectReference: {fileID: 0}
     - target: {fileID: 7363224565615695287, guid: 3426be1627270d74191b21a9c9ca5244,
         type: 3}
@@ -811,12 +803,12 @@ PrefabInstance:
     - target: {fileID: 7363224565615695287, guid: 3426be1627270d74191b21a9c9ca5244,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1.2493895
+      value: -1.4332408
       objectReference: {fileID: 0}
     - target: {fileID: 7363224565615695287, guid: 3426be1627270d74191b21a9c9ca5244,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -52.164005
+      value: -52.04688
       objectReference: {fileID: 0}
     - target: {fileID: 7363224565615695287, guid: 3426be1627270d74191b21a9c9ca5244,
         type: 3}
