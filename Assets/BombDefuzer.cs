@@ -107,7 +107,7 @@ public class BombDefuzer : MonoBehaviour
     {
         yield return new WaitForSeconds(initialDelaySec);
         this.scoreBonus.AddBonus(GameObject.FindWithTag("LevelShotStats").GetComponent<LevelStats>().AccuracyBonus());
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         this.scoreBonus.AddToScoreWithAnimationAndThen(() => StartCoroutine(ShowWinUiCoroutine(0.3f)));
     }
 
