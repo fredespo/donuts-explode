@@ -112,7 +112,7 @@ public class BombPiece : MonoBehaviour
         angle -= 90f;
 
         Quaternion targetRotation = Quaternion.Euler(new Vector3(0, 0, angle));
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 700f * Time.deltaTime);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 1000f * Time.deltaTime);
     }
 
     public bool CaughtInMagnet(Transform parent)
