@@ -21,7 +21,7 @@ public class LevelLoader : MonoBehaviour
     public AnimatedCountDown countDown;
     public LevelIndicator levelIndicator;
     public GameObject bonusLevelIndicator;
-    public ScoreBonus scoreBonus;
+    public ScoreBonus scoreBonus;   
     public List<Reflector> pieceReflectors;
     public List<Level> levels;
     public float bonusLevelStartDelaySec;

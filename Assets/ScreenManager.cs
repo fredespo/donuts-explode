@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 
 public class ScreenManager : MonoBehaviour
 {
+    public DataStorage dataStorage;
     public GameObject titleScreen;
     public GameObject titleScreenBomb;
     public GameObject startBtn;
@@ -14,6 +15,7 @@ public class ScreenManager : MonoBehaviour
     public GameObject newGameBtnText;
     public GameObject title;
     public GameObject gameScreen;
+    public PauseButtonManager pauseButtonManager;
     public TitleMenu titleMenu;
     public GameObject removeAdsButton;
     public AudioSource music;
@@ -58,6 +60,7 @@ public class ScreenManager : MonoBehaviour
         gameScreen.SetActive(true);
         gameWonScreen.SetActive(false);
         settingsScreen.SetActive(false);
+        pauseButtonManager.ApplyLocationSetting(dataStorage.GetPauseButtonLocation());
         if (playMusic && !music.isPlaying)
         {
             music.pitch = 1.0f;

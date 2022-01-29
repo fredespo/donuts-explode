@@ -32,4 +32,9 @@ public class GamePauser : MonoBehaviour
             music.Play();
         }
     }
+
+    public void SetButton(Button value)
+    {
+        this.btn = value;
+    }
 }

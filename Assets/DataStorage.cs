@@ -18,6 +18,7 @@ public class DataStorage : MonoBehaviour
     private byte[] pepper;
     private static string KEY_VOLUME_MUSIC = "MusicVolume";
     private static string KEY_VOLUME_SOUNDFX = "SoundFxVolume";
+    private static string KEY_PAUSE_BUTTON_LOCATION = "PauseButtonLocation";
 
     public void Awake()
     {
@@ -208,6 +209,21 @@ public class DataStorage : MonoBehaviour
             }
         }
         return vol;
+    }
+
+    public void SavePauseButtonLocation(string value)
+    {
+        PlayerPrefs.SetString(KEY_PAUSE_BUTTON_LOCATION, value);
+    }
+
+    public string GetPauseButtonLocation()
+    {
+        string location = "Left";
+        if(PlayerPrefs.HasKey(KEY_PAUSE_BUTTON_LOCATION))
+        {
+            location = PlayerPrefs.GetString(KEY_PAUSE_BUTTON_LOCATION);
+        }
+        return location;
     }
 
     public void SaveAdsEnabled(bool adsEnabled)
