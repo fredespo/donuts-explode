@@ -10,6 +10,7 @@ public class LevelLoader : MonoBehaviour
     private ScreenManager screenManager;
     public GameMusic music;
     public textTimer timer;
+    public GameObject pauseButton;
     public GameObject bombPieces;
     public GameObject pieceShooter;
     public PieceTutorialAnimator pieceTutorialAnimator;
@@ -63,9 +64,11 @@ public class LevelLoader : MonoBehaviour
         {
             bombPieces.SetActive(false);
             pieceTutorialAnimator.SetAngles(this.levels[currLevelIdx].pieceAnimationAngles);
+            pauseButton.SetActive(false);
             pieceTutorialAnimator.AnimatePieceAndThen(() =>
             {
                 bombPieces.SetActive(true);
+                pauseButton.SetActive(true);
                 pieceTutorialAnimator.DestroySpawnedPiece();
                 StartCoroutine(StartCurrentLevelAfterDelay(0));
             });
