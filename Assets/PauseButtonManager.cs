@@ -11,7 +11,6 @@ public class PauseButtonManager : MonoBehaviour
 
     public void ShowLeft()
     {
-        Debug.Log("Show left pause button");
         leftPauseBtn.SetActive(true);
         rightPauseBtn.SetActive(false);
         gamePauser.SetButton(leftPauseBtn.GetComponent<Button>());
@@ -19,7 +18,6 @@ public class PauseButtonManager : MonoBehaviour
 
     public void ShowRight()
     {
-        Debug.Log("Show right pause button");
         leftPauseBtn.SetActive(false);
         rightPauseBtn.SetActive(true);
         gamePauser.SetButton(rightPauseBtn.GetComponent<Button>());
@@ -27,14 +25,12 @@ public class PauseButtonManager : MonoBehaviour
 
     public void ShowNone()
     {
-        Debug.Log("Show no pause button");
         leftPauseBtn.SetActive(false);
         rightPauseBtn.SetActive(false);
     }
 
     public void ApplyLocationSetting(string value)
     {
-        Debug.Log("Pause button manager applying location setting: " + value);
         switch(value)
         {
             case "Right":
