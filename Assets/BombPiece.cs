@@ -130,7 +130,7 @@ public class BombPiece : MonoBehaviour
             if(!caughtInMagnet)
             {
                 caughtInMagnet = true;
-                this.transform.parent = parent;
+                this.transform.SetParent(parent);
             }
         }
         return this.caughtInMagnet;
@@ -142,7 +142,7 @@ public class BombPiece : MonoBehaviour
         this.caughtInMagnet = false;
         this.fading = true;
         this.leftMagnet = true;
-        transform.parent = this.origParent;
+        transform.SetParent(this.origParent);
     }
 
     private void StopFading()
