@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using Lofelt.NiceVibrations;
+using System.Collections.Generic;
+using System;
 
 public class Haptics : MonoBehaviour
 {
@@ -8,18 +10,39 @@ public class Haptics : MonoBehaviour
         Handheld.Vibrate();
     }
 
-    public void PlayEmphasis()
+    public enum HapticType
     {
-        HapticPatterns.PlayEmphasis(1.0f, 0.5f);
+        Warning = 0,
+        Failure = 1,
+        Success = 2,
+        Light = 3,
+        Medium = 4,
+        Heavy = 5,
+        Default = 6,
+        Vibrate = 7,
+        Selection = 8
     }
 
-    public void PlayConstant()
+    private static IDictionary<HapticType, Action> ActionPerHapticType = new Dictionary<HapticType, Action>
     {
-        HapticPatterns.PlayConstant(1.0f, 0.5f, 1.0f);
+        { HapticType.Warning, () => { Taptic.Warning();} },
+        { HapticType.Failure, () => { Taptic.Failure();} },
+        { HapticType.Success, () => { Taptic.Success();} },
+        { HapticType.Light, () => { Taptic.Light();} },
+        { HapticType.Medium, () => { Taptic.Medium();} },
+        { HapticType.Heavy, () => { Taptic.Heavy();} },
+        { HapticType.Default, () => { Taptic.Default();} },
+        { HapticType.Vibrate, () => { Taptic.Vibrate();} },
+        { HapticType.Selection, () => { Taptic.Selection();} },
+    };
+
+    public void TriggerHaptic(HapticType type)
+    {
+        ActionPerHapticType[type].Invoke();
     }
 
-    public void PlayWarningPreset()
+    public void TriggerHaptic(string type)
     {
-        HapticPatterns.PlayPreset(HapticPatterns.PresetType.Warning);
+        TriggerHaptic((HapticType)Enum.Parse(typeof(HapticType), type));
     }
 }
