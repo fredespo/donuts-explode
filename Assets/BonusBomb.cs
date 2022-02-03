@@ -9,6 +9,7 @@ public class BonusBomb : MonoBehaviour
 
     public void Explode()
     {
+        Taptic.Medium();
         Instantiate(this.explosion, transform.position, Quaternion.Euler(new Vector3(Random.Range(0, 360), -90f, 90f)), transform.parent);
         BlowAwayPieces();
         Destroy(gameObject);
