@@ -41,6 +41,7 @@ public class Detonator : MonoBehaviour
 
     public void activate()
     {
+        Taptic.Heavy();
         if(scoreBonus != null)
         {
             scoreBonus.Reset();
