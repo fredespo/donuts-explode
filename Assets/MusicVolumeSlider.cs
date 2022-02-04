@@ -26,6 +26,11 @@ public class MusicVolumeSlider : MonoBehaviour
         }
     }
 
+    public void ResetToDefault()
+    {
+        SetSliderValuePct(100);
+    }
+
     private void SetSliderValuePct(int pct)
     {
         float range = this.slider.maxValue - this.slider.minValue;

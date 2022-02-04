@@ -8,6 +8,7 @@ public class SettingsScreen : MonoBehaviour
     public UnityEvent onBack;
     public UnityEvent onBackToTitle;
     public UnityEvent onBackToGame;
+    public UnityEvent onReset;
     private bool fromPauseMenu;
 
     public void Init(bool fromPauseMenu)
@@ -31,5 +32,10 @@ public class SettingsScreen : MonoBehaviour
         {
             this.onBackToTitle.Invoke();
         }
+    }
+
+    public void ResetToDefaults()
+    {
+        this.onReset.Invoke();
     }
 }

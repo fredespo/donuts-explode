@@ -17,4 +17,9 @@ public class PauseButtonLocationSetting : MonoBehaviour
     {
         this.dataStorage.SavePauseButtonLocation(this.dropdown.options[this.dropdown.value].text);
     }
+
+    public void ResetToDefault()
+    {
+        this.dropdown.value = this.dropdown.options.FindIndex(option => option.text == "Left");
+    }
 }
