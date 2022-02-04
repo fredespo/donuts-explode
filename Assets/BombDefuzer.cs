@@ -74,7 +74,6 @@ public class BombDefuzer : MonoBehaviour
             });
         }
 
-        pauseButton.SetActive(false);
         music.WindDown();
         shootTapZone.SetActive(false);
         timer.Pause();
@@ -94,6 +93,20 @@ public class BombDefuzer : MonoBehaviour
         pieceShooter.SetActive(false);
         dataStorage.SaveLevel(currLevel);
         dataStorage.Save();
+        DeactivatePauseButton();
+    }
+
+    private void DeactivatePauseButton()
+    {
+        if (pauseButton == null)
+        {
+            pauseButton = GameObject.FindGameObjectWithTag("PauseButton");
+        }
+
+        if (pauseButton != null)
+        {
+            pauseButton.SetActive(false);
+        }
     }
 
     private IEnumerator AddTimeToScoreAfterDelay(float delaySec)
