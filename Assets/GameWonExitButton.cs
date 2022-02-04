@@ -17,6 +17,7 @@ public class GameWonExitButton : MonoBehaviour
         }
         else
         {
+            Taptic.Warning();
             confirmScoreErase.Invoke();
         }
     }

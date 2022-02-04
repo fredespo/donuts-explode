@@ -38,6 +38,7 @@ public class FireworkSounds : MonoBehaviour
 
             if (!this.playedExplosion && particles[i].remainingLifetime < Time.deltaTime)
             {
+                Taptic.Vibrate();
                 AudioSource audioSource = gameObject.AddComponent<AudioSource>();
                 audioSource.clip = audioExplosion;
                 audioSource.volume = UnityEngine.Random.Range(explosionMinVolume, explosionMaxVolume);

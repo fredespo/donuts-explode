@@ -129,6 +129,7 @@ public class GameWonScreen : MonoBehaviour
             }
             else
             {
+                Taptic.Failure();
                 onScoreSaveError.Invoke();
             }
         });

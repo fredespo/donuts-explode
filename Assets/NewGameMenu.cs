@@ -21,4 +21,9 @@ public class NewGameMenu : MonoBehaviour
         yield return new WaitForSeconds(delaySec);
         buttons.SetActive(true);
     }
+
+    void OnEnable()
+    {
+        Taptic.Warning();
+    }
 }

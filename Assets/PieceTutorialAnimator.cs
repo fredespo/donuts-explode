@@ -47,6 +47,7 @@ public class PieceTutorialAnimator : MonoBehaviour
 
         for(int i = 1; i < this.angles.Length; ++i)
         {
+            Taptic.Light();
             spawnedPiece.transform.eulerAngles = new Vector3(spawnedPiece.transform.eulerAngles.x, spawnedPiece.transform.eulerAngles.y, this.angles[i]);
             pieceChangeAngleSound.Play();
             yield return new WaitForSeconds(0.7f);
