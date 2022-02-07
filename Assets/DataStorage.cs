@@ -19,6 +19,7 @@ public class DataStorage : MonoBehaviour
     private static string KEY_VOLUME_MUSIC = "MusicVolume";
     private static string KEY_VOLUME_SOUNDFX = "SoundFxVolume";
     private static string KEY_PAUSE_BUTTON_LOCATION = "PauseButtonLocation";
+    private static string KEY_HAPTICS = "Haptics";
 
     public void Awake()
     {
@@ -54,6 +55,7 @@ public class DataStorage : MonoBehaviour
                 }
             }
         }
+        Taptic.tapticOn = GetHapticSetting();
     }
 
     private bool IsSaveDataValid(SaveData saveData)
@@ -224,6 +226,21 @@ public class DataStorage : MonoBehaviour
             location = PlayerPrefs.GetString(KEY_PAUSE_BUTTON_LOCATION);
         }
         return location;
+    }
+
+    public void SaveHapticSetting(bool value)
+    {
+        PlayerPrefs.SetInt(KEY_HAPTICS, value ? 1 : 0);
+    }
+
+    public bool GetHapticSetting()
+    {
+        bool isOn = true;
+        if (PlayerPrefs.HasKey(KEY_HAPTICS))
+        {
+            isOn = PlayerPrefs.GetInt(KEY_HAPTICS) == 1;
+        }
+        return isOn;
     }
 
     public void SaveAdsEnabled(bool adsEnabled)
