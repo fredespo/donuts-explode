@@ -15,12 +15,17 @@ public class GooglePlayServices : MonoBehaviour
     private bool signedIn;
     private static string LEADERBOARD_ID = "CgkIx6OD85cGEAIQAQ";
     public bool IsInitialized { get; private set; } = false;
+    public Gravity popupGravity;
 
     // Start is called before the first frame update
     void Start()
     {
         // authenticate user:
         PlayGamesPlatform.Instance.Authenticate(SignInInteractivity.CanPromptOnce, (result) => {
+            if (result == SignInStatus.Success)
+            {
+                ((PlayGamesPlatform)Social.Active).SetGravityForPopups(popupGravity);
+            }
             afterInitialSignInAttempt.Invoke();
             signedIn = result == SignInStatus.Success;
         });
@@ -98,6 +103,10 @@ public class GooglePlayServices : MonoBehaviour
     public void SignIn(Action<SignInStatus> andThen)
     {
         PlayGamesPlatform.Instance.Authenticate(SignInInteractivity.CanPromptAlways, (result) => {
+            if (result == SignInStatus.Success)
+            {
+                ((PlayGamesPlatform)Social.Active).SetGravityForPopups(popupGravity);
+            }
             signedIn = result == SignInStatus.Success;
             andThen.Invoke(result);
         });
