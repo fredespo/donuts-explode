@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class GamePauser : MonoBehaviour
 {
     public GameObject pauseMenu;
-    public Button btn;
+    public GameObject btn;
     public AudioSource music;
     private bool musicWasPlayingBeforePause;
     private float prevTimeScale;
@@ -17,7 +17,7 @@ public class GamePauser : MonoBehaviour
         prevTimeScale = Time.timeScale;
         Time.timeScale = 0;
         pauseMenu.SetActive(true);
-        btn.enabled = false;
+        btn.SetActive(false);
         musicWasPlayingBeforePause = music.isPlaying;
         music.Pause();
     }
@@ -26,15 +26,10 @@ public class GamePauser : MonoBehaviour
     {
         Time.timeScale = prevTimeScale;
         pauseMenu.SetActive(false);
-        btn.enabled = true;
+        btn.SetActive(true);
         if (musicWasPlayingBeforePause)
         {
             music.Play();
         }
-    }
-
-    public void SetButton(Button value)
-    {
-        this.btn = value;
     }
 }

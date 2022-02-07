@@ -13,14 +13,12 @@ public class PauseButtonManager : MonoBehaviour
     {
         leftPauseBtn.SetActive(true);
         rightPauseBtn.SetActive(false);
-        gamePauser.SetButton(leftPauseBtn.GetComponent<Button>());
     }
 
     public void ShowRight()
     {
         leftPauseBtn.SetActive(false);
         rightPauseBtn.SetActive(true);
-        gamePauser.SetButton(rightPauseBtn.GetComponent<Button>());
     }
 
     public void ShowNone()
