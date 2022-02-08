@@ -8,6 +8,7 @@ public class textTimer : MonoBehaviour
 {
     private Detonator detonator;
     private BombDefuzer defuzer;
+    private Bomb bomb;
     public GameObject gameOverUI;
     public PieceShooter pieceShooter;
     public GameObject pauseButton;
@@ -37,10 +38,11 @@ public class textTimer : MonoBehaviour
         RefreshText();
     }
 
-    public void Init(Detonator detonator, BombDefuzer defuzer)
+    public void Init(Detonator detonator, BombDefuzer defuzer, Bomb bomb)
     {
         this.detonator = detonator;
         this.defuzer = defuzer;
+        this.bomb = bomb;
         paused = false;
         this.slowMo = false;
         this.fading = false;
@@ -143,8 +145,7 @@ public class textTimer : MonoBehaviour
             && !this.pieceShooter.IsSpawnedPieceReadyToShoot()
             && this.pieceShooter.GetPiece() != null
             && !this.pieceShooter.GetPiece().GetComponent<BombPiece>().IsCaughtInMagnet()
-            && this.pieceShooter.GetPiece().GetComponent<SpriteRenderer>().color.a > 0.5f
-            && Vector2.Distance(this.defuzer.GetHoles()[0].transform.position, this.pieceShooter.GetPiece().transform.position) < 4.5;
+            && this.bomb.PieceWillGoInHole(this.pieceShooter.GetPiece(), this.defuzer.GetHoles()[0].gameObject);
     }
 
     public void Pause()

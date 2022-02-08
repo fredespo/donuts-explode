@@ -6,6 +6,8 @@ using UnityEngine;
 public class Rotator : MonoBehaviour
 {
     public RotationDir direction = RotationDir.Clockwise;
+    public float Speed { get; private set; }
+
     public enum RotationDir
     {
         Clockwise,
@@ -24,6 +26,7 @@ public class Rotator : MonoBehaviour
         float max = 235f;
         float elapsedRatio = this.timer.GetTimeElapsed() / this.timer.GetStartSeconds();
         float degPerSec = min + ((max - min) * elapsedRatio);
+        this.Speed = degPerSec;
         transform.Rotate(0, 0, degPerSec * Time.deltaTime * (direction == RotationDir.Clockwise ? -1 : 1));
     }
 
