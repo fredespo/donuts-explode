@@ -143,7 +143,7 @@ public class textTimer : MonoBehaviour
 
     private bool ShouldEnterSlowMo()
     {
-        return this.seconds < 1.5f && this.seconds > 0
+        return this.seconds < 1.0f && this.seconds > 0
             && this.defuzer != null
             && this.defuzer.GetNumHolesLeft() == 1
             && this.defuzer.GetNumUnfilledHoles() == 1
