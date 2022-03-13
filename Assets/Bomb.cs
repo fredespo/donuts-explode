@@ -23,22 +23,48 @@ public class Bomb : MonoBehaviour
         this.fuzeTransform.anchoredPosition = new Vector3(pos.x, newY, pos.z);
     }
 
-    public bool PieceWillGoInHole(GameObject piece, GameObject hole)
+    public bool PieceWillGoInHole(GameObject piece, GameObject hole, float secLeft)
     {
-        float holeWidth = hole.GetComponent<SpriteRenderer>().bounds.size.x;
-		int s = piece.tag == "Triangle" ? 5 : 4;
-        Vector3 holeLeft = hole.transform.position - hole.transform.right * (holeWidth / s);
-        Vector3 holeRight = hole.transform.position + hole.transform.right * (holeWidth / s);
-        float distFromPieceToHole = Vector3.Distance(piece.transform.position, hole.transform.position);
+		if (piece == null) return false;
+
+		float bombHeight = GetChildWithName("BombBody").GetComponent<SpriteRenderer>().bounds.size.y;
+		float leftOffset = piece.tag == "Triangle" ? 0.18f : 0.04f;
+		float rightOffset = piece.tag == "Triangle" ? 0.47f : 0.4f;
+		Vector3 holeLeft = hole.transform.position + (-hole.transform.right * leftOffset);
+        Vector3 holeRight = hole.transform.position + (hole.transform.right * rightOffset);
+		float distFromMagnetToBombCenter = Vector3.Distance(hole.GetComponent<BombHole>().GetMagnet().transform.position, this.transform.position);
+		float distFromMagnetToBombEdge = bombHeight / 2 - distFromMagnetToBombCenter;
+		float distFromPieceToHole = Vector3.Distance(piece.transform.position, this.transform.position) - bombHeight / 2 + distFromMagnetToBombEdge;
 		float timeToImpact = distFromPieceToHole / piece.GetComponent<Rigidbody2D>().velocity.magnitude;
+		if (timeToImpact > secLeft) return false;
+
 		Vector3 rotation = new Vector3(0, 0, -this.rotator.Speed * timeToImpact);
 		Vector3 futureHoleLeft = RotatePointAroundPivot(holeLeft, transform.position, rotation);
 		Vector3 futureHoleRight = RotatePointAroundPivot(holeRight, transform.position, rotation);
-		Vector3 pieceDest = piece.GetComponent<Rigidbody2D>().velocity.normalized * distFromPieceToHole * 2;
+		Vector3 pieceDest = piece.GetComponent<Rigidbody2D>().velocity.normalized * distFromPieceToHole * 1.01f;
 		pieceDest += piece.transform.position;
 		bool willGoIn = AreLinesIntersecting(piece.transform.position, pieceDest, futureHoleLeft, futureHoleRight, true);
 		return willGoIn;
     }
+
+	private Vector3 toVector3(Vector2 v2, float z=0)
+    {
+		return new Vector3(v2.x, v2.y, z);
+    }
+
+	private GameObject GetChildWithName(string name)
+	{
+		Transform trans = this.transform;
+		Transform childTrans = trans.Find(name);
+		if (childTrans != null)
+		{
+			return childTrans.gameObject;
+		}
+		else
+		{
+			return null;
+		}
+	}
 
 	private bool AreLinesIntersecting(Vector2 l1_p1, Vector2 l1_p2, Vector2 l2_p1, Vector2 l2_p2, bool shouldIncludeEndPoints)
 	{
@@ -79,6 +105,7 @@ public class Bomb : MonoBehaviour
 
 	public Vector3 RotatePointAroundPivot(Vector3 point, Vector3 pivot, Vector3 angles)
 	{
+		if (angles.z == double.NegativeInfinity) return point;
 		return Quaternion.Euler(angles) * (point - pivot) + pivot;
 	}
 }

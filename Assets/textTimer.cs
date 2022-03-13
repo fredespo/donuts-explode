@@ -125,19 +125,25 @@ public class textTimer : MonoBehaviour
 
     private void HandleSlowMo()
     {
-        bool shouldSlowMo = ShouldSlowMo();
-        if(this.slowMo != shouldSlowMo)
+        
+        if(!this.slowMo && ShouldEnterSlowMo())
         {
-            this.slowMo = shouldSlowMo;
-            float targetTimeScale = this.slowMo ? this.slowMoTimeScale : 1f;
-            LeanTween.value(gameObject, (float v, float r) => {Time.timeScale = v;}, Time.timeScale, targetTimeScale, 0.2f).setIgnoreTimeScale(true).setEase(LeanTweenType.easeOutCirc);
+            this.slowMo = true;
+            Time.timeScale = this.slowMoTimeScale;
+            this.camAnim.SetBool("slowmo", this.slowMo);
         }
-        this.camAnim.SetBool("slowmo", this.slowMo);
+        
+        if(this.slowMo && shouldExitSlowMo())
+        {
+            this.slowMo = false;
+            Time.timeScale = 1.0f;
+            this.camAnim.SetBool("slowmo", this.slowMo);
+        }
     }
 
-    private bool ShouldSlowMo()
+    private bool ShouldEnterSlowMo()
     {
-        return this.seconds < 1 && this.seconds > 0
+        return this.seconds < 1.5f && this.seconds > 0
             && this.defuzer != null
             && this.defuzer.GetNumHolesLeft() == 1
             && this.defuzer.GetNumUnfilledHoles() == 1
@@ -145,7 +151,20 @@ public class textTimer : MonoBehaviour
             && !this.pieceShooter.IsSpawnedPieceReadyToShoot()
             && this.pieceShooter.GetPiece() != null
             && !this.pieceShooter.GetPiece().GetComponent<BombPiece>().IsCaughtInMagnet()
-            && this.bomb.PieceWillGoInHole(this.pieceShooter.GetPiece(), this.defuzer.GetHoles()[0].gameObject);
+            && this.bomb.PieceWillGoInHole(this.pieceShooter.GetPiece(), this.defuzer.GetHoles()[0].gameObject, this.seconds + this.bombDetonationDelay);
+    }
+
+    private bool shouldExitSlowMo()
+    {
+        if(this.defuzer == null || this.pieceShooter == null || this.pieceShooter.GetPiece() == null)
+        {
+            return false;
+        }
+
+        return this.seconds <= 0
+            || this.defuzer.IsDefuzed()
+            || this.pieceShooter.GetPiece().GetComponent<BombPiece>().IsCaughtInMagnet()
+            || this.pieceShooter.IsSpawnedPieceReadyToShoot();
     }
 
     public void Pause()

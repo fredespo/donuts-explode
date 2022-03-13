@@ -8,10 +8,12 @@ public class BombHole : MonoBehaviour
     public GameObject filledCollider;
     public float fillDelay = 0.1f;
     private GameObject fillWith;
+    private GameObject magnet;
 
     void Start()
     {
         GetComponent<BombHolePlacer>().enabled = false;
+        this.magnet = GetChildWithName("Magnet");
     }
 
     public void FillWith(GameObject obj)
@@ -40,5 +42,24 @@ public class BombHole : MonoBehaviour
         GameObject.FindWithTag("PieceFitsSoundEffect").GetComponent<AudioSource>().Play(0);
         Taptic.Vibrate();
         Destroy(gameObject);
+    }
+
+    private GameObject GetChildWithName(string name)
+    {
+        Transform trans = this.transform;
+        Transform childTrans = trans.Find(name);
+        if (childTrans != null)
+        {
+            return childTrans.gameObject;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    public GameObject GetMagnet()
+    {
+        return this.magnet;
     }
 }
