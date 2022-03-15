@@ -136,7 +136,7 @@ public class PieceShooter : MonoBehaviour
         }
         else
         {
-            pieceToSpawn = pieces[pieceIndex];
+            pieceToSpawn = pieceIndex < pieces.Length ? pieces[pieceIndex] : pieces[0];
         }
 
         if(pieceIndex < pieces.Length)
