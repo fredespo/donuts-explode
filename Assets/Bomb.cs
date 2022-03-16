@@ -30,8 +30,8 @@ public class Bomb : MonoBehaviour
 		float bombHeight = GetChildWithName("BombBody").GetComponent<SpriteRenderer>().bounds.size.y;
 		float leftOffset = piece.tag == "Triangle" ? 0.18f : -0.05f;
 		float rightOffset = piece.tag == "Triangle" ? 0.475f : 0.42f;
-		Vector3 holeLeft = hole.transform.position + (-hole.transform.right * leftOffset);
-        Vector3 holeRight = hole.transform.position + (hole.transform.right * rightOffset);
+		Vector3 holeLeft = hole.transform.position + (-hole.transform.right * (leftOffset + 0.002f));
+        Vector3 holeRight = hole.transform.position + (hole.transform.right * (rightOffset + 0.002f));
 		float distFromMagnetToBombCenter = Vector3.Distance(hole.GetComponent<BombHole>().GetMagnet().transform.position, this.transform.position);
 		float distFromMagnetToBombEdge = bombHeight / 2 - distFromMagnetToBombCenter;
 		float distFromPieceToHole = Vector3.Distance(piece.transform.position, this.transform.position) - bombHeight / 2 + distFromMagnetToBombEdge;
