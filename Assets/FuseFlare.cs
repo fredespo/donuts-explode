@@ -11,9 +11,8 @@ public class FuseFlare : MonoBehaviour
 
     void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        int colorIndex = (int)Mathf.Round(UnityEngine.Random.Range(0, possibleColors.Count - 1));
-        spriteRenderer.color = possibleColors[colorIndex];
+        this.spriteRenderer = GetComponent<SpriteRenderer>();
+        Init();
     }
 
     void Update()
@@ -28,9 +27,11 @@ public class FuseFlare : MonoBehaviour
             }
             spriteRenderer.color = color;
         }
-        else
-        {
-            Destroy(gameObject);
-        }
+    }
+
+    public void Init()
+    {
+        int colorIndex = (int)Mathf.Round(UnityEngine.Random.Range(0, possibleColors.Count - 1));
+        spriteRenderer.color = possibleColors[colorIndex];
     }
 }
