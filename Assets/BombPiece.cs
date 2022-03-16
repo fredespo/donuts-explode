@@ -10,6 +10,7 @@ public class BombPiece : MonoBehaviour
 {
     public float fadeSpeed = 1;
     public float fadeDelaySec = 0.2f;
+    public GameObject impactEffect;
     SpriteRenderer spriteRenderer;
     private bool fading = false;
     private float fadeStartTime;
@@ -54,6 +55,7 @@ public class BombPiece : MonoBehaviour
                 this.hitBombSoundEffect.Play(0);
                 var impulse = (UnityEngine.Random.Range(100f, 300f) * Mathf.Deg2Rad) * this.rigibody.inertia;
                 this.rigibody.AddTorque(impulse, ForceMode2D.Impulse);
+                Instantiate(impactEffect, col.contacts[0].point, transform.rotation);
             }
         }
     }
