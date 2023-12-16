@@ -22,9 +22,9 @@ public class Rotator : MonoBehaviour
 
     void Update()
     {
-        float min = 110f;
+        float min = 50f;
         float max = 235f;
-        float elapsedRatio = this.timer.GetTimeElapsed() / this.timer.GetStartSeconds();
+        float elapsedRatio = this.timer != null ? this.timer.GetTimeElapsed() / this.timer.GetStartSeconds() : 0f;
         float degPerSec = min + ((max - min) * elapsedRatio);
         this.Speed = degPerSec;
         transform.Rotate(0, 0, degPerSec * Time.deltaTime * (direction == RotationDir.Clockwise ? -1 : 1));
@@ -32,7 +32,7 @@ public class Rotator : MonoBehaviour
 
     public void Reverse()
     {
-        if(direction == RotationDir.Clockwise)
+        if (direction == RotationDir.Clockwise)
         {
             direction = RotationDir.Counterclockwise;
         }
