@@ -17,7 +17,7 @@ public class Rotator : MonoBehaviour
 
     void Start()
     {
-        this.timer = GameObject.FindWithTag("BombTimer").GetComponent<textTimer>();
+        this.timer = GameObject.FindWithTag("BombTimer")?.GetComponent<textTimer>();
     }
 
     void Update()

@@ -47,7 +47,7 @@ public class Detonator : MonoBehaviour
             scoreBonus.Reset();
         }
         Time.timeScale = 1.0f;
-        camAnim.SetBool("slowmo", false);
+        if (camAnim != null) camAnim.SetBool("slowmo", false);
         if (score != null && score.GetScore() > 0)
         {
             DeductPoints(1.3f, 0.6f, 0.5f);   
