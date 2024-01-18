@@ -33,7 +33,7 @@ public class Detonator : MonoBehaviour
             score = scoreObj.GetComponent<Score>();
         }
         GameObject gameOverUiObj = GameObject.FindGameObjectWithTag("GameOverUI");
-        if(gameOverUiObj != null)
+        if (gameOverUiObj != null)
         {
             gameOverUI = gameOverUiObj.GetComponent<GameOverUI>();
         }
@@ -42,7 +42,7 @@ public class Detonator : MonoBehaviour
     public void activate()
     {
         Taptic.Heavy();
-        if(scoreBonus != null)
+        if (scoreBonus != null)
         {
             scoreBonus.Reset();
         }
@@ -50,12 +50,12 @@ public class Detonator : MonoBehaviour
         if (camAnim != null) camAnim.SetBool("slowmo", false);
         if (score != null && score.GetScore() > 0)
         {
-            DeductPoints(1.3f, 0.6f, 0.5f);   
+            DeductPoints(1.3f, 0.6f, 0.5f);
         }
         else if (gameOverUI != null) gameOverUI.ShowAfterDelay(1.0f);
 
         GameObject spawnedExplosion = Instantiate(explosion, gameObject.transform.parent, false);
-        if(explosionParent != null)
+        if (explosionParent != null)
         {
             spawnedExplosion.gameObject.transform.SetParent(explosionParent.gameObject.transform);
         }
@@ -69,12 +69,12 @@ public class Detonator : MonoBehaviour
         pieces = GameObject.FindGameObjectWithTag("PieceKeeper");
         if (pieces != null)
         {
-            foreach(Transform child in pieces.transform)
+            foreach (Transform child in pieces.transform)
             {
                 BlowAway(child.GetComponent<Rigidbody2D>());
             }
         }
-        if(destroyOnDetonation)
+        if (destroyOnDetonation)
         {
             Destroy(gameObject);
         }
