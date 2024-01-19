@@ -42,7 +42,7 @@ public class BonusBombs : MonoBehaviour
 
     private IEnumerator SpawnCoroutine()
     {
-        for(int i = 0; i < this.spawns.Length; ++i)
+        for (int i = 0; i < this.spawns.Length; ++i)
         {
             yield return new WaitForSeconds(this.spawns[i].delay);
             BonusBombSpawn bonusSpawn = this.spawns[i].spawn;
@@ -50,12 +50,12 @@ public class BonusBombs : MonoBehaviour
             this.spawnSoundEffect.pitch = Random.Range(this.spawnSoundEffectPitchOrig - this.spawnSoundEffectPitchSpread, this.spawnSoundEffectPitchOrig + this.spawnSoundEffectPitchSpread);
             this.spawnSoundEffect.Play();
             this.rails.Add(bomb, bonusSpawn.movements);
-            this.rails.SetMoveCallback(bomb, (movementDetails) => {
-                bomb.GetComponent<Bomb>().SetFuzePct((movementDetails.progress / bonusSpawn.destroyAt) * ((movementDetails.idx + 1) / movementDetails.movements.Length));
+            this.rails.SetMoveCallback(bomb, (movementDetails) =>
+            {
                 if (movementDetails.idx == movementDetails.movements.Length - 1 && movementDetails.progress >= bonusSpawn.destroyAt)
                 {
                     BonusBomb bonusBomb = bomb.GetComponent<BonusBomb>();
-                    if(!bonusBomb.IsDefuzed())
+                    if (!bonusBomb.IsDefuzed())
                     {
                         this.rails.Remove(bomb);
                         bonusBomb.Explode();
@@ -77,7 +77,7 @@ public class BonusBombs : MonoBehaviour
 
     void Update()
     {
-        if(this.doneSpawning && NumBonusBombsInFlight() == 0)
+        if (this.doneSpawning && NumBonusBombsInFlight() == 0)
         {
             this.onAllBombsDestroyed.Invoke();
             StartCoroutine(BonusLevelCompleteCoroutine());
@@ -107,9 +107,9 @@ public class BonusBombs : MonoBehaviour
     private int NumBonusBombsInFlight()
     {
         int count = 0;
-        foreach(Transform child in transform)
+        foreach (Transform child in transform)
         {
-            if(child.tag == "BonusBomb" || child.tag == "Explosion")
+            if (child.tag == "BonusBomb" || child.tag == "Explosion")
             {
                 ++count;
             }

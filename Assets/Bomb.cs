@@ -4,34 +4,22 @@ using UnityEngine;
 
 public class Bomb : MonoBehaviour
 {
-    public Rotator rotator;
-    public FuseFlareSpawner fuseFlareSpawner;
-    public Animator fuseAnimator;
-    public RectTransform fuzeTransform;
+	public Rotator rotator;
 
-    public void StartBomb()
-    {
-        rotator.enabled = true;
-        fuseFlareSpawner.enabled = true;
-        fuseAnimator.enabled = true;
-    }
+	public void StartBomb()
+	{
+		rotator.enabled = true;
+	}
 
-    public void SetFuzePct(float fuzePct)
-    {
-        float newY = Mathf.Lerp(-47.9f, -48.15f, fuzePct);
-        Vector3 pos = this.fuzeTransform.anchoredPosition;
-        this.fuzeTransform.anchoredPosition = new Vector3(pos.x, newY, pos.z);
-    }
-
-    public bool PieceWillGoInHole(GameObject piece, GameObject hole, float secLeft)
-    {
+	public bool PieceWillGoInHole(GameObject piece, GameObject hole, float secLeft)
+	{
 		if (piece == null) return false;
 
 		float bombHeight = GetChildWithName("BombBody").GetComponent<SpriteRenderer>().bounds.size.y;
 		float leftOffset = piece.tag == "Triangle" ? 0.18f : -0.05f;
 		float rightOffset = piece.tag == "Triangle" ? 0.475f : 0.42f;
 		Vector3 holeLeft = hole.transform.position + (-hole.transform.right * (leftOffset + 0.002f));
-        Vector3 holeRight = hole.transform.position + (hole.transform.right * (rightOffset + 0.002f));
+		Vector3 holeRight = hole.transform.position + (hole.transform.right * (rightOffset + 0.002f));
 		float distFromMagnetToBombCenter = Vector3.Distance(hole.GetComponent<BombHole>().GetMagnet().transform.position, this.transform.position);
 		float distFromMagnetToBombEdge = bombHeight / 2 - distFromMagnetToBombCenter;
 		float distFromPieceToHole = Vector3.Distance(piece.transform.position, this.transform.position) - bombHeight / 2 + distFromMagnetToBombEdge;
@@ -45,12 +33,12 @@ public class Bomb : MonoBehaviour
 		pieceDest += piece.transform.position;
 		bool willGoIn = AreLinesIntersecting(piece.transform.position, pieceDest, futureHoleLeft, futureHoleRight, true);
 		return willGoIn;
-    }
+	}
 
-	private Vector3 toVector3(Vector2 v2, float z=0)
-    {
+	private Vector3 toVector3(Vector2 v2, float z = 0)
+	{
 		return new Vector3(v2.x, v2.y, z);
-    }
+	}
 
 	private GameObject GetChildWithName(string name)
 	{

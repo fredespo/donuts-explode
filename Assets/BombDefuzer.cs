@@ -15,8 +15,6 @@ public class BombDefuzer : MonoBehaviour
     private GameObject pieces;
     private GameObject pieceShooter;
     private GameObject shootTapZone;
-    public Animator fuseAnim;
-    public GameObject fuseFlare;
     private GameMusic music;
     private bool defuzed = false;
     private DataStorage dataStorage;
@@ -26,7 +24,7 @@ public class BombDefuzer : MonoBehaviour
 
     void Start()
     {
-        if(!isBonusBomb)
+        if (!isBonusBomb)
         {
             timer = GameObject.FindGameObjectWithTag("BombTimer").GetComponent<textTimer>();
         }
@@ -41,7 +39,7 @@ public class BombDefuzer : MonoBehaviour
 
     void Update()
     {
-        if(gameObject.transform.childCount == 0)
+        if (gameObject.transform.childCount == 0)
         {
             Defuze();
         }
@@ -49,7 +47,7 @@ public class BombDefuzer : MonoBehaviour
 
     void Defuze()
     {
-        if(defuzed)
+        if (defuzed)
         {
             return;
         }
@@ -58,7 +56,6 @@ public class BombDefuzer : MonoBehaviour
         if (this.isBonusBomb)
         {
             GameObject.FindGameObjectWithTag("BonusBombsManager").GetComponent<BonusBombs>().DefuzedBonusBomb();
-            fuseFlare.SetActive(false);
             return;
         }
 
@@ -77,8 +74,6 @@ public class BombDefuzer : MonoBehaviour
         music.WindDown();
         shootTapZone.SetActive(false);
         timer.Pause();
-        fuseAnim.enabled = false;
-        fuseFlare.SetActive(false);
         bombRotator.enabled = false;
         GameObject spawnedDefuzedUI = GameObject.Instantiate(defuzedUI);
         spawnedDefuzedUI.gameObject.transform.SetParent(gameObject.transform.parent.transform, false);
