@@ -35,7 +35,7 @@ public class BombPiece : MonoBehaviour
 
     void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         this.rigibody = GetComponent<Rigidbody2D>();
         this.hitBombSoundEffect = GetComponent<AudioSource>();
         this.reflectSoundEffect = GameObject.FindWithTag("PieceReflectSoundEffect").GetComponent<AudioSource>();
@@ -44,7 +44,7 @@ public class BombPiece : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if(this.rigibody.velocity.magnitude != 0 && col.gameObject.CompareTag("bomb"))
+        if (this.rigibody.velocity.magnitude != 0 && col.gameObject.CompareTag("bomb"))
         {
             this.hitBomb = true;
             if (!fading && !inMagnetRange)
@@ -62,11 +62,11 @@ public class BombPiece : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(this.reflectingToBomb && !this.fading && !this.caughtInMagnet && this.bomb != null)
+        if (this.reflectingToBomb && !this.fading && !this.caughtInMagnet && this.bomb != null)
         {
             Vector2 p1 = this.bomb.transform.position;
             Vector2 p2 = gameObject.transform.position;
-            if(Vector2.Distance(p1, p2) < 0.1f)
+            if (Vector2.Distance(p1, p2) < 0.1f)
             {
                 this.reflectingToBomb = false;
             }
@@ -119,7 +119,7 @@ public class BombPiece : MonoBehaviour
 
     public bool CaughtInMagnet(Transform parent)
     {
-        if(this.leftMagnet)
+        if (this.leftMagnet)
         {
             return false;
         }
@@ -129,7 +129,7 @@ public class BombPiece : MonoBehaviour
         if (this.hitBomb)
         {
             this.hitBombSoundEffect.Stop();
-            if(!caughtInMagnet)
+            if (!caughtInMagnet)
             {
                 caughtInMagnet = true;
                 this.transform.SetParent(parent);
@@ -162,7 +162,7 @@ public class BombPiece : MonoBehaviour
 
     public void ReflectToBomb()
     {
-        if(this.numReflections > 0)
+        if (this.numReflections > 0)
         {
             return;
         }

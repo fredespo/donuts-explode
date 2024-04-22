@@ -35,7 +35,7 @@ public class PieceTutorialAnimator : MonoBehaviour
         this.spawnedPiece = Instantiate(piece, gameObject.transform.position, gameObject.transform.rotation);
         Animator anim = spawnedPiece.GetComponent<Animator>();
         spawnedPiece.transform.SetParent(pieceParent.transform);
-        spawnedPiece.GetComponent<SpriteRenderer>().sortingLayerName = this.pieceSortingLayer;
+        spawnedPiece.GetComponentInChildren<SpriteRenderer>().sortingLayerName = this.pieceSortingLayer;
         spawnedPiece.transform.position = gameObject.transform.position;
         spawnedPiece.transform.localScale = new Vector3(81, 81, 1);
         spawnedPiece.GetComponent<PolygonCollider2D>().enabled = false;
@@ -45,7 +45,7 @@ public class PieceTutorialAnimator : MonoBehaviour
         anim.SetTrigger("ZoomIn");
         yield return new WaitForSeconds(1);
 
-        for(int i = 1; i < this.angles.Length; ++i)
+        for (int i = 1; i < this.angles.Length; ++i)
         {
             Taptic.Light();
             spawnedPiece.transform.eulerAngles = new Vector3(spawnedPiece.transform.eulerAngles.x, spawnedPiece.transform.eulerAngles.y, this.angles[i]);

@@ -55,7 +55,7 @@ public class PieceShooter : MonoBehaviour
         {
             OnShoot();
         }
-        else if(spawnedPieceReadyToShoot && spawnedPiece != null)
+        else if (spawnedPieceReadyToShoot && spawnedPiece != null)
         {
             spawnedPiece.SetActive(shootingEnabled);
         }
@@ -72,7 +72,7 @@ public class PieceShooter : MonoBehaviour
 
     private void OnShoot()
     {
-        if(angleChangeMode == AngleChangeMode.ON_SHOOT)
+        if (angleChangeMode == AngleChangeMode.ON_SHOOT)
         {
             ChangeAngle();
         }
@@ -81,7 +81,7 @@ public class PieceShooter : MonoBehaviour
 
     IEnumerator ChangeAngleContinuously()
     {
-        while(angleChangeMode == AngleChangeMode.CONTINUOUSLY)
+        while (angleChangeMode == AngleChangeMode.CONTINUOUSLY)
         {
             yield return new WaitForSeconds(1.0f);
             ChangeAngle();
@@ -95,7 +95,7 @@ public class PieceShooter : MonoBehaviour
             Rigidbody2D pieceRb = spawnedPiece.GetComponent<Rigidbody2D>();
             pieceRb.isKinematic = false;
             pieceRb.velocity = transform.up * speed;
-            spawnedPiece.GetComponent<SpriteRenderer>().sortingOrder = 0;
+            spawnedPiece.GetComponentInChildren<SpriteRenderer>().sortingOrder = 0;
             spawnedPieceReadyToShoot = false;
             soundEffect.pitch = Random.Range(0.75f, 1.0f);
             soundEffect.Play(0);
@@ -110,7 +110,7 @@ public class PieceShooter : MonoBehaviour
 
     private void ChangeAngle()
     {
-        if(++angleIdx >= angles.Length)
+        if (++angleIdx >= angles.Length)
         {
             angleIdx = 0;
         }
@@ -124,7 +124,7 @@ public class PieceShooter : MonoBehaviour
             return;
         }
 
-        if(GameObject.FindGameObjectsWithTag(pieces[pieceIndex].transform.tag).Length == 0 && !this.isBonusLevel)
+        if (GameObject.FindGameObjectsWithTag(pieces[pieceIndex].transform.tag).Length == 0 && !this.isBonusLevel)
         {
             ++pieceIndex;
         }
@@ -139,13 +139,13 @@ public class PieceShooter : MonoBehaviour
             pieceToSpawn = pieceIndex < pieces.Length ? pieces[pieceIndex] : pieces[0];
         }
 
-        if(pieceIndex < pieces.Length)
+        if (pieceIndex < pieces.Length)
         {
             spawnedPiece = Instantiate(pieceToSpawn, gameObject.transform.position, gameObject.transform.rotation);
             spawnedPiece.transform.SetParent(pieceParent.transform);
             spawnedPiece.transform.position = gameObject.transform.position;
             spawnedPiece.transform.localScale = new Vector3(81, 81, 1);
-            spawnedPiece.GetComponent<SpriteRenderer>().sortingOrder = -1;
+            spawnedPiece.GetComponentInChildren<SpriteRenderer>().sortingOrder = -1;
             spawnedPiece.GetComponent<Rigidbody2D>().isKinematic = true;
             BombPiece bombPiece = spawnedPiece.GetComponent<BombPiece>();
             bombPiece.SetOnMiss(() => RecordMissedShot());
