@@ -14,8 +14,10 @@ public class Bomb : MonoBehaviour
 	public bool PieceWillGoInHole(GameObject piece, GameObject hole, float secLeft)
 	{
 		if (piece == null) return false;
+		var bomb = GetChildWithName("BombBody");
+		if (bomb == null) return false;
 
-		float bombHeight = GetChildWithName("BombBody").GetComponent<SpriteRenderer>().bounds.size.y;
+		float bombHeight = bomb.GetComponent<SpriteRenderer>().bounds.size.y;
 		float leftOffset = piece.tag == "Triangle" ? 0.18f : -0.05f;
 		float rightOffset = piece.tag == "Triangle" ? 0.475f : 0.42f;
 		Vector3 holeLeft = hole.transform.position + (-hole.transform.right * (leftOffset + 0.002f));
