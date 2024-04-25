@@ -2041,7 +2041,6 @@ MonoBehaviour:
   score: {fileID: 945567741}
   levelIndicator: {fileID: 1045008211}
   scoreText: {fileID: 1613292274}
-  playServices: {fileID: 394626464}
   gameMusic: {fileID: 1779454661}
   victoryMusic: {fileID: 1846095571}
   metalImpactSound: {fileID: 1328338504}
@@ -2728,7 +2727,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &182298624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2742,6 +2741,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ads: {fileID: 1176414060}
+  analytics: {fileID: 0}
 --- !u!4 &182298625
 Transform:
   m_ObjectHideFlags: 0
@@ -4900,39 +4900,18 @@ MonoBehaviour:
   afterInitialSignInAttempt:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1690585584}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 1683024068}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
+      - {m_Target: {fileID: 1690585584}, m_MethodName: SetActive, m_Mode: 6, m_Arguments: {m_ObjectArgument: {fileID: 0},
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, m_IntArgument: 0,
+          m_FloatArgument: 0, m_StringArgument: , m_BoolArgument: 1}, m_CallState: 2}
+      - {m_Target: {fileID: 1683024068}, m_MethodName: SetActive, m_Mode: 6, m_Arguments: {m_ObjectArgument: {fileID: 0},
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, m_IntArgument: 0,
+          m_FloatArgument: 0, m_StringArgument: , m_BoolArgument: 0}, m_CallState: 2}
+      - {m_Target: {fileID: 0}, m_MethodName: SetActive, m_Mode: 6, m_Arguments: {m_ObjectArgument: {fileID: 0},
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, m_IntArgument: 0,
+          m_FloatArgument: 0, m_StringArgument: , m_BoolArgument: 1}, m_CallState: 2}
+    m_CallsDirty: 1
+  signedIn: 0
+  <IsInitialized>k__BackingField: 0
   popupGravity: 80
 --- !u!4 &394626465
 Transform:
@@ -12062,6 +12041,7 @@ GameObject:
   - component: {fileID: 1086236003}
   - component: {fileID: 1086236008}
   - component: {fileID: 1086236007}
+  - component: {fileID: 1086236009}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: MainCanvas
@@ -12186,6 +12166,18 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
+--- !u!114 &1086236009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1086236002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ec8557a585a8ab4d8f33dac5345f983, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1141425911
 GameObject:
   m_ObjectHideFlags: 0
@@ -13126,7 +13118,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1176414060
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13142,11 +13134,15 @@ MonoBehaviour:
   adsEnabled: 0
   minutesBetweenAds: 2
   minutesBetweenStartAndFirstAd: 0.5
+  lastAdShownAt: 0
   music: {fileID: 1779454661}
   testAdId: ca-app-pub-3940256099942544/1033173712
   androidAdId: ca-app-pub-8136996048120593/8224216593
   minLevelForAds: 4
   levelLoader: {fileID: 46862305}
+  origTimeScale: 0
+  storage: {fileID: 0}
+  adLoaded: 0
 --- !u!4 &1176414061
 Transform:
   m_ObjectHideFlags: 0
@@ -17395,7 +17391,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1683024069
 RectTransform:
   m_ObjectHideFlags: 0
@@ -18082,7 +18078,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1690585585
 RectTransform:
   m_ObjectHideFlags: 0
@@ -18302,7 +18298,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9d9f7ef87750b649a20e3be3d6b6f0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ads: {fileID: 1176414060}
   levelLoader: {fileID: 46862305}
 --- !u!114 &1704794196
 MonoBehaviour:
@@ -19375,7 +19370,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc0b7a9b8b81ef24abe8b3f57e544657, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ads: {fileID: 1176414060}
   delay: 0.4
   titleMenu: {fileID: 1333197894}
   detonator: {fileID: 76957237}
@@ -24167,7 +24161,7 @@ PrefabInstance:
     - target: {fileID: 5057343903013985594, guid: d20c7564618eea144b6f462e1c2af3b4,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5057343903013985605, guid: d20c7564618eea144b6f462e1c2af3b4,
         type: 3}
@@ -25034,28 +25028,13 @@ MonoBehaviour:
   onNetworkError:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1297367648}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 531019337}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
+      - {m_Target: {fileID: 1297367648}, m_MethodName: SetActive, m_Mode: 6, m_Arguments: {m_ObjectArgument: {fileID: 0},
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, m_IntArgument: 0,
+          m_FloatArgument: 0, m_StringArgument: , m_BoolArgument: 1}, m_CallState: 2}
+      - {m_Target: {fileID: 531019337}, m_MethodName: SetActive, m_Mode: 6, m_Arguments: {m_ObjectArgument: {fileID: 0},
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, m_IntArgument: 0,
+          m_FloatArgument: 0, m_StringArgument: , m_BoolArgument: 1}, m_CallState: 2}
+    m_CallsDirty: 1
   googlePlayServices: {fileID: 394626464}
   buttonText: {fileID: 5057343903458796083}
 --- !u!114 &5057343902550648321

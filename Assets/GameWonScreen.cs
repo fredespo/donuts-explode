@@ -18,7 +18,6 @@ public class GameWonScreen : MonoBehaviour
     public Score score;
     public GameObject levelIndicator;
     public Text scoreText;
-    public GooglePlayServices playServices;
     public AudioSource gameMusic;
     public AudioSource victoryMusic;
     public AudioSource metalImpactSound;
@@ -36,11 +35,6 @@ public class GameWonScreen : MonoBehaviour
     }
 
     public void Init(bool showAnimation = true)
-    {
-        StartCoroutine(InitCoroutine(showAnimation));
-    }
-
-    private IEnumerator InitCoroutine(bool showAnimation)
     {
         onInit.Invoke();
         scoreText.text = score.GetScore().ToString();
@@ -61,43 +55,6 @@ public class GameWonScreen : MonoBehaviour
             this.victoryMusic.volume = this.initVictoryMusicVolume;
             this.victoryMusic.Play();
             this.onSkipAnimation.Invoke();
-            while (!playServices.IsInitialized)
-            {
-                yield return new WaitForSeconds(0.5f);
-            }
-            yield return new WaitForSeconds(2f);
-            playServices.SignIn((res) => PostInit());
-        }
-    }
-
-    public void PostInit()
-    {
-        this.onPostInit.Invoke();
-        if (playServices.IsSignedIn())
-        {
-            playServices.PostHighScoreAndThen(score.GetScore(), (success) =>
-            {
-                if (success)
-                {
-                    this.savedScore = true;
-                    onAutoSaveScore.Invoke();
-                    playServices.ProcessCurrentHighScore(highscore =>
-                    {
-                        if (score.GetScore() == highscore)
-                        {
-                            onNewHighScoreDetected.Invoke();
-                        }
-                    });
-                }
-                else
-                {
-                    onFailedAutoSaveScore.Invoke();
-                }
-            });
-        }
-        else
-        {
-            onFailedAutoSaveScore.Invoke();
         }
     }
 
@@ -109,30 +66,6 @@ public class GameWonScreen : MonoBehaviour
     public void MakeLevelIndicatorNormal()
     {
         this.levelIndicator.GetComponent<Text>().fontStyle = FontStyle.Normal;
-    }
-
-    public void PostScore()
-    {
-        playServices.PostHighScoreAndThen(score.GetScore(), (success) =>
-        {
-            if (success)
-            {
-                this.savedScore = true;
-                onScoreSaved.Invoke();
-                playServices.ProcessCurrentHighScore(highscore =>
-                {
-                    if (score.GetScore() == highscore)
-                    {
-                        onNewHighScoreDetected.Invoke();
-                    }
-                });
-            }
-            else
-            {
-                Taptic.Failure();
-                onScoreSaveError.Invoke();
-            }
-        });
     }
 
     public void OnExit()

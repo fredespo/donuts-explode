@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class StartGameBtn : MonoBehaviour
 {
-    public Ads ads;
     public float delay = 0.4f;
     public TitleMenu titleMenu;
     public Detonator detonator;
@@ -20,23 +19,6 @@ public class StartGameBtn : MonoBehaviour
         mainMenu.SetActive(false);
         newGameConfirmMenu.SetActive(false);
         removeAdsBtn.SetActive(false);
-
-        if (this.pressedBefore)
-        {
-            ads.ShowInterstitialAdAndThen((wasAdShown) => {
-                JustStartGame();
-            });
-        }
-        else
-        {
-            JustStartGame();
-        }
-        
-        this.pressedBefore = true;
-    }
-
-    private void JustStartGame()
-    {
         titleMenu.StartGameAfterDelay(delay);
         detonator.activate();
     }
