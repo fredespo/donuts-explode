@@ -100,6 +100,9 @@ GameObject:
   - component: {fileID: 7363224565615695285}
   - component: {fileID: 7363224565615695286}
   - component: {fileID: 7363224565615695284}
+  - component: {fileID: 8376167609776840300}
+  - component: {fileID: 6746109031200874373}
+  - component: {fileID: 5588440887176254154}
   m_Layer: 0
   m_Name: Triangle
   m_TagString: Triangle
@@ -209,6 +212,46 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   filledCollider: {fileID: 7197486445868087048}
   fillDelay: 0.07
+--- !u!222 &8376167609776840300
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7363224565615695289}
+  m_CullTransparentMesh: 0
+--- !u!114 &6746109031200874373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7363224565615695289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4846b7195edc1d943bd7711fd09e61a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_rPalettes:
+  - {fileID: 11400000, guid: ac35c39a27dcd51428eb21cca7a0a947, type: 2}
+  m_iActivePaletteIndex: 0
+--- !u!114 &5588440887176254154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7363224565615695289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85a618bc812a9ed4a8e17e0bd2e7d92c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_rPaletteProvider: {fileID: 6746109031200874373}
+  m_bIsActivePaletteIndexOverridden: 0
+  m_iActivePaletteIndexOverride: 0
+  m_color:
+    m_id: 1
 --- !u!1001 &1883597298799723557
 PrefabInstance:
   m_ObjectHideFlags: 0

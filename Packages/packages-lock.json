@@ -1,5 +1,44 @@
 {
   "dependencies": {
+    "com.binarycharm.common": {
+      "version": "file:com.binarycharm.common",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
+    "com.binarycharm.samples.ui": {
+      "version": "file:com.binarycharm.samples.ui",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
+    "com.binarycharm.semantic-color-palette": {
+      "version": "file:com.binarycharm.semantic-color-palette",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {
+        "com.binarycharm.common": "1.0.0"
+      }
+    },
+    "com.binarycharm.semantic-color-palette.runtime-manager-ui": {
+      "version": "file:com.binarycharm.semantic-color-palette.runtime-manager-ui",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {
+        "com.binarycharm.common": "1.0.0",
+        "com.binarycharm.ui": "1.0.0",
+        "com.binarycharm.semantic-color-palette": "1.0.0",
+        "com.yasirkula.simplefilebrowser": "1.5.7",
+        "judah4.hsvcolorpickerunity": "3.0.2",
+        "com.unity.textmeshpro": "2.0.1"
+      }
+    },
+    "com.binarycharm.ui": {
+      "version": "file:com.binarycharm.ui",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
     "com.google.external-dependency-manager": {
       "version": "1.2.163",
       "depth": 0,
@@ -128,6 +167,18 @@
         "com.unity.modules.ui": "1.0.0",
         "com.unity.modules.imgui": "1.0.0"
       }
+    },
+    "com.yasirkula.simplefilebrowser": {
+      "version": "file:com.yasirkula.simplefilebrowser",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
+    "judah4.hsvcolorpickerunity": {
+      "version": "file:judah4.hsvcolorpickerunity",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",

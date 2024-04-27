@@ -1,0 +1,5 @@
+﻿[assembly: System.Reflection.AssemblyCompany("Binary Charm Ltd")]
+[assembly: System.Reflection.AssemblyTitle("Semantic Color Palette RuntimeManagerUI Assembly")]
+[assembly: System.Reflection.AssemblyCopyright("Copyright 2022.")]
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("BinaryCharm.SemanticColorPalette.RuntimeManagerUI")]
+[assembly: UnityEngine.Scripting.Preserve]
