@@ -235,7 +235,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -4
   m_Sprite: {fileID: 21300000, guid: f19c1141bac9d65418a7a61e054f1e0e, type: 3}
-  m_Color: {r: 0.9843138, g: 0.6392157, b: 0.41960788, a: 1}
+  m_Color: {r: 0.9622642, g: 0.6584709, b: 0.46751517, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -337,7 +337,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 292bed3b2e729bf448791c3d7fb9341f, type: 3}
   m_Color: {r: 0.3216002, g: 0.8894269, b: 0.9339623, a: 1}
   m_FlipX: 0
@@ -376,6 +376,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3172215738384512864}
   - component: {fileID: 3301178838093332652}
+  - component: {fileID: 8392720526310346077}
   m_Layer: 0
   m_Name: Donut
   m_TagString: Untagged
@@ -416,7 +417,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_rPalettes:
   - {fileID: 11400000, guid: 073353c98f7906944827a87cb4f72478, type: 2}
+  - {fileID: 11400000, guid: 670b2486a9c4f2c42807a8be38235fb3, type: 2}
+  - {fileID: 11400000, guid: 3fbc4232a29e4ab4297cfd89cb744215, type: 2}
+  - {fileID: 11400000, guid: 097a23e9190403f44afe05b5e8eaf5d7, type: 2}
+  - {fileID: 11400000, guid: 6659e9a02f6b7a548be3753cbb2bbe03, type: 2}
   m_iActivePaletteIndex: 0
+--- !u!114 &8392720526310346077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4024741388901953668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fda6d957fe472cc41b499c77f71992ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4137436674472590371
 GameObject:
   m_ObjectHideFlags: 0
@@ -533,7 +550,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 99c383e990fbfb940b3c32442c603db2, type: 3}
-  m_Color: {r: 0.9843138, g: 0.6392157, b: 0.41960788, a: 1}
+  m_Color: {r: 0.9622642, g: 0.6584709, b: 0.46751517, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1410,12 +1427,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 21b630e1a72f92d4a9a10c77e5756941, type: 3}
---- !u!224 &5977689482962603060 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 1353671736465401094, guid: 21b630e1a72f92d4a9a10c77e5756941,
-    type: 3}
-  m_PrefabInstance: {fileID: 4628629133227895090}
-  m_PrefabAsset: {fileID: 0}
 --- !u!82 &674748262592066165 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 5287540784098057031, guid: 21b630e1a72f92d4a9a10c77e5756941,
@@ -1425,6 +1436,12 @@ AudioSource:
 --- !u!95 &2841011299969838733 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 7444869191565313983, guid: 21b630e1a72f92d4a9a10c77e5756941,
+    type: 3}
+  m_PrefabInstance: {fileID: 4628629133227895090}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &5977689482962603060 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1353671736465401094, guid: 21b630e1a72f92d4a9a10c77e5756941,
     type: 3}
   m_PrefabInstance: {fileID: 4628629133227895090}
   m_PrefabAsset: {fileID: 0}
