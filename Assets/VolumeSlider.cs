@@ -20,7 +20,6 @@ public class VolumeSlider : MonoBehaviour
     public void ValueChanged()
     {
         SetVolume(this.slider.value);
-        Taptic.Light();
     }
 
     private void SetVolume(float val)
