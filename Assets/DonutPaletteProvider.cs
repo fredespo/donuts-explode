@@ -6,6 +6,8 @@ using BinaryCharm.SemanticColorPalette;
 public class DonutPaletteProvider : MonoBehaviour
 {
     private SCP_PaletteProvider paletteProvider;
+    private Vector2 startPos;
+    private float minSwipeDist = 50f;
 
     // Start is called before the first frame update
     void Start()
@@ -16,9 +18,26 @@ public class DonutPaletteProvider : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // on mobile if you shake the device then the palette will change
-        // or if the device is not mobile then you can use the arrow keys to change the palette
-        if (Input.acceleration.sqrMagnitude > 10 || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow))
+        // Check for swipe gestures on mobile
+        if (Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0);
+            if (touch.phase == TouchPhase.Began)
+            {
+                startPos = touch.position;
+            }
+            else if (touch.phase == TouchPhase.Ended)
+            {
+                float swipeDist = (touch.position - startPos).magnitude;
+                if (swipeDist > minSwipeDist) // minSwipeDist is a threshold for minimum swipe distance
+                {
+                    float swipeValue = Mathf.Sign(touch.position.x - startPos.x);
+                    ChangePalette(swipeValue > 0 ? 1 : -1);
+                }
+            }
+        }
+        // For non-mobile platforms, use the arrow keys to change the palette
+        else if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow))
         {
             ChangePalette(Input.GetKeyDown(KeyCode.LeftArrow) ? -1 : 1);
         }
