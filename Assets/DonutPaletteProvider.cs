@@ -5,7 +5,7 @@ using BinaryCharm.SemanticColorPalette;
 
 public class DonutPaletteProvider : MonoBehaviour
 {
-    public boolean randomizePaletteOnStart = true;
+    public bool randomizePaletteOnStart = true;
     private SCP_PaletteProvider paletteProvider;
     private Vector2 touchStart;
 
@@ -50,7 +50,7 @@ public class DonutPaletteProvider : MonoBehaviour
                 float swipeDist = (touch.position - touchStart).magnitude;
                 if (swipeDist > minSwipeDist)
                 {
-                    float swipeValue = Mathf.Sign(touch.position.x - startPos.x);
+                    float swipeValue = Mathf.Sign(touch.position.x - touchStart.x);
                     ChangePalette(swipeValue > 0 ? 1 : -1);
                 }
             }

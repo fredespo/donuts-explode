@@ -188,6 +188,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7539748251006397914}
   - component: {fileID: 3904173330304308276}
+  - component: {fileID: 2508983233022722073}
   m_Layer: 0
   m_Name: Donut
   m_TagString: Untagged
@@ -228,7 +229,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_rPalettes:
   - {fileID: 11400000, guid: 073353c98f7906944827a87cb4f72478, type: 2}
+  - {fileID: 11400000, guid: 670b2486a9c4f2c42807a8be38235fb3, type: 2}
+  - {fileID: 11400000, guid: 3fbc4232a29e4ab4297cfd89cb744215, type: 2}
+  - {fileID: 11400000, guid: 097a23e9190403f44afe05b5e8eaf5d7, type: 2}
+  - {fileID: 11400000, guid: 6659e9a02f6b7a548be3753cbb2bbe03, type: 2}
   m_iActivePaletteIndex: 0
+--- !u!114 &2508983233022722073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1503343864608400351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fda6d957fe472cc41b499c77f71992ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  randomizePaletteOnStart: 1
 --- !u!1 &2305673632933162607
 GameObject:
   m_ObjectHideFlags: 0
@@ -446,7 +464,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -3
   m_Sprite: {fileID: 21300000, guid: dec2c49e7c7d56042b1dfabaca131210, type: 3}
-  m_Color: {r: 0.92941177, g: 0.51117647, b: 0.7202941, a: 1}
+  m_Color: {r: 0.92941177, g: 0.50980395, b: 0.74319124, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1240,12 +1258,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 21b630e1a72f92d4a9a10c77e5756941, type: 3}
---- !u!82 &6682638704262938809 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 5287540784098057031, guid: 21b630e1a72f92d4a9a10c77e5756941,
-    type: 3}
-  m_PrefabInstance: {fileID: 1575307876292926462}
-  m_PrefabAsset: {fileID: 0}
 --- !u!95 &8254503551776103489 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 7444869191565313983, guid: 21b630e1a72f92d4a9a10c77e5756941,
@@ -1255,6 +1267,12 @@ Animator:
 --- !u!224 &510502628033117944 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1353671736465401094, guid: 21b630e1a72f92d4a9a10c77e5756941,
+    type: 3}
+  m_PrefabInstance: {fileID: 1575307876292926462}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &6682638704262938809 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 5287540784098057031, guid: 21b630e1a72f92d4a9a10c77e5756941,
     type: 3}
   m_PrefabInstance: {fileID: 1575307876292926462}
   m_PrefabAsset: {fileID: 0}
