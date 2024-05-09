@@ -17,8 +17,8 @@ public class DonutPaletteProvider : MonoBehaviour
 
     void Update()
     {
-        // changePaletteWithSwipe(50f);
-        // changePaletteWithKeys();
+        changePaletteWithSwipe(50f);
+        changePaletteWithKeys(KeyCode.LeftArrow, KeyCode.RightArrow);
     }
 
     private void changePaletteToRandom()
@@ -28,11 +28,11 @@ public class DonutPaletteProvider : MonoBehaviour
         );
     }
 
-    private void changePaletteWithKeys()
+    private void changePaletteWithKeys(KeyCode keyCodeDec, KeyCode keyCodeInc)
     {
-        if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow))
+        if (Input.GetKeyDown(keyCodeDec) || Input.GetKeyDown(keyCodeInc))
         {
-            ChangePalette(Input.GetKeyDown(KeyCode.LeftArrow) ? -1 : 1);
+            ChangePalette(Input.GetKeyDown(keyCodeDec) ? -1 : 1);
         }
     }
 
