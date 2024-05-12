@@ -6,12 +6,13 @@ using BinaryCharm.SemanticColorPalette;
 public class DonutPaletteProvider : MonoBehaviour
 {
     public bool randomizePaletteOnStart = true;
-    private SCP_PaletteProvider paletteProvider;
+    public SCP_PaletteProvider paletteProvider;
     private Vector2 touchStart;
+    private PieceShooterPaletteProvider pieceShooterPaletteProvider;
 
     void Start()
     {
-        this.paletteProvider = GetComponent<SCP_PaletteProvider>();
+        this.pieceShooterPaletteProvider = GameObject.FindWithTag("PiecePalette").GetComponent<PieceShooterPaletteProvider>();
         if (this.randomizePaletteOnStart) changePaletteToRandom();
     }
 
@@ -23,9 +24,7 @@ public class DonutPaletteProvider : MonoBehaviour
 
     private void changePaletteToRandom()
     {
-        this.paletteProvider.SetActivePaletteIndex(
-            Random.Range(0, this.paletteProvider.GetNumPalettes())
-        );
+        SetPalette(Random.Range(0, this.paletteProvider.GetNumPalettes()));
     }
 
     private void changePaletteWithKeys(KeyCode keyCodeDec, KeyCode keyCodeInc)
@@ -68,6 +67,12 @@ public class DonutPaletteProvider : MonoBehaviour
         {
             nextPaletteIndex = this.paletteProvider.GetNumPalettes() - 1;
         }
-        this.paletteProvider.SetActivePaletteIndex(nextPaletteIndex);
+        SetPalette(nextPaletteIndex);
+    }
+
+    private void SetPalette(int index)
+    {
+        this.paletteProvider.SetActivePaletteIndex(index);
+        this.pieceShooterPaletteProvider.SetActivePaletteIndex(index);
     }
 }

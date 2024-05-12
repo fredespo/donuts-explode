@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using BinaryCharm.SemanticColorPalette;
 
 public class PieceShooter : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class PieceShooter : MonoBehaviour
     public AudioSource bonusSound;
     private float bonusSoundBasePitch;
     private bool isBonusLevel;
+    public PieceShooterPaletteProvider paletteProvider;
 
     void Start()
     {
@@ -147,6 +149,7 @@ public class PieceShooter : MonoBehaviour
             spawnedPiece.transform.localScale = new Vector3(81, 81, 1);
             spawnedPiece.GetComponentInChildren<SpriteRenderer>().sortingOrder = -1;
             spawnedPiece.GetComponent<Rigidbody2D>().isKinematic = true;
+            spawnedPiece.GetComponentInChildren<SCP_PaletteProvider>().SetActivePaletteIndex(this.paletteProvider.GetActivePaletteIndex());
             BombPiece bombPiece = spawnedPiece.GetComponent<BombPiece>();
             bombPiece.SetOnMiss(() => RecordMissedShot());
             bombPiece.SetOnFilledHole(() => RecordGoodShot());
