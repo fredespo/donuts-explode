@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using BinaryCharm.SemanticColorPalette;
 
 public class BonusBomb : MonoBehaviour
 {
     public GameObject explosion;
     public BombDefuzer defuzer;
+    public SCP_PaletteProvider paletteProvider;
 
     public void Explode()
     {
@@ -34,11 +36,16 @@ public class BonusBomb : MonoBehaviour
 
     private void BlowAway(Rigidbody2D rb)
     {
-        if(rb.velocity.magnitude == 0)
+        if (rb.velocity.magnitude == 0)
         {
             return;
         }
         Vector2 force = (rb.gameObject.transform.position - gameObject.transform.position).normalized * 20;
         rb.AddForce(force, ForceMode2D.Impulse);
+    }
+
+    public void SetActivePaletteIndex(int paletteIndex)
+    {
+        this.paletteProvider.SetActivePaletteIndex(paletteIndex);
     }
 }

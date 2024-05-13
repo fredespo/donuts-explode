@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using BinaryCharm.SemanticColorPalette;
 
 [RequireComponent(typeof(ObjectsOnRails))]
 public class BonusBombs : MonoBehaviour
@@ -23,6 +24,7 @@ public class BonusBombs : MonoBehaviour
     private int bonusPoints;
     private DataStorage dataStorage;
     private Vector3 centerPos;
+    public SCP_PaletteProvider paletteProvider;
 
     void Start()
     {
@@ -37,6 +39,8 @@ public class BonusBombs : MonoBehaviour
         this.spawns = spawns;
         this.doneSpawning = false;
         this.numBonusBombsDefuzed = 0;
+        this.paletteProvider.SetActivePaletteIndex(Random.Range(0, this.paletteProvider.GetNumPalettes()));
+        GameObject.FindWithTag("PiecePalette").GetComponent<PieceShooterPaletteProvider>().SetActivePaletteIndex(this.paletteProvider.GetActivePaletteIndex());
         StartCoroutine(SpawnCoroutine());
     }
 
@@ -47,6 +51,7 @@ public class BonusBombs : MonoBehaviour
             yield return new WaitForSeconds(this.spawns[i].delay);
             BonusBombSpawn bonusSpawn = this.spawns[i].spawn;
             GameObject bomb = Instantiate(bonusSpawn.bomb, bonusSpawn.movements[0].path.GetPosAlongPath2D(0, this.centerPos), Quaternion.identity, this.transform);
+            bomb.GetComponent<BonusBomb>().SetActivePaletteIndex(this.paletteProvider.GetActivePaletteIndex());
             this.spawnSoundEffect.pitch = Random.Range(this.spawnSoundEffectPitchOrig - this.spawnSoundEffectPitchSpread, this.spawnSoundEffectPitchOrig + this.spawnSoundEffectPitchSpread);
             this.spawnSoundEffect.Play();
             this.rails.Add(bomb, bonusSpawn.movements);
