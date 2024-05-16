@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class BonusLevelWinUI : MonoBehaviour
 {
-    public Animator anim;    
+    public Animator anim;
     public GameObject buttons;
     public Text numDefuzedMsg;
     public Text bonusPointsText;
@@ -20,13 +20,13 @@ public class BonusLevelWinUI : MonoBehaviour
 
     public void RevealAndAwardBonus(int numDefuzed, int numBonusPoints)
     {
-        if(numDefuzed > 0)
+        if (numDefuzed > 0)
         {
-            this.numDefuzedMsg.text = numDefuzed + " bonus bomb" + (numDefuzed == 1 ? "" : "s");
+            this.numDefuzedMsg.text = numDefuzed + " bonus donut" + (numDefuzed == 1 ? "" : "s");
         }
         else
         {
-            this.numDefuzedMsg.text = "No bonus bombs";
+            this.numDefuzedMsg.text = "No bonus donuts";
         }
         this.bonusPointsText.text = numBonusPoints + "";
         this.anim.SetTrigger("show");
@@ -50,7 +50,7 @@ public class BonusLevelWinUI : MonoBehaviour
 
     public void DeactivateAllChildren()
     {
-        foreach(Transform child in transform)
+        foreach (Transform child in transform)
         {
             child.gameObject.SetActive(false);
         }
