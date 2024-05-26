@@ -25,7 +25,7 @@ RectTransform:
   m_GameObject: {fileID: 2834585004463406354}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.135, y: 1.135, z: 1}
+  m_LocalScale: {x: 1.24, y: 1.24, z: 1}
   m_Children:
   - {fileID: 9206487848795141423}
   - {fileID: 4973444692818934494}
@@ -65,7 +65,7 @@ RectTransform:
   m_GameObject: {fileID: 8401380885804338075}
   m_LocalRotation: {x: 0, y: 0, z: 0.0026179885, w: 0.9999966}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.03, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4315303948636802296}
   m_RootOrder: 1
@@ -152,10 +152,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5656506035781974954}
   - component: {fileID: 1194406355741877105}
-  - component: {fileID: 6647391798664360956}
   - component: {fileID: 5562165829345515258}
   - component: {fileID: 1881846683187633834}
   - component: {fileID: 8688153907690463651}
+  - component: {fileID: 8906853516489743365}
   m_Layer: 0
   m_Name: Triangle
   m_TagString: Triangle
@@ -205,45 +205,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!60 &6647391798664360956
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8890159741025738863}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.61, y: 1.54}
-    newSize: {x: 2.04, y: 1.8}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.78999996, y: -0.82}
-      - {x: 1.0230687, y: -0.73751247}
-      - {x: 0.076288596, y: 0.781707}
-      - {x: -0.0063274056, y: 0.7823931}
-      - {x: -0.07886013, y: 0.7817068}
-      - {x: -1.02, y: -0.7298938}
-      - {x: -1.02, y: -0.76}
-      - {x: -0.97999996, y: -0.78}
-      - {x: -0.59999996, y: -0.85999995}
-      - {x: -0.39, y: -0.89}
-      - {x: -0.29, y: -0.9}
-      - {x: 0.29, y: -0.9}
-      - {x: 0.47, y: -0.88}
-      - {x: 0.59999996, y: -0.85999995}
 --- !u!114 &5562165829345515258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -376,6 +337,50 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!60 &8906853516489743365
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8890159741025738863}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.9, y: 1.43}
+    newSize: {x: 1.76, y: 1.57}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.81, y: -0.60499996}
+      - {x: 0.90247923, y: -0.5517885}
+      - {x: 0.70660585, y: -0.262704}
+      - {x: 0.07, y: 0.655}
+      - {x: 0.686789, y: -0.22627294}
+      - {x: -0.006422501, y: 0.8999573}
+      - {x: -0.07284476, y: 0.7612399}
+      - {x: -0.15284476, y: 0.6348169}
+      - {x: -0.22945087, y: 0.5048164}
+      - {x: -0.5819276, y: -0.06361607}
+      - {x: -0.85174614, y: -0.5053622}
+      - {x: -0.9817465, y: -0.7172957}
+      - {x: -0.6867885, y: -0.78050697}
+      - {x: -0.40339437, y: -0.83711255}
+      - {x: -0.23430964, y: -0.86032367}
+      - {x: 0.41605613, y: -0.86032367}
+      - {x: 0.61211264, y: -0.80729574}
+      - {x: 0.96083015, y: -0.7110563}
+      - {x: 0.9119301, y: -0.5523377}
 --- !u!1 &8946488392580704936
 GameObject:
   m_ObjectHideFlags: 0
@@ -410,7 +415,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -0.06}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &2200616407396088165
