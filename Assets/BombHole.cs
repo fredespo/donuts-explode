@@ -18,7 +18,7 @@ public class BombHole : MonoBehaviour
 
     public void FillWith(GameObject obj)
     {
-        if(this.fillWith != null)
+        if (this.fillWith != null)
         {
             return;
         }
@@ -34,13 +34,16 @@ public class BombHole : MonoBehaviour
     private IEnumerator FillAfterDelay()
     {
         yield return new WaitForSeconds(this.fillDelay);
-        this.fillWith.GetComponent<BombPiece>().FilledHole();
-        Destroy(this.fillWith);
+        BombPiece piece = this.fillWith.GetComponent<BombPiece>();
+        piece.FilledHole();
+        GameObject sprinkles = piece.GetSprinkles();
+        sprinkles.transform.SetParent(gameObject.transform.parent.transform.parent, true);
         filledCollider.transform.SetParent(gameObject.transform.parent.transform.parent, true);
         filledCollider.SetActive(true);
         filledCollider.GetComponent<PolygonCollider2D>().enabled = true;
         GameObject.FindWithTag("PieceFitsSoundEffect").GetComponent<AudioSource>().Play(0);
         Taptic.Vibrate();
+        Destroy(this.fillWith);
         Destroy(gameObject);
     }
 
