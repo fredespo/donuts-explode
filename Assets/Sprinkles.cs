@@ -1,25 +1,50 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using BinaryCharm.SemanticColorPalette;
 
 public class Sprinkles : MonoBehaviour
 {
-    public List<Color> colors;
+    public SCP_PaletteProvider paletteProvider;
 
     // Start is called before the first frame update
     void Start()
     {
-        // color all children randomly
-        foreach (Transform child in transform)
+        ColorSprinkles();
+    }
+
+    private void ColorSprinkles()
+    {
+        List<Color> colors = GetSprinkleColors();
+        List<SpriteRenderer> renderers = GetSprinkleRenderers();
+        for (int i = 0; i < renderers.Count; i++)
         {
-            SpriteRenderer sr = child.GetComponent<SpriteRenderer>();
-            sr.color = colors[Random.Range(0, colors.Count)];
+            renderers[i].color = colors[i % colors.Count];
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    private List<Color> GetSprinkleColors()
     {
+        List<Color> colors = new List<Color>();
+        SCP_Palette palette = this.paletteProvider.GetPalette();
+        for (int i = 0; i < palette.GetNumElems(); i++)
+        {
+            string name = palette.GetColorNameByIndex(i);
+            if (name.StartsWith("Sprinkles"))
+            {
+                colors.Add(palette.GetColorByIndex(i));
+            }
+        }
+        return colors;
+    }
 
+    private List<SpriteRenderer> GetSprinkleRenderers()
+    {
+        List<SpriteRenderer> renderers = new List<SpriteRenderer>();
+        foreach (Transform child in transform)
+        {
+            renderers.Add(child.GetComponent<SpriteRenderer>());
+        }
+        return renderers;
     }
 }
