@@ -17,9 +17,10 @@ public class Sprinkles : MonoBehaviour
     {
         List<Color> colors = GetSprinkleColors();
         List<SpriteRenderer> renderers = GetSprinkleRenderers();
+        int rand = Random.Range(1, 100);
         for (int i = 0; i < renderers.Count; i++)
         {
-            renderers[i].color = colors[i % colors.Count];
+            renderers[i].color = colors[(i+rand) % colors.Count];
         }
     }
 
