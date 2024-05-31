@@ -37,7 +37,7 @@ public class BombHole : MonoBehaviour
         BombPiece piece = this.fillWith.GetComponent<BombPiece>();
         piece.FilledHole();
         GameObject sprinkles = piece.GetSprinkles();
-        sprinkles.transform.SetParent(gameObject.transform.parent.transform.parent, true);
+        if (sprinkles != null) sprinkles.transform.SetParent(gameObject.transform.parent.transform.parent, true);
         filledCollider.transform.SetParent(gameObject.transform.parent.transform.parent, true);
         filledCollider.SetActive(true);
         filledCollider.GetComponent<PolygonCollider2D>().enabled = true;
