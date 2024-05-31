@@ -22,7 +22,7 @@ public class Rotator : MonoBehaviour
 
     void Update()
     {
-        float min = 45f;
+        float min = 40f;
         float max = 220f;
         float elapsedRatio = this.timer != null ? this.timer.GetTimeElapsed() / this.timer.GetStartSeconds() : 0f;
         float degPerSec = min + ((max - min) * elapsedRatio);
