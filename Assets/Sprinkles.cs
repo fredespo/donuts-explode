@@ -13,7 +13,7 @@ public class Sprinkles : MonoBehaviour
         ColorSprinkles();
     }
 
-    private void ColorSprinkles()
+    public void ColorSprinkles()
     {
         List<Color> colors = GetSprinkleColors();
         if (colors.Count == 0) return;
