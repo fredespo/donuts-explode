@@ -27,6 +27,7 @@ public class BombPiece : MonoBehaviour
     private bool hitBomb = false;
     private bool leftMagnet = false;
     private Transform origParent;
+    public GameObject sprinkles;
 
     void Awake()
     {
@@ -204,5 +205,10 @@ public class BombPiece : MonoBehaviour
     public bool IsCaughtInMagnet()
     {
         return this.caughtInMagnet;
+    }
+
+    public GameObject GetSprinkles()
+    {
+        return this.sprinkles;
     }
 }

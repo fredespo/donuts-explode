@@ -7,6 +7,7 @@ public class DonutPaletteProvider : MonoBehaviour
 {
     public bool randomizePaletteOnStart = true;
     public SCP_PaletteProvider paletteProvider;
+    public Sprinkles sprinkles;
     private Vector2 touchStart;
     private PieceShooterPaletteProvider pieceShooterPaletteProvider;
 
@@ -74,5 +75,6 @@ public class DonutPaletteProvider : MonoBehaviour
     {
         this.paletteProvider.SetActivePaletteIndex(index);
         this.pieceShooterPaletteProvider.SetActivePaletteIndex(index);
+        this.sprinkles.ColorSprinkles();
     }
 }
