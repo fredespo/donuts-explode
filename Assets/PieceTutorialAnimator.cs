@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using BinaryCharm.SemanticColorPalette;
 
 public class PieceTutorialAnimator : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class PieceTutorialAnimator : MonoBehaviour
     private float[] angles;
     private GameObject spawnedPiece;
     private AudioSource pieceChangeAngleSound;
+    public PieceShooterPaletteProvider paletteProvider;
 
     void Start()
     {
@@ -33,9 +35,14 @@ public class PieceTutorialAnimator : MonoBehaviour
     {
         pieceParent.SetActive(true);
         this.spawnedPiece = Instantiate(piece, gameObject.transform.position, gameObject.transform.rotation);
+        spawnedPiece.GetComponentInChildren<SCP_PaletteProvider>().SetActivePaletteIndex(this.paletteProvider.GetActivePaletteIndex());
         Animator anim = spawnedPiece.GetComponent<Animator>();
         spawnedPiece.transform.SetParent(pieceParent.transform);
-        spawnedPiece.GetComponentInChildren<SpriteRenderer>().sortingLayerName = this.pieceSortingLayer;
+        SpriteRenderer[] spriteRenderers = spawnedPiece.GetComponentsInChildren<SpriteRenderer>();
+        foreach (SpriteRenderer s in spriteRenderers)
+        {
+            s.sortingLayerName = this.pieceSortingLayer;
+        }
         spawnedPiece.transform.position = gameObject.transform.position;
         spawnedPiece.transform.localScale = new Vector3(81, 81, 1);
         spawnedPiece.GetComponent<PolygonCollider2D>().enabled = false;

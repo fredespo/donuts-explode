@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Analytics;
+using BinaryCharm.SemanticColorPalette;
 
 public class LevelLoader : MonoBehaviour
 {
@@ -12,9 +13,10 @@ public class LevelLoader : MonoBehaviour
     public textTimer timer;
     public GameObject pauseButton;
     public GameObject bombPieces;
+    public SCP_PaletteProvider donutPaletteProvider;
     public GameObject pieceShooter;
     public PieceTutorialAnimator pieceTutorialAnimator;
-    public PieceShooter pieceShooterComp;
+    private PieceShooter pieceShooterComp;
     public GameObject shootTapZone;
     public GameOverUI gameOverUI;
     public Score score;
@@ -22,7 +24,7 @@ public class LevelLoader : MonoBehaviour
     public AnimatedCountDown countDown;
     public LevelIndicator levelIndicator;
     public GameObject bonusLevelIndicator;
-    public ScoreBonus scoreBonus;   
+    public ScoreBonus scoreBonus;
     public List<Reflector> pieceReflectors;
     public List<Level> levels;
     public float bonusLevelStartDelaySec;
@@ -48,6 +50,7 @@ public class LevelLoader : MonoBehaviour
     public void LoadLevel(int levelIndex, float startDelaySec)
     {
         this.loadingLevel = true;
+        this.setDonutPaletteForLevel(levelIndex);
         if (levelIndex == 0)
         {
             score.Reset();
@@ -78,6 +81,18 @@ public class LevelLoader : MonoBehaviour
             StartCoroutine(StartCurrentLevelAfterDelay(startDelaySec));
         }
         this.loadingLevel = false;
+    }
+
+    private void setDonutPaletteForLevel(int levelIndex)
+    {
+        int paletteIndex = getDonutPaletteForLevel(levelIndex);
+        this.donutPaletteProvider.SetActivePaletteIndex(paletteIndex);
+    }
+
+    private int getDonutPaletteForLevel(int levelIndex)
+    {
+        if (levelIndex == 0) return 0;
+        return Random.Range(0, this.donutPaletteProvider.GetNumPalettes());
     }
 
     public void StartCurrentLevelAfterDelaySec(float delaySec)
@@ -165,7 +180,9 @@ public class LevelLoader : MonoBehaviour
         {
             bomb = Instantiate(level.bomb);
             bomb.transform.SetParent(canvas.transform, false);
-            timer.Init(bomb.GetComponent<Detonator>(), bomb.GetComponentInChildren<BombDefuzer>(), bomb.GetComponent<Bomb>());
+            Bomb bombComp = bomb.GetComponent<Bomb>();
+            bombComp.SetPalette(this.donutPaletteProvider.GetActivePaletteIndex());
+            timer.Init(bomb.GetComponent<Detonator>(), bomb.GetComponentInChildren<BombDefuzer>(), bombComp);
             timer.setTime(level.secondsOnTimer);
             timer.Pause();
             timer.gameObject.SetActive(true);
@@ -191,7 +208,7 @@ public class LevelLoader : MonoBehaviour
     {
         if (currLevelIdx < LevelCount() - 1)
         {
-            if(!this.isBonusLevel)
+            if (!this.isBonusLevel)
             {
                 ++currLevelIdx;
             }

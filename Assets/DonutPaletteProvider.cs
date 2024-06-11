@@ -5,27 +5,15 @@ using BinaryCharm.SemanticColorPalette;
 
 public class DonutPaletteProvider : MonoBehaviour
 {
-    public bool randomizePaletteOnStart = true;
     public SCP_PaletteProvider paletteProvider;
     public Sprinkles sprinkles;
     private Vector2 touchStart;
     private PieceShooterPaletteProvider pieceShooterPaletteProvider;
 
-    void Start()
-    {
-        this.pieceShooterPaletteProvider = GameObject.FindWithTag("PiecePalette").GetComponent<PieceShooterPaletteProvider>();
-        if (this.randomizePaletteOnStart) changePaletteToRandom();
-    }
-
     void Update()
     {
         changePaletteWithSwipe(50f);
         changePaletteWithKeys(KeyCode.LeftArrow, KeyCode.RightArrow);
-    }
-
-    private void changePaletteToRandom()
-    {
-        SetPalette(Random.Range(0, this.paletteProvider.GetNumPalettes()));
     }
 
     private void changePaletteWithKeys(KeyCode keyCodeDec, KeyCode keyCodeInc)
@@ -71,9 +59,10 @@ public class DonutPaletteProvider : MonoBehaviour
         SetPalette(nextPaletteIndex);
     }
 
-    private void SetPalette(int index)
+    public void SetPalette(int index)
     {
         this.paletteProvider.SetActivePaletteIndex(index);
+        if (this.pieceShooterPaletteProvider == null) this.pieceShooterPaletteProvider = GameObject.FindWithTag("PiecePalette").GetComponent<PieceShooterPaletteProvider>();
         this.pieceShooterPaletteProvider.SetActivePaletteIndex(index);
         this.sprinkles.ColorSprinkles();
     }

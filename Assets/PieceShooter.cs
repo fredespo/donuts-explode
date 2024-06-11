@@ -47,6 +47,7 @@ public class PieceShooter : MonoBehaviour
         }
 
         SpawnPiece();
+
         soundEffect = GetComponent<AudioSource>();
         this.levelStats.Reset();
     }
@@ -144,18 +145,23 @@ public class PieceShooter : MonoBehaviour
         if (pieceIndex < pieces.Length)
         {
             spawnedPiece = Instantiate(pieceToSpawn, gameObject.transform.position, gameObject.transform.rotation);
-            spawnedPiece.transform.SetParent(pieceParent.transform);
-            spawnedPiece.transform.position = gameObject.transform.position;
-            spawnedPiece.transform.localScale = new Vector3(81, 81, 1);
-            spawnedPiece.GetComponentInChildren<SpriteRenderer>().sortingOrder = -1;
-            spawnedPiece.GetComponent<Rigidbody2D>().isKinematic = true;
-            spawnedPiece.GetComponentInChildren<SCP_PaletteProvider>().SetActivePaletteIndex(this.paletteProvider.GetActivePaletteIndex());
-            BombPiece bombPiece = spawnedPiece.GetComponent<BombPiece>();
-            bombPiece.SetOnMiss(() => RecordMissedShot());
-            bombPiece.SetOnFilledHole(() => RecordGoodShot());
+            InitPiece(spawnedPiece);
         }
 
         spawnedPieceReadyToShoot = true;
+    }
+
+    private void InitPiece(GameObject spawnedPiece)
+    {
+        spawnedPiece.transform.SetParent(pieceParent.transform);
+        spawnedPiece.transform.position = gameObject.transform.position;
+        spawnedPiece.transform.localScale = new Vector3(81, 81, 1);
+        spawnedPiece.GetComponentInChildren<SpriteRenderer>().sortingOrder = -1;
+        spawnedPiece.GetComponent<Rigidbody2D>().isKinematic = true;
+        spawnedPiece.GetComponentInChildren<SCP_PaletteProvider>().SetActivePaletteIndex(this.paletteProvider.GetActivePaletteIndex());
+        BombPiece bombPiece = spawnedPiece.GetComponent<BombPiece>();
+        bombPiece.SetOnMiss(() => RecordMissedShot());
+        bombPiece.SetOnFilledHole(() => RecordGoodShot());
     }
 
     public void SetShootingEnabled(bool shootingEnabled)

@@ -6,9 +6,16 @@ public class Bomb : MonoBehaviour
 {
 	public Rotator rotator;
 
+	public DonutPaletteProvider paletteProvider;
+
 	public void StartBomb()
 	{
 		rotator.enabled = true;
+	}
+
+	public void SetPalette(int paletteIndex)
+	{
+		this.paletteProvider.SetPalette(paletteIndex);
 	}
 
 	public bool PieceWillGoInHole(GameObject piece, GameObject hole, float secLeft)
