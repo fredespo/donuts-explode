@@ -70,4 +70,8 @@ public class PieceTutorialAnimator : MonoBehaviour
         Destroy(this.spawnedPiece);
         this.spawnedPiece = null;
     }
+
+    public GameObject GetSpawnedPiece() {
+        return this.spawnedPiece;
+    }
 }

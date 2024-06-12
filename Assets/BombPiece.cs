@@ -211,4 +211,10 @@ public class BombPiece : MonoBehaviour
     {
         return this.sprinkles;
     }
+
+    public void SetSprinkles(GameObject sprinkles) {
+        Destroy(this.sprinkles);
+        sprinkles.transform.SetParent(this.transform);
+        this.sprinkles = sprinkles;
+    }
 }

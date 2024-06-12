@@ -30,7 +30,7 @@ public class PieceShooter : MonoBehaviour
         this.bonusSoundBasePitch = this.bonusSound.pitch;
     }
 
-    public void Init()
+    public void Init(GameObject firstPiece = null)
     {
         pieceIndex = 0;
         angleIdx = 0;
@@ -46,7 +46,8 @@ public class PieceShooter : MonoBehaviour
             StopCoroutine("ChangeAngleContinuously");
         }
 
-        SpawnPiece();
+        GameObject sprinkles = firstPiece == null ? null : firstPiece.GetComponent<BombPiece>().GetSprinkles();
+        SpawnPiece(sprinkles);
 
         soundEffect = GetComponent<AudioSource>();
         this.levelStats.Reset();
@@ -120,7 +121,7 @@ public class PieceShooter : MonoBehaviour
         SetAngle(angles[angleIdx]);
     }
 
-    public void SpawnPiece()
+    public void SpawnPiece(GameObject sprinkles = null)
     {
         if (!CanSpawnPiece())
         {
@@ -145,13 +146,13 @@ public class PieceShooter : MonoBehaviour
         if (pieceIndex < pieces.Length)
         {
             spawnedPiece = Instantiate(pieceToSpawn, gameObject.transform.position, gameObject.transform.rotation);
-            InitPiece(spawnedPiece);
+            InitPiece(spawnedPiece, sprinkles);
         }
 
         spawnedPieceReadyToShoot = true;
     }
 
-    private void InitPiece(GameObject spawnedPiece)
+    private void InitPiece(GameObject spawnedPiece, GameObject sprinkles = null)
     {
         spawnedPiece.transform.SetParent(pieceParent.transform);
         spawnedPiece.transform.position = gameObject.transform.position;
@@ -162,6 +163,7 @@ public class PieceShooter : MonoBehaviour
         BombPiece bombPiece = spawnedPiece.GetComponent<BombPiece>();
         bombPiece.SetOnMiss(() => RecordMissedShot());
         bombPiece.SetOnFilledHole(() => RecordGoodShot());
+        if (sprinkles != null) bombPiece.SetSprinkles(sprinkles);
     }
 
     public void SetShootingEnabled(bool shootingEnabled)
