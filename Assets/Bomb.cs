@@ -15,7 +15,9 @@ public class Bomb : MonoBehaviour
 
 	public void SetPalette(int paletteIndex)
 	{
-		this.paletteProvider.SetPalette(paletteIndex);
+		if (this.paletteProvider != null) {
+			this.paletteProvider.SetPalette(paletteIndex);
+		}
 	}
 
 	public bool PieceWillGoInHole(GameObject piece, GameObject hole, float secLeft)

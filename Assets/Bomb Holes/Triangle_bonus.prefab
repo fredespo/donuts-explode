@@ -82,6 +82,8 @@ GameObject:
   - component: {fileID: 5232157751647018436}
   - component: {fileID: 5232157751647018438}
   - component: {fileID: 6426119077521361200}
+  - component: {fileID: 310975475932706161}
+  - component: {fileID: 7905401992753667872}
   m_Layer: 0
   m_Name: Triangle_bonus
   m_TagString: Triangle
@@ -150,7 +152,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 29936ed864b5dd04bb89b9982e975b71, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.48419213, g: 0.79545856, b: 0.88, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -229,6 +231,38 @@ PolygonCollider2D:
       - {x: 0.95, y: -0.775}
       - {x: 0.95, y: -0.72499996}
       - {x: 0.87, y: -0.59499997}
+--- !u!114 &310975475932706161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5232157751647018443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4846b7195edc1d943bd7711fd09e61a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_rPalettes:
+  - {fileID: 11400000, guid: ac35c39a27dcd51428eb21cca7a0a947, type: 2}
+  m_iActivePaletteIndex: 0
+--- !u!114 &7905401992753667872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5232157751647018443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85a618bc812a9ed4a8e17e0bd2e7d92c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_rPaletteProvider: {fileID: 310975475932706161}
+  m_bIsActivePaletteIndexOverridden: 0
+  m_iActivePaletteIndexOverride: 0
+  m_color:
+    m_id: 1
 --- !u!1 &5571425194467786618
 GameObject:
   m_ObjectHideFlags: 0
