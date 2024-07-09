@@ -5,13 +5,15 @@ using System.Threading;
 using UnityEngine;
 using UnityEngine.Events;
 using System;
+using BinaryCharm.SemanticColorPalette.Colorers.Renderers;
 
 public class BombPiece : MonoBehaviour
 {
     public float fadeSpeed = 1;
     public float fadeDelaySec = 0.2f;
     public GameObject impactEffect;
-    SpriteRenderer spriteRenderer;
+    SpriteRenderer[] spriteRenderers;
+    SCP_SpriteRendererColorer[] spriteRendererColorers;
     private bool fading = false;
     private float fadeStartTime;
     private bool caughtInMagnet = false;
@@ -36,7 +38,8 @@ public class BombPiece : MonoBehaviour
 
     void Start()
     {
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        this.spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
+        this.spriteRendererColorers = GetComponentsInChildren<SCP_SpriteRendererColorer>();
         this.rigibody = GetComponent<Rigidbody2D>();
         this.hitBombSoundEffect = GetComponent<AudioSource>();
         this.reflectSoundEffect = GameObject.FindWithTag("PieceReflectSoundEffect").GetComponent<AudioSource>();
@@ -88,11 +91,20 @@ public class BombPiece : MonoBehaviour
     {
         if (fading && Time.time >= this.fadeStartTime + this.fadeDelaySec)
         {
-            Color color = spriteRenderer.color;
-            color.a -= fadeSpeed * Time.deltaTime;
-            spriteRenderer.color = color;
-            if (color.a <= 0f)
-            {
+            bool isDoneFading = true;
+
+            foreach (SpriteRenderer spriteRenderer in this.spriteRenderers) {
+                Color color = spriteRenderer.color;
+                color.a -= fadeSpeed * Time.deltaTime;
+                spriteRenderer.color = color;
+                if (color.a <= 0f) {
+                    color.a = 0f;
+                } else {
+                    isDoneFading = false;
+                }
+            }
+
+            if (isDoneFading) {
                 this.onMiss.Invoke();
                 Destroy(gameObject);
             }
@@ -126,7 +138,6 @@ public class BombPiece : MonoBehaviour
         }
 
         this.inMagnetRange = true;
-        StopFading();
         if (this.hitBomb)
         {
             this.hitBombSoundEffect.Stop();
@@ -143,22 +154,38 @@ public class BombPiece : MonoBehaviour
     {
         this.inMagnetRange = false;
         this.caughtInMagnet = false;
-        this.fading = true;
+        startFading();
         this.leftMagnet = true;
         transform.SetParent(this.origParent);
     }
 
+    private void startFading() {
+        disableColorers();
+        this.fading = true;
+    }
+
     private void StopFading()
     {
-        fading = false;
+        if (!this.fading) return;
+
+        this.fading = false;
+        disableColorers();
         SetAlpha(1.0f);
+    }
+
+    private void disableColorers() {
+        foreach (SCP_SpriteRendererColorer colorer in this.spriteRendererColorers) {
+            colorer.enabled = false;
+        }
     }
 
     private void SetAlpha(float value)
     {
-        Color color = spriteRenderer.color;
-        color.a = value;
-        spriteRenderer.color = color;
+        foreach (SpriteRenderer spriteRenderer in this.spriteRenderers) {
+            Color color = spriteRenderer.color;
+            color.a = value;
+            spriteRenderer.color = color;
+        }
     }
 
     public void ReflectToBomb()
