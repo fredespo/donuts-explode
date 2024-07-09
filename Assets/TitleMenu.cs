@@ -75,7 +75,7 @@ public class TitleMenu : MonoBehaviour
         }
         else
         {
-            screenManager.ShowGameWonScreen();
+            levelLoader.LoadLevel(0, startDelaySec);
         }
     }
 
