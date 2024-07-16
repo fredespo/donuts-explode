@@ -10,7 +10,8 @@ using System;
 
 public class DataStorage : MonoBehaviour
 {
-    public AudioMixer mixer;
+    public VolumeSetting volumeSettingSfx;
+    public VolumeSetting volumeSettingMusic;
     private SaveData saveData;
     private BinaryFormatter formatter;
     private string saveFilePath;
@@ -148,10 +149,10 @@ public class DataStorage : MonoBehaviour
 
     public void LoadMusicVol()
     {
-        float musicVol = GetMusicVolumePct() > 0 ? (float)GetMusicVolumePct() / 100 : 0.0001f;
-        float soundFxVol = GetSoundFxVolumePct() > 0 ? (float)GetSoundFxVolumePct() / 100 : 0.0001f;
-        mixer.SetFloat("MusicVolume", Mathf.Log10(musicVol) * 20);
-        mixer.SetFloat("SoundFxVolume", Mathf.Log10(soundFxVol) * 20);
+        float musicVolPct = GetMusicVolumePct() > 0 ? (float)GetMusicVolumePct() / 100 : 0.0001f;
+        float soundFxVolPct = GetSoundFxVolumePct() > 0 ? (float)GetSoundFxVolumePct() / 100 : 0.0001f;
+        volumeSettingMusic.setPct(musicVolPct);
+        volumeSettingSfx.setPct(soundFxVolPct);
     }
 
     public void SaveMusicVolumePct(int pct)

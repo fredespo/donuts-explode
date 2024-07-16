@@ -6,9 +6,7 @@ using UnityEngine.Audio;
 
 public class VolumeSlider : MonoBehaviour
 {
-    public AudioMixer mixer;
-    public string mixerParam;
-    public float boost = 0f;
+    public VolumeSetting volumeSetting;
     private Slider slider;
 
     void Start()
@@ -19,11 +17,6 @@ public class VolumeSlider : MonoBehaviour
 
     public void ValueChanged()
     {
-        SetVolume(this.slider.value);
-    }
-
-    private void SetVolume(float val)
-    {
-        mixer.SetFloat(mixerParam, Mathf.Log10(val) * 20 + this.boost);
+        volumeSetting.setPct(this.slider.value);
     }
 }

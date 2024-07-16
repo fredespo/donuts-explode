@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class GameMusic : MonoBehaviour
 {
-    public float minMusicPitch = 1.0f;
-    public float maxMusicPitch = 2.0f;
+    private float minMusicPitch = 1.0f;
     [SerializeField] public AnimationCurve windDownCurve;
     public float timeToWindDown = 1.0f;
     private bool windingDown;

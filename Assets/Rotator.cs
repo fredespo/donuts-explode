@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Rotator : MonoBehaviour
 {
+    public bool useConstSpeed = false;
+    public float constSpeed = 60f;
     public RotationDir direction = RotationDir.Clockwise;
     public float Speed { get; private set; }
 
@@ -17,17 +19,23 @@ public class Rotator : MonoBehaviour
 
     void Start()
     {
-        this.timer = GameObject.FindWithTag("BombTimer")?.GetComponent<textTimer>();
+        if (this.useConstSpeed) {
+            this.Speed = this.constSpeed;
+        } else {
+            this.timer = GameObject.FindWithTag("BombTimer")?.GetComponent<textTimer>();
+        }
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        float min = 40f;
-        float max = 220f;
-        float elapsedRatio = this.timer != null ? this.timer.GetTimeElapsed() / this.timer.GetStartSeconds() : 0f;
-        float degPerSec = min + ((max - min) * elapsedRatio);
-        this.Speed = degPerSec;
-        transform.Rotate(0, 0, degPerSec * Time.deltaTime * (direction == RotationDir.Clockwise ? -1 : 1));
+        if (!this.useConstSpeed) {
+            float min = 40f;
+            float max = 220f;
+            float elapsedRatio = this.timer != null ? this.timer.GetTimeElapsed() / this.timer.GetStartSeconds() : 0f;
+            float degPerSec = min + ((max - min) * elapsedRatio);
+            this.Speed = degPerSec;
+        }
+        transform.Rotate(0, 0, this.Speed * Time.deltaTime * (direction == RotationDir.Clockwise ? -1 : 1));
     }
 
     public void Reverse()
