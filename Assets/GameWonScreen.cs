@@ -55,6 +55,7 @@ public class GameWonScreen : MonoBehaviour
             this.victoryMusic.volume = this.initVictoryMusicVolume;
             this.victoryMusic.Play();
             this.onSkipAnimation.Invoke();
+            this.onPostInit.Invoke();
         }
     }
 
@@ -108,5 +109,10 @@ public class GameWonScreen : MonoBehaviour
     public void PlayExtinguishSound()
     {
         this.extinguishSound.Play();
+    }
+
+    public void PostInit()
+    {
+        this.onPostInit.Invoke();
     }
 }

@@ -884,7 +884,7 @@ MonoBehaviour:
     - -40
     pieceShooterAngleChangeMode: 0
     pieceAnimationAngles: []
-  - bomb: {fileID: 6706467554741298094, guid: eb0adc4c78641d442bb5b6c824d7ff39, type: 3}
+  - bomb: {fileID: 6706467554741298094, guid: 9da7f09acafc12e4dbfb556331587afb, type: 3}
     secondsOnTimer: 50
     pieceShooterAngles:
     - 0
@@ -1840,6 +1840,39 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 487074905}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1163040788}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 2123201680}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
   onSkipAnimation:
     m_PersistentCalls:
@@ -6363,7 +6396,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &487074906
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8957,10 +8990,10 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 4805680758596140671, guid: d4cf59b570deb6d45a88ff28391ac6d4,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: c00cd6d61ac89c842984bed6b0617b66, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 3fd6543c9a0c4b6478c67ba6d82227c8, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1.7351917
+  m_Volume: 0.65
+  m_Pitch: 0.8
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -14286,7 +14319,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1163040789
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17058,7 +17091,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: b53715d0807e6fb438ef66698338f57b, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.8
+  m_Volume: 0
   m_Pitch: 0.9
   Loop: 0
   Mute: 0
@@ -22437,7 +22470,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 0495acfd698fe32479fda4697b7f3418, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -26245,7 +26278,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: dec40afe10ec1174897bb1ec68375436, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.8
+  m_Volume: 0
   m_Pitch: 1
   Loop: 1
   Mute: 0
