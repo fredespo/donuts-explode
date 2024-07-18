@@ -97,6 +97,7 @@ public class BombPiece : MonoBehaviour
 
             foreach (SpriteRenderer spriteRenderer in this.spriteRenderers)
             {
+                if (spriteRenderer == null) continue;
                 Color color = spriteRenderer.color;
                 color.a -= fadeSpeed * Time.deltaTime;
                 spriteRenderer.color = color;
