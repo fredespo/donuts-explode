@@ -24,6 +24,8 @@ public class PieceShooter : MonoBehaviour
     private float bonusSoundBasePitch;
     private bool isBonusLevel;
     public PieceShooterPaletteProvider paletteProvider;
+    public float shootSoundPitchMin = 0.75f;
+    public float shootSoundPitchMax = 1.0f;
 
     void Start()
     {
@@ -101,7 +103,7 @@ public class PieceShooter : MonoBehaviour
             pieceRb.velocity = transform.up * speed;
             spawnedPiece.GetComponentInChildren<SpriteRenderer>().sortingOrder = 0;
             spawnedPieceReadyToShoot = false;
-            soundEffect.pitch = Random.Range(0.75f, 1.0f);
+            soundEffect.pitch = Random.Range(this.shootSoundPitchMin, this.shootSoundPitchMax);
             soundEffect.Play(0);
             this.levelStats.RecordShot();
         }

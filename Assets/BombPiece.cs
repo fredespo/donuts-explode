@@ -23,6 +23,8 @@ public class BombPiece : MonoBehaviour
     private GameObject bomb;
     private Rigidbody2D rigibody;
     private AudioSource hitBombSoundEffect;
+    public float hitBombSoundPitchMin = 1.0f;
+    public float hitBombSoundPitchMax = 1.2f;
     private AudioSource reflectSoundEffect;
     private Action onMiss;
     private Action onFilledHole;
@@ -55,7 +57,7 @@ public class BombPiece : MonoBehaviour
             {
                 fading = true;
                 fadeStartTime = Time.time;
-                this.hitBombSoundEffect.pitch = UnityEngine.Random.Range(0.25f, 0.4f);
+                this.hitBombSoundEffect.pitch = UnityEngine.Random.Range(this.hitBombSoundPitchMin, this.hitBombSoundPitchMax);
                 this.hitBombSoundEffect.Play(0);
                 var impulse = (UnityEngine.Random.Range(100f, 300f) * Mathf.Deg2Rad) * this.rigibody.inertia;
                 this.rigibody.AddTorque(impulse, ForceMode2D.Impulse);
@@ -93,18 +95,23 @@ public class BombPiece : MonoBehaviour
         {
             bool isDoneFading = true;
 
-            foreach (SpriteRenderer spriteRenderer in this.spriteRenderers) {
+            foreach (SpriteRenderer spriteRenderer in this.spriteRenderers)
+            {
                 Color color = spriteRenderer.color;
                 color.a -= fadeSpeed * Time.deltaTime;
                 spriteRenderer.color = color;
-                if (color.a <= 0f) {
+                if (color.a <= 0f)
+                {
                     color.a = 0f;
-                } else {
+                }
+                else
+                {
                     isDoneFading = false;
                 }
             }
 
-            if (isDoneFading) {
+            if (isDoneFading)
+            {
                 this.onMiss.Invoke();
                 Destroy(gameObject);
             }
@@ -159,7 +166,8 @@ public class BombPiece : MonoBehaviour
         transform.SetParent(this.origParent);
     }
 
-    private void startFading() {
+    private void startFading()
+    {
         disableColorers();
         this.fading = true;
     }
@@ -173,15 +181,18 @@ public class BombPiece : MonoBehaviour
         SetAlpha(1.0f);
     }
 
-    private void disableColorers() {
-        foreach (SCP_SpriteRendererColorer colorer in this.spriteRendererColorers) {
+    private void disableColorers()
+    {
+        foreach (SCP_SpriteRendererColorer colorer in this.spriteRendererColorers)
+        {
             colorer.enabled = false;
         }
     }
 
     private void SetAlpha(float value)
     {
-        foreach (SpriteRenderer spriteRenderer in this.spriteRenderers) {
+        foreach (SpriteRenderer spriteRenderer in this.spriteRenderers)
+        {
             Color color = spriteRenderer.color;
             color.a = value;
             spriteRenderer.color = color;
@@ -239,7 +250,8 @@ public class BombPiece : MonoBehaviour
         return this.sprinkles;
     }
 
-    public void SetSprinkles(GameObject sprinkles) {
+    public void SetSprinkles(GameObject sprinkles)
+    {
         Destroy(this.sprinkles);
         sprinkles.transform.SetParent(this.transform);
         this.sprinkles = sprinkles;

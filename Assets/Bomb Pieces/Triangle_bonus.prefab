@@ -167,6 +167,8 @@ MonoBehaviour:
   fadeDelaySec: 0.2
   impactEffect: {fileID: 7636298781156129421, guid: 8e900c4c467c3d0409c490cb36e916fa,
     type: 3}
+  hitBombSoundPitchMin: 0.95
+  hitBombSoundPitchMax: 1.05
   sprinkles: {fileID: 7043955244363684945}
 --- !u!82 &7371187631532183102
 AudioSource:
@@ -179,15 +181,15 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 4805680758596140671, guid: d4cf59b570deb6d45a88ff28391ac6d4,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: b43d102aac6b145468dcaa94a5cccae1, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 3fd6543c9a0c4b6478c67ba6d82227c8, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.3
-  m_Pitch: 0.42
+  m_Volume: 0.6
+  m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 0
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
