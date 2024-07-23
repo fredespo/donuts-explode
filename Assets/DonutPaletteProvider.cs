@@ -10,11 +10,11 @@ public class DonutPaletteProvider : MonoBehaviour
     private Vector2 touchStart;
     private PieceShooterPaletteProvider pieceShooterPaletteProvider;
 
-    void Update()
-    {
-        changePaletteWithSwipe(50f);
-        changePaletteWithKeys(KeyCode.LeftArrow, KeyCode.RightArrow);
-    }
+    // void Update()
+    // {
+    //     changePaletteWithSwipe(50f);
+    //     changePaletteWithKeys(KeyCode.LeftArrow, KeyCode.RightArrow);
+    // }
 
     private void changePaletteWithKeys(KeyCode keyCodeDec, KeyCode keyCodeInc)
     {
