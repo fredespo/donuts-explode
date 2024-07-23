@@ -108,12 +108,13 @@ public class BombDefuzer : MonoBehaviour
     {
         yield return new WaitForSeconds(delaySec);
         score.Add(GetPointsEarned());
-        timer.CountDownFastAndThen(() => GameObject.FindGameObjectWithTag("WinUI").GetComponent<LevelWinUI>().ShowAccuracy(0.5f, () => StartCoroutine(ApplyBonusAndShowWinUICoroutine(0.4f))));
+        timer.CountDownFastAndThen(() => StartCoroutine(onTimerDoneCountingDownFast()));
     }
 
-    private IEnumerator ApplyBonusAndShowWinUICoroutine(float initialDelaySec)
+    private IEnumerator onTimerDoneCountingDownFast()
     {
-        yield return new WaitForSeconds(initialDelaySec);
+        yield return new WaitForSeconds(0.5f);
+        GameObject.FindGameObjectWithTag("WinUI").GetComponent<LevelWinUI>().ShowAccuracy(0f);
         this.scoreBonus.AddBonus(GameObject.FindWithTag("LevelShotStats").GetComponent<LevelStats>().AccuracyBonus());
         yield return new WaitForSeconds(1f);
         this.scoreBonus.AddToScoreWithAnimationAndThen(() => StartCoroutine(ShowWinUiCoroutine(0.3f)));

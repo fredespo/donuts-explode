@@ -5,17 +5,10 @@ using System;
 
 public class LevelWinUI : MonoBehaviour
 {
-    private Animator anim;
     public GameObject accuracyText;
     public GameObject accuracyBonusText;
-    public AudioSource accuracyRevealSound;
 
-    public void Start()
-    {
-        this.anim = GetComponent<Animator>();
-    }
-
-    public void ShowAccuracy(float initialDelaySec, Action andThen)
+    public void ShowAccuracy(float initialDelaySec, Action andThen = null)
     {
         StartCoroutine(ShowAccuracyCoroutine(initialDelaySec, andThen));
     }
@@ -24,10 +17,7 @@ public class LevelWinUI : MonoBehaviour
     {
         yield return new WaitForSeconds(initialDelaySec);
         this.accuracyText.SetActive(true);
-        this.accuracyRevealSound.Play();
-        yield return new WaitForSeconds(0.5f);
         this.accuracyBonusText.SetActive(true);
-        this.accuracyRevealSound.Play();
-        andThen.Invoke();
+        if (andThen != null) andThen.Invoke();
     }
 }
