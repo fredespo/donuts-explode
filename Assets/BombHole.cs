@@ -13,7 +13,7 @@ public class BombHole : MonoBehaviour
     void Start()
     {
         GetComponent<BombHolePlacer>().enabled = false;
-        this.magnet = GetChildWithName("Magnet");
+        this.magnet = GetChildWithName("Magnet", this.transform);
     }
 
     public void FillWith(GameObject obj)
@@ -37,7 +37,7 @@ public class BombHole : MonoBehaviour
         BombPiece piece = this.fillWith.GetComponent<BombPiece>();
         piece.FilledHole();
         GameObject sprinkles = piece.GetSprinkles();
-        if (sprinkles != null) sprinkles.transform.SetParent(gameObject.transform.parent.transform.parent, true);
+        if (sprinkles != null) sprinkles.transform.SetParent(GetChildWithName("Sprinkles", GetChildWithName("Donut", gameObject.transform.parent.transform.parent).transform).transform, true);
         filledCollider.transform.SetParent(gameObject.transform.parent.transform.parent, true);
         filledCollider.SetActive(true);
         filledCollider.GetComponent<PolygonCollider2D>().enabled = true;
@@ -47,10 +47,9 @@ public class BombHole : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private GameObject GetChildWithName(string name)
+    private GameObject GetChildWithName(string name, Transform parent)
     {
-        Transform trans = this.transform;
-        Transform childTrans = trans.Find(name);
+        Transform childTrans = parent.Find(name);
         if (childTrans != null)
         {
             return childTrans.gameObject;
