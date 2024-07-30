@@ -12,11 +12,23 @@ public class ContinueBtn : MonoBehaviour
     public void Start()
     {
         this.levelLoader = GameObject.FindGameObjectWithTag("LevelLoader").GetComponent<LevelLoader>();
-        this.donutEater = GameObject.FindGameObjectWithTag("DonutEater").GetComponent<DonutEater>();
+        GameObject donutEaterObj = GameObject.FindGameObjectWithTag("DonutEater");
+        if (donutEaterObj != null)
+        {
+            this.donutEater = donutEaterObj.GetComponent<DonutEater>();
+        }
     }
 
     public void Continue()
     {
-        this.donutEater.EatDonutAndThen(() => this.levelLoader.LoadNextLevelAndStartAfterDelay(0.1f));
+        Action loadNextLevelAction = () => this.levelLoader.LoadNextLevelAndStartAfterDelay(0.1f);
+        if (this.donutEater != null)
+        {
+            this.donutEater.EatDonutAndThen(loadNextLevelAction);
+        }
+        else
+        {
+            loadNextLevelAction.Invoke();
+        }
     }
 }

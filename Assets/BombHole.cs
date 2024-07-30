@@ -7,6 +7,7 @@ public class BombHole : MonoBehaviour
 {
     public GameObject filledCollider;
     public float fillDelay = 0.1f;
+    public GameObject sprinklesParent;
     private GameObject fillWith;
     private GameObject magnet;
 
@@ -37,7 +38,17 @@ public class BombHole : MonoBehaviour
         BombPiece piece = this.fillWith.GetComponent<BombPiece>();
         piece.FilledHole();
         GameObject sprinkles = piece.GetSprinkles();
-        if (sprinkles != null) sprinkles.transform.SetParent(GetChildWithName("Sprinkles", GetChildWithName("Donut", gameObject.transform.parent.transform.parent).transform).transform, true);
+        if (sprinkles != null)
+        {
+            if (sprinklesParent != null)
+            {
+                sprinkles.transform.SetParent(sprinklesParent.transform, true);
+            }
+            else
+            {
+                sprinkles.transform.SetParent(GetChildWithName("Sprinkles", gameObject.transform.parent.transform.parent).transform, true);
+            }
+        }
         filledCollider.transform.SetParent(gameObject.transform.parent.transform.parent, true);
         filledCollider.SetActive(true);
         filledCollider.GetComponent<PolygonCollider2D>().enabled = true;
