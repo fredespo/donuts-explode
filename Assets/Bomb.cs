@@ -1,12 +1,54 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using System;
 
 public class Bomb : MonoBehaviour
 {
 	public Rotator rotator;
 
 	public DonutPaletteProvider paletteProvider;
+	private bool isAnimatingIn;
+	private RectTransform rectTransform;
+
+	private Vector2 currPos;
+
+	private int animateInMoveSpeed = 650;
+	private int animateInTargetPosY = -400;
+	private Action afterAnimateInAction;
+
+	public void AnimateInAndThen(Action afterAnimateInAction)
+	{
+		this.isAnimatingIn = true;
+		this.rectTransform = GetComponent<RectTransform>();
+		this.currPos = this.rectTransform.anchoredPosition;
+		this.afterAnimateInAction = afterAnimateInAction;
+	}
+
+	public void Init(textTimer timer)
+	{
+		this.rotator.Init(timer);
+	}
+
+	public void Update()
+	{
+		if (this.isAnimatingIn)
+		{
+			float delta = this.animateInMoveSpeed * Time.deltaTime;
+			if (this.currPos.y - delta < this.animateInTargetPosY)
+			{
+				this.currPos.y = this.animateInTargetPosY;
+				this.isAnimatingIn = false;
+				this.afterAnimateInAction.Invoke();
+			}
+			else
+			{
+				this.currPos.y -= delta;
+			}
+			this.rectTransform.anchoredPosition = this.currPos;
+		}
+	}
 
 	public void StartBomb()
 	{
@@ -15,7 +57,8 @@ public class Bomb : MonoBehaviour
 
 	public void SetPalette(int paletteIndex)
 	{
-		if (this.paletteProvider != null) {
+		if (this.paletteProvider != null)
+		{
 			this.paletteProvider.SetPalette(paletteIndex);
 		}
 	}

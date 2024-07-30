@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Analytics;
 using BinaryCharm.SemanticColorPalette;
+using System;
 
 public class LevelLoader : MonoBehaviour
 {
@@ -62,25 +63,28 @@ public class LevelLoader : MonoBehaviour
         {
             this.currBonusLevel = this.bonusLevels[bonusLevelsCompleted];
         }
-        ResetCurrentLevel();
-        if (this.shouldAnimatePiece)
+        ResetCurrentLevel(() =>
         {
-            bombPieces.SetActive(false);
-            pieceTutorialAnimator.SetAngles(this.levels[currLevelIdx].pieceAnimationAngles);
-            pauseButton.SetActive(false);
-            pieceTutorialAnimator.AnimatePieceAndThen(() =>
+            if (this.shouldAnimatePiece)
             {
-                bombPieces.SetActive(true);
-                pauseButton.SetActive(true);
-                GameObject firstPiece = pieceTutorialAnimator.GetSpawnedPiece();
-                StartCoroutine(StartCurrentLevelAfterDelay(0, firstPiece));
-            });
-        }
-        else
-        {
-            StartCoroutine(StartCurrentLevelAfterDelay(startDelaySec));
-        }
-        this.loadingLevel = false;
+                bombPieces.SetActive(false);
+                pieceTutorialAnimator.SetAngles(this.levels[currLevelIdx].pieceAnimationAngles);
+                pauseButton.SetActive(false);
+                pieceTutorialAnimator.AnimatePieceAndThen(() =>
+                {
+                    bombPieces.SetActive(true);
+                    pauseButton.SetActive(true);
+                    GameObject firstPiece = pieceTutorialAnimator.GetSpawnedPiece();
+                    StartCoroutine(StartCurrentLevelAfterDelay(0, firstPiece));
+                });
+            }
+            else
+            {
+                StartCurrentLevel();
+            }
+
+            this.loadingLevel = false;
+        });
     }
 
     private void setDonutPaletteForLevel(int levelIndex)
@@ -92,7 +96,7 @@ public class LevelLoader : MonoBehaviour
     private int getDonutPaletteForLevel(int levelIndex)
     {
         if (levelIndex == 0) return 0;
-        return Random.Range(0, this.donutPaletteProvider.GetNumPalettes());
+        return UnityEngine.Random.Range(0, this.donutPaletteProvider.GetNumPalettes());
     }
 
     public void StartCurrentLevelAfterDelaySec(float delaySec)
@@ -118,7 +122,6 @@ public class LevelLoader : MonoBehaviour
         if (!this.isBonusLevel)
         {
             timer.UnPause();
-            bomb.SendMessage("StartBomb");
         }
 
         if (this.isBonusLevel)
@@ -161,7 +164,7 @@ public class LevelLoader : MonoBehaviour
         pieceTutorialAnimator.DestroySpawnedPiece();
     }
 
-    public void ResetCurrentLevel()
+    public void ResetCurrentLevel(Action andThen)
     {
         Level level = levels[currLevelIdx];
         pieceShooter.SetActive(false);
@@ -176,20 +179,36 @@ public class LevelLoader : MonoBehaviour
         {
             levelIndicator.gameObject.SetActive(false);
             bonusLevelIndicator.SetActive(true);
+            bombPieces.SetActive(true);
+            shootTapZone.SetActive(true);
         }
         else
         {
             bomb = Instantiate(level.bomb);
             bomb.transform.SetParent(canvas.transform, false);
             Bomb bombComp = bomb.GetComponent<Bomb>();
+            bombComp.StartBomb();
             bombComp.SetPalette(this.donutPaletteProvider.GetActivePaletteIndex());
-            timer.Init(bomb.GetComponent<Detonator>(), bomb.GetComponentInChildren<BombDefuzer>(), bombComp);
-            timer.setTime(level.secondsOnTimer);
+            bomb.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 700);
             timer.Pause();
-            timer.gameObject.SetActive(true);
-            bonusLevelIndicator.SetActive(false);
-            levelIndicator.gameObject.SetActive(true);
-            levelIndicator.Set(this.GetCurrentLevelIndex() + 1, this.LevelCount());
+            var defuzer = bomb.GetComponentInChildren<BombDefuzer>();
+            var detonator = bomb.GetComponent<Detonator>();
+            timer.Init(detonator, defuzer, bombComp);
+            timer.setTime(level.secondsOnTimer);
+            timer.gameObject.SetActive(false);
+            bomb.GetComponent<Bomb>().AnimateInAndThen(() =>
+            {
+                timer.gameObject.SetActive(true);
+                bonusLevelIndicator.SetActive(false);
+                levelIndicator.gameObject.SetActive(true);
+                levelIndicator.Set(this.GetCurrentLevelIndex() + 1, this.LevelCount());
+                bombPieces.SetActive(true);
+                shootTapZone.SetActive(true);
+                defuzer.Init(timer, shootTapZone, this.pieceShooter);
+                detonator.Init(this.pieceShooter);
+                bombComp.Init(timer);
+                andThen.Invoke();
+            });
         }
 
         foreach (Transform child in bombPieces.transform)
@@ -197,12 +216,16 @@ public class LevelLoader : MonoBehaviour
             Destroy(child.gameObject);
         }
 
-        bombPieces.SetActive(true);
-        shootTapZone.SetActive(true);
+
         gameOverUI.Hide();
         music.Reset();
         score.RefreshDispScore();
         this.scoreBonus.Reset();
+
+        if (this.isBonusLevel)
+        {
+            andThen.Invoke();
+        }
     }
 
     public void LoadNextLevelAndStartAfterDelay(float delaySec)

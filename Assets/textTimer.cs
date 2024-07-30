@@ -54,7 +54,7 @@ public class textTimer : MonoBehaviour
         HandleSlowMo();
         HandleFading();
 
-        if(countingDownFast)
+        if (countingDownFast)
         {
             float timeChange = countDownFastPerSecond * Time.deltaTime;
             if (seconds < timeChange)
@@ -69,7 +69,7 @@ public class textTimer : MonoBehaviour
                 seconds -= timeChange;
             }
         }
-        else if(!paused)
+        else if (!paused)
         {
             seconds -= Time.deltaTime;
             AdjustMusic();
@@ -83,7 +83,7 @@ public class textTimer : MonoBehaviour
 
     private void DetonateBomb()
     {
-        if(this.paused)
+        if (this.paused)
         {
             return;
         }
@@ -100,12 +100,12 @@ public class textTimer : MonoBehaviour
 
     private void HandleFading()
     {
-        if(this.fading && this.GetAlpha() > 0f)
+        if (this.fading && this.GetAlpha() > 0f)
         {
             this.SetAlpha(this.GetAlpha() - 0.014f);
         }
 
-        if(this.text != null && !this.fading)
+        if (this.text != null && !this.fading)
         {
             this.SetAlpha(1.0f);
         }
@@ -125,15 +125,15 @@ public class textTimer : MonoBehaviour
 
     private void HandleSlowMo()
     {
-        
-        if(!this.slowMo && ShouldEnterSlowMo())
+
+        if (!this.slowMo && ShouldEnterSlowMo())
         {
             this.slowMo = true;
             Time.timeScale = this.slowMoTimeScale;
             this.camAnim.SetBool("slowmo", this.slowMo);
         }
-        
-        if(this.slowMo && shouldExitSlowMo())
+
+        if (this.slowMo && shouldExitSlowMo())
         {
             this.slowMo = false;
             Time.timeScale = 1.0f;
@@ -156,7 +156,7 @@ public class textTimer : MonoBehaviour
 
     private bool shouldExitSlowMo()
     {
-        if(this.defuzer == null || this.pieceShooter == null || this.pieceShooter.GetPiece() == null)
+        if (this.defuzer == null || this.pieceShooter == null || this.pieceShooter.GetPiece() == null)
         {
             return false;
         }
@@ -175,7 +175,7 @@ public class textTimer : MonoBehaviour
     public void UnPause()
     {
         paused = false;
-        if(this.seconds <= 0)
+        if (this.seconds <= 0)
         {
             DetonateBomb();
         }
@@ -189,7 +189,7 @@ public class textTimer : MonoBehaviour
 
     private void RefreshText()
     {
-        if(text != null)
+        if (text != null)
         {
             float secToDisplay = Mathf.Max(0f, this.seconds);
             text.text = secToDisplay.ToString("00.00").Replace(".", ":");

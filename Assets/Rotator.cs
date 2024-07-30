@@ -17,18 +17,23 @@ public class Rotator : MonoBehaviour
     }
     private textTimer timer;
 
-    void Start()
+    public void Start()
     {
-        if (this.useConstSpeed) {
-            this.Speed = this.constSpeed;
-        } else {
-            this.timer = GameObject.FindWithTag("BombTimer")?.GetComponent<textTimer>();
+        this.Speed = this.constSpeed;
+    }
+
+    public void Init(textTimer timer)
+    {
+        if (!this.useConstSpeed)
+        {
+            this.timer = timer;
         }
     }
 
     void FixedUpdate()
     {
-        if (!this.useConstSpeed) {
+        if (!this.useConstSpeed)
+        {
             float min = 40f;
             float max = 220f;
             float elapsedRatio = this.timer != null ? this.timer.GetTimeElapsed() / this.timer.GetStartSeconds() : 0f;

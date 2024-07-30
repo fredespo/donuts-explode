@@ -19,7 +19,6 @@ public class Detonator : MonoBehaviour
     public void Start()
     {
         explosionSound = GameObject.FindGameObjectWithTag("ExplosionSound").GetComponent<AudioSource>();
-        pieceShooter = GameObject.FindGameObjectWithTag("PieceShooter");
         GameObject scoreObj = GameObject.FindGameObjectWithTag("Score");
         camAnim = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Animator>();
         scoreBonusObj = GameObject.FindGameObjectWithTag("ScoreBonus");
@@ -37,6 +36,11 @@ public class Detonator : MonoBehaviour
         {
             gameOverUI = gameOverUiObj.GetComponent<GameOverUI>();
         }
+    }
+
+    public void Init(GameObject pieceShooter)
+    {
+        this.pieceShooter = pieceShooter;
     }
 
     public void activate()

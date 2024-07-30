@@ -24,17 +24,21 @@ public class BombDefuzer : MonoBehaviour
 
     void Start()
     {
-        if (!isBonusBomb)
-        {
-            timer = GameObject.FindGameObjectWithTag("BombTimer").GetComponent<textTimer>();
-        }
-        pieceShooter = GameObject.FindGameObjectWithTag("PieceShooter");
-        shootTapZone = GameObject.FindGameObjectWithTag("ShootTapZone");
         music = GameObject.FindGameObjectWithTag("GameMusic").GetComponent<GameMusic>();
         dataStorage = GameObject.FindGameObjectWithTag("DataStorage").GetComponent<DataStorage>();
         score = GameObject.FindGameObjectWithTag("Score").GetComponent<Score>();
         scoreBonus = GameObject.FindGameObjectWithTag("ScoreBonus").GetComponent<ScoreBonus>();
         pauseButton = GameObject.FindGameObjectWithTag("PauseButton");
+    }
+
+    public void Init(textTimer timer, GameObject shootTapZone, GameObject pieceShooter)
+    {
+        if (!this.isBonusBomb)
+        {
+            this.timer = timer;
+        }
+        this.shootTapZone = shootTapZone;
+        this.pieceShooter = pieceShooter;
     }
 
     void Update()
