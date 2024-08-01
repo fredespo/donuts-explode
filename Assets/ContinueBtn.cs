@@ -8,6 +8,7 @@ public class ContinueBtn : MonoBehaviour
 {
     private LevelLoader levelLoader;
     private DonutEater donutEater;
+    public GameObject[] buttons;
 
     public void Start()
     {
@@ -29,6 +30,11 @@ public class ContinueBtn : MonoBehaviour
         else
         {
             loadNextLevelAction.Invoke();
+        }
+
+        foreach (GameObject button in this.buttons)
+        {
+            button.SetActive(false);
         }
     }
 }
