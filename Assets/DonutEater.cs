@@ -13,7 +13,7 @@ public class DonutEater : MonoBehaviour
     public GameObject[] donut;
     public AudioSource biteSound;
 
-    public void EatDonutAndThen(Action andThen)
+    public void EatDonutAndThen(Action andThen, Action onLastBite)
     {
         for (int i = 0; i < this.bites.Length; ++i)
         {
@@ -21,10 +21,10 @@ public class DonutEater : MonoBehaviour
             SCP_Palette donutPal = this.donutPaletteProvider.GetPalette();
             this.bites[i].setPalettes(uiPal, donutPal);
         }
-        StartCoroutine(AnimateBitesCoroutine(andThen));
+        StartCoroutine(AnimateBitesCoroutine(andThen, onLastBite));
     }
 
-    private IEnumerator AnimateBitesCoroutine(Action andThen)
+    private IEnumerator AnimateBitesCoroutine(Action andThen, Action onLastBite)
     {
         ActivateBite(0);
         yield return new WaitForSeconds(0.6f);
@@ -38,6 +38,7 @@ public class DonutEater : MonoBehaviour
         {
             obj.SetActive(false);
         }
+        onLastBite.Invoke();
         yield return new WaitForSeconds(1.0f);
         andThen.Invoke();
     }

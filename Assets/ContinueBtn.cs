@@ -9,6 +9,7 @@ public class ContinueBtn : MonoBehaviour
     private LevelLoader levelLoader;
     private DonutEater donutEater;
     public GameObject[] buttons;
+    public GameObject[] removeOnLastBite;
 
     public void Start()
     {
@@ -25,7 +26,7 @@ public class ContinueBtn : MonoBehaviour
         Action loadNextLevelAction = () => this.levelLoader.LoadNextLevelAndStartAfterDelay(0.1f);
         if (this.donutEater != null)
         {
-            this.donutEater.EatDonutAndThen(loadNextLevelAction);
+            this.donutEater.EatDonutAndThen(loadNextLevelAction, () => onLastBite());
         }
         else
         {
@@ -35,6 +36,13 @@ public class ContinueBtn : MonoBehaviour
         foreach (GameObject button in this.buttons)
         {
             button.SetActive(false);
+        }
+    }
+
+    private void onLastBite() {
+        foreach (GameObject obj in this.removeOnLastBite)
+        {
+            obj.SetActive(false);
         }
     }
 }
