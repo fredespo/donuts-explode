@@ -65,18 +65,8 @@ public class TitleMenu : MonoBehaviour
         screenManager.ShowGameScreen();
         int savedLevel = dataStorage.GetLevel();
         if (forceStartLevel) savedLevel = startLevelIndex;
-        if (savedLevel < 0)
-        {
-            levelLoader.LoadLevel(0, startDelaySec);
-        }
-        else if (savedLevel < levelLoader.LevelCount())
-        {
-            levelLoader.LoadLevel(savedLevel, startDelaySec);
-        }
-        else
-        {
-            levelLoader.LoadLevel(0, startDelaySec);
-        }
+        int level = savedLevel < 0 || savedLevel >= levelLoader.LevelCount() ? 0 : savedLevel;
+        levelLoader.LoadLevel(level, startDelaySec, true);
     }
 
     public void ForceLevel(int level)

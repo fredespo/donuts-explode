@@ -33,13 +33,13 @@ public class LevelLoader : MonoBehaviour
     public List<BonusLevel> bonusLevels;
     private int bonusLevelIndex;
     private int currLevelIdx = -1;
-    private float startDelaySec;
     private GameObject bomb;
     private DataStorage dataStorage;
     private bool shouldAnimatePiece;
     private bool loadingLevel;
     private bool isBonusLevel;
     private BonusLevel currBonusLevel;
+    private Action startBombAction;
 
     public void Start()
     {
@@ -48,7 +48,7 @@ public class LevelLoader : MonoBehaviour
         pieceShooterComp = pieceShooter.GetComponent<PieceShooter>();
     }
 
-    public void LoadLevel(int levelIndex, float startDelaySec)
+    public void LoadLevel(int levelIndex, float startDelaySec, bool fromTitle = false)
     {
         this.loadingLevel = true;
         this.setDonutPaletteForLevel(levelIndex);
@@ -63,20 +63,20 @@ public class LevelLoader : MonoBehaviour
         {
             this.currBonusLevel = this.bonusLevels[bonusLevelsCompleted];
         }
+
+        
+        if (this.shouldAnimatePiece) {
+            bombPieces.SetActive(false);
+            pauseButton.SetActive(false);
+        }
         ResetCurrentLevel(() =>
         {
             if (this.shouldAnimatePiece)
             {
-                bombPieces.SetActive(false);
-                pieceTutorialAnimator.SetAngles(this.levels[currLevelIdx].pieceAnimationAngles);
-                pauseButton.SetActive(false);
-                pieceTutorialAnimator.AnimatePieceAndThen(() =>
-                {
-                    bombPieces.SetActive(true);
-                    pauseButton.SetActive(true);
-                    GameObject firstPiece = pieceTutorialAnimator.GetSpawnedPiece();
-                    StartCoroutine(StartCurrentLevelAfterDelay(0, firstPiece));
-                });
+                bombPieces.SetActive(true);
+                pauseButton.SetActive(true);
+                GameObject firstPiece = pieceTutorialAnimator.GetSpawnedPiece();
+                StartCoroutine(StartCurrentLevelAfterDelay(0, firstPiece));
             }
             else
             {
@@ -84,7 +84,12 @@ public class LevelLoader : MonoBehaviour
             }
 
             this.loadingLevel = false;
-        });
+        },
+        () => {
+            pieceTutorialAnimator.SetAngles(this.levels[currLevelIdx].pieceAnimationAngles);
+            pieceTutorialAnimator.AnimatePieceAndThen(this.startBombAction);
+        },
+        fromTitle, startDelaySec);
     }
 
     private void setDonutPaletteForLevel(int levelIndex)
@@ -101,7 +106,6 @@ public class LevelLoader : MonoBehaviour
 
     public void StartCurrentLevelAfterDelaySec(float delaySec)
     {
-        this.startDelaySec = delaySec;
         StartCoroutine(StartCurrentLevelAfterDelay(delaySec));
     }
 
@@ -164,12 +168,11 @@ public class LevelLoader : MonoBehaviour
         pieceTutorialAnimator.DestroySpawnedPiece();
     }
 
-    public void ResetCurrentLevel(Action andThen)
+    public void ResetCurrentLevel(Action andThen, Action animatePiece, bool fromTitle = false, float startDelaySec = 0f)
     {
         Level level = levels[currLevelIdx];
         pieceShooter.SetActive(false);
         this.shouldAnimatePiece = level.pieceAnimationAngles.Length > 0 && this.loadingLevel;
-        levelObscurer.SetActive(this.shouldAnimatePiece);
         foreach (GameObject prevBomb in GameObject.FindGameObjectsWithTag("bomb"))
         {
             Destroy(prevBomb);
@@ -187,28 +190,32 @@ public class LevelLoader : MonoBehaviour
             bomb = Instantiate(level.bomb);
             bomb.transform.SetParent(canvas.transform, false);
             Bomb bombComp = bomb.GetComponent<Bomb>();
-            bombComp.StartBomb();
             bombComp.SetPalette(this.donutPaletteProvider.GetActivePaletteIndex());
-            bomb.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 700);
             timer.Pause();
             var defuzer = bomb.GetComponentInChildren<BombDefuzer>();
             var detonator = bomb.GetComponent<Detonator>();
             timer.Init(detonator, defuzer, bombComp);
             timer.setTime(level.secondsOnTimer);
             timer.gameObject.SetActive(false);
-            bomb.GetComponent<Bomb>().AnimateInAndThen(() =>
+            if (fromTitle)
             {
-                timer.gameObject.SetActive(true);
-                bonusLevelIndicator.SetActive(false);
-                levelIndicator.gameObject.SetActive(true);
-                levelIndicator.Set(this.GetCurrentLevelIndex() + 1, this.LevelCount());
-                bombPieces.SetActive(true);
-                shootTapZone.SetActive(true);
-                defuzer.Init(timer, shootTapZone, this.pieceShooter);
-                detonator.Init(this.pieceShooter);
-                bombComp.Init(timer);
-                andThen.Invoke();
-            });
+                levelObscurer.SetActive(this.shouldAnimatePiece);
+                StartCoroutine(StartTimerAfterDelaySec(startDelaySec, defuzer, detonator, bombComp, andThen));
+            }
+            else
+            {
+                levelObscurer.SetActive(false);
+                bomb.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 700);
+                this.startBombAction = () => {
+                    bombComp.StartBomb();
+                    bomb.GetComponent<Bomb>().AnimateInAndThen(() => StartTimer(defuzer, detonator, bombComp, andThen));
+                };
+                if (this.shouldAnimatePiece) {
+                    animatePiece.Invoke();
+                } else {
+                    this.startBombAction.Invoke();
+                }
+            }
         }
 
         foreach (Transform child in bombPieces.transform)
@@ -226,6 +233,27 @@ public class LevelLoader : MonoBehaviour
         {
             andThen.Invoke();
         }
+    }
+
+    private IEnumerator StartTimerAfterDelaySec(float delaySec, BombDefuzer defuzer, Detonator detonator, Bomb bombComp, Action andThen)
+    {
+        yield return new WaitForSeconds(delaySec);
+        StartTimer(defuzer, detonator, bombComp, andThen);
+    }
+
+    private void StartTimer(BombDefuzer defuzer, Detonator detonator, Bomb bombComp, Action andThen)
+    {
+        bombComp.StartBomb();
+        timer.gameObject.SetActive(true);
+        bonusLevelIndicator.SetActive(false);
+        levelIndicator.gameObject.SetActive(true);
+        levelIndicator.Set(this.GetCurrentLevelIndex() + 1, this.LevelCount());
+        bombPieces.SetActive(true);
+        shootTapZone.SetActive(true);
+        defuzer.Init(timer, shootTapZone, this.pieceShooter);
+        detonator.Init(this.pieceShooter);
+        bombComp.Init(timer);
+        andThen.Invoke();
     }
 
     public void LoadNextLevelAndStartAfterDelay(float delaySec)

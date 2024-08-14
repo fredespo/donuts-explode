@@ -9,6 +9,6 @@ public class RetryBtn : MonoBehaviour
 
     public void Retry()
     {
-        levelLoader.ResetCurrentLevel(() => levelLoader.StartCurrentLevelAfterDelaySec(0.1f));
+        levelLoader.ResetCurrentLevel(() => levelLoader.StartCurrentLevelAfterDelaySec(0.1f), () => {});
     }
 }
