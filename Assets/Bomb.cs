@@ -14,7 +14,7 @@ public class Bomb : MonoBehaviour
 
 	private Vector2 currPos;
 
-	private int animateInMoveSpeed = 650;
+	private int animateInMoveSpeed = 590;
 	private int animateInTargetPosY = -400;
 	private Action afterAnimateInAction;
 
