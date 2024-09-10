@@ -5,10 +5,12 @@ using System;
 
 public class RetryBtn : MonoBehaviour
 {
-    public LevelLoader levelLoader;
+    [SerializeField] private HUD hud;
+    [SerializeField] private GameOverUI ui;
 
     public void Retry()
     {
-        levelLoader.ResetCurrentLevel(() => levelLoader.StartCurrentLevelAfterDelaySec(0.1f), () => {});
+        ui.Hide();
+        hud.DrinkCoffee();
     }
 }

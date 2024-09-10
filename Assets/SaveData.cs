@@ -10,6 +10,7 @@ public class SaveData
     public int level;
     public bool adsEnabled;
     public int bonusLevelsCompleted;
+    public int lives;
 
     public SaveData()
     {
@@ -17,5 +18,6 @@ public class SaveData
         this.level = 0;
         this.adsEnabled = true;
         this.bonusLevelsCompleted = 0;
+        this.lives = 3;
     }
 }

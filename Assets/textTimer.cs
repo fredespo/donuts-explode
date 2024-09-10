@@ -6,6 +6,7 @@ using System;
 
 public class textTimer : MonoBehaviour
 {
+    [SerializeField] private EventChannel eventChannel = default;
     private Detonator detonator;
     private BombDefuzer defuzer;
     private Bomb bomb;
@@ -75,6 +76,7 @@ public class textTimer : MonoBehaviour
             AdjustMusic();
             if (seconds < -bombDetonationDelay)
             {
+                this.eventChannel.RaiseEvent();
                 DetonateBomb();
             }
         }

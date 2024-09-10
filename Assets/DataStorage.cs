@@ -21,6 +21,7 @@ public class DataStorage : MonoBehaviour
     private static string KEY_VOLUME_SOUNDFX = "SoundFxVolume";
     private static string KEY_PAUSE_BUTTON_LOCATION = "PauseButtonLocation";
     private static string KEY_HAPTICS = "Haptics";
+    private static string KEY_LIVES = "Lives";
 
     public void Awake()
     {
@@ -102,6 +103,20 @@ public class DataStorage : MonoBehaviour
         LoadMusicVol();
     }
 
+    public void OnLevelLost() {
+        if (GetLives() <= 0) {
+            ResetGame();
+        }
+    }
+
+    private void ResetGame() {
+        SaveLevel(0);
+        SaveScore(0);
+        ResetBonusLevelsCompleted();
+        SetLives(3);
+        Save();
+    }
+
     public int GetScore()
     {
         return this.saveData.score;
@@ -110,6 +125,14 @@ public class DataStorage : MonoBehaviour
     public void SaveScore(int score)
     {
         this.saveData.score = score;
+    }
+
+    public int GetLives() {
+        return this.saveData.lives;
+    }
+
+    public void SetLives(int lives) {
+        this.saveData.lives = lives;
     }
 
     public void Save()

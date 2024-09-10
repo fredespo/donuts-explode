@@ -19,8 +19,10 @@ public class LevelLoader : MonoBehaviour
     public PieceTutorialAnimator pieceTutorialAnimator;
     private PieceShooter pieceShooterComp;
     public GameObject shootTapZone;
+    public GameOverUI levelLostUI;
     public GameOverUI gameOverUI;
     public Score score;
+    public Lives lives;
     public GameObject levelObscurer;
     public AnimatedCountDown countDown;
     public LevelIndicator levelIndicator;
@@ -55,6 +57,7 @@ public class LevelLoader : MonoBehaviour
         if (levelIndex == 0)
         {
             score.Reset();
+            lives.Reset();
         }
         this.currLevelIdx = levelIndex;
         int bonusLevelsCompleted = dataStorage.GetBonusLevelsCompleted();
@@ -64,8 +67,9 @@ public class LevelLoader : MonoBehaviour
             this.currBonusLevel = this.bonusLevels[bonusLevelsCompleted];
         }
 
-        
-        if (this.shouldAnimatePiece) {
+
+        if (this.shouldAnimatePiece)
+        {
             bombPieces.SetActive(false);
             pauseButton.SetActive(false);
         }
@@ -85,7 +89,8 @@ public class LevelLoader : MonoBehaviour
 
             this.loadingLevel = false;
         },
-        () => {
+        () =>
+        {
             pieceTutorialAnimator.SetAngles(this.levels[currLevelIdx].pieceAnimationAngles);
             pieceTutorialAnimator.AnimatePieceAndThen(this.startBombAction);
         },
@@ -206,13 +211,17 @@ public class LevelLoader : MonoBehaviour
             {
                 levelObscurer.SetActive(false);
                 bomb.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 700);
-                this.startBombAction = () => {
+                this.startBombAction = () =>
+                {
                     bombComp.StartBomb();
                     bomb.GetComponent<Bomb>().AnimateInAndThen(() => StartTimer(defuzer, detonator, bombComp, andThen));
                 };
-                if (this.shouldAnimatePiece) {
+                if (this.shouldAnimatePiece)
+                {
                     animatePiece.Invoke();
-                } else {
+                }
+                else
+                {
                     this.startBombAction.Invoke();
                 }
             }
@@ -224,6 +233,7 @@ public class LevelLoader : MonoBehaviour
         }
 
 
+        levelLostUI.Hide();
         gameOverUI.Hide();
         music.Reset();
         score.RefreshDispScore();
