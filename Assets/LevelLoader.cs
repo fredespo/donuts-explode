@@ -177,7 +177,7 @@ public class LevelLoader : MonoBehaviour
     {
         Level level = levels[currLevelIdx];
         pieceShooter.SetActive(false);
-        this.shouldAnimatePiece = level.pieceAnimationAngles.Length > 0 && this.loadingLevel;
+        this.shouldAnimatePiece = level.pieceAnimationAngles.Length > 0 && this.loadingLevel && !fromTitle;
         foreach (GameObject prevBomb in GameObject.FindGameObjectsWithTag("bomb"))
         {
             Destroy(prevBomb);

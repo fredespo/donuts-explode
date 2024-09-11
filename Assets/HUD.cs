@@ -12,6 +12,8 @@ public class HUD : MonoBehaviour
     [SerializeField] private GameOverUI gameOverUI;
     [SerializeField] private LevelLoader levelLoader;
     private Animator animator;
+    [SerializeField] private AudioSource coffeeDrinkSound;
+    [SerializeField] private AudioSource coffeeSipSound;
 
     public void Start()
     {
@@ -55,6 +57,14 @@ public class HUD : MonoBehaviour
     public void DrinkCoffee()
     {
         this.animator.Play("HighlightLivesLeft");
+    }
+
+    public void PlayCoffeeDrinkSound() {
+        this.coffeeDrinkSound.Play();
+    }
+
+    public void PlayCoffeeSipSound() {
+        this.coffeeSipSound.Play();
     }
 
     public void DecrementLives()
