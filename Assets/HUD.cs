@@ -89,7 +89,7 @@ public class HUD : MonoBehaviour
         this.score.SetSnapToCenter(true, initialDelay + duration);
 
         float delayBeforeScoreChange = 0.3f;
-        float timeToChangeScore = Mathf.Min(score.maxTimeToChange, (float)score.GetScore() / 2 / score.scoreChangePerSec) + delayBeforeScoreChange;
+        float timeToChangeScore = Mathf.Min(score.maxTimeToChange, (float)Score.CalcScoreAfterLoss(score.GetScore()) / score.scoreChangePerSec) + delayBeforeScoreChange;
         float totalTime = initialDelay + duration + timeToChangeScore + delayBeforeGoingBack + duration + delayBeforeScoreChange;
         float startGoingBackTime = initialDelay + duration + timeToChangeScore + delayBeforeGoingBack;
         this.score.SetSnapToCenter(false, startGoingBackTime);

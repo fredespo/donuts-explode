@@ -20,7 +20,6 @@ public class Lives : MonoBehaviour
     public void Decrement()
     {
         SetLivesLeft(this.livesLeft - 1);
-        SaveLives();
     }
 
     public int GetLivesLeft()
@@ -45,12 +44,5 @@ public class Lives : MonoBehaviour
     public void Reset()
     {
         SetLivesLeft(startingLives);
-        SaveLives();
-    }
-
-    private void SaveLives()
-    {
-        this.dataStorage.SetLives(this.livesLeft);
-        this.dataStorage.Save();
     }
 }

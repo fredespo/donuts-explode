@@ -104,9 +104,12 @@ public class DataStorage : MonoBehaviour
     }
 
     public void OnLevelLost() {
+        SetLives(GetLives() - 1);
+        SaveScore(Score.CalcScoreAfterLoss(GetScore()));
         if (GetLives() <= 0) {
             ResetGame();
         }
+        Save();
     }
 
     private void ResetGame() {
@@ -114,7 +117,6 @@ public class DataStorage : MonoBehaviour
         SaveScore(0);
         ResetBonusLevelsCompleted();
         SetLives(3);
-        Save();
     }
 
     public int GetScore()

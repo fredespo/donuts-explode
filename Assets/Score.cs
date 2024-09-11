@@ -18,6 +18,10 @@ public class Score : MonoBehaviour
     public float dispScore;
     private bool snapToCenter;
 
+    public static int CalcScoreAfterLoss(int currScore) {
+        return currScore / 2;
+    }
+
     void Start()
     {
         text = GetComponent<Text>();
@@ -232,7 +236,6 @@ public class Score : MonoBehaviour
         {
             score = 0;
         }
-        SaveScore();
     }
 
     public void AddInstant(int amt)
@@ -242,17 +245,11 @@ public class Score : MonoBehaviour
         this.pointGainedSound.Play();
     }
 
-    private void SaveScore()
-    {
-        dataStorage.SaveScore(score);
-    }
-
     public void Reset()
     {
         score = 0;
         dispScore = 0;
         RefreshText();
-        SaveScore();
     }
 
     public int GetScore()
