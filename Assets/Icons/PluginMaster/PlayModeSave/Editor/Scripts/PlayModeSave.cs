@@ -2238,7 +2238,7 @@ namespace PluginMaster
 
         private static string[] GetLoadedScenePaths()
         {
-            var countLoaded = UnityEditor.SceneManagement.EditorSceneManager.loadedSceneCount;
+            var countLoaded = UnityEngine.SceneManagement.SceneManager.loadedSceneCount;
             var loadedScenePaths = new string[countLoaded];
             for (int i = 0; i < countLoaded; i++)
                 loadedScenePaths[i] = UnityEngine.SceneManagement.SceneManager.GetSceneAt(i).path;

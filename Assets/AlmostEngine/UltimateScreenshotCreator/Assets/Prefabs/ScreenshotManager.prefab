@@ -1,0 +1,509 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &100038
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 400000}
+  - component: {fileID: 11400048}
+  - component: {fileID: 8200000}
+  - component: {fileID: 11400050}
+  m_Layer: 0
+  m_Name: ScreenshotManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &400000
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100038}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &11400048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3460ea107bb10f042909825e64f1a885, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Config:
+    m_DestinationFolder: 3
+    m_RelativePath: Screenshots/
+    m_RootedPath: 
+    m_ExportToPhoneGallery: 1
+    m_FileName: '{width}x{height}-screenshot'
+    m_OverwriteFiles: 0
+    m_FileFormat: 0
+    m_JPGQuality: 75
+    m_ShareTitle: Share the screenshot
+    m_ShareSubject: Nice screenshot
+    m_ShareText: Look at this nice screenshot.
+    m_CaptureMode: 2
+    m_MultisamplingAntiAliasing: 8
+    m_ColorFormat: 0
+    m_RecomputeAlphaLayer: 0
+    m_ShotMode: 0
+    m_MaxBurstShotsNumber: 10
+    m_MaxShotPerSeconds: 30
+    m_FixedFrameRate: 1
+    m_CameraMode: 0
+    m_ExportToDifferentLayers: 0
+    m_Cameras:
+    - m_Active: 1
+      m_Camera: {fileID: 0}
+      m_ClearSettings: 0
+      m_ClearFlags: 1
+      m_BackgroundColor: {r: 1, g: 1, b: 1, a: 1}
+      m_CullingSettings: 0
+      m_CullingMask: -1
+      m_FOVSettings: 0
+      m_FOV: 70
+    m_ResolutionCaptureMode: 0
+    m_Resolutions:
+    - m_Active: 1
+      m_Width: 1920
+      m_Height: 1080
+      m_Scale: 1
+      m_Orientation: 0
+      m_ResolutionName: FHD(1080p)
+      m_Category: Default
+      m_Platform: 
+      m_PPI: 0
+      m_ForcedUnityPPI: 0
+      m_DeviceCanvas: {fileID: 0}
+      m_Ratio: 16:9
+      m_FileName: C:\Users\iron\Pictures/Screenshots/1920x1080-screenshot (3).png
+      m_IgnoreOrientation: 0
+      m_DisableSafeArea: 0
+      m_SafeAreaPortrait:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+      m_SafeAreaLandscapeLeft:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    - m_Active: 1
+      m_Width: 1680
+      m_Height: 1050
+      m_Scale: 1
+      m_Orientation: 0
+      m_ResolutionName: WSXGA+
+      m_Category: Default
+      m_Platform: 
+      m_PPI: 0
+      m_ForcedUnityPPI: 0
+      m_DeviceCanvas: {fileID: 0}
+      m_Ratio: 8:5
+      m_FileName: 
+      m_IgnoreOrientation: 0
+      m_DisableSafeArea: 0
+      m_SafeAreaPortrait:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+      m_SafeAreaLandscapeLeft:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    - m_Active: 1
+      m_Width: 1600
+      m_Height: 900
+      m_Scale: 1
+      m_Orientation: 0
+      m_ResolutionName: HD+
+      m_Category: Default
+      m_Platform: 
+      m_PPI: 0
+      m_ForcedUnityPPI: 0
+      m_DeviceCanvas: {fileID: 0}
+      m_Ratio: 16:9
+      m_FileName: 
+      m_IgnoreOrientation: 0
+      m_DisableSafeArea: 0
+      m_SafeAreaPortrait:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+      m_SafeAreaLandscapeLeft:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    - m_Active: 1
+      m_Width: 1440
+      m_Height: 900
+      m_Scale: 1
+      m_Orientation: 0
+      m_ResolutionName: WXGA+
+      m_Category: Default
+      m_Platform: 
+      m_PPI: 0
+      m_ForcedUnityPPI: 0
+      m_DeviceCanvas: {fileID: 0}
+      m_Ratio: 8:5
+      m_FileName: 
+      m_IgnoreOrientation: 0
+      m_DisableSafeArea: 0
+      m_SafeAreaPortrait:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+      m_SafeAreaLandscapeLeft:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    - m_Active: 1
+      m_Width: 1366
+      m_Height: 768
+      m_Scale: 1
+      m_Orientation: 0
+      m_ResolutionName: HD
+      m_Category: Default
+      m_Platform: 
+      m_PPI: 0
+      m_ForcedUnityPPI: 0
+      m_DeviceCanvas: {fileID: 0}
+      m_Ratio: 683:384
+      m_FileName: 
+      m_IgnoreOrientation: 0
+      m_DisableSafeArea: 0
+      m_SafeAreaPortrait:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+      m_SafeAreaLandscapeLeft:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    - m_Active: 1
+      m_Width: 1280
+      m_Height: 1024
+      m_Scale: 1
+      m_Orientation: 0
+      m_ResolutionName: SXGA
+      m_Category: Default
+      m_Platform: 
+      m_PPI: 0
+      m_ForcedUnityPPI: 0
+      m_DeviceCanvas: {fileID: 0}
+      m_Ratio: 5:4
+      m_FileName: 
+      m_IgnoreOrientation: 0
+      m_DisableSafeArea: 0
+      m_SafeAreaPortrait:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+      m_SafeAreaLandscapeLeft:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    - m_Active: 1
+      m_Width: 1280
+      m_Height: 720
+      m_Scale: 1
+      m_Orientation: 0
+      m_ResolutionName: WXGA(720p)
+      m_Category: Default
+      m_Platform: 
+      m_PPI: 0
+      m_ForcedUnityPPI: 0
+      m_DeviceCanvas: {fileID: 0}
+      m_Ratio: 16:9
+      m_FileName: 
+      m_IgnoreOrientation: 0
+      m_DisableSafeArea: 0
+      m_SafeAreaPortrait:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+      m_SafeAreaLandscapeLeft:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    - m_Active: 1
+      m_Width: 1024
+      m_Height: 768
+      m_Scale: 1
+      m_Orientation: 0
+      m_ResolutionName: XGA
+      m_Category: Default
+      m_Platform: 
+      m_PPI: 0
+      m_ForcedUnityPPI: 0
+      m_DeviceCanvas: {fileID: 0}
+      m_Ratio: 4:3
+      m_FileName: 
+      m_IgnoreOrientation: 0
+      m_DisableSafeArea: 0
+      m_SafeAreaPortrait:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+      m_SafeAreaLandscapeLeft:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    m_GameViewResolution:
+      m_Active: 1
+      m_Width: 2087
+      m_Height: 533
+      m_Scale: 1
+      m_Orientation: 0
+      m_ResolutionName: GameView
+      m_Category: Custom
+      m_Platform: 
+      m_PPI: 0
+      m_ForcedUnityPPI: 0
+      m_DeviceCanvas: {fileID: 0}
+      m_Ratio: 
+      m_FileName: 
+      m_IgnoreOrientation: 0
+      m_DisableSafeArea: 0
+      m_SafeAreaPortrait:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+      m_SafeAreaLandscapeLeft:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 0
+        height: 0
+    m_CaptureActiveUICanvas: 1
+    m_ForceUICullingLayer: 0
+    m_Overlays: []
+    m_CompositionMode: 0
+    m_Compositions: []
+    m_BatchMode: 0
+    m_Batches: []
+    m_ShowGuidesInPreview: 1
+    m_GuideCanvas: {fileID: 22302868, guid: 9bcbdb2fe5275ec42ac08384c4ed38f3, type: 3}
+    m_GuidesColor: {r: 0.07586193, g: 1, b: 0, a: 1}
+    m_ShowPreview: 1
+    m_PreviewSize: 0.5
+    m_PreviewInGameViewWhilePlaying: 0
+    m_DontDestroyOnLoad: 1
+    m_StopTimeOnCapture: 1
+    m_PlaySoundOnCapture: 1
+    m_ShotSound: {fileID: 8300000, guid: 8395331d4bc4a4f4190622709cdef091, type: 3}
+    m_CaptureHotkey:
+      m_Shift: 0
+      m_Control: 0
+      m_Alt: 0
+      m_Key: 293
+    m_UpdatePreviewHotkey:
+      m_Shift: 0
+      m_Control: 0
+      m_Alt: 0
+      m_Key: 286
+    m_AlignHotkey:
+      m_Shift: 0
+      m_Control: 0
+      m_Alt: 0
+      m_Key: 0
+    m_PauseHotkey:
+      m_Shift: 0
+      m_Control: 0
+      m_Alt: 0
+      m_Key: 19
+    m_GameViewResizingWaitingMode: 0
+    m_ResizingWaitingTime: 1
+    m_ResizingWaitingFrames: 2
+    m_ItemsPerPage: 20
+    m_ShowDestination: 1
+    m_ShowName: 1
+    m_ShowCaptureMode: 1
+    m_ShowResolutions: 1
+    m_ShowCameras: 1
+    m_ShowCanvas: 1
+    m_ShowComposition: 1
+    m_ShowBatches: 1
+    m_ShowPreviewGUI: 1
+    m_ShowCapture: 1
+    m_ShowHotkeys: 1
+    m_ShowGallery: 1
+    m_ShowUtils: 1
+    m_ShowUsage: 1
+    m_ShowInstall: 1
+    m_ShowDelay: 1
+    m_ShowShare: 1
+  m_IsBurstActive: 0
+  m_IsCapturing: 0
+  m_PreviousFrameRate: -1
+  m_LastShotTime: 0
+  m_CurrentBatch:
+    m_Active: 1
+    m_Name: 
+    m_PreProcess: []
+    m_PostProcess: []
+    m_OverrideActiveResolutions: 0
+    m_ActiveResolutions: []
+    m_OverrideActiveComposer: 0
+    m_ActiveCompositions: []
+  m_CurrentBatchName: 
+--- !u!82 &8200000
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100038}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+--- !u!114 &11400050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b05fbf26023aa4449cbd467d4412e64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Texture: {fileID: 0}
+  m_GameViewResizingWaitingMode: 0
+  m_GameViewResizingWaitingTime: 1
+  m_GameViewResizingWaitingFrames: 2

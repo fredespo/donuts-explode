@@ -1,0 +1,92 @@
+﻿#include "pch-c.h"
+#ifndef _MSC_VER
+# include <alloca.h>
+#else
+# include <malloc.h>
+#endif
+
+
+#include "codegen/il2cpp-codegen-metadata.h"
+
+
+
+
+
+extern void DraggableBhv_OnPointerDown_mBBD6AE3FB1F0ACA3BC434A93A66A90DC8DE7BBF5 (void);
+extern void DraggableBhv_OnPointerUp_m64F3E4C597D2A2047AA98B471DFC0FC43B977366 (void);
+extern void DraggableBhv_Update_mB6F48D98E1A1B384B95C6E938D8025C0F59B4336 (void);
+extern void DraggableBhv__ctor_mE09F1159E9FE11E167CF28BA8B96C7B76EEE8076 (void);
+extern void MinimizableWindowBhv_Awake_m9473742EA9B84D399ABE85A19D384291DDBAB850 (void);
+extern void MinimizableWindowBhv_setWinTitle_mDADF963ABE6D9CEE9C4519C6996CA3D696D91F2E (void);
+extern void MinimizableWindowBhv_setWinVisible_m5C7383983BE89AE6D7BAA8B7298095D7858AFC11 (void);
+extern void MinimizableWindowBhv_isWinVisible_m99F9181D21711BC2315D0A729938776CB5450C69 (void);
+extern void MinimizableWindowBhv_setWinState_mEBAAD7F9B5E2EB9D3A2B86DD1F459A84B8A3E717 (void);
+extern void MinimizableWindowBhv_getWinState_m084D2D7C6C853FFB29C2FB9091D86C2CDD0A1B0F (void);
+extern void MinimizableWindowBhv__ctor_m35C9A4B01292B95B94E482ECF73FF80822C40E13 (void);
+extern void MinimizableWindowBhv_U3CAwakeU3Eb__12_0_m54440C3626977FBA10F09E7269FCEA9592960A19 (void);
+extern void MinimizableWindowBhv_U3CAwakeU3Eb__12_1_m700C5E0974E186AA4E45E4A0CD38AC08C64083EC (void);
+extern void MinimizableWindowBhv_U3CAwakeU3Eb__12_2_mEF430F865BC78165E6A4A1874D9DE60B031611EE (void);
+extern void SpinnerBhv_Awake_m51A6505EEBC3EC592709B23EC63BE4AA49CD8C5C (void);
+extern void SpinnerBhv_Update_m767DD94A55F40360CF3E20173D540D4C5F16C0D0 (void);
+extern void SpinnerBhv__ctor_m31B6FC0C08C115A3582406D89E2613F34646CAB1 (void);
+static Il2CppMethodPointer s_methodPointers[17] = 
+{
+	DraggableBhv_OnPointerDown_mBBD6AE3FB1F0ACA3BC434A93A66A90DC8DE7BBF5,
+	DraggableBhv_OnPointerUp_m64F3E4C597D2A2047AA98B471DFC0FC43B977366,
+	DraggableBhv_Update_mB6F48D98E1A1B384B95C6E938D8025C0F59B4336,
+	DraggableBhv__ctor_mE09F1159E9FE11E167CF28BA8B96C7B76EEE8076,
+	MinimizableWindowBhv_Awake_m9473742EA9B84D399ABE85A19D384291DDBAB850,
+	MinimizableWindowBhv_setWinTitle_mDADF963ABE6D9CEE9C4519C6996CA3D696D91F2E,
+	MinimizableWindowBhv_setWinVisible_m5C7383983BE89AE6D7BAA8B7298095D7858AFC11,
+	MinimizableWindowBhv_isWinVisible_m99F9181D21711BC2315D0A729938776CB5450C69,
+	MinimizableWindowBhv_setWinState_mEBAAD7F9B5E2EB9D3A2B86DD1F459A84B8A3E717,
+	MinimizableWindowBhv_getWinState_m084D2D7C6C853FFB29C2FB9091D86C2CDD0A1B0F,
+	MinimizableWindowBhv__ctor_m35C9A4B01292B95B94E482ECF73FF80822C40E13,
+	MinimizableWindowBhv_U3CAwakeU3Eb__12_0_m54440C3626977FBA10F09E7269FCEA9592960A19,
+	MinimizableWindowBhv_U3CAwakeU3Eb__12_1_m700C5E0974E186AA4E45E4A0CD38AC08C64083EC,
+	MinimizableWindowBhv_U3CAwakeU3Eb__12_2_mEF430F865BC78165E6A4A1874D9DE60B031611EE,
+	SpinnerBhv_Awake_m51A6505EEBC3EC592709B23EC63BE4AA49CD8C5C,
+	SpinnerBhv_Update_m767DD94A55F40360CF3E20173D540D4C5F16C0D0,
+	SpinnerBhv__ctor_m31B6FC0C08C115A3582406D89E2613F34646CAB1,
+};
+static const int32_t s_InvokerIndices[17] = 
+{
+	5718,
+	5718,
+	7165,
+	7165,
+	7165,
+	5718,
+	5607,
+	6905,
+	5685,
+	6982,
+	7165,
+	7165,
+	7165,
+	7165,
+	7165,
+	7165,
+	7165,
+};
+IL2CPP_EXTERN_C const Il2CppCodeGenModule g_BinaryCharm_UI_Runtime_CodeGenModule;
+const Il2CppCodeGenModule g_BinaryCharm_UI_Runtime_CodeGenModule = 
+{
+	"BinaryCharm.UI.Runtime.dll",
+	17,
+	s_methodPointers,
+	0,
+	NULL,
+	s_InvokerIndices,
+	0,
+	NULL,
+	0,
+	NULL,
+	0,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+};

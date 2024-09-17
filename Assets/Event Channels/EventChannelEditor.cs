@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
+#if (UNITY_EDITOR)
 [CustomEditor(typeof(EventChannel), true)]
 public class EventChannelEditor : Editor
 {
@@ -16,3 +17,4 @@ public class EventChannelEditor : Editor
         }
     }
 }
+#endif
