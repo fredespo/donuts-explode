@@ -12,10 +12,12 @@ public class GameMusic : MonoBehaviour
     private float windingDownStartPitch;
     public float curveVal;
     private AudioSource music;
+    private float normalVolume;
 
     public void Start()
     {
         music = gameObject.GetComponent<AudioSource>();
+        normalVolume = music.volume;
     }
 
     public void Update()
@@ -54,5 +56,12 @@ public class GameMusic : MonoBehaviour
         {
             music.Play(0);
         }
+    }
+
+    public void OnCoffeeSip(SipCoffeeEvent sipCoffeeEvent)
+    {
+        Play();
+        music.pitch = minMusicPitch;
+        music.volume = normalVolume * (((float)sipCoffeeEvent.getSipNumber() / (float)sipCoffeeEvent.getTotalSips()));
     }
 }

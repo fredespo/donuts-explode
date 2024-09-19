@@ -92,7 +92,6 @@ public class textTimer : MonoBehaviour
 
         shootTapZone.SetActive(false);
         detonator.activate();
-        music.Pause();
         gameOverUI.SetActive(true);
         this.pieceShooter.gameObject.SetActive(false);
         gameObject.SetActive(false);

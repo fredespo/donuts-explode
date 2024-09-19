@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class HUD : MonoBehaviour
 {
@@ -14,6 +15,9 @@ public class HUD : MonoBehaviour
     private Animator animator;
     [SerializeField] private AudioSource coffeeDrinkSound;
     [SerializeField] private AudioSource coffeeSipSound;
+    private int coffeeSipNumber = 0;
+    [SerializeField] private int totalCoffeeSips = 3;
+    [SerializeField] private EventChannel<SipCoffeeEvent> coffeeSipEventChannel;
 
     public void Start()
     {
@@ -57,6 +61,19 @@ public class HUD : MonoBehaviour
     public void DrinkCoffee()
     {
         this.animator.Play("HighlightLivesLeft");
+        this.coffeeSipNumber = 0;
+        RaiseSipCoffeeEvent();
+    }
+
+    public void TakeSipOfCoffee() {
+        this.coffeeSipNumber++;
+        RaiseSipCoffeeEvent();
+    }
+
+    private void RaiseSipCoffeeEvent() {
+        this.coffeeSipEventChannel.RaiseEvent(
+            new SipCoffeeEvent(this.coffeeSipNumber, this.totalCoffeeSips)
+        );
     }
 
     public void PlayCoffeeDrinkSound() {
