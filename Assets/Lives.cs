@@ -14,6 +14,16 @@ public class Lives : MonoBehaviour
     void Start()
     {
         this.text = GetComponent<Text>();
+        LoadLives();
+    }
+
+    void OnEnable()
+    {
+        LoadLives();
+    }
+
+    void LoadLives()
+    {
         SetLivesLeft(this.dataStorage.GetLives());
     }
 

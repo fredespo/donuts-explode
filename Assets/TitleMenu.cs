@@ -38,6 +38,7 @@ public class TitleMenu : MonoBehaviour
             newGameBtn.SetActive(false);
             startButtonText.text = "Start";
             mainMenuTransform.localPosition = new Vector3(0, 66, 0);
+            ResetGame();
         }
     }
 

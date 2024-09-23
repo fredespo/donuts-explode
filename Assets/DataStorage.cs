@@ -35,7 +35,7 @@ public class DataStorage : MonoBehaviour
 
     private void LoadSaveData()
     {
-        if(File.Exists(this.saveFilePath))
+        if (File.Exists(this.saveFilePath))
         {
             using (FileStream saveFile = new FileStream(this.saveFilePath, FileMode.Open))
             {
@@ -51,7 +51,7 @@ public class DataStorage : MonoBehaviour
                         Debug.Log("Invalid checksum!");
                     }
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     Debug.Log("Corrupt save file!");
                 }
@@ -103,16 +103,22 @@ public class DataStorage : MonoBehaviour
         LoadMusicVol();
     }
 
-    public void OnLevelLost() {
-        SetLives(GetLives() - 1);
-        SaveScore(Score.CalcScoreAfterLoss(GetScore()));
-        if (GetLives() <= 0) {
+    public void OnLevelLost()
+    {
+        if (GetLives() > 0)
+        {
+            SetLives(GetLives() - 1);
+            SaveScore(Score.CalcScoreAfterLoss(GetScore()));
+        }
+        else
+        {
             ResetGame();
         }
         Save();
     }
 
-    private void ResetGame() {
+    private void ResetGame()
+    {
         SaveLevel(0);
         SaveScore(0);
         ResetBonusLevelsCompleted();
@@ -129,11 +135,13 @@ public class DataStorage : MonoBehaviour
         this.saveData.score = score;
     }
 
-    public int GetLives() {
+    public int GetLives()
+    {
         return this.saveData.lives;
     }
 
-    public void SetLives(int lives) {
+    public void SetLives(int lives)
+    {
         this.saveData.lives = lives;
     }
 
@@ -223,11 +231,12 @@ public class DataStorage : MonoBehaviour
             try
             {
                 vol = int.Parse(PlayerPrefs.GetString(KEY_VOLUME_SOUNDFX));
-            } catch(Exception e)
+            }
+            catch (Exception e)
             {
             }
 
-            if(vol < 0)
+            if (vol < 0)
             {
                 vol = 0;
             }
@@ -247,7 +256,7 @@ public class DataStorage : MonoBehaviour
     public string GetPauseButtonLocation()
     {
         string location = "Left";
-        if(PlayerPrefs.HasKey(KEY_PAUSE_BUTTON_LOCATION))
+        if (PlayerPrefs.HasKey(KEY_PAUSE_BUTTON_LOCATION))
         {
             location = PlayerPrefs.GetString(KEY_PAUSE_BUTTON_LOCATION);
         }
