@@ -15,4 +15,9 @@ public class BonusLevelIndicator : MonoBehaviour
     {
         this.soundEffect.Play();
     }
+
+    public void DoneAnimating()
+    {
+        gameObject.SetActive(false);
+    }
 }
