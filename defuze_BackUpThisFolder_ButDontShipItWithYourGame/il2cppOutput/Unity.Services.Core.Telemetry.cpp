@@ -102,7 +102,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Object__ctor_mE837C6B9FA8C6D5D109F4B2EC8
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 61060
+// Method Definition Index: 61090
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void DiagnosticsFactory__ctor_m6AFD4725FFA4F4054B13917A376B8BE059AF4D27 (DiagnosticsFactory_tD2C64CDF0CC356965DB1993359515DC82D715CF2* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -130,7 +130,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void DiagnosticsFactory__ctor_m6AFD4725FFA4F4
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 61061
+// Method Definition Index: 61091
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void MetricsFactory__ctor_mD15F90B2C781DE2B48F41556FECEFAB2347AFC0C (MetricsFactory_tFED08C34B8CB569B801796787E82F2818606FA05* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;

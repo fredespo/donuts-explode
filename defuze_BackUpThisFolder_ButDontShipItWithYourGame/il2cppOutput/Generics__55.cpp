@@ -16388,7 +16388,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParallelForJobStruct_1__cctor_m937C76F0F
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 54539
+// Method Definition Index: 54562
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1__ctor_m337CF68E5D223621AA3E20D0D6FF9602A2C76609_gshared (ParameterOverride_1_tAF4A5BC7953AAC0B47E4048AAF45DE5D46D6F98C* __this, const RuntimeMethod* method) 
 {
 	bool V_0 = false;
@@ -16401,7 +16401,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1__ctor_m337CF68E5D223
 		return;
 	}
 }
-// Method Definition Index: 54540
+// Method Definition Index: 54563
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1__ctor_mBD4D937B3B2342965A3B575D07720C23E360DD6D_gshared (ParameterOverride_1_tAF4A5BC7953AAC0B47E4048AAF45DE5D46D6F98C* __this, bool ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -16412,7 +16412,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1__ctor_mBD4D937B3B234
 		return;
 	}
 }
-// Method Definition Index: 54541
+// Method Definition Index: 54564
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1__ctor_m7651C41D5A41FC9D300798E6353807C3C1CA271E_gshared (ParameterOverride_1_tAF4A5BC7953AAC0B47E4048AAF45DE5D46D6F98C* __this, bool ___0_value, bool ___1_overrideState, const RuntimeMethod* method) 
 {
 	{
@@ -16428,7 +16428,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1__ctor_m7651C41D5A41F
 		return;
 	}
 }
-// Method Definition Index: 54542
+// Method Definition Index: 54565
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_Interp_m3E428A48BF89C20A1109F0082D5D9CED45C36B9B_gshared (ParameterOverride_1_tAF4A5BC7953AAC0B47E4048AAF45DE5D46D6F98C* __this, ParameterOverride_t4B8E2A574A094A139B512403B38CE2B594A72A90* ___0_from, ParameterOverride_t4B8E2A574A094A139B512403B38CE2B594A72A90* ___1_to, float ___2_t, const RuntimeMethod* method) 
 {
 	{
@@ -16447,7 +16447,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_Interp_m3E428A48BF89
 		return;
 	}
 }
-// Method Definition Index: 54543
+// Method Definition Index: 54566
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_Interp_m6F91AD3AF499620D7A341A8266ABD8310BF7209F_gshared (ParameterOverride_1_tAF4A5BC7953AAC0B47E4048AAF45DE5D46D6F98C* __this, bool ___0_from, bool ___1_to, float ___2_t, const RuntimeMethod* method) 
 {
 	ParameterOverride_1_tAF4A5BC7953AAC0B47E4048AAF45DE5D46D6F98C* G_B2_0 = NULL;
@@ -16486,7 +16486,7 @@ IL_000e:
 		return;
 	}
 }
-// Method Definition Index: 54544
+// Method Definition Index: 54567
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_Override_mD5403F1F388129B4E446E17F41AA94429B9990AA_gshared (ParameterOverride_1_tAF4A5BC7953AAC0B47E4048AAF45DE5D46D6F98C* __this, bool ___0_x, const RuntimeMethod* method) 
 {
 	{
@@ -16499,7 +16499,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_Override_mD5403F1F38
 		return;
 	}
 }
-// Method Definition Index: 54545
+// Method Definition Index: 54568
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_SetValue_m058141FFEF199D064BB333B904BBD2DE509183C5_gshared (ParameterOverride_1_tAF4A5BC7953AAC0B47E4048AAF45DE5D46D6F98C* __this, ParameterOverride_t4B8E2A574A094A139B512403B38CE2B594A72A90* ___0_parameter, const RuntimeMethod* method) 
 {
 	{
@@ -16513,7 +16513,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_SetValue_m058141FFEF
 		return;
 	}
 }
-// Method Definition Index: 54546
+// Method Definition Index: 54569
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t ParameterOverride_1_GetHash_m45434221130AF3E5F8E5B753A3598721552473A6_gshared (ParameterOverride_1_tAF4A5BC7953AAC0B47E4048AAF45DE5D46D6F98C* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -16553,7 +16553,7 @@ IL_0031:
 		return L_7;
 	}
 }
-// Method Definition Index: 54547
+// Method Definition Index: 54570
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ParameterOverride_1_op_Implicit_mAC89F980361785C706143D79DB09A1912A012B90_gshared (ParameterOverride_1_tAF4A5BC7953AAC0B47E4048AAF45DE5D46D6F98C* ___0_prop, const RuntimeMethod* method) 
 {
 	bool V_0 = false;
@@ -16581,7 +16581,7 @@ IL_000a:
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 54539
+// Method Definition Index: 54562
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1__ctor_m789AA607E930B46C056FE382E2290DEC3698ACE9_gshared (ParameterOverride_1_t32E21FA53107C174D9A77919A9628DA90C84E785* __this, const RuntimeMethod* method) 
 {
 	Color_tD001788D726C3A7F1379BEED0260B9591F440C1F V_0;
@@ -16595,7 +16595,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1__ctor_m789AA607E930B
 		return;
 	}
 }
-// Method Definition Index: 54540
+// Method Definition Index: 54563
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1__ctor_m15942DE7E49D005BD79F4825718784124CA67455_gshared (ParameterOverride_1_t32E21FA53107C174D9A77919A9628DA90C84E785* __this, Color_tD001788D726C3A7F1379BEED0260B9591F440C1F ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -16606,7 +16606,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1__ctor_m15942DE7E49D0
 		return;
 	}
 }
-// Method Definition Index: 54541
+// Method Definition Index: 54564
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1__ctor_mB0607FC8F5A8C869E1B880D20045AABBBBFFD0E8_gshared (ParameterOverride_1_t32E21FA53107C174D9A77919A9628DA90C84E785* __this, Color_tD001788D726C3A7F1379BEED0260B9591F440C1F ___0_value, bool ___1_overrideState, const RuntimeMethod* method) 
 {
 	{
@@ -16622,7 +16622,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1__ctor_mB0607FC8F5A8C
 		return;
 	}
 }
-// Method Definition Index: 54542
+// Method Definition Index: 54565
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_Interp_mD4F7B5E693EED35DEAE42E682ACD8310DA0DC50A_gshared (ParameterOverride_1_t32E21FA53107C174D9A77919A9628DA90C84E785* __this, ParameterOverride_t4B8E2A574A094A139B512403B38CE2B594A72A90* ___0_from, ParameterOverride_t4B8E2A574A094A139B512403B38CE2B594A72A90* ___1_to, float ___2_t, const RuntimeMethod* method) 
 {
 	{
@@ -16641,7 +16641,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_Interp_mD4F7B5E693EE
 		return;
 	}
 }
-// Method Definition Index: 54543
+// Method Definition Index: 54566
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_Interp_m9485B2613BE1B97219D1CFA6A09018D133C9C9D0_gshared (ParameterOverride_1_t32E21FA53107C174D9A77919A9628DA90C84E785* __this, Color_tD001788D726C3A7F1379BEED0260B9591F440C1F ___0_from, Color_tD001788D726C3A7F1379BEED0260B9591F440C1F ___1_to, float ___2_t, const RuntimeMethod* method) 
 {
 	ParameterOverride_1_t32E21FA53107C174D9A77919A9628DA90C84E785* G_B2_0 = NULL;
@@ -16681,7 +16681,7 @@ IL_000e:
 		return;
 	}
 }
-// Method Definition Index: 54544
+// Method Definition Index: 54567
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_Override_m4A35D1239DCDA45F94DA9786462320BC0FCA7BE2_gshared (ParameterOverride_1_t32E21FA53107C174D9A77919A9628DA90C84E785* __this, Color_tD001788D726C3A7F1379BEED0260B9591F440C1F ___0_x, const RuntimeMethod* method) 
 {
 	{
@@ -16694,7 +16694,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_Override_m4A35D1239D
 		return;
 	}
 }
-// Method Definition Index: 54545
+// Method Definition Index: 54568
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_SetValue_m5F39918C4DE8DDE5780BD521AAB9DF920F831980_gshared (ParameterOverride_1_t32E21FA53107C174D9A77919A9628DA90C84E785* __this, ParameterOverride_t4B8E2A574A094A139B512403B38CE2B594A72A90* ___0_parameter, const RuntimeMethod* method) 
 {
 	{
@@ -16708,7 +16708,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_SetValue_m5F39918C4D
 		return;
 	}
 }
-// Method Definition Index: 54546
+// Method Definition Index: 54569
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t ParameterOverride_1_GetHash_mDF16F3F8525AEED5688797BB392491D08180BC00_gshared (ParameterOverride_1_t32E21FA53107C174D9A77919A9628DA90C84E785* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -16748,7 +16748,7 @@ IL_0031:
 		return L_7;
 	}
 }
-// Method Definition Index: 54547
+// Method Definition Index: 54570
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Color_tD001788D726C3A7F1379BEED0260B9591F440C1F ParameterOverride_1_op_Implicit_m635129DF8B1D6039D6D2D821F6EC49378B2941FB_gshared (ParameterOverride_1_t32E21FA53107C174D9A77919A9628DA90C84E785* ___0_prop, const RuntimeMethod* method) 
 {
 	Color_tD001788D726C3A7F1379BEED0260B9591F440C1F V_0;
@@ -16777,7 +16777,7 @@ IL_000a:
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 54539
+// Method Definition Index: 54562
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1__ctor_m7BE7020B63F913B8524556DA41BC473EBE0DB8D6_gshared (ParameterOverride_1_t9289C5BEA43DBDEDF5862BFE9BF6208D198D3675* __this, const RuntimeMethod* method) 
 {
 	int32_t V_0 = 0;
@@ -16790,7 +16790,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1__ctor_m7BE7020B63F91
 		return;
 	}
 }
-// Method Definition Index: 54540
+// Method Definition Index: 54563
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1__ctor_mF3B9B35CDB6DF60B129A9B8FFD828277C8F7C4A3_gshared (ParameterOverride_1_t9289C5BEA43DBDEDF5862BFE9BF6208D198D3675* __this, int32_t ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -16801,7 +16801,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1__ctor_mF3B9B35CDB6DF
 		return;
 	}
 }
-// Method Definition Index: 54541
+// Method Definition Index: 54564
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1__ctor_m42608C319F022B7F87C9F45EDC81622B9CCE9B1F_gshared (ParameterOverride_1_t9289C5BEA43DBDEDF5862BFE9BF6208D198D3675* __this, int32_t ___0_value, bool ___1_overrideState, const RuntimeMethod* method) 
 {
 	{
@@ -16817,7 +16817,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1__ctor_m42608C319F022
 		return;
 	}
 }
-// Method Definition Index: 54542
+// Method Definition Index: 54565
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_Interp_mD750BC094806B24793A89627EBA40C82724CB3AE_gshared (ParameterOverride_1_t9289C5BEA43DBDEDF5862BFE9BF6208D198D3675* __this, ParameterOverride_t4B8E2A574A094A139B512403B38CE2B594A72A90* ___0_from, ParameterOverride_t4B8E2A574A094A139B512403B38CE2B594A72A90* ___1_to, float ___2_t, const RuntimeMethod* method) 
 {
 	{
@@ -16836,7 +16836,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_Interp_mD750BC094806
 		return;
 	}
 }
-// Method Definition Index: 54543
+// Method Definition Index: 54566
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_Interp_m0B1A670BDD20DF7898CAEB4C5E35C3998B83A889_gshared (ParameterOverride_1_t9289C5BEA43DBDEDF5862BFE9BF6208D198D3675* __this, int32_t ___0_from, int32_t ___1_to, float ___2_t, const RuntimeMethod* method) 
 {
 	ParameterOverride_1_t9289C5BEA43DBDEDF5862BFE9BF6208D198D3675* G_B2_0 = NULL;
@@ -16875,7 +16875,7 @@ IL_000e:
 		return;
 	}
 }
-// Method Definition Index: 54544
+// Method Definition Index: 54567
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_Override_mFE334CB6192795F1575A787D6EC90D994F3EF087_gshared (ParameterOverride_1_t9289C5BEA43DBDEDF5862BFE9BF6208D198D3675* __this, int32_t ___0_x, const RuntimeMethod* method) 
 {
 	{
@@ -16888,7 +16888,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_Override_mFE334CB619
 		return;
 	}
 }
-// Method Definition Index: 54545
+// Method Definition Index: 54568
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_SetValue_m80E221BF10DAC7F9FAF76877237B4F256707757A_gshared (ParameterOverride_1_t9289C5BEA43DBDEDF5862BFE9BF6208D198D3675* __this, ParameterOverride_t4B8E2A574A094A139B512403B38CE2B594A72A90* ___0_parameter, const RuntimeMethod* method) 
 {
 	{
@@ -16902,7 +16902,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_SetValue_m80E221BF10
 		return;
 	}
 }
-// Method Definition Index: 54546
+// Method Definition Index: 54569
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t ParameterOverride_1_GetHash_mE6FB6FF7B8F5EB909E832969B15EDBADF9A7ACAD_gshared (ParameterOverride_1_t9289C5BEA43DBDEDF5862BFE9BF6208D198D3675* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -16942,7 +16942,7 @@ IL_0031:
 		return L_7;
 	}
 }
-// Method Definition Index: 54547
+// Method Definition Index: 54570
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t ParameterOverride_1_op_Implicit_m11D80F40E09BED759681CA90470E3795BEE92461_gshared (ParameterOverride_1_t9289C5BEA43DBDEDF5862BFE9BF6208D198D3675* ___0_prop, const RuntimeMethod* method) 
 {
 	int32_t V_0 = 0;
@@ -16970,7 +16970,7 @@ IL_000a:
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 54539
+// Method Definition Index: 54562
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1__ctor_m01889B31A7EDA3A4807BE019D6829C4B15DA7DAE_gshared (ParameterOverride_1_t63850BEC32FACF94E47CFF944CF6B58B2543653F* __this, const RuntimeMethod* method) 
 {
 	int32_t V_0 = 0;
@@ -16983,7 +16983,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1__ctor_m01889B31A7EDA
 		return;
 	}
 }
-// Method Definition Index: 54540
+// Method Definition Index: 54563
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1__ctor_m5FE4ACCBA5B9D69B62E18D21E5B101C4F60F45EE_gshared (ParameterOverride_1_t63850BEC32FACF94E47CFF944CF6B58B2543653F* __this, int32_t ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -16994,7 +16994,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1__ctor_m5FE4ACCBA5B9D
 		return;
 	}
 }
-// Method Definition Index: 54541
+// Method Definition Index: 54564
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1__ctor_m15D28716CB0ADE9B3A08498A9459CFBBFF2A75A4_gshared (ParameterOverride_1_t63850BEC32FACF94E47CFF944CF6B58B2543653F* __this, int32_t ___0_value, bool ___1_overrideState, const RuntimeMethod* method) 
 {
 	{
@@ -17010,7 +17010,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1__ctor_m15D28716CB0AD
 		return;
 	}
 }
-// Method Definition Index: 54542
+// Method Definition Index: 54565
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_Interp_m9886347C4133377E4AE6EB28BE545689FE64C15B_gshared (ParameterOverride_1_t63850BEC32FACF94E47CFF944CF6B58B2543653F* __this, ParameterOverride_t4B8E2A574A094A139B512403B38CE2B594A72A90* ___0_from, ParameterOverride_t4B8E2A574A094A139B512403B38CE2B594A72A90* ___1_to, float ___2_t, const RuntimeMethod* method) 
 {
 	{
@@ -17029,7 +17029,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_Interp_m9886347C4133
 		return;
 	}
 }
-// Method Definition Index: 54543
+// Method Definition Index: 54566
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_Interp_m20C5318F4E49B9FE44C9FB92635466DC243BC2B2_gshared (ParameterOverride_1_t63850BEC32FACF94E47CFF944CF6B58B2543653F* __this, int32_t ___0_from, int32_t ___1_to, float ___2_t, const RuntimeMethod* method) 
 {
 	ParameterOverride_1_t63850BEC32FACF94E47CFF944CF6B58B2543653F* G_B2_0 = NULL;
@@ -17068,7 +17068,7 @@ IL_000e:
 		return;
 	}
 }
-// Method Definition Index: 54544
+// Method Definition Index: 54567
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_Override_m885CA3A1E48FDED43723F0D5059CEE357D5E39E0_gshared (ParameterOverride_1_t63850BEC32FACF94E47CFF944CF6B58B2543653F* __this, int32_t ___0_x, const RuntimeMethod* method) 
 {
 	{
@@ -17081,7 +17081,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_Override_m885CA3A1E4
 		return;
 	}
 }
-// Method Definition Index: 54545
+// Method Definition Index: 54568
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_SetValue_m88F4E7E76D5CF6B027DAC548CE0DA3952873BC83_gshared (ParameterOverride_1_t63850BEC32FACF94E47CFF944CF6B58B2543653F* __this, ParameterOverride_t4B8E2A574A094A139B512403B38CE2B594A72A90* ___0_parameter, const RuntimeMethod* method) 
 {
 	{
@@ -17095,7 +17095,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_SetValue_m88F4E7E76D
 		return;
 	}
 }
-// Method Definition Index: 54546
+// Method Definition Index: 54569
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t ParameterOverride_1_GetHash_mC2EB9A41627ED5EF2BCBA179DCB4D93BFF32B60A_gshared (ParameterOverride_1_t63850BEC32FACF94E47CFF944CF6B58B2543653F* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -17135,7 +17135,7 @@ IL_0031:
 		return L_7;
 	}
 }
-// Method Definition Index: 54547
+// Method Definition Index: 54570
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t ParameterOverride_1_op_Implicit_m8CC1EDAB79A9412B5E1E06EAE683A68423F1054E_gshared (ParameterOverride_1_t63850BEC32FACF94E47CFF944CF6B58B2543653F* ___0_prop, const RuntimeMethod* method) 
 {
 	int32_t V_0 = 0;
@@ -17163,7 +17163,7 @@ IL_000a:
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 54539
+// Method Definition Index: 54562
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1__ctor_m60B4A80E9839591E9D6DA273BA20A2C20D058E7F_gshared (ParameterOverride_1_tD5562735DCF56E13A6E77D5FCE083DF6E99D5B3D* __this, const RuntimeMethod* method) 
 {
 	RuntimeObject* V_0 = NULL;
@@ -17176,7 +17176,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1__ctor_m60B4A80E98395
 		return;
 	}
 }
-// Method Definition Index: 54540
+// Method Definition Index: 54563
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1__ctor_m464839E84BFA17E057FC5FC3A26645B4A6BB3AA0_gshared (ParameterOverride_1_tD5562735DCF56E13A6E77D5FCE083DF6E99D5B3D* __this, RuntimeObject* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -17187,7 +17187,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1__ctor_m464839E84BFA1
 		return;
 	}
 }
-// Method Definition Index: 54541
+// Method Definition Index: 54564
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1__ctor_mEE5392D58D163F15B9E77B960ED877F169C08377_gshared (ParameterOverride_1_tD5562735DCF56E13A6E77D5FCE083DF6E99D5B3D* __this, RuntimeObject* ___0_value, bool ___1_overrideState, const RuntimeMethod* method) 
 {
 	{
@@ -17204,7 +17204,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1__ctor_mEE5392D58D163
 		return;
 	}
 }
-// Method Definition Index: 54542
+// Method Definition Index: 54565
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_Interp_m194CF8CAFAD8430588B90D64800F799354859D68_gshared (ParameterOverride_1_tD5562735DCF56E13A6E77D5FCE083DF6E99D5B3D* __this, ParameterOverride_t4B8E2A574A094A139B512403B38CE2B594A72A90* ___0_from, ParameterOverride_t4B8E2A574A094A139B512403B38CE2B594A72A90* ___1_to, float ___2_t, const RuntimeMethod* method) 
 {
 	{
@@ -17223,7 +17223,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_Interp_m194CF8CAFAD8
 		return;
 	}
 }
-// Method Definition Index: 54543
+// Method Definition Index: 54566
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_Interp_m4DB73E0E37B5038789043D1D08489CD007137E3E_gshared (ParameterOverride_1_tD5562735DCF56E13A6E77D5FCE083DF6E99D5B3D* __this, RuntimeObject* ___0_from, RuntimeObject* ___1_to, float ___2_t, const RuntimeMethod* method) 
 {
 	ParameterOverride_1_tD5562735DCF56E13A6E77D5FCE083DF6E99D5B3D* G_B2_0 = NULL;
@@ -17263,7 +17263,7 @@ IL_000e:
 		return;
 	}
 }
-// Method Definition Index: 54544
+// Method Definition Index: 54567
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_Override_m9CC843380D292BC4875E32FE1086407FCF27832D_gshared (ParameterOverride_1_tD5562735DCF56E13A6E77D5FCE083DF6E99D5B3D* __this, RuntimeObject* ___0_x, const RuntimeMethod* method) 
 {
 	{
@@ -17277,7 +17277,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_Override_m9CC843380D
 		return;
 	}
 }
-// Method Definition Index: 54545
+// Method Definition Index: 54568
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_SetValue_m73DFBDF2F1341D27B6D330F36009838395AAC2FF_gshared (ParameterOverride_1_tD5562735DCF56E13A6E77D5FCE083DF6E99D5B3D* __this, ParameterOverride_t4B8E2A574A094A139B512403B38CE2B594A72A90* ___0_parameter, const RuntimeMethod* method) 
 {
 	{
@@ -17292,7 +17292,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_SetValue_m73DFBDF2F1
 		return;
 	}
 }
-// Method Definition Index: 54546
+// Method Definition Index: 54569
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t ParameterOverride_1_GetHash_m3842F211265256048DDF8CD1523081286AAEA69B_gshared (ParameterOverride_1_tD5562735DCF56E13A6E77D5FCE083DF6E99D5B3D* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -17333,7 +17333,7 @@ IL_0031:
 		return L_7;
 	}
 }
-// Method Definition Index: 54547
+// Method Definition Index: 54570
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* ParameterOverride_1_op_Implicit_m96170358444E589C26F19121EA929DBB8645BD55_gshared (ParameterOverride_1_tD5562735DCF56E13A6E77D5FCE083DF6E99D5B3D* ___0_prop, const RuntimeMethod* method) 
 {
 	RuntimeObject* V_0 = NULL;
@@ -17361,7 +17361,7 @@ IL_000a:
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 54539
+// Method Definition Index: 54562
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1__ctor_m8EFD606E8D2ADF8A0E19C49C33842C07968A69A7_gshared (ParameterOverride_1_tF22AA147D92D52ECA8DCF500194976E7EFCCD27F* __this, const RuntimeMethod* method) 
 {
 	float V_0 = 0.0f;
@@ -17374,7 +17374,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1__ctor_m8EFD606E8D2AD
 		return;
 	}
 }
-// Method Definition Index: 54540
+// Method Definition Index: 54563
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1__ctor_mAF840750D42AC46CCF89AA2211CFD1D284230F51_gshared (ParameterOverride_1_tF22AA147D92D52ECA8DCF500194976E7EFCCD27F* __this, float ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -17385,7 +17385,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1__ctor_mAF840750D42AC
 		return;
 	}
 }
-// Method Definition Index: 54541
+// Method Definition Index: 54564
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1__ctor_m73D981C93637A463D92DC722CE0C8A1AFE330AA8_gshared (ParameterOverride_1_tF22AA147D92D52ECA8DCF500194976E7EFCCD27F* __this, float ___0_value, bool ___1_overrideState, const RuntimeMethod* method) 
 {
 	{
@@ -17401,7 +17401,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1__ctor_m73D981C93637A
 		return;
 	}
 }
-// Method Definition Index: 54542
+// Method Definition Index: 54565
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_Interp_m0E473E60604BDE1825108B8BC6B9106181552181_gshared (ParameterOverride_1_tF22AA147D92D52ECA8DCF500194976E7EFCCD27F* __this, ParameterOverride_t4B8E2A574A094A139B512403B38CE2B594A72A90* ___0_from, ParameterOverride_t4B8E2A574A094A139B512403B38CE2B594A72A90* ___1_to, float ___2_t, const RuntimeMethod* method) 
 {
 	{
@@ -17420,7 +17420,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_Interp_m0E473E60604B
 		return;
 	}
 }
-// Method Definition Index: 54543
+// Method Definition Index: 54566
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_Interp_m19ECEA2D0D362A1B213EF093681AF5B1C330C769_gshared (ParameterOverride_1_tF22AA147D92D52ECA8DCF500194976E7EFCCD27F* __this, float ___0_from, float ___1_to, float ___2_t, const RuntimeMethod* method) 
 {
 	ParameterOverride_1_tF22AA147D92D52ECA8DCF500194976E7EFCCD27F* G_B2_0 = NULL;
@@ -17459,7 +17459,7 @@ IL_000e:
 		return;
 	}
 }
-// Method Definition Index: 54544
+// Method Definition Index: 54567
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_Override_mDC2FE3179DDDBBEA946EC43480DB5534E2A452C2_gshared (ParameterOverride_1_tF22AA147D92D52ECA8DCF500194976E7EFCCD27F* __this, float ___0_x, const RuntimeMethod* method) 
 {
 	{
@@ -17472,7 +17472,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_Override_mDC2FE3179D
 		return;
 	}
 }
-// Method Definition Index: 54545
+// Method Definition Index: 54568
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_SetValue_mA6630C8783D723A8E0B7E58BBBD00162ADAF6081_gshared (ParameterOverride_1_tF22AA147D92D52ECA8DCF500194976E7EFCCD27F* __this, ParameterOverride_t4B8E2A574A094A139B512403B38CE2B594A72A90* ___0_parameter, const RuntimeMethod* method) 
 {
 	{
@@ -17486,7 +17486,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_SetValue_mA6630C8783
 		return;
 	}
 }
-// Method Definition Index: 54546
+// Method Definition Index: 54569
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t ParameterOverride_1_GetHash_mBD4C513467B1D752204C207815D15B0DB4055C06_gshared (ParameterOverride_1_tF22AA147D92D52ECA8DCF500194976E7EFCCD27F* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -17526,7 +17526,7 @@ IL_0031:
 		return L_7;
 	}
 }
-// Method Definition Index: 54547
+// Method Definition Index: 54570
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float ParameterOverride_1_op_Implicit_m684A42085A4BF75E9214271CFCCA7F114C21B0EB_gshared (ParameterOverride_1_tF22AA147D92D52ECA8DCF500194976E7EFCCD27F* ___0_prop, const RuntimeMethod* method) 
 {
 	float V_0 = 0.0f;
@@ -17554,7 +17554,7 @@ IL_000a:
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 54539
+// Method Definition Index: 54562
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1__ctor_mE5C54B07F29B4BE8B4C62DA482A81C3A3FACDBD3_gshared (ParameterOverride_1_tD0D241E8B4C5C26C43B7768194903854E4C42061* __this, const RuntimeMethod* method) 
 {
 	Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 V_0;
@@ -17568,7 +17568,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1__ctor_mE5C54B07F29B4
 		return;
 	}
 }
-// Method Definition Index: 54540
+// Method Definition Index: 54563
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1__ctor_mD5B8624C97F36CA4469BB2ECE78D40648BA74FBC_gshared (ParameterOverride_1_tD0D241E8B4C5C26C43B7768194903854E4C42061* __this, Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -17579,7 +17579,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1__ctor_mD5B8624C97F36
 		return;
 	}
 }
-// Method Definition Index: 54541
+// Method Definition Index: 54564
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1__ctor_mD314CE30CBAC3186170C65CA937E49D6BDBDDD8F_gshared (ParameterOverride_1_tD0D241E8B4C5C26C43B7768194903854E4C42061* __this, Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 ___0_value, bool ___1_overrideState, const RuntimeMethod* method) 
 {
 	{
@@ -17595,7 +17595,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1__ctor_mD314CE30CBAC3
 		return;
 	}
 }
-// Method Definition Index: 54542
+// Method Definition Index: 54565
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_Interp_mFE564F5C27A211F923E6E9571438646EDAE45A10_gshared (ParameterOverride_1_tD0D241E8B4C5C26C43B7768194903854E4C42061* __this, ParameterOverride_t4B8E2A574A094A139B512403B38CE2B594A72A90* ___0_from, ParameterOverride_t4B8E2A574A094A139B512403B38CE2B594A72A90* ___1_to, float ___2_t, const RuntimeMethod* method) 
 {
 	{
@@ -17614,7 +17614,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_Interp_mFE564F5C27A2
 		return;
 	}
 }
-// Method Definition Index: 54543
+// Method Definition Index: 54566
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_Interp_m5500921AA997C5D1B0A2081225B2CA7E099ACBCB_gshared (ParameterOverride_1_tD0D241E8B4C5C26C43B7768194903854E4C42061* __this, Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 ___0_from, Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 ___1_to, float ___2_t, const RuntimeMethod* method) 
 {
 	ParameterOverride_1_tD0D241E8B4C5C26C43B7768194903854E4C42061* G_B2_0 = NULL;
@@ -17654,7 +17654,7 @@ IL_000e:
 		return;
 	}
 }
-// Method Definition Index: 54544
+// Method Definition Index: 54567
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_Override_mE7040982028D86F6C8B7F849D52BF0052081C2EF_gshared (ParameterOverride_1_tD0D241E8B4C5C26C43B7768194903854E4C42061* __this, Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 ___0_x, const RuntimeMethod* method) 
 {
 	{
@@ -17667,7 +17667,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_Override_mE704098202
 		return;
 	}
 }
-// Method Definition Index: 54545
+// Method Definition Index: 54568
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_SetValue_mDC3FB98A722D5694BC558AB6F8AFBE17BB447695_gshared (ParameterOverride_1_tD0D241E8B4C5C26C43B7768194903854E4C42061* __this, ParameterOverride_t4B8E2A574A094A139B512403B38CE2B594A72A90* ___0_parameter, const RuntimeMethod* method) 
 {
 	{
@@ -17681,7 +17681,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_SetValue_mDC3FB98A72
 		return;
 	}
 }
-// Method Definition Index: 54546
+// Method Definition Index: 54569
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t ParameterOverride_1_GetHash_mFB3B260DB23764828C490B39F2BA7D26D1CCF270_gshared (ParameterOverride_1_tD0D241E8B4C5C26C43B7768194903854E4C42061* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -17721,7 +17721,7 @@ IL_0031:
 		return L_7;
 	}
 }
-// Method Definition Index: 54547
+// Method Definition Index: 54570
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 ParameterOverride_1_op_Implicit_m7142332EF2C777C1C81EE634E0958D204A47FEFF_gshared (ParameterOverride_1_tD0D241E8B4C5C26C43B7768194903854E4C42061* ___0_prop, const RuntimeMethod* method) 
 {
 	Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 V_0;
@@ -17750,7 +17750,7 @@ IL_000a:
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 54539
+// Method Definition Index: 54562
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1__ctor_m8084C1B9F12FDA61BB8690FF03FA41DCE92E1863_gshared (ParameterOverride_1_t22D7B77092ED927D18B620934135FAAD02002E2A* __this, const RuntimeMethod* method) 
 {
 	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 V_0;
@@ -17764,7 +17764,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1__ctor_m8084C1B9F12FD
 		return;
 	}
 }
-// Method Definition Index: 54540
+// Method Definition Index: 54563
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1__ctor_mFABE91E4D3D4A9E4AA59CF0069D46AB58E77B4AC_gshared (ParameterOverride_1_t22D7B77092ED927D18B620934135FAAD02002E2A* __this, Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -17775,7 +17775,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1__ctor_mFABE91E4D3D4A
 		return;
 	}
 }
-// Method Definition Index: 54541
+// Method Definition Index: 54564
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1__ctor_m6478520D1C2B61FB84626A57A408935144D3C0AB_gshared (ParameterOverride_1_t22D7B77092ED927D18B620934135FAAD02002E2A* __this, Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___0_value, bool ___1_overrideState, const RuntimeMethod* method) 
 {
 	{
@@ -17791,7 +17791,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1__ctor_m6478520D1C2B6
 		return;
 	}
 }
-// Method Definition Index: 54542
+// Method Definition Index: 54565
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_Interp_mEF7CB55399CE86DA338A6E1A55AF8FB5A423445D_gshared (ParameterOverride_1_t22D7B77092ED927D18B620934135FAAD02002E2A* __this, ParameterOverride_t4B8E2A574A094A139B512403B38CE2B594A72A90* ___0_from, ParameterOverride_t4B8E2A574A094A139B512403B38CE2B594A72A90* ___1_to, float ___2_t, const RuntimeMethod* method) 
 {
 	{
@@ -17810,7 +17810,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_Interp_mEF7CB55399CE
 		return;
 	}
 }
-// Method Definition Index: 54543
+// Method Definition Index: 54566
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_Interp_m23E9693D93633A94C2906B328FDED7814EA2DD87_gshared (ParameterOverride_1_t22D7B77092ED927D18B620934135FAAD02002E2A* __this, Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___0_from, Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___1_to, float ___2_t, const RuntimeMethod* method) 
 {
 	ParameterOverride_1_t22D7B77092ED927D18B620934135FAAD02002E2A* G_B2_0 = NULL;
@@ -17850,7 +17850,7 @@ IL_000e:
 		return;
 	}
 }
-// Method Definition Index: 54544
+// Method Definition Index: 54567
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_Override_mA32BB269A27A5DEC30C5F97B49D526172C70A2DC_gshared (ParameterOverride_1_t22D7B77092ED927D18B620934135FAAD02002E2A* __this, Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___0_x, const RuntimeMethod* method) 
 {
 	{
@@ -17863,7 +17863,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_Override_mA32BB269A2
 		return;
 	}
 }
-// Method Definition Index: 54545
+// Method Definition Index: 54568
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_SetValue_m4FB3A7D1E0B94CD9E076E2BCD78D0849DD9C3443_gshared (ParameterOverride_1_t22D7B77092ED927D18B620934135FAAD02002E2A* __this, ParameterOverride_t4B8E2A574A094A139B512403B38CE2B594A72A90* ___0_parameter, const RuntimeMethod* method) 
 {
 	{
@@ -17877,7 +17877,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_SetValue_m4FB3A7D1E0
 		return;
 	}
 }
-// Method Definition Index: 54546
+// Method Definition Index: 54569
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t ParameterOverride_1_GetHash_mC2229FBC882E79C91E7DD1A28B189E32904EF6CB_gshared (ParameterOverride_1_t22D7B77092ED927D18B620934135FAAD02002E2A* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -17917,7 +17917,7 @@ IL_0031:
 		return L_7;
 	}
 }
-// Method Definition Index: 54547
+// Method Definition Index: 54570
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ParameterOverride_1_op_Implicit_m8563C5CCC51EFCC01B11A7B87F99B0997BA9DFAC_gshared (ParameterOverride_1_t22D7B77092ED927D18B620934135FAAD02002E2A* ___0_prop, const RuntimeMethod* method) 
 {
 	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 V_0;
@@ -17946,7 +17946,7 @@ IL_000a:
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 54539
+// Method Definition Index: 54562
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1__ctor_m5C6851DC025D65554CF621A85F694B96A7596438_gshared (ParameterOverride_1_t520B53CC4F37D67D0689376B8F1A4FB1C74D8DC7* __this, const RuntimeMethod* method) 
 {
 	Vector4_t58B63D32F48C0DBF50DE2C60794C4676C80EDBE3 V_0;
@@ -17960,7 +17960,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1__ctor_m5C6851DC025D6
 		return;
 	}
 }
-// Method Definition Index: 54540
+// Method Definition Index: 54563
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1__ctor_mD8C3A89BB170BBE2214F8DB99742DDF4EB334F55_gshared (ParameterOverride_1_t520B53CC4F37D67D0689376B8F1A4FB1C74D8DC7* __this, Vector4_t58B63D32F48C0DBF50DE2C60794C4676C80EDBE3 ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -17971,7 +17971,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1__ctor_mD8C3A89BB170B
 		return;
 	}
 }
-// Method Definition Index: 54541
+// Method Definition Index: 54564
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1__ctor_m8B7618081B468C3A6A41DCBCA37E607A8C51FEDC_gshared (ParameterOverride_1_t520B53CC4F37D67D0689376B8F1A4FB1C74D8DC7* __this, Vector4_t58B63D32F48C0DBF50DE2C60794C4676C80EDBE3 ___0_value, bool ___1_overrideState, const RuntimeMethod* method) 
 {
 	{
@@ -17987,7 +17987,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1__ctor_m8B7618081B468
 		return;
 	}
 }
-// Method Definition Index: 54542
+// Method Definition Index: 54565
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_Interp_m260E85BFC5565F3916A61D6E82D649DF679772D0_gshared (ParameterOverride_1_t520B53CC4F37D67D0689376B8F1A4FB1C74D8DC7* __this, ParameterOverride_t4B8E2A574A094A139B512403B38CE2B594A72A90* ___0_from, ParameterOverride_t4B8E2A574A094A139B512403B38CE2B594A72A90* ___1_to, float ___2_t, const RuntimeMethod* method) 
 {
 	{
@@ -18006,7 +18006,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_Interp_m260E85BFC556
 		return;
 	}
 }
-// Method Definition Index: 54543
+// Method Definition Index: 54566
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_Interp_mCB03E808D4A4C746CD311349BA16178A50801E1B_gshared (ParameterOverride_1_t520B53CC4F37D67D0689376B8F1A4FB1C74D8DC7* __this, Vector4_t58B63D32F48C0DBF50DE2C60794C4676C80EDBE3 ___0_from, Vector4_t58B63D32F48C0DBF50DE2C60794C4676C80EDBE3 ___1_to, float ___2_t, const RuntimeMethod* method) 
 {
 	ParameterOverride_1_t520B53CC4F37D67D0689376B8F1A4FB1C74D8DC7* G_B2_0 = NULL;
@@ -18046,7 +18046,7 @@ IL_000e:
 		return;
 	}
 }
-// Method Definition Index: 54544
+// Method Definition Index: 54567
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_Override_m041FFC075723CE4D56E2CCD342DE973816A12B7A_gshared (ParameterOverride_1_t520B53CC4F37D67D0689376B8F1A4FB1C74D8DC7* __this, Vector4_t58B63D32F48C0DBF50DE2C60794C4676C80EDBE3 ___0_x, const RuntimeMethod* method) 
 {
 	{
@@ -18059,7 +18059,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_Override_m041FFC0757
 		return;
 	}
 }
-// Method Definition Index: 54545
+// Method Definition Index: 54568
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_SetValue_mB3D41DED8D8E0988E8A084D092B3A6B874CC2F96_gshared (ParameterOverride_1_t520B53CC4F37D67D0689376B8F1A4FB1C74D8DC7* __this, ParameterOverride_t4B8E2A574A094A139B512403B38CE2B594A72A90* ___0_parameter, const RuntimeMethod* method) 
 {
 	{
@@ -18073,7 +18073,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_SetValue_mB3D41DED8D
 		return;
 	}
 }
-// Method Definition Index: 54546
+// Method Definition Index: 54569
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t ParameterOverride_1_GetHash_m68332D67A820915970C52122672ACB747E4F2170_gshared (ParameterOverride_1_t520B53CC4F37D67D0689376B8F1A4FB1C74D8DC7* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -18113,7 +18113,7 @@ IL_0031:
 		return L_7;
 	}
 }
-// Method Definition Index: 54547
+// Method Definition Index: 54570
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector4_t58B63D32F48C0DBF50DE2C60794C4676C80EDBE3 ParameterOverride_1_op_Implicit_mA5F98F1D21DAFB7FC8ED81887128C2D0323EBFBC_gshared (ParameterOverride_1_t520B53CC4F37D67D0689376B8F1A4FB1C74D8DC7* ___0_prop, const RuntimeMethod* method) 
 {
 	Vector4_t58B63D32F48C0DBF50DE2C60794C4676C80EDBE3 V_0;
@@ -18142,7 +18142,7 @@ IL_000a:
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 54539
+// Method Definition Index: 54562
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1__ctor_m2CA9A9E310EA4E84203A9BD7F04D89C6055A2FE9_gshared (ParameterOverride_1_tC0878B394E2104ACFBA6CE8629ED7E83346025AA* __this, const RuntimeMethod* method) 
 {
 	const uint32_t SizeOf_T_t4B99FE542949CF1BDC32D0D3ADC6E46FC8694246 = il2cpp_codegen_sizeof(il2cpp_rgctx_data_no_init(method->klass->rgctx_data, 0));
@@ -18158,7 +18158,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1__ctor_m2CA9A9E310EA4
 		return;
 	}
 }
-// Method Definition Index: 54540
+// Method Definition Index: 54563
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1__ctor_m29350F32B03A52DEEEC452482B60D8FDB5A6507F_gshared (ParameterOverride_1_tC0878B394E2104ACFBA6CE8629ED7E83346025AA* __this, Il2CppFullySharedGenericAny ___0_value, const RuntimeMethod* method) 
 {
 	const uint32_t SizeOf_T_t4B99FE542949CF1BDC32D0D3ADC6E46FC8694246 = il2cpp_codegen_sizeof(il2cpp_rgctx_data_no_init(method->klass->rgctx_data, 0));
@@ -18171,7 +18171,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1__ctor_m29350F32B03A5
 		return;
 	}
 }
-// Method Definition Index: 54541
+// Method Definition Index: 54564
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1__ctor_m49778F278CF02D76136AABFF11D6047C2CDE7B3E_gshared (ParameterOverride_1_tC0878B394E2104ACFBA6CE8629ED7E83346025AA* __this, Il2CppFullySharedGenericAny ___0_value, bool ___1_overrideState, const RuntimeMethod* method) 
 {
 	const uint32_t SizeOf_T_t4B99FE542949CF1BDC32D0D3ADC6E46FC8694246 = il2cpp_codegen_sizeof(il2cpp_rgctx_data_no_init(method->klass->rgctx_data, 0));
@@ -18189,7 +18189,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1__ctor_m49778F278CF02
 		return;
 	}
 }
-// Method Definition Index: 54542
+// Method Definition Index: 54565
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_Interp_m18EFD23CA66CE972DE92D51E85E91EF83CDD49B3_gshared (ParameterOverride_1_tC0878B394E2104ACFBA6CE8629ED7E83346025AA* __this, ParameterOverride_t4B8E2A574A094A139B512403B38CE2B594A72A90* ___0_from, ParameterOverride_t4B8E2A574A094A139B512403B38CE2B594A72A90* ___1_to, float ___2_t, const RuntimeMethod* method) 
 {
 	const uint32_t SizeOf_T_t4B99FE542949CF1BDC32D0D3ADC6E46FC8694246 = il2cpp_codegen_sizeof(il2cpp_rgctx_data_no_init(method->klass->rgctx_data, 0));
@@ -18209,7 +18209,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_Interp_m18EFD23CA66C
 		return;
 	}
 }
-// Method Definition Index: 54543
+// Method Definition Index: 54566
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_Interp_mAE05E6B47ABB8CA136C016D17A8ABC41DD98DA74_gshared (ParameterOverride_1_tC0878B394E2104ACFBA6CE8629ED7E83346025AA* __this, Il2CppFullySharedGenericAny ___0_from, Il2CppFullySharedGenericAny ___1_to, float ___2_t, const RuntimeMethod* method) 
 {
 	const uint32_t SizeOf_T_t4B99FE542949CF1BDC32D0D3ADC6E46FC8694246 = il2cpp_codegen_sizeof(il2cpp_rgctx_data_no_init(method->klass->rgctx_data, 0));
@@ -18252,7 +18252,7 @@ IL_000e:
 		return;
 	}
 }
-// Method Definition Index: 54544
+// Method Definition Index: 54567
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_Override_m661BD55D5B4B0B97E7E57A0B495A73C42FE78A81_gshared (ParameterOverride_1_tC0878B394E2104ACFBA6CE8629ED7E83346025AA* __this, Il2CppFullySharedGenericAny ___0_x, const RuntimeMethod* method) 
 {
 	const uint32_t SizeOf_T_t4B99FE542949CF1BDC32D0D3ADC6E46FC8694246 = il2cpp_codegen_sizeof(il2cpp_rgctx_data_no_init(method->klass->rgctx_data, 0));
@@ -18267,7 +18267,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_Override_m661BD55D5B
 		return;
 	}
 }
-// Method Definition Index: 54545
+// Method Definition Index: 54568
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_SetValue_mD7558D88940FE796260A413B9EA81C681FA3742C_gshared (ParameterOverride_1_tC0878B394E2104ACFBA6CE8629ED7E83346025AA* __this, ParameterOverride_t4B8E2A574A094A139B512403B38CE2B594A72A90* ___0_parameter, const RuntimeMethod* method) 
 {
 	const uint32_t SizeOf_T_t4B99FE542949CF1BDC32D0D3ADC6E46FC8694246 = il2cpp_codegen_sizeof(il2cpp_rgctx_data_no_init(method->klass->rgctx_data, 0));
@@ -18282,7 +18282,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_SetValue_mD7558D8894
 		return;
 	}
 }
-// Method Definition Index: 54546
+// Method Definition Index: 54569
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t ParameterOverride_1_GetHash_m63F80F06A022B25BC05A0338B75CEE07E65527AD_gshared (ParameterOverride_1_tC0878B394E2104ACFBA6CE8629ED7E83346025AA* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -18322,7 +18322,7 @@ IL_0031:
 		return L_7;
 	}
 }
-// Method Definition Index: 54547
+// Method Definition Index: 54570
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ParameterOverride_1_op_Implicit_m60CC7A8C60CD5879D8FD721B91EFEAA6D88C1B79_gshared (ParameterOverride_1_tC0878B394E2104ACFBA6CE8629ED7E83346025AA* ___0_prop, Il2CppFullySharedGenericAny* il2cppRetVal, const RuntimeMethod* method) 
 {
 	const uint32_t SizeOf_T_t4B99FE542949CF1BDC32D0D3ADC6E46FC8694246 = il2cpp_codegen_sizeof(il2cpp_rgctx_data_no_init(InitializedTypeInfo(method->klass)->rgctx_data, 0));
@@ -23811,7 +23811,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PopupTextElement__ctor_m6688B3A98E9B7A65
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 54619
+// Method Definition Index: 54642
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* PostProcessEffectRenderer_1_get_settings_mA553C06A7F117CD33367BD2FD10E76DF707531E1_gshared (PostProcessEffectRenderer_1_tD2B8BDFEA0EFB99FB246D04A0049ED47005AAB3B* __this, const RuntimeMethod* method) 
 {
 	{
@@ -23820,7 +23820,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* PostProcessEffectRenderer_1_ge
 		return L_0;
 	}
 }
-// Method Definition Index: 54620
+// Method Definition Index: 54643
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PostProcessEffectRenderer_1_set_settings_mF436BD82B83D7B0CE283F781087E411683E54B28_gshared (PostProcessEffectRenderer_1_tD2B8BDFEA0EFB99FB246D04A0049ED47005AAB3B* __this, RuntimeObject* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -23831,7 +23831,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PostProcessEffectRenderer_1_set_settings
 		return;
 	}
 }
-// Method Definition Index: 54621
+// Method Definition Index: 54644
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PostProcessEffectRenderer_1_SetSettings_m0C7230B244FDF72220D37A370F2B0A732B9968EC_gshared (PostProcessEffectRenderer_1_tD2B8BDFEA0EFB99FB246D04A0049ED47005AAB3B* __this, PostProcessEffectSettings_tEB820A5FBBCB3B1CBEFE11BEA55390EC1B090449* ___0_settings, const RuntimeMethod* method) 
 {
 	{
@@ -23842,7 +23842,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PostProcessEffectRenderer_1_SetSettings_
 		return;
 	}
 }
-// Method Definition Index: 54622
+// Method Definition Index: 54645
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PostProcessEffectRenderer_1__ctor_m439CE34FA8DF146166ACC6529CA24FDE1D55CCEF_gshared (PostProcessEffectRenderer_1_tD2B8BDFEA0EFB99FB246D04A0049ED47005AAB3B* __this, const RuntimeMethod* method) 
 {
 	{
@@ -29695,7 +29695,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool BaseField_1_get_showMixedVal
 		return L_0;
 	}
 }
-// Method Definition Index: 54620
+// Method Definition Index: 54643
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PostProcessEffectRenderer_1_set_settings_mF436BD82B83D7B0CE283F781087E411683E54B28_gshared_inline (PostProcessEffectRenderer_1_tD2B8BDFEA0EFB99FB246D04A0049ED47005AAB3B* __this, RuntimeObject* ___0_value, const RuntimeMethod* method) 
 {
 	{

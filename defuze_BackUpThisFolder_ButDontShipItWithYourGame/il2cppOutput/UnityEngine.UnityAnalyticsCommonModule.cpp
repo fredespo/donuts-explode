@@ -78,7 +78,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AnalyticsCommon_set_ugsAnalyticsEnabled_
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 60936
+// Method Definition Index: 60966
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AnalyticsCommon_set_ugsAnalyticsEnabledInternal_m4264C600AC21370AB14F1A2D811CF8976C63E864 (bool ___0_value, const RuntimeMethod* method) 
 {
 	typedef void (*AnalyticsCommon_set_ugsAnalyticsEnabledInternal_m4264C600AC21370AB14F1A2D811CF8976C63E864_ftn) (bool);
@@ -87,7 +87,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AnalyticsCommon_set_ugsAnalyticsEnabledI
 	_il2cpp_icall_func = (AnalyticsCommon_set_ugsAnalyticsEnabledInternal_m4264C600AC21370AB14F1A2D811CF8976C63E864_ftn)il2cpp_codegen_resolve_icall ("UnityEngine.Analytics.AnalyticsCommon::set_ugsAnalyticsEnabledInternal(System.Boolean)");
 	_il2cpp_icall_func(___0_value);
 }
-// Method Definition Index: 60937
+// Method Definition Index: 60967
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AnalyticsCommon_set_ugsAnalyticsEnabled_m998A626F754515EF4257B9FC3BD0850DDF4370F3 (bool ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -104,7 +104,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AnalyticsCommon_set_ugsAnalyticsEnabled_
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 60938
+// Method Definition Index: 60968
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UGSAnalyticsInternalTools_SetPrivacyStatus_mF4F04D971EBA3A54A9AD22DC4E8D95711334516A (bool ___0_status, const RuntimeMethod* method) 
 {
 	{

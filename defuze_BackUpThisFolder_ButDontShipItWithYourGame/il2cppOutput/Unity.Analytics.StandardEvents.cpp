@@ -484,7 +484,7 @@ inline void Dictionary_2_Add_mC78C20D5901C87AAC38F37C906FAB6946BDE5F13 (Dictiona
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 60966
+// Method Definition Index: 60996
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool AnalyticsEvent_get_debugMode_mE3637027EDC718E2D6DB5BAA13F4383A3A3C4CD6 (const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -499,7 +499,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool AnalyticsEvent_get_debugMode_mE3637027ED
 		return L_0;
 	}
 }
-// Method Definition Index: 60967
+// Method Definition Index: 60997
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AnalyticsEvent_OnValidationFailed_mF18E48F417C6E6D51184730B8537C4827CEC0E0A (String_t* ___0_message, const RuntimeMethod* method) 
 {
 	{
@@ -509,7 +509,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AnalyticsEvent_OnValidationFailed_mF18E4
 		IL2CPP_RAISE_MANAGED_EXCEPTION(L_1, ((RuntimeMethod*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&AnalyticsEvent_OnValidationFailed_mF18E48F417C6E6D51184730B8537C4827CEC0E0A_RuntimeMethod_var)));
 	}
 }
-// Method Definition Index: 60968
+// Method Definition Index: 60998
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AnalyticsEvent_AddCustomEventData_m9AD990135617B5E833111C3A2D4E503B623004D6 (RuntimeObject* ___0_eventData, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -635,7 +635,7 @@ IL_0065:
 		return;
 	}
 }
-// Method Definition Index: 60969
+// Method Definition Index: 60999
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t AnalyticsEvent_Custom_m3F7C48F9A5835908A67F754B5C0DBB979403C5C8 (String_t* ___0_eventName, RuntimeObject* ___1_eventData, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -961,7 +961,7 @@ IL_016c:
 		return L_65;
 	}
 }
-// Method Definition Index: 60970
+// Method Definition Index: 61000
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t AnalyticsEvent_LevelComplete_mA8D43AA5A274634F03B13572ABB8644484F0103E (int32_t ___0_index, RuntimeObject* ___1_eventData, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -994,7 +994,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t AnalyticsEvent_LevelComplete_mA8D43AA
 		return L_7;
 	}
 }
-// Method Definition Index: 60971
+// Method Definition Index: 61001
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t AnalyticsEvent_LevelStart_m03522B6E8921299D88B6CF5A5E8AAE125455C9A2 (int32_t ___0_index, RuntimeObject* ___1_eventData, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -1027,7 +1027,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t AnalyticsEvent_LevelStart_m03522B6E89
 		return L_7;
 	}
 }
-// Method Definition Index: 60972
+// Method Definition Index: 61002
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AnalyticsEvent__cctor_m151F3CA0FB2C8500101E8046D19D5A8FD05B84C4 (const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -1106,7 +1106,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AnalyticsEvent__cctor_m151F3CA0FB2C85001
 		return;
 	}
 }
-// Method Definition Index: 60973
+// Method Definition Index: 61003
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AnalyticsEvent_U3Cs_StandardEventCallbackU3Em__0_m632C421451067C6EFC5EFA23CF85121B6AA433A9 (RuntimeObject* ___0_p, const RuntimeMethod* method) 
 {
 	{
@@ -1116,7 +1116,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AnalyticsEvent_U3Cs_StandardEventCallbac
 #ifdef __clang__
 #pragma clang diagnostic pop
 #endif
-// Method Definition Index: 60966
+// Method Definition Index: 60996
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool AnalyticsEvent_get_debugMode_mE3637027EDC718E2D6DB5BAA13F4383A3A3C4CD6_inline (const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;

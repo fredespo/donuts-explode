@@ -1517,7 +1517,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Vector3__ctor_m376936E6B999E
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 60974
+// Method Definition Index: 61004
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void DraggableBhv_OnPointerDown_mBBD6AE3FB1F0ACA3BC434A93A66A90DC8DE7BBF5 (DraggableBhv_t556005B144D6B1DDBC1462D408348B10886A4FF2* __this, PointerEventData_t9670F3C7D823CCB738A1604C72A1EB90292396FB* ___0_dt, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -1544,7 +1544,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void DraggableBhv_OnPointerDown_mBBD6AE3FB1F0
 		return;
 	}
 }
-// Method Definition Index: 60975
+// Method Definition Index: 61005
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void DraggableBhv_OnPointerUp_m64F3E4C597D2A2047AA98B471DFC0FC43B977366 (DraggableBhv_t556005B144D6B1DDBC1462D408348B10886A4FF2* __this, PointerEventData_t9670F3C7D823CCB738A1604C72A1EB90292396FB* ___0_dt, const RuntimeMethod* method) 
 {
 	{
@@ -1554,7 +1554,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void DraggableBhv_OnPointerUp_m64F3E4C597D2A2
 		return;
 	}
 }
-// Method Definition Index: 60976
+// Method Definition Index: 61006
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void DraggableBhv_Update_mB6F48D98E1A1B384B95C6E938D8025C0F59B4336 (DraggableBhv_t556005B144D6B1DDBC1462D408348B10886A4FF2* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -1611,7 +1611,7 @@ IL_003a:
 		return;
 	}
 }
-// Method Definition Index: 60977
+// Method Definition Index: 61007
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void DraggableBhv__ctor_mE09F1159E9FE11E167CF28BA8B96C7B76EEE8076 (DraggableBhv_t556005B144D6B1DDBC1462D408348B10886A4FF2* __this, const RuntimeMethod* method) 
 {
 	{
@@ -1629,7 +1629,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void DraggableBhv__ctor_mE09F1159E9FE11E167CF
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 60978
+// Method Definition Index: 61008
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void MinimizableWindowBhv_Awake_m9473742EA9B84D399ABE85A19D384291DDBAB850 (MinimizableWindowBhv_tD13734B02056ABF1E04324246C3D1DE76F455D80* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -1718,7 +1718,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void MinimizableWindowBhv_Awake_m9473742EA9B8
 		return;
 	}
 }
-// Method Definition Index: 60979
+// Method Definition Index: 61009
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void MinimizableWindowBhv_setWinTitle_mDADF963ABE6D9CEE9C4519C6996CA3D696D91F2E (MinimizableWindowBhv_tD13734B02056ABF1E04324246C3D1DE76F455D80* __this, String_t* ___0_sTitle, const RuntimeMethod* method) 
 {
 	{
@@ -1731,7 +1731,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void MinimizableWindowBhv_setWinTitle_mDADF96
 		return;
 	}
 }
-// Method Definition Index: 60980
+// Method Definition Index: 61010
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void MinimizableWindowBhv_setWinVisible_m5C7383983BE89AE6D7BAA8B7298095D7858AFC11 (MinimizableWindowBhv_tD13734B02056ABF1E04324246C3D1DE76F455D80* __this, bool ___0_bVisible, const RuntimeMethod* method) 
 {
 	{
@@ -1750,7 +1750,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void MinimizableWindowBhv_setWinVisible_m5C73
 		return;
 	}
 }
-// Method Definition Index: 60981
+// Method Definition Index: 61011
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool MinimizableWindowBhv_isWinVisible_m99F9181D21711BC2315D0A729938776CB5450C69 (MinimizableWindowBhv_tD13734B02056ABF1E04324246C3D1DE76F455D80* __this, const RuntimeMethod* method) 
 {
 	bool V_0 = false;
@@ -1768,7 +1768,7 @@ IL_000a:
 		return L_1;
 	}
 }
-// Method Definition Index: 60982
+// Method Definition Index: 61012
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void MinimizableWindowBhv_setWinState_mEBAAD7F9B5E2EB9D3A2B86DD1F459A84B8A3E717 (MinimizableWindowBhv_tD13734B02056ABF1E04324246C3D1DE76F455D80* __this, int32_t ___0_state, const RuntimeMethod* method) 
 {
 	bool V_0 = false;
@@ -1842,7 +1842,7 @@ IL_0023:
 		return;
 	}
 }
-// Method Definition Index: 60983
+// Method Definition Index: 61013
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t MinimizableWindowBhv_getWinState_m084D2D7C6C853FFB29C2FB9091D86C2CDD0A1B0F (MinimizableWindowBhv_tD13734B02056ABF1E04324246C3D1DE76F455D80* __this, const RuntimeMethod* method) 
 {
 	int32_t V_0 = 0;
@@ -1860,7 +1860,7 @@ IL_000a:
 		return L_1;
 	}
 }
-// Method Definition Index: 60984
+// Method Definition Index: 61014
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void MinimizableWindowBhv__ctor_m35C9A4B01292B95B94E482ECF73FF80822C40E13 (MinimizableWindowBhv_tD13734B02056ABF1E04324246C3D1DE76F455D80* __this, const RuntimeMethod* method) 
 {
 	{
@@ -1868,7 +1868,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void MinimizableWindowBhv__ctor_m35C9A4B01292
 		return;
 	}
 }
-// Method Definition Index: 60985
+// Method Definition Index: 61015
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void MinimizableWindowBhv_U3CAwakeU3Eb__12_0_m54440C3626977FBA10F09E7269FCEA9592960A19 (MinimizableWindowBhv_tD13734B02056ABF1E04324246C3D1DE76F455D80* __this, const RuntimeMethod* method) 
 {
 	{
@@ -1877,7 +1877,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void MinimizableWindowBhv_U3CAwakeU3Eb__12_0_
 		return;
 	}
 }
-// Method Definition Index: 60986
+// Method Definition Index: 61016
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void MinimizableWindowBhv_U3CAwakeU3Eb__12_1_m700C5E0974E186AA4E45E4A0CD38AC08C64083EC (MinimizableWindowBhv_tD13734B02056ABF1E04324246C3D1DE76F455D80* __this, const RuntimeMethod* method) 
 {
 	{
@@ -1886,7 +1886,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void MinimizableWindowBhv_U3CAwakeU3Eb__12_1_
 		return;
 	}
 }
-// Method Definition Index: 60987
+// Method Definition Index: 61017
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void MinimizableWindowBhv_U3CAwakeU3Eb__12_2_mEF430F865BC78165E6A4A1874D9DE60B031611EE (MinimizableWindowBhv_tD13734B02056ABF1E04324246C3D1DE76F455D80* __this, const RuntimeMethod* method) 
 {
 	{
@@ -1911,7 +1911,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void MinimizableWindowBhv_U3CAwakeU3Eb__12_2_
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 60988
+// Method Definition Index: 61018
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SpinnerBhv_Awake_m51A6505EEBC3EC592709B23EC63BE4AA49CD8C5C (SpinnerBhv_t127C1943385F7C6EB3EEF915B1CBE377097A1B97* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -1936,7 +1936,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SpinnerBhv_Awake_m51A6505EEBC3EC592709B2
 		return;
 	}
 }
-// Method Definition Index: 60989
+// Method Definition Index: 61019
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SpinnerBhv_Update_m767DD94A55F40360CF3E20173D540D4C5F16C0D0 (SpinnerBhv_t127C1943385F7C6EB3EEF915B1CBE377097A1B97* __this, const RuntimeMethod* method) 
 {
 	bool V_0 = false;
@@ -1979,7 +1979,7 @@ IL_0055:
 		return;
 	}
 }
-// Method Definition Index: 60990
+// Method Definition Index: 61020
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SpinnerBhv__ctor_m31B6FC0C08C115A3582406D89E2613F34646CAB1 (SpinnerBhv_t127C1943385F7C6EB3EEF915B1CBE377097A1B97* __this, const RuntimeMethod* method) 
 {
 	{
