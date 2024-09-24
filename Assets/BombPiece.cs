@@ -12,6 +12,7 @@ public class BombPiece : MonoBehaviour
     public float fadeSpeed = 1;
     public float fadeDelaySec = 0.2f;
     public GameObject impactEffect;
+    public SpriteRenderer dough;
     SpriteRenderer[] spriteRenderers;
     SCP_SpriteRendererColorer[] spriteRendererColorers;
     private bool fading = false;
@@ -61,9 +62,8 @@ public class BombPiece : MonoBehaviour
                 this.hitBombSoundEffect.Play(0);
                 var impulse = (UnityEngine.Random.Range(100f, 300f) * Mathf.Deg2Rad) * this.rigibody.inertia;
                 this.rigibody.AddTorque(impulse, ForceMode2D.Impulse);
-                Instantiate(impactEffect, col.contacts[0].point, transform.rotation);
-                Color doughColor = this.spriteRenderers[0].color;
-                impactEffect.GetComponent<ParticleSystem>().startColor = doughColor;
+                GameObject spawnedImpactEffect = Instantiate(impactEffect, col.contacts[0].point, transform.rotation);
+                spawnedImpactEffect.GetComponent<ParticleSystem>().startColor = this.dough.color;
             }
         }
     }
