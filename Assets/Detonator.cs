@@ -29,11 +29,21 @@ public class Detonator : MonoBehaviour
         Time.timeScale = 1.0f;
         if (camAnim != null) camAnim.SetBool("slowmo", false);
 
-        GameObject spawnedExplosion = Instantiate(explosion, gameObject.transform.parent, false);
+        GameObject spawnedExplosion = Instantiate(explosion, gameObject.transform.parent);
+        RectTransform explosionRectTransform = spawnedExplosion.GetComponent<RectTransform>();
+        if (explosionRectTransform != null)
+        {
+            RectTransform thisRectTransform = GetComponent<RectTransform>();
+            explosionRectTransform.anchorMin = thisRectTransform.anchorMin;
+            explosionRectTransform.anchorMax = thisRectTransform.anchorMax;
+            explosionRectTransform.pivot = thisRectTransform.pivot;
+            explosionRectTransform.anchoredPosition = new Vector2(thisRectTransform.anchoredPosition.x, thisRectTransform.anchoredPosition.y - 60);
+        }
         if (explosionParent != null)
         {
             spawnedExplosion.gameObject.transform.SetParent(explosionParent.gameObject.transform);
         }
+
         explosionSound.Play(0);
         if (pieceShooter != null)
         {
