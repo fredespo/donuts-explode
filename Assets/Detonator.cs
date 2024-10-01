@@ -11,6 +11,7 @@ public class Detonator : MonoBehaviour
     private GameObject pieces;
     private GameObject pieceShooter;
     private Animator camAnim;
+    public ChunkSpawner chunkSpawner;
 
     public void Start()
     {
@@ -59,6 +60,12 @@ public class Detonator : MonoBehaviour
                 BlowAway(child.GetComponent<Rigidbody2D>());
             }
         }
+
+        if (this.chunkSpawner != null)
+        {
+            this.chunkSpawner.SpawnChunks();
+        }
+
         if (destroyOnDetonation)
         {
             Destroy(gameObject);

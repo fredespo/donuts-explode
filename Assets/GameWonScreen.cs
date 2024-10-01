@@ -43,10 +43,10 @@ public class GameWonScreen : MonoBehaviour
         {
             this.anim.enabled = true;
             this.anim.SetTrigger("Intro");
-            StartCoroutine(FadeAudioSource(this.gameMusic, 3, 0));
+            StartCoroutine(FadeAudioSource(this.gameMusic, 0, 6, 0));
             this.victoryMusic.volume = 0;
             this.victoryMusic.Play();
-            StartCoroutine(FadeAudioSource(this.victoryMusic, 3, this.initVictoryMusicVolume));
+            StartCoroutine(FadeAudioSource(this.victoryMusic, 3, 6, this.initVictoryMusicVolume));
         }
         else
         {
@@ -82,8 +82,10 @@ public class GameWonScreen : MonoBehaviour
         return this.savedScore;
     }
 
-    IEnumerator FadeAudioSource(AudioSource audio, float duration, float targetVolume)
+    IEnumerator FadeAudioSource(AudioSource audio, float initialDelay, float duration, float targetVolume)
     {
+        yield return new WaitForSeconds(initialDelay);
+
         //Calculate the steps
         int volumeChangesPerSecond = 10;
         int numSteps = (int)(volumeChangesPerSecond * duration);
