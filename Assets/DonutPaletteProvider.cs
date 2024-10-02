@@ -62,8 +62,15 @@ public class DonutPaletteProvider : MonoBehaviour
     public void SetPalette(int index)
     {
         this.paletteProvider.SetActivePaletteIndex(index);
-        if (this.pieceShooterPaletteProvider == null) this.pieceShooterPaletteProvider = GameObject.FindWithTag("PiecePalette").GetComponent<PieceShooterPaletteProvider>();
-        this.pieceShooterPaletteProvider.SetActivePaletteIndex(index);
+        if (this.pieceShooterPaletteProvider == null)
+        {
+            GameObject piecePalette = GameObject.FindWithTag("PiecePalette");
+            if (piecePalette != null)
+            {
+                this.pieceShooterPaletteProvider = piecePalette.GetComponent<PieceShooterPaletteProvider>();
+            }
+        }
+        if (this.pieceShooterPaletteProvider != null) this.pieceShooterPaletteProvider.SetActivePaletteIndex(index);
         this.sprinkles.ColorSprinkles();
     }
 }

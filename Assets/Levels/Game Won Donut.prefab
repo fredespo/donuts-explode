@@ -895,6 +895,7 @@ GameObject:
   - component: {fileID: -4405323041335260443}
   - component: {fileID: 2302272595972912554}
   - component: {fileID: 8379537455105365435}
+  - component: {fileID: 1846659405435559394}
   m_Layer: 0
   m_Name: Game Won Donut
   m_TagString: BonusBomb
@@ -1004,6 +1005,20 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0.1}
   serializedVersion: 2
   m_Radius: 2.6
+--- !u!114 &1846659405435559394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5938720258720801486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5136da665608be4ebed1f06c5262888, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotator: {fileID: 2302272595972912554}
+  paletteProvider: {fileID: 9022524614576575382}
 --- !u!1 &6239857505002333992
 GameObject:
   m_ObjectHideFlags: 0
