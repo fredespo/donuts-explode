@@ -20,4 +20,9 @@ public class LevelWinUI : MonoBehaviour
         this.accuracyBonusText.SetActive(true);
         if (andThen != null) andThen.Invoke();
     }
+
+    public void Destroy()
+    {
+        Destroy(gameObject);
+    }
 }

@@ -79,8 +79,8 @@ public class BombDefuzer : MonoBehaviour
         shootTapZone.SetActive(false);
         timer.Pause();
         bombRotator.enabled = false;
-        GameObject spawnedDefuzedUI = GameObject.Instantiate(defuzedUI);
-        spawnedDefuzedUI.gameObject.transform.SetParent(gameObject.transform.parent.transform, false);
+        GameObject spawnedDefuzedUI = GameObject.Instantiate(defuzedUI, gameObject.transform.parent.parent.parent.transform);
+        // spawnedDefuzedUI.gameObject.transform.SetParent(gameObject.transform.parent.parent.parent.transform, false);
         spawnedDefuzedUI.gameObject.transform.rotation = Quaternion.identity;
         pieces = GameObject.FindGameObjectWithTag("PieceKeeper");
         pieces.SetActive(false);
