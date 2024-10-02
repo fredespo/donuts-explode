@@ -27,11 +27,11 @@ public class DonutEater : MonoBehaviour
     private IEnumerator AnimateBitesCoroutine(Action andThen, Action onLastBite)
     {
         ActivateBite(0);
-        yield return new WaitForSeconds(0.6f);
+        yield return new WaitForSeconds(0.5f);
         ActivateBite(1);
-        yield return new WaitForSeconds(0.6f);
+        yield return new WaitForSeconds(0.5f);
         ActivateBite(2);
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(0.7f);
         playBiteSound();
         this.bites[this.bites.Length - 1].gameObject.SetActive(false);
         foreach (GameObject obj in this.donut)
@@ -39,7 +39,7 @@ public class DonutEater : MonoBehaviour
             obj.SetActive(false);
         }
         onLastBite.Invoke();
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.75f);
         andThen.Invoke();
     }
 
