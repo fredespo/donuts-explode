@@ -39,10 +39,11 @@ public class ContinueBtn : MonoBehaviour
         }
     }
 
-    private void onLastBite() {
+    private void onLastBite()
+    {
         foreach (GameObject obj in this.removeOnLastBite)
         {
-            obj.SetActive(false);
+            Destroy(obj);
         }
     }
 }
