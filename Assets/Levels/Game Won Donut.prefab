@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3566645205124043062}
+  - component: {fileID: 1964286627561719438}
   m_Layer: 0
   m_Name: Donut
   m_TagString: Untagged
@@ -40,6 +41,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0.18}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1964286627561719438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 372643517990736766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cca1e6cf2e0ee2841a5447975c3e686a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useConstSpeed: 1
+  constSpeed: 60
+  direction: 0
 --- !u!1 &1233806550038283963
 GameObject:
   m_ObjectHideFlags: 0
@@ -893,7 +909,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5938720258720801485}
   - component: {fileID: -4405323041335260443}
-  - component: {fileID: 2302272595972912554}
   - component: {fileID: 8379537455105365435}
   - component: {fileID: 1846659405435559394}
   m_Layer: 0
@@ -954,22 +969,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!114 &2302272595972912554
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5938720258720801486}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cca1e6cf2e0ee2841a5447975c3e686a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  useConstSpeed: 1
-  constSpeed: 60
-  direction: 0
+  m_Constraints: 4
 --- !u!58 &8379537455105365435
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1017,7 +1017,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5136da665608be4ebed1f06c5262888, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotator: {fileID: 2302272595972912554}
+  rotator: {fileID: 0}
   paletteProvider: {fileID: 9022524614576575382}
 --- !u!1 &6239857505002333992
 GameObject:
