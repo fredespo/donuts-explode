@@ -13,13 +13,18 @@ public class Rotator : MonoBehaviour
     public enum RotationDir
     {
         Clockwise,
-        Counterclockwise
+        Counterclockwise,
+        Random
     }
     private textTimer timer;
 
     public void Start()
     {
         this.Speed = this.constSpeed;
+        if (this.direction == RotationDir.Random)
+        {
+            this.direction = UnityEngine.Random.Range(0, 2) == 0 ? RotationDir.Clockwise : RotationDir.Counterclockwise;
+        }
     }
 
     public void Init(textTimer timer)
