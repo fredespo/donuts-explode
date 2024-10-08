@@ -46,7 +46,7 @@ public class GameWonScreen : MonoBehaviour
             StartCoroutine(FadeAudioSource(this.gameMusic, 0, 6, 0));
             this.victoryMusic.volume = 0;
             this.victoryMusic.Play();
-            StartCoroutine(FadeAudioSource(this.victoryMusic, 3, 6, this.initVictoryMusicVolume));
+            StartCoroutine(FadeAudioSource(this.victoryMusic, 7, 6, this.initVictoryMusicVolume));
         }
         else
         {

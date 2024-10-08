@@ -11,7 +11,8 @@ public class DonutSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("SpawnDonut", 1, 1);
+        ClearDonuts();
+        InvokeRepeating("SpawnDonut", 7, 1);
     }
 
     void SpawnDonut()
@@ -19,5 +20,11 @@ public class DonutSpawner : MonoBehaviour
         GameObject spawnedDonut = Instantiate(this.donut, gameObject.transform);
         spawnedDonut.GetComponent<RectTransform>().anchoredPosition = new Vector2(Random.Range(-400, 400), 300);
         spawnedDonut.GetComponent<Bomb>().SetPalette(UnityEngine.Random.Range(0, this.donutPaletteProvider.GetNumPalettes()));
+    }
+
+    void ClearDonuts() {
+        foreach (Transform child in this.transform) {
+            Destroy(child.gameObject);
+        }
     }
 }
