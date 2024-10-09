@@ -4113,6 +4113,7 @@ GameObject:
   - component: {fileID: 250710361}
   - component: {fileID: 250710363}
   - component: {fileID: 250710364}
+  - component: {fileID: 250710365}
   m_Layer: 5
   m_Name: HUD
   m_TagString: Untagged
@@ -4138,7 +4139,6 @@ RectTransform:
   - {fileID: 1431996198}
   - {fileID: 2003635692}
   - {fileID: 945567737}
-  - {fileID: 1520471082}
   m_Father: {fileID: 974466848}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -4192,6 +4192,7 @@ MonoBehaviour:
   levelLostUI: {fileID: 1327249377}
   gameOverUI: {fileID: 1431996199}
   levelLoader: {fileID: 46862305}
+  pauseButton: {fileID: 1520471081}
   coffeeDrinkSound: {fileID: 455995385}
   coffeeSipSound: {fileID: 905165327}
   totalCoffeeSips: 3
@@ -4245,6 +4246,34 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
+        m_CallState: 2
+--- !u!114 &250710365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 250710359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcbff46937e93554db2b45b5e7d52c63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventChannel: {fileID: 11400000, guid: 676d5d3d1423079428493e42be90aef0, type: 2}
+  OnEventRaised:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 250710362}
+        m_TargetAssemblyTypeName: HUD, Assembly-CSharp
+        m_MethodName: HandleBonusLevelEvent
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &260263580
 GameObject:
@@ -4571,8 +4600,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f5a91f46a4105a4aa9c42c3dbdecbbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bonusLevelStartedChannel: {fileID: 11400000, guid: 849a385ab1e9df545ad11e63a779babc,
-    type: 2}
 --- !u!114 &260534225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14730,7 +14757,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &974466848
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14764,6 +14791,7 @@ RectTransform:
   - {fileID: 2018077474}
   - {fileID: 884396257}
   - {fileID: 1319480959}
+  - {fileID: 1520471082}
   m_Father: {fileID: 1086236006}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -22512,7 +22540,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1421957245}
-  m_Father: {fileID: 250710360}
+  m_Father: {fileID: 974466848}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -23162,6 +23190,8 @@ MonoBehaviour:
   bombHittingSideSoundEffect: {fileID: 2128583428}
   numBonusBombsDefuzed: 0
   winUI: {fileID: 2107426626383327792, guid: fee8773697b590d4fa324d38819652ca, type: 3}
+  bonusLevelEventChannel: {fileID: 11400000, guid: 676d5d3d1423079428493e42be90aef0,
+    type: 2}
   score: {fileID: 945567741}
   pointsPerBombDefuzed: 100
   endingDelay: 1.5
@@ -26599,7 +26629,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1748620202
 RectTransform:
   m_ObjectHideFlags: 0

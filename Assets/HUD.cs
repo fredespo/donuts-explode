@@ -12,6 +12,7 @@ public class HUD : MonoBehaviour
     [SerializeField] private GameOverUI levelLostUI;
     [SerializeField] private GameOverUI gameOverUI;
     [SerializeField] private LevelLoader levelLoader;
+    [SerializeField] private GameObject pauseButton;
     private Animator animator;
     [SerializeField] private AudioSource coffeeDrinkSound;
     [SerializeField] private AudioSource coffeeSipSound;
@@ -116,5 +117,13 @@ public class HUD : MonoBehaviour
 
         this.score.AddAfterDelay(-1 * (int)Mathf.Ceil((float)score.GetScore() / 2), initialDelay + duration + delayBeforeScoreChange);
         yield return new WaitForSeconds(totalTime);
+    }
+
+    public void HandleBonusLevelEvent(string value) {
+        if (value == LevelState.PLAY_STARTED) {
+            this.pauseButton.SetActive(true);
+        } else if (value == LevelState.PLAY_ENDED) {
+            this.pauseButton.SetActive(false);
+        }
     }
 }

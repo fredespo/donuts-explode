@@ -5,7 +5,6 @@ using UnityEngine;
 public class BonusLevelIndicator : MonoBehaviour
 {
     private AudioSource soundEffect;
-    [SerializeField] private VoidEventChannel bonusLevelStartedChannel;
 
     void Start()
     {
@@ -20,6 +19,5 @@ public class BonusLevelIndicator : MonoBehaviour
     public void DoneAnimating()
     {
         gameObject.SetActive(false);
-        this.bonusLevelStartedChannel.RaiseEvent();
     }
 }

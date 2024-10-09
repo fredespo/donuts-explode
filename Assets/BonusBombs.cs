@@ -13,6 +13,7 @@ public class BonusBombs : MonoBehaviour
     public AudioSource bombHittingSideSoundEffect;
     public int numBonusBombsDefuzed;
     public GameObject winUI;
+    public StringEventChannel bonusLevelEventChannel;
     public Score score;
     public int pointsPerBombDefuzed = 100;
     public float endingDelay;
@@ -42,6 +43,7 @@ public class BonusBombs : MonoBehaviour
         this.paletteProvider.SetActivePaletteIndex(Random.Range(0, this.paletteProvider.GetNumPalettes()));
         GameObject.FindWithTag("PiecePalette").GetComponent<PieceShooterPaletteProvider>().SetActivePaletteIndex(this.paletteProvider.GetActivePaletteIndex());
         StartCoroutine(SpawnCoroutine());
+        this.bonusLevelEventChannel.RaiseEvent(LevelState.PLAY_STARTED);
     }
 
     private IEnumerator SpawnCoroutine()
@@ -102,6 +104,7 @@ public class BonusBombs : MonoBehaviour
         this.bonusPoints = this.pointsPerBombDefuzed * this.numBonusBombsDefuzed;
         GameObject winUI = Instantiate(this.winUI, transform.parent.transform);
         winUI.GetComponent<BonusLevelWinUI>().RevealAndAwardBonus(this.numBonusBombsDefuzed, this.bonusPoints);
+        this.bonusLevelEventChannel.RaiseEvent(LevelState.PLAY_ENDED);
     }
 
     public void DefuzedBonusBomb()
