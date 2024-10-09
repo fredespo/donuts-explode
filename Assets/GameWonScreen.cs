@@ -21,6 +21,7 @@ public class GameWonScreen : MonoBehaviour
     public AudioSource gameMusic;
     public AudioSource victoryMusic;
     public AudioSource metalImpactSound;
+    public AudioSource bonusSound;
     public AudioSource extinguishSound;
     private float initGameMusicVolume;
     private float initVictoryMusicVolume;
@@ -106,6 +107,7 @@ public class GameWonScreen : MonoBehaviour
     public void PlayMetalImpactSound()
     {
         this.metalImpactSound.Play();
+        this.bonusSound.Play();
     }
 
     public void PlayExtinguishSound()
