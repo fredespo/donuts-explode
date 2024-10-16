@@ -14,10 +14,6 @@ public class SettingsScreen : MonoBehaviour
     public void Init(bool fromPauseMenu)
     {
         this.fromPauseMenu = fromPauseMenu;
-        if(fromPauseMenu)
-        {
-            Time.timeScale = 1.0f;
-        }
     }
 
     public void Back()
@@ -25,7 +21,6 @@ public class SettingsScreen : MonoBehaviour
         this.onBack.Invoke();
         if (this.fromPauseMenu)
         {
-            Time.timeScale = 0;
             this.onBackToGame.Invoke();
         }
         else

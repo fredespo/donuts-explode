@@ -45,9 +45,6 @@ public class ScreenManager : MonoBehaviour
 
     public void ShowSettingsScreen(bool fromPauseMenu = false)
     {
-        gameScreen.SetActive(false);
-        gameWonScreen.SetActive(false);
-        titleScreen.SetActive(false);
         settingsScreen.SetActive(true);
         settingsScreen.GetComponent<SettingsScreen>().Init(fromPauseMenu);
     }
