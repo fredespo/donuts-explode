@@ -5,6 +5,7 @@ using BinaryCharm.SemanticColorPalette;
 
 public class PieceShooter : MonoBehaviour
 {
+    public DataStorage dataStorage;
     public LevelStats levelStats;
     public GameObject pieceParent;
     public bool shootingEnabled = false;
@@ -211,6 +212,7 @@ public class PieceShooter : MonoBehaviour
     public void RecordMissedShot()
     {
         this.consecutiveGoodShots = 0;
+        this.dataStorage.SetHasPerfectAccuracy(false);
     }
 
     public void RecordGoodShot()

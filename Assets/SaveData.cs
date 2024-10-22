@@ -11,6 +11,7 @@ public class SaveData
     public bool adsEnabled;
     public int bonusLevelsCompleted;
     public int lives;
+    public bool hasPerfectAccuracy;
 
     public SaveData()
     {
@@ -19,5 +20,6 @@ public class SaveData
         this.adsEnabled = true;
         this.bonusLevelsCompleted = 0;
         this.lives = 3;
+        this.hasPerfectAccuracy = true;
     }
 }

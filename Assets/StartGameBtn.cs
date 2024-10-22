@@ -5,6 +5,7 @@ using UnityEngine;
 public class StartGameBtn : MonoBehaviour
 {
     public float delay = 0.4f;
+    public DataStorage dataStorage;
     public TitleMenu titleMenu;
     public Detonator detonator;
     public GameObject title;
@@ -19,5 +20,6 @@ public class StartGameBtn : MonoBehaviour
         newGameConfirmMenu.SetActive(false);
         titleMenu.StartGameAfterDelay(delay);
         detonator.activate();
+        this.dataStorage.ResetGame();
     }
 }

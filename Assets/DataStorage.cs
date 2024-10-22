@@ -21,7 +21,6 @@ public class DataStorage : MonoBehaviour
     private static string KEY_VOLUME_SOUNDFX = "SoundFxVolume";
     private static string KEY_PAUSE_BUTTON_LOCATION = "PauseButtonLocation";
     private static string KEY_HAPTICS = "Haptics";
-    private static string KEY_LIVES = "Lives";
 
     public void Awake()
     {
@@ -30,7 +29,9 @@ public class DataStorage : MonoBehaviour
         this.pepper = Encoding.UTF8.GetBytes("j=2kE9-/Q7HTM-:U!MqygFAzkYcZvw");
         this.formatter = new BinaryFormatter();
         this.saveData = new SaveData();
+        Debug.Log("Save data has perfect accuracy: " + saveData.hasPerfectAccuracy);
         LoadSaveData();
+        Debug.Log("Save data has perfect accuracy: " + saveData.hasPerfectAccuracy);
     }
 
     private void LoadSaveData()
@@ -117,12 +118,14 @@ public class DataStorage : MonoBehaviour
         Save();
     }
 
-    private void ResetGame()
+    public void ResetGame()
     {
         SaveLevel(0);
         SaveScore(0);
         ResetBonusLevelsCompleted();
         SetLives(3);
+        SetHasPerfectAccuracy(true);
+        Save();
     }
 
     public int GetScore()
@@ -298,5 +301,15 @@ public class DataStorage : MonoBehaviour
             checksum += bit.ToString("x2");
         }
         return checksum;
+    }
+
+    public bool HasPerfectAccuracy()
+    {
+        return this.saveData.hasPerfectAccuracy;
+    }
+
+    public void SetHasPerfectAccuracy(bool value)
+    {
+        this.saveData.hasPerfectAccuracy = value;
     }
 }

@@ -68,6 +68,11 @@ public class TitleMenu : MonoBehaviour
         int savedLevel = dataStorage.GetLevel();
         if (forceStartLevel) savedLevel = startLevelIndex;
         int level = savedLevel < 0 || savedLevel >= levelLoader.LevelCount() ? 0 : savedLevel;
+        if (forceStartLevel)
+        {
+            dataStorage.SaveLevel(savedLevel);
+            dataStorage.Save();
+        }
         levelLoader.LoadLevel(level, startDelaySec, true);
     }
 

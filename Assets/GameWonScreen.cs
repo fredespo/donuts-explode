@@ -16,6 +16,8 @@ public class GameWonScreen : MonoBehaviour
     public UnityEvent onNewHighScoreDetected;
     public UnityEvent onExit;
     public Score score;
+    public GameObject perfectAccuracyMessage;
+    public DataStorage dataStorage;
     public GameObject levelIndicator;
     public Text scoreText;
     public AudioSource gameMusic;
@@ -57,6 +59,14 @@ public class GameWonScreen : MonoBehaviour
             this.victoryMusic.Play();
             this.onSkipAnimation.Invoke();
             this.onPostInit.Invoke();
+        }
+    }
+
+    public void maybeShowPerfectAccuracyMessage()
+    {
+        if (this.dataStorage.HasPerfectAccuracy())
+        {
+            this.perfectAccuracyMessage.SetActive(true);
         }
     }
 
