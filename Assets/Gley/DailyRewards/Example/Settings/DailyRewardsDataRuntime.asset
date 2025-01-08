@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fef34a28df080094199bcdb3fe511019, type: 3}
+  m_Name: DailyRewardsDataRuntime
+  m_EditorClassIdentifier: 
+  allTimerButtons:
+  - buttonID: RewardButton
+    hours: 0
+    minutes: 1
+    seconds: 0
+    interactable: 0
+    availableAtStart: 1
+    completeText: Open
+  - buttonID: RewardButton2
+    hours: 0
+    minutes: 2
+    seconds: 0
+    interactable: 1
+    availableAtStart: 1
+    completeText: Open
+  - buttonID: RewardButton3
+    hours: 0
+    minutes: 3
+    seconds: 0
+    interactable: 0
+    availableAtStart: 0
+    completeText: Open
+  calendarPrefab: {fileID: 1869782733140482, guid: de2046ad0284858438d0fa15bfdb6e31,
+    type: 3}
+  calendarCanvas: {fileID: 1072201933520926, guid: f0fb663a072a5c345bb1a5426202ac18,
+    type: 3}
+  availableAtStart: 1
+  resetAtEnd: 0
+  hours: 0
+  minutes: 0
+  seconds: 15
+  allDays:
+  - dayTexture: {fileID: 21300000, guid: bafa0fb070a641d468ef61990cc20496, type: 3}
+    rewardValue: 10
+  - dayTexture: {fileID: 21300000, guid: bafa0fb070a641d468ef61990cc20496, type: 3}
+    rewardValue: 20
+  - dayTexture: {fileID: 21300000, guid: bafa0fb070a641d468ef61990cc20496, type: 3}
+    rewardValue: 50
+  - dayTexture: {fileID: 21300000, guid: bafa0fb070a641d468ef61990cc20496, type: 3}
+    rewardValue: 100
+  - dayTexture: {fileID: 21300000, guid: bafa0fb070a641d468ef61990cc20496, type: 3}
+    rewardValue: 200
+  - dayTexture: {fileID: 21300000, guid: bafa0fb070a641d468ef61990cc20496, type: 3}
+    rewardValue: 500
+  - dayTexture: {fileID: 21300000, guid: bafa0fb070a641d468ef61990cc20496, type: 3}
+    rewardValue: 1000
+  - dayTexture: {fileID: 21300000, guid: bafa0fb070a641d468ef61990cc20496, type: 3}
+    rewardValue: 1500
+  - dayTexture: {fileID: 21300000, guid: bafa0fb070a641d468ef61990cc20496, type: 3}
+    rewardValue: 2500
+  - dayTexture: {fileID: 21300000, guid: bafa0fb070a641d468ef61990cc20496, type: 3}
+    rewardValue: 5000
+  - dayTexture: {fileID: 21300000, guid: bafa0fb070a641d468ef61990cc20496, type: 3}
+    rewardValue: 10000
+  usePlaymaker: 0
+  useBolt: 0
