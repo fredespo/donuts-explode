@@ -10,6 +10,7 @@ using System;
 
 public class DataStorage : MonoBehaviour
 {
+    public static int LIVES_UNLIMITED = 9999;
     public VolumeSetting volumeSettingSfx;
     public VolumeSetting volumeSettingMusic;
     private SaveData saveData;
@@ -145,7 +146,22 @@ public class DataStorage : MonoBehaviour
 
     public void SetLives(int lives)
     {
-        this.saveData.lives = lives;
+        if (this.saveData.lives != LIVES_UNLIMITED)
+        {
+            this.saveData.lives = lives;
+        }
+    }
+
+    public void SetLivesToInfinite()
+    {
+        SetLives(LIVES_UNLIMITED);
+        Save();
+    }
+
+    public void RevokeInfiniteLives()
+    {
+        this.saveData.lives = 3;
+        Save();
     }
 
     public void Save()
