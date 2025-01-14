@@ -66,4 +66,9 @@ public class IAP : MonoBehaviour
         Debug.Log("Purchased unlimited coffee");
         coffeeUnlimitedPurchaseEventChannel?.RaiseEvent();
     }
+
+    public string GetPriceStringForUnlimitedCoffee()
+    {
+        return API.GetLocalizedPriceString(ShopProductNames.UnlimitedCoffee);
+    }
 }
