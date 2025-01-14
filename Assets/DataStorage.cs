@@ -32,6 +32,10 @@ public class DataStorage : MonoBehaviour
         this.saveData = new SaveData();
         Debug.Log("Save data has perfect accuracy: " + saveData.hasPerfectAccuracy);
         LoadSaveData();
+        if (GetLevel() == 0)
+        {
+            ResetGame();
+        }
         Debug.Log("Save data has perfect accuracy: " + saveData.hasPerfectAccuracy);
     }
 
