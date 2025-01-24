@@ -168,6 +168,13 @@ public class DataStorage : MonoBehaviour
         Save();
     }
 
+    public void GiveExtraLivesForRewardedAd()
+    {
+        Debug.Log("Giving extra lives for rewarded ad");
+        SetLives(GetLives() + 3);
+        Save();
+    }
+
     public void Save()
     {
         using (FileStream saveFile = new FileStream(this.saveFilePath, FileMode.Create))
@@ -186,6 +193,7 @@ public class DataStorage : MonoBehaviour
     public void SaveLevel(int levelIndex)
     {
         this.saveData.level = levelIndex;
+        Save();
     }
 
     public void ResetBonusLevelsCompleted()

@@ -51,6 +51,10 @@ public class Lives : MonoBehaviour
         SetLivesLeft(DataStorage.LIVES_UNLIMITED);
     }
 
+    public void GiveExtraLivesForRewardedAd() {
+        SetLivesLeft(this.livesLeft + 3);
+    }
+
     private void RefreshText()
     {
         if (this.livesLeft == DataStorage.LIVES_UNLIMITED)
