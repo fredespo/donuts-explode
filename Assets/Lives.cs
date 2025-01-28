@@ -41,7 +41,7 @@ public class Lives : MonoBehaviour
     {
         if (this.livesLeft != DataStorage.LIVES_UNLIMITED)
         {
-            this.livesLeft = value;
+            this.livesLeft = Mathf.Max(0, value);
         }
         RefreshText();
     }
@@ -52,7 +52,13 @@ public class Lives : MonoBehaviour
     }
 
     public void GiveExtraLivesForRewardedAd() {
-        SetLivesLeft(this.livesLeft + 3);
+        const int reward = 3;
+        if (this.livesLeft <= 0) {
+            SetLivesLeft(reward);
+        }
+        else {
+            SetLivesLeft(this.livesLeft + reward);
+        }
     }
 
     private void RefreshText()

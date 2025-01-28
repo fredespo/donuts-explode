@@ -111,14 +111,10 @@ public class DataStorage : MonoBehaviour
 
     public void OnLevelLost()
     {
-        if (GetLives() > 0)
+        if (GetLives() >= 0)
         {
             SetLives(GetLives() - 1);
             SaveScore(Score.CalcScoreAfterLoss(GetScore()));
-        }
-        else
-        {
-            ResetGame();
         }
         Save();
     }

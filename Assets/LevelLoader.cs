@@ -21,6 +21,7 @@ public class LevelLoader : MonoBehaviour
     public GameObject shootTapZone;
     public GameOverUI levelLostUI;
     public GameOverUI gameOverUI;
+    public GameObject tapToShootZone;
     public Score score;
     public Lives lives;
     public GameObject levelObscurer;
@@ -73,6 +74,7 @@ public class LevelLoader : MonoBehaviour
             bombPieces.SetActive(false);
             pauseButton.SetActive(false);
         }
+
         ResetCurrentLevel(() =>
         {
             if (this.shouldAnimatePiece)
@@ -139,7 +141,7 @@ public class LevelLoader : MonoBehaviour
             this.bonusBombs.gameObject.SetActive(true);
             this.bonusBombs.Init(this.currBonusLevel.spawns);
         }
-        else
+        else if (dataStorage.GetLives() >= 0)
         {
             StartPieceShooter(pieceShooterAngleChangeMode, pieceShooterAngles, firstPiece);
         }
@@ -177,13 +179,17 @@ public class LevelLoader : MonoBehaviour
     {
         Level level = levels[currLevelIdx];
         pieceShooter.SetActive(false);
-        this.shouldAnimatePiece = level.pieceAnimationAngles.Length > 0 && this.loadingLevel && !fromTitle;
+        this.shouldAnimatePiece = level.pieceAnimationAngles.Length > 0 && this.loadingLevel && !fromTitle && dataStorage.GetLives() > 0;
         foreach (GameObject prevBomb in GameObject.FindGameObjectsWithTag("bomb"))
         {
             Destroy(prevBomb);
         }
 
-        if (this.isBonusLevel)
+        if (dataStorage.GetLives() < 0) {
+            gameOverUI.Show();
+            shootTapZone.SetActive(false);
+        }
+        else if (this.isBonusLevel)
         {
             levelIndicator.gameObject.SetActive(false);
             bonusLevelIndicator.SetActive(true);
@@ -234,7 +240,9 @@ public class LevelLoader : MonoBehaviour
 
 
         levelLostUI.Hide();
-        gameOverUI.Hide();
+        if (dataStorage.GetLives() >= 0) {
+            gameOverUI.Hide();
+        }
         music.Reset();
         score.RefreshDispScore();
         this.scoreBonus.Reset();
