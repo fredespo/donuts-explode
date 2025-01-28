@@ -188,6 +188,7 @@ public class LevelLoader : MonoBehaviour
         if (dataStorage.GetLives() < 0) {
             gameOverUI.Show();
             shootTapZone.SetActive(false);
+            pauseButton.SetActive(false);
         }
         else if (this.isBonusLevel)
         {
