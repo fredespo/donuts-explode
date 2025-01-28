@@ -74,6 +74,7 @@ public class LevelLoader : MonoBehaviour
             bombPieces.SetActive(false);
             pauseButton.SetActive(false);
         }
+        levelIndicator.Set(this.GetCurrentLevelIndex() + 1, this.LevelCount());
 
         ResetCurrentLevel(() =>
         {
