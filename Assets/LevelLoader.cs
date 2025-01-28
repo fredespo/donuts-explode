@@ -296,6 +296,10 @@ public class LevelLoader : MonoBehaviour
         dataStorage.SaveLevel(0);
     }
 
+    public void RestartGame() {
+        LoadLevel(0, 0, false);
+    }
+
     public int GetCurrentLevelIndex()
     {
         return currLevelIdx;
