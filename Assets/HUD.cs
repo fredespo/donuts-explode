@@ -94,7 +94,7 @@ public class HUD : MonoBehaviour
     public void DoneDrinkingCoffee()
     {
         this.animator.Play("Default");
-        this.levelLoader.ResetCurrentLevel(() => this.levelLoader.StartCurrentLevelAfterDelaySec(0.1f), () => { });
+        this.levelLoader.ResetCurrentLevel(() => this.levelLoader.StartCurrentLevelAfterDelaySec(0.1f));
     }
 
     private IEnumerator DeductPoints(float initialDelay, float duration, float delayBeforeGoingBack)

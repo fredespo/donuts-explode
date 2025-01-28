@@ -43,6 +43,7 @@ public class LevelLoader : MonoBehaviour
     private bool isBonusLevel;
     private BonusLevel currBonusLevel;
     private Action startBombAction;
+    private int prevDonutPalette = 0;
 
     public void Start()
     {
@@ -92,12 +93,12 @@ public class LevelLoader : MonoBehaviour
 
             this.loadingLevel = false;
         },
-        () =>
-        {
-            pieceTutorialAnimator.SetAngles(this.levels[currLevelIdx].pieceAnimationAngles);
-            pieceTutorialAnimator.AnimatePieceAndThen(this.startBombAction);
-        },
         fromTitle, startDelaySec);
+    }
+
+    private void animatePiece(Action andThen) {
+        pieceTutorialAnimator.SetAngles(this.levels[currLevelIdx].pieceAnimationAngles);
+        pieceTutorialAnimator.AnimatePieceAndThen(this.startBombAction);
     }
 
     private void setDonutPaletteForLevel(int levelIndex)
@@ -109,7 +110,12 @@ public class LevelLoader : MonoBehaviour
     private int getDonutPaletteForLevel(int levelIndex)
     {
         if (levelIndex == 0) return 0;
-        return UnityEngine.Random.Range(0, this.donutPaletteProvider.GetNumPalettes());
+        int randPalette = UnityEngine.Random.Range(0, this.donutPaletteProvider.GetNumPalettes());
+        if (randPalette == prevDonutPalette) {
+            randPalette = (randPalette + 1) % this.donutPaletteProvider.GetNumPalettes();
+        }
+        prevDonutPalette = randPalette;
+        return randPalette;
     }
 
     public void StartCurrentLevelAfterDelaySec(float delaySec)
@@ -148,7 +154,7 @@ public class LevelLoader : MonoBehaviour
         }
 
         music.Play();
-        levelObscurer.SetActive(false);
+        
         if (!Application.isEditor)
         {
             AnalyticsEvent.LevelStart(currLevelIdx + 1, new Dictionary<string, object>
@@ -176,11 +182,11 @@ public class LevelLoader : MonoBehaviour
         pieceTutorialAnimator.DestroySpawnedPiece();
     }
 
-    public void ResetCurrentLevel(Action andThen, Action animatePiece, bool fromTitle = false, float startDelaySec = 0f)
+    public void ResetCurrentLevel(Action andThen, bool fromTitle = false, float startDelaySec = 0f)
     {
         Level level = levels[currLevelIdx];
         pieceShooter.SetActive(false);
-        this.shouldAnimatePiece = level.pieceAnimationAngles.Length > 0 && this.loadingLevel && !fromTitle && dataStorage.GetLives() > 0;
+        this.shouldAnimatePiece = level.pieceAnimationAngles.Length > 0 && this.loadingLevel && dataStorage.GetLives() > 0;
         foreach (GameObject prevBomb in GameObject.FindGameObjectsWithTag("bomb"))
         {
             Destroy(prevBomb);
@@ -212,21 +218,20 @@ public class LevelLoader : MonoBehaviour
             timer.gameObject.SetActive(false);
             if (fromTitle)
             {
-                levelObscurer.SetActive(this.shouldAnimatePiece);
                 StartCoroutine(StartTimerAfterDelaySec(startDelaySec, defuzer, detonator, bombComp, andThen));
             }
             else
             {
-                levelObscurer.SetActive(false);
                 bomb.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 700);
                 this.startBombAction = () =>
                 {
+                    levelObscurer.SetActive(false);
                     bombComp.StartBomb();
                     bomb.GetComponent<Bomb>().AnimateInAndThen(() => StartTimer(defuzer, detonator, bombComp, andThen));
                 };
                 if (this.shouldAnimatePiece)
                 {
-                    animatePiece.Invoke();
+                    animatePiece(this.startBombAction);
                 }
                 else
                 {
