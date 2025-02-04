@@ -26,10 +26,26 @@ public class Detonator : MonoBehaviour
 
     public void activate()
     {
-        Taptic.Heavy();
+        EndSlowMo();
+        Explode();
+        TurnOffPieceShooter();
+        BlowAwayPieces();
+        SpawnDonutChunks();
+        DestroyOrDeactivateOnDetonation();
+    }
+
+    private void EndSlowMo() {
         Time.timeScale = 1.0f;
         if (camAnim != null) camAnim.SetBool("slowmo", false);
+    }
 
+    private void Explode() {
+        Taptic.Heavy();
+        SpawnExplosion();
+        explosionSound.Play(0);
+    }
+
+    private void SpawnExplosion() {
         GameObject spawnedExplosion = Instantiate(explosion, gameObject.transform.parent);
         RectTransform explosionRectTransform = spawnedExplosion.GetComponent<RectTransform>();
         if (explosionRectTransform != null)
@@ -44,14 +60,18 @@ public class Detonator : MonoBehaviour
         {
             spawnedExplosion.gameObject.transform.SetParent(explosionParent.gameObject.transform);
         }
+    }
 
-        explosionSound.Play(0);
+    private void TurnOffPieceShooter() {
         if (pieceShooter != null)
         {
             PieceShooter pieceShooterComp = pieceShooter.GetComponent<PieceShooter>();
             pieceShooterComp.ResetConsecutiveShots();
             pieceShooterComp.Inactivate();
         }
+    }
+
+    private void BlowAwayPieces() {
         pieces = GameObject.FindGameObjectWithTag("PieceKeeper");
         if (pieces != null)
         {
@@ -60,12 +80,23 @@ public class Detonator : MonoBehaviour
                 BlowAway(child.GetComponent<Rigidbody2D>());
             }
         }
+    }
 
+    private void BlowAway(Rigidbody2D rb)
+    {
+        rb.velocity = Vector2.zero;
+        Vector2 force = (rb.gameObject.transform.position - gameObject.transform.position).normalized * 20;
+        rb.AddForce(force, ForceMode2D.Impulse);
+    }
+
+    private void SpawnDonutChunks() {
         if (this.chunkSpawner != null)
         {
             this.chunkSpawner.SpawnChunks();
         }
+    }
 
+    private void DestroyOrDeactivateOnDetonation() {
         if (destroyOnDetonation)
         {
             Destroy(gameObject);
@@ -74,12 +105,5 @@ public class Detonator : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
-    }
-
-    private void BlowAway(Rigidbody2D rb)
-    {
-        rb.velocity = Vector2.zero;
-        Vector2 force = (rb.gameObject.transform.position - gameObject.transform.position).normalized * 20;
-        rb.AddForce(force, ForceMode2D.Impulse);
     }
 }

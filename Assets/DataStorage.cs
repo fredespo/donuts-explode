@@ -32,6 +32,10 @@ public class DataStorage : MonoBehaviour
         this.saveData = new SaveData();
         Debug.Log("Save data has perfect accuracy: " + saveData.hasPerfectAccuracy);
         LoadSaveData();
+        if (GetLevel() == 0)
+        {
+            ResetGame();
+        }
         Debug.Log("Save data has perfect accuracy: " + saveData.hasPerfectAccuracy);
     }
 
@@ -107,14 +111,10 @@ public class DataStorage : MonoBehaviour
 
     public void OnLevelLost()
     {
-        if (GetLives() > 0)
+        if (GetLives() >= 0)
         {
             SetLives(GetLives() - 1);
             SaveScore(Score.CalcScoreAfterLoss(GetScore()));
-        }
-        else
-        {
-            ResetGame();
         }
         Save();
     }
@@ -164,6 +164,13 @@ public class DataStorage : MonoBehaviour
         Save();
     }
 
+    public void GiveExtraLivesForRewardedAd()
+    {
+        Debug.Log("Giving extra lives for rewarded ad");
+        SetLives(GetLives() + 3);
+        Save();
+    }
+
     public void Save()
     {
         using (FileStream saveFile = new FileStream(this.saveFilePath, FileMode.Create))
@@ -182,6 +189,7 @@ public class DataStorage : MonoBehaviour
     public void SaveLevel(int levelIndex)
     {
         this.saveData.level = levelIndex;
+        Save();
     }
 
     public void ResetBonusLevelsCompleted()

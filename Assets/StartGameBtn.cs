@@ -20,6 +20,5 @@ public class StartGameBtn : MonoBehaviour
         newGameConfirmMenu.SetActive(false);
         titleMenu.StartGameAfterDelay(delay);
         detonator.activate();
-        this.dataStorage.ResetGame();
     }
 }

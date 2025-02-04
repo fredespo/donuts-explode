@@ -38,7 +38,7 @@ public class HUD : MonoBehaviour
     {
         if (this.lives != null)
         {
-            if (this.lives.GetLivesLeft() > 0)
+            if (this.lives.GetLivesLeft() >= 0)
             {
                 float explosionTime = 1.3f;
                 if (this.score.GetScore() > 0)
@@ -49,10 +49,11 @@ public class HUD : MonoBehaviour
                 {
                     yield return new WaitForSeconds(explosionTime);
                 }
-                this.levelLostUI.ShowAfterDelay(0.3f);
             }
-            else if (this.gameOverUI != null)
-            {
+            
+            if (this.lives.GetLivesLeft() > 0) {
+                this.levelLostUI.ShowAfterDelay(0.3f);
+            } else if (this.gameOverUI != null) {
                 this.gameOverUI.ShowAfterDelay(1.0f);
             }
         }
@@ -93,7 +94,7 @@ public class HUD : MonoBehaviour
     public void DoneDrinkingCoffee()
     {
         this.animator.Play("Default");
-        this.levelLoader.ResetCurrentLevel(() => this.levelLoader.StartCurrentLevelAfterDelaySec(0.1f), () => { });
+        this.levelLoader.ResetCurrentLevel(() => this.levelLoader.StartCurrentLevelAfterDelaySec(0.1f));
     }
 
     private IEnumerator DeductPoints(float initialDelay, float duration, float delayBeforeGoingBack)
