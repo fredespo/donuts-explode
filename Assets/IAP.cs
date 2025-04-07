@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using Gley.EasyIAP;
+using UnityEngine.Purchasing;
 
 public class IAP : MonoBehaviour
 {
@@ -20,8 +21,13 @@ public class IAP : MonoBehaviour
     {
         if (status == IAPOperationStatus.Success)
         {
-            this.isInitialized = true;
             Debug.Log("IAP initialized");
+            this.isInitialized = true;
+            if (API.IsActive(ShopProductNames.UnlimitedCoffee))
+            {
+                Debug.Log("Unlimited coffee was previously purchased");
+                coffeeUnlimitedPurchaseEventChannel.RaiseEvent();
+            }
         }
         else
         {
@@ -43,12 +49,12 @@ public class IAP : MonoBehaviour
     {
         if (status == IAPOperationStatus.Success)
         {
-            Debug.Log("Purchase completed for product: " + product.productName);
+            Debug.Log("Successfully purchased " + product.productName);
             OnPurchaseSuccess(product);
         }
         else
         {
-            Debug.Log("Error occurred: " + message);
+            Debug.Log("Error in purchase of " + product.productName + ": " + message);
         }
     }
 
@@ -57,14 +63,9 @@ public class IAP : MonoBehaviour
         ShopProductNames productName = API.ConvertNameToShopProduct(product.productName);
         if (productName == ShopProductNames.UnlimitedCoffee)
         {
-            OnPurchaseUnlimitedCoffeeInternal();
+            Debug.Log("Purchased unlimited coffee");
+            coffeeUnlimitedPurchaseEventChannel.RaiseEvent();
         }
-    }
-
-    private void OnPurchaseUnlimitedCoffeeInternal()
-    {
-        Debug.Log("Purchased unlimited coffee");
-        coffeeUnlimitedPurchaseEventChannel?.RaiseEvent();
     }
 
     public string GetPriceStringForUnlimitedCoffee()
