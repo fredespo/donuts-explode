@@ -4,11 +4,15 @@ using UnityEngine;
 using UnityEngine.Events;
 using Gley.EasyIAP;
 using UnityEngine.Purchasing;
+using UnityEngine.UI;
 
 public class IAP : MonoBehaviour
 {
     public VoidEventChannel coffeeUnlimitedPurchaseEventChannel;
     private bool isInitialized = false;
+
+    public Text errorMsgText;
+    public GameObject errorScreen;
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +36,7 @@ public class IAP : MonoBehaviour
         else
         {
             Debug.Log("Error occurred: " + message);
+            ShowErrorMessage(message);
         }
     }
 
@@ -70,6 +75,24 @@ public class IAP : MonoBehaviour
 
     public string GetPriceStringForUnlimitedCoffee()
     {
+        if (!this.isInitialized)
+        {
+            Debug.Log("IAP not initialized");
+            return string.Empty;
+        }
         return API.GetLocalizedPriceString(ShopProductNames.UnlimitedCoffee);
+    }
+
+    private void ShowErrorMessage(string message)
+    {
+        if (errorScreen != null)
+        {
+            errorScreen.SetActive(true);
+        }
+
+        if (errorMsgText != null)
+        {
+            errorMsgText.text = message;
+        }
     }
 }
