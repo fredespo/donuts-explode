@@ -160,8 +160,16 @@ public class DataStorage : MonoBehaviour
 
     public void RevokeInfiniteLives()
     {
-        this.saveData.lives = 3;
-        Save();
+        if (this.saveData.lives == LIVES_UNLIMITED)
+        {
+            this.saveData.lives = 3;
+            Save();
+        }
+    }
+
+    public bool HasInfiniteLives()
+    {
+        return this.saveData.lives == LIVES_UNLIMITED;
     }
 
     public void GiveExtraLivesForRewardedAd()

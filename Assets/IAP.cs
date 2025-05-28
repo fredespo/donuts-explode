@@ -9,6 +9,7 @@ using UnityEngine;
 public class IAP : MonoBehaviour
 {
     public VoidEventChannel coffeeUnlimitedPurchaseEventChannel;
+    public VoidEventChannel coffeeUnlimitedPurchaseInactiveEventChannel;
     public VoidEventChannel purchaseRestoreDoneChannel;
     private bool isInitialized = false;
 
@@ -33,6 +34,10 @@ public class IAP : MonoBehaviour
             {
                 Debug.Log("Unlimited coffee was previously purchased");
                 coffeeUnlimitedPurchaseEventChannel.RaiseEvent();
+            } else
+            {
+                Debug.Log("Unlimited coffee was not previously purchased or was refunded");
+                coffeeUnlimitedPurchaseInactiveEventChannel.RaiseEvent();
             }
         }
         else
@@ -40,6 +45,10 @@ public class IAP : MonoBehaviour
             Debug.Log("Error occurred: " + message);
             ShowErrorMessage(message);
         }
+    }
+
+    public bool IsUnlimitedCoffeePurchaseActive() {
+        return API.IsActive(ShopProductNames.UnlimitedCoffee);
     }
 
     public void BuyUnlimitedCoffee()
