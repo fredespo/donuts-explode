@@ -3,6 +3,7 @@ package com.unity3d.player;
 
 import android.app.Activity;
 import android.util.Log;
+import com.unity3d.player.UnityPlayer;
 import com.google.android.gms.games.Games;
 import com.google.android.gms.games.GamesSignInClient;
 import com.google.android.gms.games.PlayGames;
@@ -12,6 +13,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
 public class GPGSPlugin {
+    private static final String CLIENT_OBJECT = "GooglePlayGamesServices";
     private static final String TAG = "GPGSPlugin";
     private static Activity currentActivity;
     private static GamesSignInClient gamesSignInClient;
@@ -25,6 +27,13 @@ public class GPGSPlugin {
         PlayGamesSdk.initialize(currentActivity);
         gamesSignInClient = PlayGames.getGamesSignInClient(currentActivity);
 
+        gamesSignInClient.isAuthenticated().addOnCompleteListener(new OnCompleteListener<AuthenticationResult>() {
+            @Override
+            public void onComplete(Task<AuthenticationResult> signInTask) {
+                onSignInComplete(signInTask);
+            }
+        });
+
         Log.d(TAG, "GPGS Plugin initialized");
     }
 
@@ -35,33 +44,24 @@ public class GPGSPlugin {
             return;
         }
 
-        gamesSignInClient.isAuthenticated().addOnCompleteListener(new OnCompleteListener<AuthenticationResult>() {
+        gamesSignInClient.signIn().addOnCompleteListener(new OnCompleteListener<AuthenticationResult>() {
             @Override
-            public void onComplete(Task<AuthenticationResult> task) {
-                if (task.isSuccessful() && task.getResult().isAuthenticated()) {
-                    // Already signed in
-                    isSignedIn = true;
-                    Log.d(TAG, "Already signed in to GPGS");
-                    UnityPlayer.UnitySendMessage("GPGSManager", "OnSignInSuccess", "");
-                } else {
-                    // Need to sign in
-                    gamesSignInClient.signIn().addOnCompleteListener(new OnCompleteListener<AuthenticationResult>() {
-                        @Override
-                        public void onComplete(Task<AuthenticationResult> signInTask) {
-                            if (signInTask.isSuccessful() && signInTask.getResult().isAuthenticated()) {
-                                isSignedIn = true;
-                                Log.d(TAG, "Sign in successful");
-                                UnityPlayer.UnitySendMessage("GPGSManager", "OnSignInSuccess", "");
-                            } else {
-                                isSignedIn = false;
-                                Log.e(TAG, "Sign in failed: " + signInTask.getException());
-                                UnityPlayer.UnitySendMessage("GPGSManager", "OnSignInFailed", "");
-                            }
-                        }
-                    });
-                }
+            public void onComplete(Task<AuthenticationResult> signInTask) {
+                onSignInComplete(signInTask);
             }
         });
+    }
+
+    private static void onSignInComplete(Task<AuthenticationResult> signInTask) {
+        if (signInTask.isSuccessful() && signInTask.getResult().isAuthenticated()) {
+            isSignedIn = true;
+            Log.d(TAG, "Sign in successful");
+            UnityPlayer.UnitySendMessage(CLIENT_OBJECT, "OnSignInSuccess", "");
+        } else {
+            isSignedIn = false;
+            Log.e(TAG, "Sign in failed: " + signInTask.getException());
+            UnityPlayer.UnitySendMessage(CLIENT_OBJECT, "OnSignInFailed", "");
+        }
     }
 
     // Check if signed in
