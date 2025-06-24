@@ -30,10 +30,10 @@ public class GooglePlayGamesServicesClient : MonoBehaviour
         Debug.Log("Signed in successfully!");
         ShowErrorMessage("Sign in successful!");
     }
-    void OnSignInFailed()
+    void OnSignInFailed(string errorMessage)
     {
         Debug.Log("Sign in failed!");
-        ShowErrorMessage("Sign in failed. Please try again.");
+        ShowErrorMessage("Sign in failed. Please try again. " + errorMessage);
     }
 
     private void ShowErrorMessage(string message)
