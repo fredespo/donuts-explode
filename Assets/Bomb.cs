@@ -77,13 +77,13 @@ public class Bomb : MonoBehaviour
 		float distFromMagnetToBombCenter = Vector3.Distance(hole.GetComponent<BombHole>().GetMagnet().transform.position, this.transform.position);
 		float distFromMagnetToBombEdge = bombHeight / 2 - distFromMagnetToBombCenter;
 		float distFromPieceToHole = Vector3.Distance(piece.transform.position, this.transform.position) - bombHeight / 2 + distFromMagnetToBombEdge;
-		float timeToImpact = distFromPieceToHole / piece.GetComponent<Rigidbody2D>().velocity.magnitude;
+		float timeToImpact = distFromPieceToHole / piece.GetComponent<Rigidbody2D>().linearVelocity.magnitude;
 		if (timeToImpact > secLeft) return false;
 
 		Vector3 rotation = new Vector3(0, 0, -this.rotator.Speed * timeToImpact);
 		Vector3 futureHoleLeft = RotatePointAroundPivot(holeLeft, transform.position, rotation);
 		Vector3 futureHoleRight = RotatePointAroundPivot(holeRight, transform.position, rotation);
-		Vector3 pieceDest = piece.GetComponent<Rigidbody2D>().velocity.normalized * distFromPieceToHole * 1.01f;
+		Vector3 pieceDest = piece.GetComponent<Rigidbody2D>().linearVelocity.normalized * distFromPieceToHole * 1.01f;
 		pieceDest += piece.transform.position;
 		bool willGoIn = AreLinesIntersecting(piece.transform.position, pieceDest, futureHoleLeft, futureHoleRight, true);
 		return willGoIn;

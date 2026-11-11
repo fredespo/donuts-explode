@@ -101,7 +101,7 @@ public class PieceShooter : MonoBehaviour
         {
             Rigidbody2D pieceRb = spawnedPiece.GetComponent<Rigidbody2D>();
             pieceRb.isKinematic = false;
-            pieceRb.velocity = transform.up * speed;
+            pieceRb.linearVelocity = transform.up * speed;
             spawnedPiece.GetComponentInChildren<SpriteRenderer>().sortingOrder = 0;
             spawnedPieceReadyToShoot = false;
             soundEffect.pitch = Random.Range(this.shootSoundPitchMin, this.shootSoundPitchMax);

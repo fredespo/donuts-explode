@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Gley.MobileAds;
+// using Gley.MobileAds;
 
 public class Ads : MonoBehaviour
 {
@@ -12,7 +12,7 @@ public class Ads : MonoBehaviour
 
     void Start()
     {
-        Gley.MobileAds.API.Initialize(OnInitialized);
+        // Gley.MobileAds.API.Initialize(OnInitialized);
     }
 
     private void OnInitialized()
@@ -24,7 +24,7 @@ public class Ads : MonoBehaviour
     {
         if (isInitialized)
         {
-            Gley.MobileAds.API.ShowRewardedVideo(OnRewardedVideoForExtraCoffeeCompleteOrClosed);
+            // Gley.MobileAds.API.ShowRewardedVideo(OnRewardedVideoForExtraCoffeeCompleteOrClosed);
         }
         else
         {

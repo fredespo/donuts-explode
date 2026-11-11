@@ -5,11 +5,11 @@ using UnityEngine.UI;
 
 public class BuyCoffeeButton : MonoBehaviour
 {
-    public IAP iap;
     public Text text;
 
     void OnEnable()
     {
-        text.text = "Unlimited - " + iap.GetPriceStringForUnlimitedCoffee();
+        //text.text = "Unlimited - " + iap.GetPriceStringForUnlimitedCoffee();
+        text.text = "Unlimited - $1";
     }
 }

@@ -36,7 +36,7 @@ public class BonusBomb : MonoBehaviour
 
     private void BlowAway(Rigidbody2D rb)
     {
-        if (rb.velocity.magnitude == 0)
+        if (rb.linearVelocity.magnitude == 0)
         {
             return;
         }

@@ -51,7 +51,7 @@ public class BombPiece : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if (this.rigibody.velocity.magnitude != 0 && col.gameObject.CompareTag("bomb"))
+        if (this.rigibody.linearVelocity.magnitude != 0 && col.gameObject.CompareTag("bomb"))
         {
             this.hitBomb = true;
             if (!fading && !inMagnetRange)
@@ -80,7 +80,7 @@ public class BombPiece : MonoBehaviour
             }
             else
             {
-                rigibody.velocity = (p1 - p2).normalized * rigibody.velocity.magnitude;
+                rigibody.linearVelocity = (p1 - p2).normalized * rigibody.linearVelocity.magnitude;
                 rigibody.MoveRotation(90 + Mathf.Atan2(p2.y - p1.y, p2.x - p1.x) * 180 / Mathf.PI);
             }
         }
